@@ -1,0 +1,26 @@
+.cut {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.2;
+}
+
+.flip {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.2;
+  stroke-dasharray: 4,2;
+}
+
+.inverted {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.2;
+  stroke-dasharray: 2,4;
+}
+
+.reference {
+  fill: none;
+  stroke: gray;
+  stroke-width: 0.2;
+  stroke-dasharray: 0.2,0.4;
+}
