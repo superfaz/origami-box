@@ -5,7 +5,15 @@ const initialState = {
 };
 
 export function changeTheme(theme) {
-    return { type: 'CHANGE_THEME', payload: theme };
+    if (typeof(theme) == 'object') {
+        theme = theme.target.checked ? 'light' : 'dark';
+    }
+
+    return ({ type: 'CHANGE_THEME', payload: theme });
+}
+
+export function getTheme(store) {
+    return store.userPreferences.theme;
 }
 
 function userPreferences(state = initialState, action) {
