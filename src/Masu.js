@@ -24,11 +24,11 @@ class Masu extends React.Component {
   }
 
   updatePageFormat() {
-    if (this.state.pageFormat === 'A4-Landscape') {
-      this.setState({ pageLength: 297, pageWidth: 210 });
-    }
     if (this.state.pageFormat === 'A4-Portrait') {
       this.setState({ pageLength: 210, pageWidth: 297 });
+    }
+    else {
+      this.setState({ pageLength: 297, pageWidth: 210 });
     }
   }
 
@@ -118,7 +118,7 @@ class Masu extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>Masu Box</h1>
+        <h1>Masu</h1>
         <div className="row">
           <div className="col-md-6 col-lg-4">
             <form>
@@ -127,34 +127,34 @@ class Masu extends React.Component {
                 <select name="pageFormat" className="form-select"
                   value={this.state.pageFormat} onChange={this.handleInputChange}>
                   <option>A4-Portrait</option>
-                  <option>A4-Landscape</option>
+                  <option>A4-Paysage</option>
                 </select>
               </div>
               <div className="mb-3">
                 <label htmlFor="length" className="form-label">Dimensions (mm)</label>
                 <div className="input-group">
-                  <input name="length" type="number" className="form-control" placeholder="Length" aria-label="Length"
+                  <input name="length" type="number" className="form-control" placeholder="Longueur" aria-label="Longueur"
                     value={this.state.length} onChange={this.handleInputChange} />
-                  <input name="width" type="number" className="form-control" placeholder="Width" aria-label="Width"
+                  <input name="width" type="number" className="form-control" placeholder="Largeur" aria-label="Largeur"
                     value={this.state.width} onChange={this.handleInputChange} />
-                  <input name="height" type="number" className="form-control" placeholder="Height" aria-label="Height"
+                  <input name="height" type="number" className="form-control" placeholder="Hauteur" aria-label="Hauteur"
                     value={this.state.height} onChange={this.handleInputChange} />
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="frontText" className="form-label">Front Text (Verso)</label>
+                <label htmlFor="frontText" className="form-label">Texte (Verso)</label>
                 <input name="frontText" type="text" className="form-control"
                   value={this.state.frontText} onChange={this.handleInputChange} />
               </div>
               <div className="mb-3">
-                <label htmlFor="background" className="form-label">Background (Verso)</label>
+                <label htmlFor="background" className="form-label">Couleur de fond (Verso)</label>
                 <TwitterPicker name="background" triangle="hide" width="312px"
                   colors={['#FFFFFF', '#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF']}
                   color={this.state.background} onChangeComplete={this.handleBackgroundChange} />
               </div>
               <div className="mb-6 pt-3">
                 <button type="button" className="btn btn-primary"
-                  onClick={this.generatePdf}>Generate PDF</button>
+                  onClick={this.generatePdf}>Télécharger un PDF</button>
               </div>
             </form>
           </div>

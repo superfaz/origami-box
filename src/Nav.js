@@ -6,7 +6,7 @@ class Nav extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
                 <div className="container">
-                    <a className="navbar-brand" href="/">Origami Templates</a>
+                    <a className="navbar-brand" href="/">Origami</a>
                 </div>
             </nav>
         );
