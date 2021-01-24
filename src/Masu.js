@@ -120,7 +120,7 @@ class Masu extends React.Component {
       <div className="container">
         <h1>Masu</h1>
         <div className="row">
-          <div className="col-md-6 col-lg-4">
+          <div className="col-md-6 col-lg-4 mb-3">
             <form>
               <div className="mb-3">
                 <label htmlFor="pageFormat" className="form-label">Format</label>
