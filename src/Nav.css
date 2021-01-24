@@ -1,0 +1,7 @@
+.theme-dark .bi::before, .theme-light .bi::before {
+    margin-bottom: .125em;
+}
+
+.theme-dark {
+    margin-right: .5rem;
+}
