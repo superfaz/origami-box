@@ -1,17 +1,17 @@
 import './App.css';
-import React from 'react';
+import React, { Suspense } from 'react';
 import Nav from './Nav';
 import Footer from './Footer';
 import Masu from './Masu';
 
 export default function App() {
   return (
-    <div>
+    <Suspense fallback="Loading...">
       <Nav />
       <div style={{ marginTop: '4rem' }}>
         <Masu />
       </div>
       <Footer />
-    </div>
+    </Suspense>
   );
 }

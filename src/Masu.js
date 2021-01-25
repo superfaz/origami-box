@@ -2,12 +2,13 @@ import React from 'react';
 import MasuTemplate from './MasuTemplate.js';
 import { jsPDF } from 'jspdf';
 import { TwitterPicker } from 'react-color';
+import { withTranslation } from 'react-i18next';
 
 class Masu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageFormat: 'A4-Portrait',
+      pageFormat: 'A4-p',
       pageLength: 297,
       pageWidth: 210,
       length: 60,
@@ -19,12 +20,12 @@ class Masu extends React.Component {
 
     this.updatePageFormat = this.updatePageFormat.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleBackgroundChange = this.handleBackgroundChange.bind(this);
+    this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(this);
     this.generatePdf = this.generatePdf.bind(this);
   }
 
   updatePageFormat() {
-    if (this.state.pageFormat === 'A4-Portrait') {
+    if (this.state.pageFormat === 'A4-p') {
       this.setState({ pageLength: 210, pageWidth: 297 });
     }
     else {
@@ -46,12 +47,12 @@ class Masu extends React.Component {
     }
   }
 
-  handleBackgroundChange(color) {
+  handleBackgroundColorChange(color) {
     this.setState({ background: color.hex });
   }
 
   generatePdf() {
-    var orientation = this.state.pageFormat === 'A4-Portrait' ? 'p' : 'l';
+    var orientation = this.state.pageFormat === 'A4-p' ? 'p' : 'l';
     const pdf = new jsPDF(orientation, 'mm', 'A4');
 
     const l = parseFloat(this.state.length);
@@ -116,55 +117,61 @@ class Masu extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <div className="container">
-        <h1>Masu</h1>
+        <h1>{t('masu.title')}</h1>
         <div className="row">
           <div className="col-md-6 col-lg-4 mb-3">
             <form>
               <div className="mb-3">
-                <label htmlFor="pageFormat" className="form-label">Format</label>
+                <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
                 <select name="pageFormat" className="form-select"
                   value={this.state.pageFormat} onChange={this.handleInputChange}>
-                  <option>A4-Portrait</option>
-                  <option>A4-Paysage</option>
+                  <option value="A4-p">{t('masu.format.A4p')}</option>
+                  <option value="A4-l">{t('masu.format.A4l')}</option>
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="length" className="form-label">Dimensions (mm)</label>
+                <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
                 <div className="input-group">
-                  <input name="length" type="number" className="form-control" placeholder="Longueur" aria-label="Longueur"
+                  <input name="length" type="number" className="form-control"
+                    placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
                     value={this.state.length} onChange={this.handleInputChange} />
-                  <input name="width" type="number" className="form-control" placeholder="Largeur" aria-label="Largeur"
+                  <input name="width" type="number" className="form-control"
+                    placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
                     value={this.state.width} onChange={this.handleInputChange} />
-                  <input name="height" type="number" className="form-control" placeholder="Hauteur" aria-label="Hauteur"
+                  <input name="height" type="number" className="form-control"
+                    placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
                     value={this.state.height} onChange={this.handleInputChange} />
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="frontText" className="form-label">Texte (Verso)</label>
+                <label htmlFor="frontText" className="form-label">{t('masu.frontText.label')}</label>
                 <input name="frontText" type="text" className="form-control"
                   value={this.state.frontText} onChange={this.handleInputChange} />
               </div>
               <div className="mb-3">
-                <label htmlFor="background" className="form-label">Couleur de fond (Verso)</label>
-                <TwitterPicker name="background" triangle="hide" width="312px"
+                <label htmlFor="backgroundColor" className="form-label">{t('masu.backgroundColor.label')}</label>
+                <TwitterPicker name="backgroundColor" triangle="hide" width="312px"
                   colors={['#FFFFFF', '#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF']}
-                  color={this.state.background} onChangeComplete={this.handleBackgroundChange} />
+                  color={this.state.backgroundColor} onChangeComplete={this.handleBackgroundColorChange} />
               </div>
               <div className="mb-6 pt-3">
                 <button type="button" className="btn btn-primary"
-                  onClick={this.generatePdf}>Télécharger un PDF</button>
+                  onClick={this.generatePdf}>{t('masu.generatePDF')}</button>
               </div>
             </form>
           </div>
           <div className="col-md-6 col-lg-8">
             <ul className="nav nav-tabs" role="tablist">
               <li className="nav-item" role="presentation">
-                <a className="nav-link active" id="recto-tab" data-bs-toggle="tab" href="#recto" role="tab" aria-controls="recto" aria-selected="true">Recto</a>
+                <a className="nav-link active" id="recto-tab" data-bs-toggle="tab" href="#recto" role="tab"
+                  aria-controls="recto" aria-selected="true">{t('masu.recto')}</a>
               </li>
               <li className="nav-item" role="presentation">
-                <a className="nav-link" id="verso-tab" data-bs-toggle="tab" href="#verso" role="tab" aria-controls="verso" aria-selected="false">Verso</a>
+                <a className="nav-link" id="verso-tab" data-bs-toggle="tab" href="#verso" role="tab"
+                  aria-controls="verso" aria-selected="false">{t('masu.verso')}</a>
               </li>
             </ul>
             <div className="tab-content">
@@ -194,4 +201,4 @@ class Masu extends React.Component {
   }
 }
 
-export default Masu;
+export default withTranslation()(Masu);

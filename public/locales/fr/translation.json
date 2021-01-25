@@ -1,0 +1,25 @@
+{
+    "masu": {
+        "title": "Masu",
+        "format": {
+            "label": "Format",
+            "A4p": "A4 - Portrait",
+            "A4l": "A4 - Paysage"
+        },
+        "dimensions": {
+            "label": "Dimensions (mm)",
+            "length": "Longueur",
+            "width": "Largeur",
+            "height": "Hauteur"
+        },
+        "frontText": {
+            "label": "Texte (Verso)"
+        },
+        "backgroundColor": {
+            "label": "Couleur de fond (Verso)"
+        },
+        "generatePDF": "Générer le PDF",
+        "recto": "Recto",
+        "verso": "Verso"
+    }
+}
