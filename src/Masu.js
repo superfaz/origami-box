@@ -67,51 +67,62 @@ class Masu extends React.Component {
 
     const h2 = h * 2.0;
 
-    const matrix = "1 0 0 1 " + (this.state.pageWidth / 2.0 * 72 / 25.4) + " " + (-this.state.pageLength / 2.0 * 72 / 25.4);
-    pdf.setCurrentTransformationMatrix(matrix);
-    pdf.setDrawColor('#000000');
+    const translation = "1 0 0 1 " + (this.state.pageWidth / 2.0) + " " + (this.state.pageLength / 2.0);
+    const cos = Math.cos(45 * Math.PI / 180);
+    const sin = Math.sin(45 * Math.PI / 180);
 
-    // Cut
-    pdf.setLineWidth(0.2);
-    pdf.lines([[max_2, max_2], [-max_2, max_2], [-max_2, -max_2], [max_2, -max_2]], 0, -max_2);
+    // Recto
+    pdf.advancedAPI(pdf => {
+      pdf.setCurrentTransformationMatrix(translation);
+      pdf.setCurrentTransformationMatrix(`${cos} ${sin} ${-sin} ${cos} 0 0`);
+      pdf.setDrawColor('#000000');
 
-    // Flip
-    pdf.setLineDashPattern([4, 2]);
-    pdf.line(-w_2 - h, -l_2 - h, w_2 + h, -l_2 - h);
-    pdf.line(-w_2 - h2, -l_2, w_2 + h2, -l_2);
-    pdf.line(-w_2 - h2, l_2, w_2 + h2, l_2);
-    pdf.line(-w_2 - h, l_2 + h, w_2 + h, l_2 + h);
-    pdf.line(-w_2 - h, -l_2 - h, -w_2 - h, l_2 + h);
-    pdf.line(-w_2, -l_2 - h2, -w_2, l_2 + h2);
-    pdf.line(w_2, -l_2 - h2, w_2, l_2 + h2);
-    pdf.line(w_2 + h, -l_2 - h, w_2 + h, l_2 + h);
+      // Cut
+      pdf.setLineWidth(0.2);
+      pdf.lines([[max_2, max_2], [-max_2, max_2], [-max_2, -max_2], [max_2, -max_2]], 0, -max_2)
+        .stroke();
 
-    // Inverted
-    pdf.setLineDashPattern([2, 4]);
-    pdf.line(-w_2, -l_2 - h2, w_2, -l_2 - h2);
-    pdf.line(-w_2, l_2 + h2, w_2, l_2 + h2);
-    pdf.line(-w_2 - h2, -l_2, -w_2 - h2, l_2);
-    pdf.line(w_2 + h2, -l_2, w_2 + h2, l_2);
-    pdf.line(-w_2 - h, -l_2 - h, -w_2, -l_2);
-    pdf.line(w_2 + h, -l_2 - h, w_2, -l_2);
-    pdf.line(-w_2 - h, l_2 + h, -w_2, l_2);
-    pdf.line(w_2 + h, l_2 + h, w_2, l_2);
+      // Flip
+      pdf.setLineDashPattern([4, 2]);
+      pdf.line(-w_2 - h, -l_2 - h, w_2 + h, -l_2 - h);
+      pdf.line(-w_2 - h2, -l_2, w_2 + h2, -l_2);
+      pdf.line(-w_2 - h2, l_2, w_2 + h2, l_2);
+      pdf.line(-w_2 - h, l_2 + h, w_2 + h, l_2 + h);
+      pdf.line(-w_2 - h, -l_2 - h, -w_2 - h, l_2 + h);
+      pdf.line(-w_2, -l_2 - h2, -w_2, l_2 + h2);
+      pdf.line(w_2, -l_2 - h2, w_2, l_2 + h2);
+      pdf.line(w_2 + h, -l_2 - h, w_2 + h, l_2 + h);
+
+      // Inverted
+      pdf.setLineDashPattern([2, 4]);
+      pdf.line(-w_2, -l_2 - h2, w_2, -l_2 - h2);
+      pdf.line(-w_2, l_2 + h2, w_2, l_2 + h2);
+      pdf.line(-w_2 - h2, -l_2, -w_2 - h2, l_2);
+      pdf.line(w_2 + h2, -l_2, w_2 + h2, l_2);
+      pdf.line(-w_2 - h, -l_2 - h, -w_2, -l_2);
+      pdf.line(w_2 + h, -l_2 - h, w_2, -l_2);
+      pdf.line(-w_2 - h, l_2 + h, -w_2, l_2);
+      pdf.line(w_2 + h, l_2 + h, w_2, l_2);
+    });
 
     // Verso
     pdf.addPage(orientation, 'mm', 'A4');
-    pdf.setCurrentTransformationMatrix(matrix);
+    pdf.advancedAPI(pdf => {
+      pdf.setCurrentTransformationMatrix(translation);
+      pdf.setCurrentTransformationMatrix(`${cos} ${-sin} ${sin} ${cos} 0 0`);
 
-    // Background
-    if (this.state.background !== null) {
-      pdf.setFillColor(this.state.background);
-      pdf.lines([[max_2 + 5, max_2 + 5], [-max_2 - 5, max_2 + 5], [-max_2 - 5, -max_2 - 5], [max_2 + 5, -max_2 - 5]], 0, -max_2 - 5, [1, 1], 'F');
-    }
+      // Background
+      if (this.state.background !== null) {
+        pdf.setFillColor(this.state.background);
+        pdf.lines([[max_2 + 5, max_2 + 5], [-max_2 - 5, max_2 + 5], [-max_2 - 5, -max_2 - 5], [max_2 + 5, -max_2 - 5]], 0, -max_2 - 5, [1, 1], 'F');
+      }
 
-    // Text
-    if (this.state.frontText != null) {
-      pdf.setFontSize(8 * 72 / 25.4);
-      pdf.text(this.state.frontText, 0, l_2 + h / 2, { align: 'center', baseline: 'middle' });
-    }
+      // Text
+      if (this.state.frontText != null) {
+        pdf.setFontSize(8 * 72 / 25.4);
+        pdf.text(this.state.frontText, 0, l_2 + h / 2, { align: 'center', baseline: 'middle' });
+      }
+    });
 
     pdf.save('test.pdf');
   }

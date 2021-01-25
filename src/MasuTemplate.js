@@ -21,7 +21,7 @@ export default function MasuTemplate(props) {
     if (side === 'recto') {
         return (
             <svg viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`} style={styles}>
-                <g transform="rotate(0)">
+                <g transform="rotate(45)">
                     <polygon className="cut" points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
 
                     <line className="flip" x1={-w_2 - h} y1={-l_2 - h} x2={w_2 + h} y2={-l_2 - h} />
@@ -49,7 +49,7 @@ export default function MasuTemplate(props) {
     else {
         return (
             <svg viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`} style={styles}>
-                <g transform="rotate(0)">
+                <g transform="rotate(-45)">
                     <polygon points={`0,-${max_2 + 5} ${max_2 + 5},0 0,${max_2 + 5} -${max_2 + 5},0`} style={{
                         fill: props.background
                     }} />
