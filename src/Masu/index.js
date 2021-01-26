@@ -1,8 +1,8 @@
 import React from 'react';
-import MasuTemplate from './MasuTemplate.js';
 import { jsPDF } from 'jspdf';
 import { TwitterPicker } from 'react-color';
 import { withTranslation } from 'react-i18next';
+import MasuTemplate from './MasuTemplate.js';
 
 class Masu extends React.Component {
   constructor(props) {
