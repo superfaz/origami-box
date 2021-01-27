@@ -23,7 +23,7 @@ class FormGeneral extends React.Component {
         const { t } = this.props;
         return (
             <div>
-                <h4>General Options</h4>
+                <h4>{t('masu.general')}</h4>
                 <div className="mb-3">
                     <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
                     <select name="pageFormat" className="form-select" value={this.props.pageFormat} onChange={this.handleInputChange}>

@@ -1,6 +1,7 @@
 {
     "masu": {
         "title": "Masu",
+        "general": "General options",
         "format": {
             "label": "Format",
             "A4p": "A4 - Portrait",
