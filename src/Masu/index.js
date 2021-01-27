@@ -1,8 +1,8 @@
 import React from 'react';
 import { jsPDF } from 'jspdf';
-import { TwitterPicker } from 'react-color';
 import { withTranslation } from 'react-i18next';
 import MasuTemplate from './MasuTemplate.js';
+import Form from './Form.js';
 
 class Masu extends React.Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class Masu extends React.Component {
 
     this.updatePageFormat = this.updatePageFormat.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(this);
     this.generatePdf = this.generatePdf.bind(this);
   }
 
@@ -45,10 +44,6 @@ class Masu extends React.Component {
     if (name === 'pageFormat') {
       this.updatePageFormat();
     }
-  }
-
-  handleBackgroundColorChange(color) {
-    this.setState({ background: color.hex });
   }
 
   generatePdf() {
@@ -133,47 +128,10 @@ class Masu extends React.Component {
       <div className="container">
         <h1>{t('masu.title')}</h1>
         <div className="row">
-          <div className="col-md-6 col-lg-4 mb-3">
-            <form>
-              <div className="mb-3">
-                <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
-                <select name="pageFormat" className="form-select"
-                  value={this.state.pageFormat} onChange={this.handleInputChange}>
-                  <option value="A4-p">{t('masu.format.A4p')}</option>
-                  <option value="A4-l">{t('masu.format.A4l')}</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
-                <div className="input-group">
-                  <input name="length" type="number" className="form-control"
-                    placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
-                    value={this.state.length} onChange={this.handleInputChange} />
-                  <input name="width" type="number" className="form-control"
-                    placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
-                    value={this.state.width} onChange={this.handleInputChange} />
-                  <input name="height" type="number" className="form-control"
-                    placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
-                    value={this.state.height} onChange={this.handleInputChange} />
-                </div>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="frontText" className="form-label">{t('masu.frontText.label')}</label>
-                <input name="frontText" type="text" className="form-control"
-                  value={this.state.frontText} onChange={this.handleInputChange} />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="backgroundColor" className="form-label">{t('masu.backgroundColor.label')}</label>
-                <TwitterPicker name="backgroundColor" triangle="hide" width="312px"
-                  colors={['#FFFFFF', '#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF']}
-                  color={this.state.backgroundColor} onChangeComplete={this.handleBackgroundColorChange} />
-              </div>
-              <div className="mb-6 pt-3">
-                <button type="button" className="btn btn-primary"
-                  onClick={this.generatePdf}>{t('masu.generatePDF')}</button>
-              </div>
-            </form>
-          </div>
+          <Form className="col-md-6 col-lg-4 mb-3"
+            masu={this.state}
+            onInputChange={this.handleInputChange}
+            onGeneratePdf={this.generatePdf} />
           <div className="col-md-6 col-lg-8">
             <ul className="nav nav-tabs" role="tablist">
               <li className="nav-item" role="presentation">
