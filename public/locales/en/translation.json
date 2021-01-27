@@ -12,6 +12,7 @@
             "width": "Width",
             "height": "Height"
         },
+        "withLid": "Add a second template for a lid",
         "frontText": {
             "label": "Front Text (Verso)"
         },

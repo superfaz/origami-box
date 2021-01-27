@@ -2,7 +2,7 @@ import React from 'react';
 import { jsPDF } from 'jspdf';
 import { withTranslation } from 'react-i18next';
 import MasuTemplate from './MasuTemplate.js';
-import Form from './Form.js';
+import FormGeneral from './FormGeneral.js';
 
 class Masu extends React.Component {
   constructor(props) {
@@ -14,8 +14,11 @@ class Masu extends React.Component {
       length: 60,
       width: 30,
       height: 10,
+      withLid: false,
       frontText: '',
-      background: '#8ED1FC'
+      background: '#8ED1FC',
+      frontText2: '',
+      background2: '#8ED1FC',
     };
 
     this.updatePageFormat = this.updatePageFormat.bind(this);
@@ -128,10 +131,12 @@ class Masu extends React.Component {
       <div className="container">
         <h1>{t('masu.title')}</h1>
         <div className="row">
-          <Form className="col-md-6 col-lg-4 mb-3"
-            masu={this.state}
-            onInputChange={this.handleInputChange}
-            onGeneratePdf={this.generatePdf} />
+          <div className="col-md-6 col-lg-4 mb-3">
+            <FormGeneral masu={this.state} onInputChange={this.handleInputChange} />
+            <div className="mb-6">
+              <button type="button" className="btn btn-primary" onClick={this.onGeneratePdf}>{t('masu.generatePDF')}</button>
+            </div>
+          </div>
           <div className="col-md-6 col-lg-8">
             <ul className="nav nav-tabs" role="tablist">
               <li className="nav-item" role="presentation">

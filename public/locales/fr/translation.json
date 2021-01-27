@@ -12,6 +12,7 @@
             "width": "Largeur",
             "height": "Hauteur"
         },
+        "withLid": "Créer un second modèle pour un couvercle",
         "frontText": {
             "label": "Texte (Verso)"
         },
