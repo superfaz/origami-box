@@ -13,6 +13,12 @@
             "height": "Height"
         },
         "withLid": "Add a second template for a lid",
+        "box": {
+            "title": "Box"
+        },
+        "lid": {
+            "title": "Lid"
+        },
         "frontText": {
             "label": "Front Text (Verso)"
         },

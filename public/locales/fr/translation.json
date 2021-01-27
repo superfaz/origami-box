@@ -13,6 +13,12 @@
             "height": "Hauteur"
         },
         "withLid": "Créer un second modèle pour un couvercle",
+        "box": {
+            "title": "Boite"
+        },
+        "lid": {
+            "title": "Couvercle"
+        },
         "frontText": {
             "label": "Texte (Verso)"
         },

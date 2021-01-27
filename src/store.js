@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from 'redux';
+import masuReducer from './Masu/reducer';
 
 const initialState = {
 };
@@ -30,6 +31,11 @@ function userPreferences(state = initialState, action) {
 
 const reducers = combineReducers({
     userPreferences,
+    masu: masuReducer,
 });
+
+export function getMasu(state) {
+    return state.masu;
+}
 
 export default createStore(reducers);

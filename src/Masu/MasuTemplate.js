@@ -1,6 +1,8 @@
+import { connect } from 'react-redux';
+import { getMasu } from '../store';
 import styles from './MasuTemplate.css';
 
-export default function MasuTemplate(props) {
+function MasuTemplate(props) {
     const pageLength = parseFloat(props.pageLength);
     const pageWidth = parseFloat(props.pageWidth);
 
@@ -51,7 +53,7 @@ export default function MasuTemplate(props) {
             <svg viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`} style={styles}>
                 <g transform="rotate(-45)">
                     <polygon points={`0,-${max_2 + 5} ${max_2 + 5},0 0,${max_2 + 5} -${max_2 + 5},0`} style={{
-                        fill: props.background
+                        fill: props.detail.background
                     }} />
 
                     <polygon className="reference" points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
@@ -76,10 +78,12 @@ export default function MasuTemplate(props) {
                     <line className="reference" x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
                     <text textAnchor="middle" dominantBaseline="middle" x={0} y={l_2 + h / 2} style={{ fontSize: 8 }}>
-                        {props.frontText}
+                        {props.detail.frontText}
                     </text>
                 </g>
             </svg>
         );
     }
 }
+
+export default connect(state => getMasu(state))(MasuTemplate);

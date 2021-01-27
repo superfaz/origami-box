@@ -1,8 +1,11 @@
 import React from 'react';
 import { jsPDF } from 'jspdf';
 import { withTranslation } from 'react-i18next';
-import MasuTemplate from './MasuTemplate.js';
-import FormGeneral from './FormGeneral.js';
+import MasuTemplate from './MasuTemplate';
+import FormGeneral from './FormGeneral';
+import FormDetail from './FormDetail';
+import { connect } from 'react-redux';
+import { getMasu } from '../store';
 
 class Masu extends React.Component {
   constructor(props) {
@@ -21,32 +24,7 @@ class Masu extends React.Component {
       background2: '#8ED1FC',
     };
 
-    this.updatePageFormat = this.updatePageFormat.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.generatePdf = this.generatePdf.bind(this);
-  }
-
-  updatePageFormat() {
-    if (this.state.pageFormat === 'A4-p') {
-      this.setState({ pageLength: 210, pageWidth: 297 });
-    }
-    else {
-      this.setState({ pageLength: 297, pageWidth: 210 });
-    }
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-
-    if (name === 'pageFormat') {
-      this.updatePageFormat();
-    }
   }
 
   generatePdf() {
@@ -132,7 +110,11 @@ class Masu extends React.Component {
         <h1>{t('masu.title')}</h1>
         <div className="row">
           <div className="col-md-6 col-lg-4 mb-3">
-            <FormGeneral masu={this.state} onInputChange={this.handleInputChange} />
+            <FormGeneral />
+            <FormDetail title={t('masu.box.title')} block={this.props.box} />
+            { this.props.withLid && 
+              <FormDetail title={t('masu.lid.title')} block={this.props.lid} />
+            }
             <div className="mb-6">
               <button type="button" className="btn btn-primary" onClick={this.onGeneratePdf}>{t('masu.generatePDF')}</button>
             </div>
@@ -150,22 +132,10 @@ class Masu extends React.Component {
             </ul>
             <div className="tab-content">
               <div className="tab-pane fade show active" id="recto" role="tabpanel" aria-labelledby="recto-tab">
-                <MasuTemplate side="recto"
-                  pageLength={this.state.pageLength}
-                  pageWidth={this.state.pageWidth}
-                  length={this.state.length}
-                  width={this.state.width}
-                  height={this.state.height} />
+                <MasuTemplate side="recto" detail={this.props.box} />
               </div>
               <div className="tab-pane fade" id="verso" role="tabpanel" aria-labelledby="verso-tab">
-                <MasuTemplate side="verso"
-                  pageLength={this.state.pageLength}
-                  pageWidth={this.state.pageWidth}
-                  length={this.state.length}
-                  width={this.state.width}
-                  height={this.state.height}
-                  frontText={this.state.frontText}
-                  background={this.state.background} />
+                <MasuTemplate side="verso" detail={this.props.box} />
               </div>
             </div>
           </div>
@@ -175,4 +145,4 @@ class Masu extends React.Component {
   }
 }
 
-export default withTranslation()(Masu);
+export default withTranslation()(connect(state => getMasu(state))(Masu));
