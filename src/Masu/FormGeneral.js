@@ -45,7 +45,7 @@ class FormGeneral extends React.Component {
                             value={this.props.height} onChange={this.handleInputChange} />
                     </div>
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 d-none">
                     <div className="form-check form-switch">
                         <input className="form-check-input" type="checkbox" id="withLid" name="withLid"
                             checked={this.props.withLid} onChange={this.handleCheckedChange} />
