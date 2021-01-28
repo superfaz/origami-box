@@ -24,3 +24,9 @@
   stroke-width: 0.2;
   stroke-dasharray: 0.2,0.4;
 }
+
+.mark {
+  fill: none;
+  stroke: blue;
+  stroke-width: 0.2;
+}

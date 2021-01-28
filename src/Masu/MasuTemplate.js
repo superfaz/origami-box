@@ -19,6 +19,7 @@ function MasuTemplate(props) {
     const max_2 = max / 2.0;
 
     const h2 = h * 2.0;
+    const mark = 2.5;
 
     if (side === 'recto') {
         return (
@@ -44,6 +45,26 @@ function MasuTemplate(props) {
                     <line className="inverted" x1={w_2 + h} y1={-l_2 - h} x2={w_2} y2={-l_2} />
                     <line className="inverted" x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
                     <line className="inverted" x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
+
+                    <line className="mark" x1={0} y1={l_2 - h2 - w_2} x2={-mark} y2={l_2 - h2 - w_2 + mark} />
+                    <line className="mark" x1={0} y1={l_2 - h2 - w_2} x2={mark} y2={l_2 - h2 - w_2 + mark} />
+                    <line className="mark" x1={0} y1={l_2 - w_2} x2={-mark} y2={l_2 - w_2 + mark} />
+                    <line className="mark" x1={0} y1={l_2 - w_2} x2={mark} y2={l_2 - w_2 + mark} />
+                    
+                    <line className="mark" x1={0} y1={-l_2 + h2 + w_2} x2={-mark} y2={-l_2 + h2 + w_2 - mark} />
+                    <line className="mark" x1={0} y1={-l_2 + h2 + w_2} x2={mark} y2={-l_2 + h2 + w_2 - mark} />
+                    <line className="mark" x1={0} y1={-l_2 + w_2} x2={-mark} y2={-l_2 + w_2 - mark} />
+                    <line className="mark" x1={0} y1={-l_2 + w_2} x2={mark} y2={-l_2 + w_2 - mark} />
+
+                    <line className="mark" x1={w_2 - h2 - l_2} y1={0} x2={w_2 - h2 - l_2 + mark} y2={-mark} />
+                    <line className="mark" x1={w_2 - h2 - l_2} y1={0} x2={w_2 - h2 - l_2 + mark} y2={mark} />
+                    <line className="mark" x1={w_2 - l_2} y1={0} x2={w_2 - l_2 + mark} y2={-mark} />
+                    <line className="mark" x1={w_2 - l_2} y1={0} x2={w_2 - l_2 + mark} y2={mark} />
+
+                    <line className="mark" x1={-w_2 + h2 + l_2} y1={0} x2={-w_2 + h2 + l_2 - mark} y2={-mark} />
+                    <line className="mark" x1={-w_2 + h2 + l_2} y1={0} x2={-w_2 + h2 + l_2 - mark} y2={mark} />
+                    <line className="mark" x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={-mark} />
+                    <line className="mark" x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={mark} />
                 </g>
             </svg>
         );
