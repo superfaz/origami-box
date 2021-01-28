@@ -37,20 +37,20 @@ class Masu extends React.Component {
           <div className="col-md-6 col-lg-8">
             <ul className="nav nav-tabs" role="tablist">
               <li className="nav-item" role="presentation">
-                <a className="nav-link active" id="recto-tab" data-bs-toggle="tab" href="#recto" role="tab"
-                  aria-controls="recto" aria-selected="true">{t('masu.recto')}</a>
+                <a className="nav-link active" id="front-tab" data-bs-toggle="tab" href="#front" role="tab"
+                  aria-controls="front" aria-selected="true">{t('masu.front')}</a>
               </li>
               <li className="nav-item" role="presentation">
-                <a className="nav-link" id="verso-tab" data-bs-toggle="tab" href="#verso" role="tab"
-                  aria-controls="verso" aria-selected="false">{t('masu.verso')}</a>
+                <a className="nav-link" id="back-tab" data-bs-toggle="tab" href="#back" role="tab"
+                  aria-controls="back" aria-selected="false">{t('masu.back')}</a>
               </li>
             </ul>
             <div className="tab-content">
-              <div className="tab-pane fade show active" id="recto" role="tabpanel" aria-labelledby="recto-tab">
-                <MasuTemplate side="recto" detail={this.props.box} />
+              <div className="tab-pane fade show active" id="front" role="tabpanel" aria-labelledby="front-tab">
+                <MasuTemplate side="front" detail={this.props.box} />
               </div>
-              <div className="tab-pane fade" id="verso" role="tabpanel" aria-labelledby="verso-tab">
-                <MasuTemplate side="verso" detail={this.props.box} />
+              <div className="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
+                <MasuTemplate side="back" detail={this.props.box} />
               </div>
             </div>
           </div>

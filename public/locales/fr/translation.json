@@ -27,7 +27,7 @@
             "label": "Couleur de fond (Verso)"
         },
         "generatePDF": "Générer le PDF",
-        "recto": "Recto",
-        "verso": "Verso"
+        "front": "Recto",
+        "back": "Verso"
     }
 }

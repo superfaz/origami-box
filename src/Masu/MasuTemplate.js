@@ -10,7 +10,7 @@ function MasuTemplate(props) {
     const w = parseFloat(props.width);
     const h = parseFloat(props.height);
 
-    const side = props.side ?? 'recto';
+    const side = props.side ?? 'front';
 
     const max = l + 0.0 + w + 4.0 * h;
 
@@ -21,7 +21,7 @@ function MasuTemplate(props) {
     const h2 = h * 2.0;
     const mark = 2.5;
 
-    if (side === 'recto') {
+    if (side === 'front') {
         return (
             <svg viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`} style={styles}>
                 <g transform="rotate(45)">

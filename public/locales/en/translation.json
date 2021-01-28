@@ -21,13 +21,13 @@
             "title": "Lid"
         },
         "frontText": {
-            "label": "Front Text (Verso)"
+            "label": "Front Text"
         },
         "backgroundColor": {
-            "label": "Background Color (Verso)"
+            "label": "Background Color (Back)"
         },
         "generatePDF": "Generate PDF",
-        "recto": "Recto",
-        "verso": "Verso"
+        "front": "Front",
+        "back": "Back"
     }
 }
