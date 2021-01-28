@@ -13,6 +13,7 @@
             "width": "Largeur",
             "height": "Hauteur"
         },
+        "withBackDesign": "Définir un design spécifique pour le verso",
         "withLid": "Créer un second modèle pour un couvercle",
         "box": {
             "title": "Boîte"

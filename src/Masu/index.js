@@ -26,7 +26,9 @@ class Masu extends React.Component {
         <div className="row">
           <div className="col-md-6 col-lg-4 mb-3">
             <FormGeneral />
-            <FormDetail title={t('masu.box.title')} block={this.props.box} />
+            {this.props.withBackDesign &&
+              <FormDetail title={t('masu.box.title')} block={this.props.box} />
+            }
             {this.props.withLid &&
               <FormDetail title={t('masu.lid.title')} block={this.props.lid} />
             }
@@ -40,18 +42,22 @@ class Masu extends React.Component {
                 <a className="nav-link active" id="front-tab" data-bs-toggle="tab" href="#front" role="tab"
                   aria-controls="front" aria-selected="true">{t('masu.front')}</a>
               </li>
-              <li className="nav-item" role="presentation">
-                <a className="nav-link" id="back-tab" data-bs-toggle="tab" href="#back" role="tab"
-                  aria-controls="back" aria-selected="false">{t('masu.back')}</a>
-              </li>
+              {this.props.withBackDesign &&
+                <li className="nav-item" role="presentation">
+                  <a className="nav-link" id="back-tab" data-bs-toggle="tab" href="#back" role="tab"
+                    aria-controls="back" aria-selected="false">{t('masu.back')}</a>
+                </li>
+              }
             </ul>
             <div className="tab-content">
               <div className="tab-pane fade show active" id="front" role="tabpanel" aria-labelledby="front-tab">
                 <MasuTemplate side="front" detail={this.props.box} />
               </div>
-              <div className="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
-                <MasuTemplate side="back" detail={this.props.box} />
-              </div>
+              {this.props.withBackDesign &&
+                <div className="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
+                  <MasuTemplate side="back" detail={this.props.box} />
+                </div>
+              }
             </div>
           </div>
         </div>

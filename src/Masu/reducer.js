@@ -5,6 +5,7 @@ const initialState = {
     length: 60,
     width: 30,
     height: 10,
+    withBackDesign: true,
     withLid: false,
     box: {
         key: 'box',

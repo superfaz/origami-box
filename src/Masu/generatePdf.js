@@ -55,23 +55,25 @@ export default function generatePdf(masu) {
     });
 
     // Verso
-    pdf.addPage(orientation, 'mm', 'A4');
-    pdf.advancedAPI(pdf => {
-        pdf.setCurrentTransformationMatrix(translation);
-        pdf.setCurrentTransformationMatrix(`${cos} ${-sin} ${sin} ${cos} 0 0`);
+    if (masu.withBackDesign) {
+        pdf.addPage(orientation, 'mm', 'A4');
+        pdf.advancedAPI(pdf => {
+            pdf.setCurrentTransformationMatrix(translation);
+            pdf.setCurrentTransformationMatrix(`${cos} ${-sin} ${sin} ${cos} 0 0`);
 
-        // Background
-        if (masu.box.background !== undefined) {
-            pdf.setFillColor(masu.box.background);
-            pdf.lines([[max_2 + 5, max_2 + 5], [-max_2 - 5, max_2 + 5], [-max_2 - 5, -max_2 - 5], [max_2 + 5, -max_2 - 5]], 0, -max_2 - 5, [1, 1], 'F');
-        }
+            // Background
+            if (masu.box.background !== undefined) {
+                pdf.setFillColor(masu.box.background);
+                pdf.lines([[max_2 + 5, max_2 + 5], [-max_2 - 5, max_2 + 5], [-max_2 - 5, -max_2 - 5], [max_2 + 5, -max_2 - 5]], 0, -max_2 - 5, [1, 1], 'F');
+            }
 
-        // Text
-        if (masu.box.frontText !== undefined) {
-            pdf.setFontSize(8 * 72 / 25.4);
-            pdf.text(masu.box.frontText, 0, l_2 + h / 2, { align: 'center', baseline: 'middle' });
-        }
-    });
+            // Text
+            if (masu.box.frontText !== undefined) {
+                pdf.setFontSize(8 * 72 / 25.4);
+                pdf.text(masu.box.frontText, 0, l_2 + h / 2, { align: 'center', baseline: 'middle' });
+            }
+        });
+    }
 
     pdf.save('test.pdf');
 }

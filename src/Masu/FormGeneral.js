@@ -45,6 +45,13 @@ class FormGeneral extends React.Component {
                             value={this.props.height} onChange={this.handleInputChange} />
                     </div>
                 </div>
+                <div className="mb-3">
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" id="withBackDesign" name="withBackDesign"
+                            checked={this.props.withBackDesign} onChange={this.handleCheckedChange} />
+                        <label className="form-check-label" htmlFor="withBackDesign">{t('masu.withBackDesign')}</label>
+                    </div>
+                </div>
                 <div className="mb-3 d-none">
                     <div className="form-check form-switch">
                         <input className="form-check-input" type="checkbox" id="withLid" name="withLid"
