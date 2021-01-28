@@ -36,8 +36,8 @@ export default function masuReducer(state = initialState, action) {
     switch (action.type) {
         case 'UPDATE_GENERAL':
             if (action.payload.name === 'pageFormat') {
-                const pageLength = action.payload.value === 'A4-p' ? 210 : 297;
-                const pageWidth = action.payload.value === 'A4-p' ? 297 : 210;
+                const pageLength = action.payload.value === 'A4-p' ? 297 : 210;
+                const pageWidth = action.payload.value === 'A4-p' ? 210 : 297;
                 return {
                     ...state,
                     [action.payload.name]: action.payload.value,
