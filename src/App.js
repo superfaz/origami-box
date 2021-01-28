@@ -8,9 +8,7 @@ export default function App() {
   return (
     <Suspense fallback="Loading...">
       <Nav />
-      <div style={{ marginTop: '4rem' }}>
-        <Masu />
-      </div>
+      <Masu />
       <Footer />
     </Suspense>
   );

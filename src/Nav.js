@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 function Nav() {
     const { i18n } = useTranslation();
     return (
-        <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light">
+        <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark text-light">
             <div className="container">
                 <a className="navbar-brand" href="/">Origami Box</a>
                 <ul className="navbar-nav">
