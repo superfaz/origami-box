@@ -21,7 +21,7 @@ class Masu extends React.Component {
   render() {
     const { t } = this.props;
     return (
-      <div className="container">
+      <div className="container mt-2">
         <h1>{t('masu.title')}</h1>
         <div className="row">
           <div className="col-md-6 col-lg-4 mb-3">

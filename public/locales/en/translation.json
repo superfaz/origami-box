@@ -8,7 +8,7 @@
             "A4l": "A4 - Landscape"
         },
         "dimensions": {
-            "label": "Dimensions (mm)",
+            "label": "What are the dimensions of the box (in millimeters)?",
             "length": "Length",
             "width": "Width",
             "height": "Height"

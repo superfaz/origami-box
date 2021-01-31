@@ -25,13 +25,6 @@ class FormGeneral extends React.Component {
             <div>
                 <h4>{t('masu.general')}</h4>
                 <div className="mb-3">
-                    <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
-                    <select name="pageFormat" className="form-select" value={this.props.pageFormat} onChange={this.handleInputChange}>
-                        <option value="A4-p">{t('masu.format.A4p')}</option>
-                        <option value="A4-l">{t('masu.format.A4l')}</option>
-                    </select>
-                </div>
-                <div className="mb-3">
                     <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
                     <div className="input-group">
                         <input name="length" type="number" className="form-control"
@@ -58,6 +51,13 @@ class FormGeneral extends React.Component {
                             checked={this.props.withLid} onChange={this.handleCheckedChange} />
                         <label className="form-check-label" htmlFor="withLid">{t('masu.withLid')}</label>
                     </div>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
+                    <select name="pageFormat" className="form-select" value={this.props.pageFormat} onChange={this.handleInputChange}>
+                        <option value="A4-p">{t('masu.format.A4p')}</option>
+                        <option value="A4-l">{t('masu.format.A4l')}</option>
+                    </select>
                 </div>
             </div>
         );
