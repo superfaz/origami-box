@@ -1,11 +1,24 @@
 {
     "masu": {
         "title": "Masu",
-        "general": "Options générales",
         "format": {
             "label": "Format",
-            "A4p": "A4 - Portrait",
-            "A4l": "A4 - Paysage"
+            "A4": "A4",
+            "letter": "lettre (US)"
+        },
+        "stepAGeneral": {
+            "title": "Options générales",
+            "linkBack": "Retour aux options générales"
+        },
+        "stepBBoxDesign": {
+            "title": "Boîte",
+            "linkTo": "Définir le design de la boîte",
+            "linkBack": "Retour au design de la boîte"
+        },
+        "stepZGenerate": {
+            "title": "Préparer le PDF",
+            "linkTo": "Préparer l'impression",
+            "generatePDF": "Générer le PDF"
         },
         "dimensions": {
             "label": "Dimensions (mm)",
@@ -15,19 +28,12 @@
         },
         "withBackDesign": "Définir un design spécifique pour le verso",
         "withLid": "Créer un second modèle pour un couvercle",
-        "box": {
-            "title": "Boîte"
-        },
-        "lid": {
-            "title": "Couvercle"
-        },
         "frontText": {
             "label": "Texte (Verso)"
         },
         "backgroundColor": {
             "label": "Couleur de fond (Verso)"
         },
-        "generatePDF": "Générer le PDF",
         "front": "Recto",
         "back": "Verso"
     }

@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import MasuTemplate from './MasuTemplate';
 import classNames from 'classnames/dedupe';
 
-class FormGeneral extends React.Component {
+class StepAGeneral extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { valid: true };
+        this.state = { valid: false };
+        this.form = new React.createRef();
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheckedChange = this.handleCheckedChange.bind(this);
@@ -24,12 +25,7 @@ class FormGeneral extends React.Component {
             e.target.className = classNames(e.target.className, "is-invalid", { "is-valid": false });
         }
 
-        if (e.target.form.checkValidity()) {
-            this.setState({ valid: true });
-        }
-        else {
-            this.setState({ valid: false });
-        }
+        this.setState({ valid: e.target.form.checkValidity() });
 
         this.props.updateGeneral(e.target.name, e.target.value);
     }
@@ -38,13 +34,17 @@ class FormGeneral extends React.Component {
         this.props.updateGeneral(e.target.name, e.target.checked);
     }
 
+    componentDidMount() {
+        this.setState({ valid: this.form.current.checkValidity() });
+    }
+
     render() {
         const { t } = this.props;
         return (
             <div className="row" >
                 <div className="col-md-6 col-lg-4 mb-3">
-                    <h4>{t('masu.general')}</h4>
-                    <form noValidate>
+                    <h4>{t('masu.stepAGeneral.title')}</h4>
+                    <form ref={this.form} noValidate>
                         <div className="mb-3">
                             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
                             <div className="input-group">
@@ -75,10 +75,10 @@ class FormGeneral extends React.Component {
                         </div>
                         <div className="mb-3 mt-5 d-flex">
                             {this.props.withBackDesign &&
-                                <Link className={classNames("btn btn-primary ms-auto", { "disabled": !this.state.valid })} to="/back">Define the back design</Link>
+                                <Link className={classNames("btn btn-primary ms-auto", { "disabled": !this.state.valid })} to="/back">{t('masu.stepBBoxDesign.linkTo')}</Link>
                             }
                             {!this.props.withBackDesign &&
-                                <Link className={classNames("btn btn-primary ms-auto", { "disabled": !this.state.valid })} to="/generate">Generate the PDF</Link>
+                                <Link className={classNames("btn btn-primary ms-auto", { "disabled": !this.state.valid })} to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
                             }
                         </div>
                     </form>
@@ -91,4 +91,4 @@ class FormGeneral extends React.Component {
     }
 }
 
-export default withTranslation()(connect(state => getMasu(state), { updateGeneral })(FormGeneral));
+export default withTranslation()(connect(state => getMasu(state), { updateGeneral })(StepAGeneral));

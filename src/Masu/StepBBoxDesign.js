@@ -6,7 +6,7 @@ import { TwitterPicker } from 'react-color';
 import MasuTemplate from './MasuTemplate';
 import { Link } from 'react-router-dom';
 
-class FormDetail extends React.Component {
+class StepBBoxDesign extends React.Component {
     constructor(props) {
         super(props);
 
@@ -39,12 +39,12 @@ class FormDetail extends React.Component {
                         <input name={`${this.props.key}.frontText`} type="text" className="form-control"
                             value={block.frontText} onChange={this.handleFrontTextChange} />
                     </div>
-                    <div className="mb-3 d-flex">
-                        <Link className="btn btn-link" to="/">Back to General Options</Link>
-                        <Link className="btn btn-primary ms-auto" to="/generate">Generate the PDF</Link>
+                    <div className="mb-3 mt-5 d-flex">
+                        <Link className="btn btn-link" to="/">{t('masu.stepAGeneral.linkBack')}</Link>
+                        <Link className="btn btn-primary ms-auto" to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
                     </div>
                 </div>
-                <div className="col-md-6 col-lg-8">
+                <div className="col-md-6 col-lg-8 mb-3">
                     <MasuTemplate side="back" detail={block} />
                 </div>
             </div>
@@ -52,4 +52,4 @@ class FormDetail extends React.Component {
     }
 }
 
-export default withTranslation()(connect(null, { updateDetail })(FormDetail));
+export default withTranslation()(connect(null, { updateDetail })(StepBBoxDesign));
