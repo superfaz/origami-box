@@ -3,15 +3,34 @@ import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
+import { Link } from 'react-router-dom';
+import MasuTemplate from './MasuTemplate';
+import classNames from 'classnames/dedupe';
 
 class FormGeneral extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { valid: true };
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheckedChange = this.handleCheckedChange.bind(this);
     }
 
     handleInputChange(e) {
+        if (e.target.checkValidity()) {
+            e.target.className = classNames(e.target.className, "is-valid", { "is-invalid": false });
+        }
+        else {
+            e.target.className = classNames(e.target.className, "is-invalid", { "is-valid": false });
+        }
+
+        if (e.target.form.checkValidity()) {
+            this.setState({ valid: true });
+        }
+        else {
+            this.setState({ valid: false });
+        }
+
         this.props.updateGeneral(e.target.name, e.target.value);
     }
 
@@ -22,42 +41,50 @@ class FormGeneral extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <div>
-                <h4>{t('masu.general')}</h4>
-                <div className="mb-3">
-                    <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
-                    <div className="input-group">
-                        <input name="length" type="number" className="form-control"
-                            placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
-                            value={this.props.length} onChange={this.handleInputChange} />
-                        <input name="width" type="number" className="form-control"
-                            placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
-                            value={this.props.width} onChange={this.handleInputChange} />
-                        <input name="height" type="number" className="form-control"
-                            placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
-                            value={this.props.height} onChange={this.handleInputChange} />
-                    </div>
+            <div className="row" >
+                <div className="col-md-6 col-lg-4 mb-3">
+                    <h4>{t('masu.general')}</h4>
+                    <form noValidate>
+                        <div className="mb-3">
+                            <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
+                            <div className="input-group">
+                                <input name="length" type="number" style={{ width: 'calc(100%/3)' }} className="form-control" autoFocus required min="1"
+                                    placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
+                                    value={this.props.length} onChange={this.handleInputChange} />
+                                <input name="width" type="number" style={{ width: 'calc(100%/3)' }} className="form-control" required min="1"
+                                    placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
+                                    value={this.props.width} onChange={this.handleInputChange} />
+                                <input name="height" type="number" style={{ width: 'calc(100%/3)' }} className="form-control" required min="1"
+                                    placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
+                                    value={this.props.height} onChange={this.handleInputChange} />
+                            </div>
+                        </div>
+                        <div className="mb-3">
+                            <div className="form-check form-switch">
+                                <input className="form-check-input" type="checkbox" id="withBackDesign" name="withBackDesign"
+                                    checked={this.props.withBackDesign} onChange={this.handleCheckedChange} />
+                                <label className="form-check-label" htmlFor="withBackDesign">{t('masu.withBackDesign')}</label>
+                            </div>
+                        </div>
+                        <div className="mb-3 d-none">
+                            <div className="form-check form-switch">
+                                <input className="form-check-input" type="checkbox" id="withLid" name="withLid"
+                                    checked={this.props.withLid} onChange={this.handleCheckedChange} />
+                                <label className="form-check-label" htmlFor="withLid">{t('masu.withLid')}</label>
+                            </div>
+                        </div>
+                        <div className="mb-3 mt-5 d-flex">
+                            {this.props.withBackDesign &&
+                                <Link className={classNames("btn btn-primary ms-auto", { "disabled": !this.state.valid })} to="/back">Define the back design</Link>
+                            }
+                            {!this.props.withBackDesign &&
+                                <Link className={classNames("btn btn-primary ms-auto", { "disabled": !this.state.valid })} to="/generate">Generate the PDF</Link>
+                            }
+                        </div>
+                    </form>
                 </div>
-                <div className="mb-3">
-                    <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" id="withBackDesign" name="withBackDesign"
-                            checked={this.props.withBackDesign} onChange={this.handleCheckedChange} />
-                        <label className="form-check-label" htmlFor="withBackDesign">{t('masu.withBackDesign')}</label>
-                    </div>
-                </div>
-                <div className="mb-3 d-none">
-                    <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" id="withLid" name="withLid"
-                            checked={this.props.withLid} onChange={this.handleCheckedChange} />
-                        <label className="form-check-label" htmlFor="withLid">{t('masu.withLid')}</label>
-                    </div>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
-                    <select name="pageFormat" className="form-select" value={this.props.pageFormat} onChange={this.handleInputChange}>
-                        <option value="A4-p">{t('masu.format.A4p')}</option>
-                        <option value="A4-l">{t('masu.format.A4l')}</option>
-                    </select>
+                <div className="col-md-6 col-lg-8 mb-3">
+                    <MasuTemplate side="front" detail={this.props.box} />
                 </div>
             </div>
         );

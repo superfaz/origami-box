@@ -1,12 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function Nav() {
     const { i18n } = useTranslation();
     return (
         <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark text-light">
             <div className="container">
-                <a className="navbar-brand" href="/">Origami Box</a>
+                <Link className="navbar-brand" to="/">Origami Box</Link>
                 <ul className="navbar-nav">
                     <li className="nav-item dropdown">
                         <ul id="languageDropdown" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">

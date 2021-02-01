@@ -2,9 +2,9 @@ const initialState = {
     pageFormat: 'A4-p',
     pageLength: 297,
     pageWidth: 210,
-    length: 60,
-    width: 30,
-    height: 10,
+    length: '',
+    width: '',
+    height: '',
     withBackDesign: true,
     withLid: false,
     box: {
