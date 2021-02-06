@@ -17,19 +17,27 @@ const initialState = {
         frontText: '',
         background: '#8ED1FC',
     },
+    texts: [],
 };
 
 export function updateGeneral(name, value) {
     return {
         type: 'UPDATE_GENERAL',
-        payload: {name, value},
+        payload: { name, value },
     };
 }
 
 export function updateDetail(detailKey, name, value) {
     return {
         type: 'UPDATE_DETAIL',
-        payload: {detailKey, name, value},
+        payload: { detailKey, name, value },
+    };
+}
+
+export function addText(content, face) {
+    return {
+        type: 'ADD_TEXT',
+        payload: { content, face },
     };
 }
 
@@ -52,14 +60,29 @@ export default function masuReducer(state = initialState, action) {
                     [action.payload.name]: action.payload.value,
                 };
             }
+
         case 'UPDATE_DETAIL':
             return {
                 ...state,
-                [action.payload.detailKey] : {
+                [action.payload.detailKey]: {
                     ...state[action.payload.detailKey],
                     [action.payload.name]: action.payload.value,
                 }
             };
+
+        case 'ADD_TEXT':
+            var result = {
+                ...state,
+                texts: [
+                    ...state.texts,
+                    {
+                        content: action.payload.content,
+                        face: action.payload.face
+                    }
+                ]
+            }
+            return result;
+
         default:
             return state;
     }

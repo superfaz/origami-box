@@ -13,7 +13,17 @@
         "stepBBoxDesign": {
             "title": "Box",
             "linkTo": "Define the box design",
-            "linkBack": "Back to the box design"
+            "linkBack": "Back to the box design",
+            "backgroundColor": "Apply a background color?",
+            "texts": "Texts",
+            "textFace": "Face",
+            "textContent": "Content"
+        },
+        "stepCAddText": {
+            "title": "Add a text",
+            "linkTo": "Add a text",
+            "submit": "Add this text",
+            "cancel": "Go back"
         },
         "stepZGenerate": {
             "title": "Prepare PDF",
@@ -30,9 +40,6 @@
         "withLid": "Add a second template for a lid",
         "frontText": {
             "label": "Front Text"
-        },
-        "backgroundColor": {
-            "label": "Background Color (Back)"
         },
         "front": "Front",
         "back": "Back"

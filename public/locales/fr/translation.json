@@ -13,7 +13,17 @@
         "stepBBoxDesign": {
             "title": "Boîte",
             "linkTo": "Définir le design de la boîte",
-            "linkBack": "Retour au design de la boîte"
+            "linkBack": "Retour au design de la boîte",
+            "backgroundColor": "Appliquez une couleur de fond?",
+            "texts": "Ajouter des textes?",
+            "textFace": "Face",
+            "textContent": "Contenu"
+        },
+        "stepCAddText": {
+            "title": "Ajouter un texte",
+            "linkTo": "Ajouter un texte",
+            "submit": "Valider ce texte",
+            "cancel": "Annuler"
         },
         "stepZGenerate": {
             "title": "Préparer le PDF",
@@ -30,9 +40,6 @@
         "withLid": "Créer un second modèle pour un couvercle",
         "frontText": {
             "label": "Texte (Verso)"
-        },
-        "backgroundColor": {
-            "label": "Couleur de fond (Verso)"
         },
         "front": "Recto",
         "back": "Verso"
