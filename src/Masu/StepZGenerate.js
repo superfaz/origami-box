@@ -6,6 +6,7 @@ import { getMasu } from '../store';
 import { Link } from 'react-router-dom';
 import generatePdf from './generatePdf';
 import classNames from 'classnames/dedupe';
+import MasuTemplate from './MasuTemplate';
 
 class StepZGenerate extends React.Component {
     constructor(props) {
@@ -62,6 +63,19 @@ class StepZGenerate extends React.Component {
                     </form>
                 </div>
                 <div className="col-md-6 col-lg-8 mb-3">
+                    {this.props.withBackDesign &&
+                        <div className="row">
+                            <div className="col-12 col-lg-6">
+                                <MasuTemplate side="front" detail={this.props.box} />
+                            </div>
+                            <div className="col-12 col-lg-6">
+                                <MasuTemplate side="back" detail={this.props.box} />
+                            </div>
+                        </div>
+                    }
+                    {!this.props.withBackDesign &&
+                        <MasuTemplate side="front" detail={this.props.box} />
+                    }
                 </div>
             </div>
         );
