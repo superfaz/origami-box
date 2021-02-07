@@ -6,6 +6,12 @@
             "A4": "A4",
             "letter": "letter"
         },
+        "face": {
+            "front": "Front",
+            "back": "Back",
+            "left": "Left",
+            "right": "Right"
+        },
         "stepAGeneral": {
             "title": "General options",
             "linkBack": "Back to the general options"
@@ -17,11 +23,13 @@
             "backgroundColor": "Apply a background color?",
             "texts": "Texts",
             "textFace": "Face",
-            "textContent": "Content"
+            "textContent": "Text(s)"
         },
         "stepCAddText": {
             "title": "Add a text",
             "linkTo": "Add a text",
+            "content": "Content",
+            "face": "Face",
             "submit": "Add this text",
             "cancel": "Go back"
         },

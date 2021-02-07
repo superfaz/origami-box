@@ -6,6 +6,12 @@
             "A4": "A4",
             "letter": "lettre (US)"
         },
+        "face": {
+            "front": "Avant",
+            "back": "Arrière",
+            "left": "Gauche",
+            "right": "Droite"
+        },
         "stepAGeneral": {
             "title": "Options générales",
             "linkBack": "Retour aux options générales"
@@ -17,11 +23,13 @@
             "backgroundColor": "Appliquez une couleur de fond?",
             "texts": "Ajouter des textes?",
             "textFace": "Face",
-            "textContent": "Contenu"
+            "textContent": "Texte(s)"
         },
         "stepCAddText": {
             "title": "Ajouter un texte",
             "linkTo": "Ajouter un texte",
+            "content": "Contenu",
+            "face": "Face",
             "submit": "Valider ce texte",
             "cancel": "Annuler"
         },

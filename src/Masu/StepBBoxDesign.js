@@ -31,7 +31,6 @@ class StepBBoxDesign extends React.Component {
                             color={block.background} onChangeComplete={this.handleBackgroundColorChange} />
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">{t('masu.stepBBoxDesign.texts')}</label>
                         {block.texts.length !== 0 &&
                             <table className="table">
                                 <thead>
@@ -43,7 +42,7 @@ class StepBBoxDesign extends React.Component {
                                 <tbody>
                                     {block.texts.map((text, i) =>
                                         <tr key={i}>
-                                            <td>{text.face}</td>
+                                            <td>{t(`masu.face.${text.face}`)}</td>
                                             <td>{text.content}</td>
                                         </tr>
                                     )}
@@ -51,7 +50,7 @@ class StepBBoxDesign extends React.Component {
                             </table>
                         }
                         <div className="d-flex">
-                            <Link className="btn btn-outline-primary ms-auto" to="/addText">{t('masu.stepCAddText.linkTo')}</Link>
+                            <Link className="btn btn-outline-primary" to="/addText">{t('masu.stepCAddText.linkTo')}</Link>
                         </div>
                     </div>
 

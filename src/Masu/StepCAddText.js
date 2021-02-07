@@ -38,18 +38,18 @@ class StepCAddText extends React.Component {
                     <h4>{t('masu.stepCAddText.title')}</h4>
                     <form onSubmit={this.onSubmit}>
                         <div className="mb-3">
-                            <label htmlFor="content">Content</label>
+                            <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
                             <input type="text" name="content" className="form-control" required
                                 value={this.state.content} onChange={this.onInputChange} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="face">Face</label>
-                            <select className="form-control" name="face" required
+                            <label htmlFor="face">{t('masu.stepCAddText.face')}</label>
+                            <select className="form-select" name="face" required
                                 value={this.state.face} onChange={this.onInputChange}>
-                                <option value="front">Front</option>
-                                <option value="back">Back</option>
-                                <option value="left">Left</option>
-                                <option value="right">Right</option>
+                                <option value="front">{t('masu.face.front')}</option>
+                                <option value="back">{t('masu.face.back')}</option>
+                                <option value="left">{t('masu.face.left')}</option>
+                                <option value="right">{t('masu.face.right')}</option>
                             </select>
                         </div>
                         <div className="mb-3 mt-5 d-flex">
