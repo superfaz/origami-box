@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { getMasu } from '../store';
 import { configureFace } from './helper';
-import styles from './MasuTemplate.css';
+import Color from 'color';
+import './MasuTemplate.css';
 
 function MasuTemplate(props) {
     const pageLength = parseFloat(props.pageLength);
@@ -30,7 +31,7 @@ function MasuTemplate(props) {
     const mark = 2.5;
 
     function Text(props) {
-        let configuration = {textAnchor: "middle", dominantBaseline: "middle", x: null, y: null, rotate: null};
+        let configuration = { textAnchor: "middle", dominantBaseline: "middle", x: null, y: null, rotate: null };
         const text = props.text;
         configureFace(configuration, text.face, l_2, w_2, h_2);
 
@@ -43,10 +44,10 @@ function MasuTemplate(props) {
             </text>
         );
     }
-    
+
     if (side === 'front') {
         return (
-            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`} style={styles}>
+            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}>
                 <g transform="rotate(45)">
                     <polygon className="cut" points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
 
@@ -93,39 +94,41 @@ function MasuTemplate(props) {
         );
     }
     else {
+        const color = Color(props.detail.background);
+        const style = { stroke: color.isDark() ? 'white' : 'black' };
         return (
-            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`} style={styles}>
+            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}>
                 <g transform="rotate(-45)">
                     <polygon points={`0,-${max_2 + 5} ${max_2 + 5},0 0,${max_2 + 5} -${max_2 + 5},0`} style={{
-                        fill: props.detail.background
+                        fill: props.detail.background,
                     }} />
 
-                    <polygon className="reference" points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
+                    <polygon className="reference" style={style} points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
 
-                    <line className="reference" x1={-w_2 - h} y1={-l_2 - h} x2={w_2 + h} y2={-l_2 - h} />
-                    <line className="reference" x1={-w_2 - h2} y1={-l_2} x2={w_2 + h2} y2={-l_2} />
-                    <line className="reference" x1={-w_2 - h2} y1={l_2} x2={w_2 + h2} y2={l_2} />
-                    <line className="reference" x1={-w_2 - h} y1={l_2 + h} x2={w_2 + h} y2={l_2 + h} />
-                    <line className="reference" x1={-w_2} y1={-l_2 - h2} x2={w_2} y2={-l_2 - h2} />
-                    <line className="reference" x1={-w_2} y1={l_2 + h2} x2={w_2} y2={l_2 + h2} />
+                    <line className="reference" style={style} x1={-w_2 - h} y1={-l_2 - h} x2={w_2 + h} y2={-l_2 - h} />
+                    <line className="reference" style={style} x1={-w_2 - h2} y1={-l_2} x2={w_2 + h2} y2={-l_2} />
+                    <line className="reference" style={style} x1={-w_2 - h2} y1={l_2} x2={w_2 + h2} y2={l_2} />
+                    <line className="reference" style={style} x1={-w_2 - h} y1={l_2 + h} x2={w_2 + h} y2={l_2 + h} />
+                    <line className="reference" style={style} x1={-w_2} y1={-l_2 - h2} x2={w_2} y2={-l_2 - h2} />
+                    <line className="reference" style={style} x1={-w_2} y1={l_2 + h2} x2={w_2} y2={l_2 + h2} />
 
-                    <line className="reference" x1={-w_2 - h} y1={-l_2 - h} x2={-w_2 - h} y2={l_2 + h} />
-                    <line className="reference" x1={-w_2} y1={-l_2 - h2} x2={-w_2} y2={l_2 + h2} />
-                    <line className="reference" x1={w_2} y1={-l_2 - h2} x2={w_2} y2={l_2 + h2} />
-                    <line className="reference" x1={w_2 + h} y1={-l_2 - h} x2={w_2 + h} y2={l_2 + h} />
-                    <line className="reference" x1={-w_2 - h2} y1={-l_2} x2={-w_2 - h2} y2={l_2} />
-                    <line className="reference" x1={w_2 + h2} y1={-l_2} x2={w_2 + h2} y2={l_2} />
+                    <line className="reference" style={style} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2 - h} y2={l_2 + h} />
+                    <line className="reference" style={style} x1={-w_2} y1={-l_2 - h2} x2={-w_2} y2={l_2 + h2} />
+                    <line className="reference" style={style} x1={w_2} y1={-l_2 - h2} x2={w_2} y2={l_2 + h2} />
+                    <line className="reference" style={style} x1={w_2 + h} y1={-l_2 - h} x2={w_2 + h} y2={l_2 + h} />
+                    <line className="reference" style={style} x1={-w_2 - h2} y1={-l_2} x2={-w_2 - h2} y2={l_2} />
+                    <line className="reference" style={style} x1={w_2 + h2} y1={-l_2} x2={w_2 + h2} y2={l_2} />
 
-                    <line className="reference" x1={-w_2 - h} y1={-l_2 - h} x2={-w_2} y2={-l_2} />
-                    <line className="reference" x1={w_2 + h} y1={-l_2 - h} x2={w_2} y2={-l_2} />
-                    <line className="reference" x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
-                    <line className="reference" x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
+                    <line className="reference" style={style} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2} y2={-l_2} />
+                    <line className="reference" style={style} x1={w_2 + h} y1={-l_2 - h} x2={w_2} y2={-l_2} />
+                    <line className="reference" style={style} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
+                    <line className="reference" style={style} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
                     {props.detail.texts.map((text, i) =>
                         <Text key={i} text={text} />
                     )}
 
-                    {props.text !== undefined && 
+                    {props.text !== undefined &&
                         <Text key='new' text={props.text} />
                     }
                 </g>

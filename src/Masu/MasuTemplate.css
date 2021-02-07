@@ -22,7 +22,7 @@
   fill: none;
   stroke: gray;
   stroke-width: 0.2;
-  stroke-dasharray: 0.2,0.4;
+  stroke-dasharray: 0.4,0.8;
 }
 
 .mark {
