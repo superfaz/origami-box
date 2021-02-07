@@ -17,6 +17,7 @@ export default function generatePdf(masu) {
     const max_2 = max / 2.0;
 
     const h2 = h * 2.0;
+    const mark = 2.5;
 
     const translation = "1 0 0 1 " + (masu.pageWidth / 2.0) + " " + (masu.pageLength / 2.0);
 
@@ -52,6 +53,27 @@ export default function generatePdf(masu) {
         pdf.line(w_2 + h, -l_2 - h, w_2, -l_2);
         pdf.line(-w_2 - h, l_2 + h, -w_2, l_2);
         pdf.line(w_2 + h, l_2 + h, w_2, l_2);
+
+        // Mark
+        pdf.setDrawColor('#0000FF');
+        pdf.line(0, l_2 - h2 - w_2, -mark, l_2 - h2 - w_2 + mark);
+        pdf.line(0, l_2 - h2 - w_2, mark, l_2 - h2 - w_2 + mark);
+        pdf.line(0, l_2 - w_2, -mark, l_2 - w_2 + mark);
+        pdf.line(0, l_2 - w_2, mark, l_2 - w_2 + mark);
+        pdf.line(0, -l_2 + h2 + w_2, -mark, -l_2 + h2 + w_2 - mark);
+        pdf.line(0, -l_2 + h2 + w_2, mark, -l_2 + h2 + w_2 - mark);
+        pdf.line(0, -l_2 + w_2, -mark, -l_2 + w_2 - mark);
+        pdf.line(0, -l_2 + w_2, mark, -l_2 + w_2 - mark);
+
+        pdf.line(w_2 - h2 - l_2, 0, w_2 - h2 - l_2 + mark, -mark);
+        pdf.line(w_2 - h2 - l_2, 0, w_2 - h2 - l_2 + mark, mark);
+        pdf.line(w_2 - l_2, 0, w_2 - l_2 + mark, -mark);
+        pdf.line(w_2 - l_2, 0, w_2 - l_2 + mark, mark);
+        pdf.line(-w_2 + h2 + l_2, 0, -w_2 + h2 + l_2 - mark, -mark);
+        pdf.line(-w_2 + h2 + l_2, 0, -w_2 + h2 + l_2 - mark, mark);
+        pdf.line(-w_2 + l_2, 0, -w_2 + l_2 - mark, -mark);
+        pdf.line(-w_2 + l_2, 0, -w_2 + l_2 - mark, mark);
+        pdf.setDrawColor('#000000');
     });
 
     // Verso
