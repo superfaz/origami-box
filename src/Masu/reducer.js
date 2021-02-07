@@ -10,11 +10,13 @@ const initialState = {
     box: {
         key: 'box',
         background: '#8ED1FC',
+        backgroundImage: null,
         texts: [],
     },
     lid: {
         key: 'lid',
         background: '#8ED1FC',
+        backgroundImage: null,
         texts: [],
     },
 };

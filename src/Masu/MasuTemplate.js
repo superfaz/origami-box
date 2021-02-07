@@ -98,10 +98,21 @@ function MasuTemplate(props) {
         const style = { stroke: color.isDark() ? 'white' : 'black' };
         return (
             <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}>
+                <defs>
+                    <clipPath id="cut-off-background">
+                        <polygon points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
+                    </clipPath>
+                </defs>
+
                 <g transform="rotate(-45)">
                     <polygon points={`0,-${max_2 + 5} ${max_2 + 5},0 0,${max_2 + 5} -${max_2 + 5},0`} style={{
-                        fill: props.detail.background,
+                        fill: props.detail.background
                     }} />
+
+                    {Boolean(props.detail.backgroundImage) &&
+                        <image href={props.detail.backgroundImage} x={-max_2} y={-max_2} width={max} height={max}
+                            preserveAspectRatio="none" clipPath="url(#cut-off-background)" />
+                    }
 
                     <polygon className="reference" style={style} points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
 

@@ -21,6 +21,7 @@
             "linkTo": "Define the box design",
             "linkBack": "Back to the box design",
             "backgroundColor": "Apply a background color?",
+            "backgroundImage": "Define a texture?",
             "texts": "Texts",
             "textFace": "Face",
             "textContent": "Text(s)"
