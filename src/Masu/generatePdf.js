@@ -1,4 +1,5 @@
 import jsPDF from 'jspdf';
+import { configureFace, getRotationMatrix } from './helper';
 
 export default function generatePdf(masu) {
     var orientation = masu.pageFormat === 'A4-p' ? 'p' : 'l';
@@ -12,18 +13,17 @@ export default function generatePdf(masu) {
 
     const l_2 = l / 2.0;
     const w_2 = w / 2.0;
+    const h_2 = h / 2.0;
     const max_2 = max / 2.0;
 
     const h2 = h * 2.0;
 
     const translation = "1 0 0 1 " + (masu.pageWidth / 2.0) + " " + (masu.pageLength / 2.0);
-    const cos = Math.cos(45 * Math.PI / 180);
-    const sin = Math.sin(45 * Math.PI / 180);
 
     // Recto
     pdf.advancedAPI(pdf => {
         pdf.setCurrentTransformationMatrix(translation);
-        pdf.setCurrentTransformationMatrix(`${cos} ${sin} ${-sin} ${cos} 0 0`);
+        pdf.setCurrentTransformationMatrix(getRotationMatrix(45));
         pdf.setDrawColor('#000000');
 
         // Cut
@@ -59,7 +59,7 @@ export default function generatePdf(masu) {
         pdf.addPage(orientation, 'mm', 'A4');
         pdf.advancedAPI(pdf => {
             pdf.setCurrentTransformationMatrix(translation);
-            pdf.setCurrentTransformationMatrix(`${cos} ${-sin} ${sin} ${cos} 0 0`);
+            pdf.setCurrentTransformationMatrix(getRotationMatrix(-45));
 
             // Background
             if (masu.box.background !== undefined) {
@@ -67,10 +67,18 @@ export default function generatePdf(masu) {
                 pdf.lines([[max_2 + 5, max_2 + 5], [-max_2 - 5, max_2 + 5], [-max_2 - 5, -max_2 - 5], [max_2 + 5, -max_2 - 5]], 0, -max_2 - 5, [1, 1], 'F');
             }
 
-            // Text
-            if (masu.box.frontText !== undefined) {
+            // Texts
+            for (let index = 0; index < masu.box.texts.length; index++) {
+                const text = masu.box.texts[index];
+                let configuration = {};
+                configureFace(configuration, text.face, l_2, w_2, h_2);
                 pdf.setFontSize(8 * 72 / 25.4);
-                pdf.text(masu.box.frontText, 0, l_2 + h / 2, { align: 'center', baseline: 'middle' });
+
+                pdf.setCurrentTransformationMatrix(`1 0 0 1 ${configuration.x} ${configuration.y}`);
+                pdf.setCurrentTransformationMatrix(getRotationMatrix(configuration.rotate));
+                pdf.text(text.content, -pdf.getTextWidth(text.content) / 2.0, 0, { baseline: 'middle' });
+                pdf.setCurrentTransformationMatrix(getRotationMatrix(-configuration.rotate));
+                pdf.setCurrentTransformationMatrix(`1 0 0 1 ${-configuration.x} ${-configuration.y}`);
             }
         });
     }

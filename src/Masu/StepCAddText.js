@@ -26,7 +26,7 @@ class StepCAddText extends React.Component {
     onSubmit(event) {
         event.preventDefault();
 
-        this.props.addText(this.state.content, this.state.face);
+        this.props.addText('box', this.state.content, this.state.face);
         this.setState({ redirect: true })
     }
 

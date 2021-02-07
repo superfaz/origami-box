@@ -38,9 +38,6 @@
         },
         "withBackDesign": "With a specific design for the back",
         "withLid": "Add a second template for a lid",
-        "frontText": {
-            "label": "Front Text"
-        },
         "front": "Front",
         "back": "Back"
     }

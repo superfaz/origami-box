@@ -9,15 +9,14 @@ const initialState = {
     withLid: false,
     box: {
         key: 'box',
-        frontText: '',
         background: '#8ED1FC',
+        texts: [],
     },
     lid: {
         key: 'lid',
-        frontText: '',
         background: '#8ED1FC',
+        texts: [],
     },
-    texts: [],
 };
 
 export function updateGeneral(name, value) {
@@ -34,10 +33,10 @@ export function updateDetail(detailKey, name, value) {
     };
 }
 
-export function addText(content, face) {
+export function addText(block, content, face) {
     return {
         type: 'ADD_TEXT',
-        payload: { content, face },
+        payload: { block, content, face },
     };
 }
 
@@ -73,13 +72,16 @@ export default function masuReducer(state = initialState, action) {
         case 'ADD_TEXT':
             var result = {
                 ...state,
-                texts: [
-                    ...state.texts,
-                    {
-                        content: action.payload.content,
-                        face: action.payload.face
-                    }
-                ]
+                [action.payload.block]: {
+                    ...state[action.payload.block],
+                    texts: [
+                        ...state[action.payload.block].texts,
+                        {
+                            content: action.payload.content,
+                            face: action.payload.face
+                        }
+                    ]
+                }
             }
             return result;
 

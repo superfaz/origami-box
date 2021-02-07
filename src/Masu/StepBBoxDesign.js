@@ -11,12 +11,7 @@ class StepBBoxDesign extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleFrontTextChange = this.handleFrontTextChange.bind(this);
         this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(this);
-    }
-
-    handleFrontTextChange(event) {
-        this.props.updateDetail(this.props.block.key, 'frontText', event.target.value);
     }
 
     handleBackgroundColorChange(color) {
@@ -37,8 +32,8 @@ class StepBBoxDesign extends React.Component {
                     </div>
                     <div className="mb-3">
                         <label className="form-label">{t('masu.stepBBoxDesign.texts')}</label>
-                        {this.props.texts.length !== 0 &&
-                            <table class="table">
+                        {block.texts.length !== 0 &&
+                            <table className="table">
                                 <thead>
                                     <tr>
                                         <th>{t('masu.stepBBoxDesign.textFace')}</th>
@@ -46,8 +41,8 @@ class StepBBoxDesign extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.props.texts.map((text) =>
-                                        <tr>
+                                    {block.texts.map((text, i) =>
+                                        <tr key={i}>
                                             <td>{text.face}</td>
                                             <td>{text.content}</td>
                                         </tr>

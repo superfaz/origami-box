@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { getMasu } from '../store';
+import { configureFace } from './helper';
 import styles from './MasuTemplate.css';
-
 
 function MasuTemplate(props) {
     const pageLength = parseFloat(props.pageLength);
@@ -32,34 +32,13 @@ function MasuTemplate(props) {
     function Text(props) {
         let configuration = {textAnchor: "middle", dominantBaseline: "middle", x: null, y: null, rotate: null};
         const text = props.text;
-        switch (text.face) {
-            case 'front':
-                configuration.x=0;
-                configuration.y=l_2 + h_2;
-                configuration.rotate=180;
-                break;
-            case 'back':
-                configuration.x=0;
-                configuration.y=-l_2 - h_2;
-                configuration.rotate=0;
-                break;
-            case 'left':
-                configuration.x=w_2 + h_2;
-                configuration.y=0;
-                configuration.rotate=90;
-                break;
-            case 'right':
-                configuration.x=-w_2 - h_2;
-                configuration.y=0;
-                configuration.rotate=-90;
-                break;
-            default:
-                console.log('text.face not supported');
-            }
+        configureFace(configuration, text.face, l_2, w_2, h_2);
+
         return (
             <text textAnchor={configuration.textAnchor} dominantBaseline={configuration.dominantBaseline}
-                x={configuration.x} y={configuration.y} transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}
-                style={{ fontSize: text.size }}>
+                x={configuration.x} y={configuration.y}
+                transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}
+                style={{ fontSize: 8 }}>
                 {text.content}
             </text>
         );
@@ -142,8 +121,12 @@ function MasuTemplate(props) {
                     <line className="reference" x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
                     <line className="reference" x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
+                    {props.detail.texts.map((text, i) =>
+                        <Text key={i} text={text} />
+                    )}
+
                     {props.text !== undefined && 
-                        <Text text={props.text} />
+                        <Text key='new' text={props.text} />
                     }
                 </g>
             </svg>
