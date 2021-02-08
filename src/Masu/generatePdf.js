@@ -1,5 +1,59 @@
 import jsPDF from 'jspdf';
 import { configureFace, getRotationMatrix } from './helper';
+import Canvg from 'canvg';
+
+function addSvgAsImage(
+    doc,
+    svg,
+    x,
+    y,
+    w,
+    h,
+    alias,
+    compression,
+    rotation
+) {
+    if (isNaN(x) || isNaN(y)) {
+        console.error("jsPDF.addSvgAsImage: Invalid coordinates", arguments);
+        throw new Error("Invalid coordinates passed to jsPDF.addSvgAsImage");
+    }
+
+    if (isNaN(w) || isNaN(h)) {
+        console.error("jsPDF.addSvgAsImage: Invalid measurements", arguments);
+        throw new Error(
+            "Invalid measurements (width and/or height) passed to jsPDF.addSvgAsImage"
+        );
+    }
+
+    var canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#fff"; /// set white fill style
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    var options = {
+        ignoreMouse: true,
+        ignoreAnimation: true,
+        ignoreDimensions: true
+    };
+
+    return Canvg.from(ctx, svg, options)
+        .then(function (instance) {
+            return instance.render(options);
+        })
+        .then(function () {
+            doc.addImage(
+                canvas.toDataURL("image/jpeg", 1.0),
+                x,
+                y,
+                w,
+                h,
+                compression,
+                rotation
+            );
+        });
+}
 
 export default function generatePdf(masu) {
     var orientation = masu.pageFormat === 'A4-p' ? 'p' : 'l';
@@ -105,5 +159,40 @@ export default function generatePdf(masu) {
         });
     }
 
-    pdf.save('test.pdf');
-}
+    pdf.addPage(orientation, 'mm', 'A4');
+    const svg = document.getElementsByClassName("template")[1].outerHTML;
+    addSvgAsImage(pdf, svg, 0, 0, masu.pageWidth, masu.pageLength).then(() => {
+        pdf.save('test.pdf');
+    });
+
+/*     var options = {
+        ignoreMouse: true,
+        ignoreAnimation: true,
+        ignoreDimensions: true
+    };
+    //let canvas = document.getElementById('canvas');
+    var canvas = document.createElement("canvas");
+    canvas.width = masu.pageWidth * 72 / 25.4;
+    canvas.height = masu.pageLength * 72 / 25.4;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    var options = {
+        ignoreMouse: true,
+        ignoreAnimation: true,
+        ignoreDimensions: true
+    };
+
+    Canvg.from(ctx, svg, options)
+        .then(result => {
+            result.render(options);
+        })
+        .then(() => {
+            pdf.addImage(canvas, 'PNG', 0, 0, masu.pageWidth, masu.pageLength);
+            pdf.save('test.pdf');
+        })
+        .catch((reason) => {
+            console.error(reason);
+        });
+ */}
