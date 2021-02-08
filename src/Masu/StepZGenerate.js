@@ -19,9 +19,12 @@ class StepZGenerate extends React.Component {
         var newWindow = window.open();
         newWindow.document.body.innerHTML += `
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Quicksand:wght@500&family=Source+Code+Pro:wght@400');
         * {
             margin: 0;
             padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
         }
         @media print {
             @page {
