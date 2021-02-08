@@ -29,8 +29,12 @@ class StepZGenerate extends React.Component {
                 margin: 0;
             }
         </style>`;
-        newWindow.document.body.innerHTML += document.getElementsByClassName("template")[0].outerHTML;
-        newWindow.document.body.innerHTML += document.getElementsByClassName("template")[1].outerHTML;
+        var templates = document.getElementsByClassName("template");
+        for (let index = 0; index < templates.length; index++) {
+            const template = templates[index];
+            newWindow.document.body.innerHTML += template.outerHTML;
+        }
+
         newWindow.print();
         newWindow.close();
     }
