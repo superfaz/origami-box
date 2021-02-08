@@ -22,7 +22,7 @@ class Masu extends React.Component {
           <Route exact path="/back">
             <StepBBoxDesign title={t('masu.stepBBoxDesign.title')} block={this.props.box} />
           </Route>
-          <Route exact path="/addText">
+          <Route exact path="/back/addText">
             <StepCAddText />
           </Route>
           {/* <Route path="/lid">

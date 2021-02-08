@@ -6,6 +6,7 @@ import { TwitterPicker } from 'react-color';
 import MasuTemplate from './MasuTemplate';
 import { Link } from 'react-router-dom';
 import { getMasu } from '../store';
+import Nav from './Nav';
 
 class StepBBoxDesign extends React.Component {
     constructor(props) {
@@ -31,8 +32,8 @@ class StepBBoxDesign extends React.Component {
         const { t, block } = this.props;
         return (
             <div className="row">
+                <Nav />
                 <div className="col-md-6 col-lg-4 mb-3">
-                    <h4>{this.props.title}</h4>
                     <div className="mb-3">
                         <label htmlFor={`${this.props.key}.backgroundColor`} className="form-label">{t('masu.stepBBoxDesign.backgroundColor')}</label>
                         <TwitterPicker name={`${this.props.key}.backgroundColor`} triangle="hide" width="312px"
@@ -63,8 +64,11 @@ class StepBBoxDesign extends React.Component {
                                 </tbody>
                             </table>
                         }
+                        {block.texts.length === 0 &&
+                            <div className="mb-5"></div>
+                        }
                         <div className="d-flex">
-                            <Link className="btn btn-outline-primary" to="/addText">{t('masu.stepCAddText.linkTo')}</Link>
+                            <Link className="btn btn-outline-primary" to="/back/addText">{t('masu.stepCAddText.linkTo')}</Link>
                         </div>
                     </div>
                     <div className="mb-3 mt-5 d-flex">

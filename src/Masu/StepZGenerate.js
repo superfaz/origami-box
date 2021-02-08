@@ -6,6 +6,7 @@ import { getMasu } from '../store';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
 import MasuTemplate from './MasuTemplate';
+import Nav from './Nav';
 
 class StepZGenerate extends React.Component {
     constructor(props) {
@@ -67,8 +68,8 @@ class StepZGenerate extends React.Component {
         const { t } = this.props;
         return (
             <div className="row">
+                <Nav />
                 <div className="col-md-6 col-lg-4 mb-3">
-                    <h4>{t('masu.stepZGenerate.title')}</h4>
                     <form>
                         <div className="mb-3">
                             <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>

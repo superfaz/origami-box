@@ -5,6 +5,7 @@ import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
 import { Link } from 'react-router-dom';
 import MasuTemplate from './MasuTemplate';
+import Nav from './Nav';
 import classNames from 'classnames/dedupe';
 
 class StepAGeneral extends React.Component {
@@ -41,9 +42,9 @@ class StepAGeneral extends React.Component {
     render() {
         const { t } = this.props;
         return (
-            <div className="row" >
+            <div className="row">
+                <Nav />
                 <div className="col-md-6 col-lg-4 mb-3">
-                    <h4>{t('masu.stepAGeneral.title')}</h4>
                     <form ref={this.form} noValidate>
                         <div className="mb-3">
                             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>

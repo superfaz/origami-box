@@ -1,10 +1,11 @@
 import React from 'react';
-import { getMasu } from '../store';
 import { Link, Redirect } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import MasuTemplate from './MasuTemplate';
 import { connect } from 'react-redux';
+import { getMasu } from '../store';
 import { addText } from './reducer';
+import MasuTemplate from './MasuTemplate';
+import Nav from './Nav';
 
 class StepCAddText extends React.Component {
     constructor(props) {
@@ -34,8 +35,8 @@ class StepCAddText extends React.Component {
         const { t } = this.props;
         return (
             <div className="row">
+                <Nav />
                 <div className="col-md-6 col-lg-4 mb-3">
-                    <h4>{t('masu.stepCAddText.title')}</h4>
                     <form onSubmit={this.onSubmit}>
                         <div className="mb-3">
                             <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
