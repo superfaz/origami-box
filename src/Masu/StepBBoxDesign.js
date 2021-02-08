@@ -72,7 +72,6 @@ class StepBBoxDesign extends React.Component {
                         </div>
                     </div>
                     <div className="mb-3 mt-5 d-flex">
-                        <Link className="btn btn-link" to="/">{t('masu.stepAGeneral.linkBack')}</Link>
                         <Link className="btn btn-primary ms-auto" to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
                     </div>
                 </div>

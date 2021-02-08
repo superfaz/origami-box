@@ -6,6 +6,15 @@ export function getRotationMatrix(angle)
     return `${cos} ${sin} ${-sin} ${cos} 0 0`;
 }
 
+function isPositive(value) {
+    return value !== undefined && parseFloat(value) > 0;
+}
+
+export function isGeneralValid(masu)
+{
+    return masu !== undefined && isPositive(masu.length) && isPositive(masu.width) && isPositive(masu.height);
+}
+
 export function configureFace(configuration, face, l_2, w_2, h_2) {
     switch (face) {
         case 'front':

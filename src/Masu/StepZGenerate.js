@@ -3,7 +3,6 @@ import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
 import MasuTemplate from './MasuTemplate';
 import Nav from './Nav';
@@ -43,7 +42,7 @@ class StepZGenerate extends React.Component {
         }
 
         newWindow.print();
-        // newWindow.close();
+        newWindow.close();
     }
 
     handleInputChange(e) {
@@ -78,12 +77,6 @@ class StepZGenerate extends React.Component {
                             </select>
                         </div>
                         <div className="mb-3 mt-5 d-flex">
-                            {this.props.withBackDesign &&
-                                <Link className="btn btn-link" to="/back">{t('masu.stepBBoxDesign.linkBack')}</Link>
-                            }
-                            {!this.props.withBackDesign &&
-                                <Link className="btn btn-link" to="/">{t('masu.stepAGeneral.linkBack')}</Link>
-                            }
                             <button type="button" className="btn btn-primary ms-auto" onClick={this.print}>{t('masu.stepZGenerate.print')}</button>
                         </div>
                     </form>
