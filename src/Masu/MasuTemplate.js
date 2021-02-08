@@ -15,12 +15,12 @@ const cutStyle = {
 
 const flipStyle = {
     ...cutStyle,
-    strokeDasharray: [4,2], 
+    strokeDasharray: [4, 2],
 };
 
 const invertedStyle = {
     ...cutStyle,
-    strokeDasharray: [2,4], 
+    strokeDasharray: [2, 4],
 };
 
 const markStyle = {
@@ -31,10 +31,10 @@ const markStyle = {
 const referenceStyle = {
     ...lineStyle,
     stroke: 'gray',
-    strokeDasharray: [0.4, 0.8], 
+    strokeDasharray: [0.4, 0.8],
 };
 
-const Svg = ({...rest}) =>
+const Svg = ({ ...rest }) =>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" {...rest} />
 
 function MasuTemplate(props) {
@@ -131,7 +131,7 @@ function MasuTemplate(props) {
         const color = Color(props.detail.background);
         const style = { ...referenceStyle, stroke: color.isDark() ? 'white' : 'black' };
         return (
-            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
+            <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
                 width={`${pageWidth}mm`} height={`${pageLength}mm`}>
                 <defs>
                     <clipPath id="cut-off-background">
@@ -178,7 +178,7 @@ function MasuTemplate(props) {
                         <Text key='new' text={props.text} />
                     }
                 </g>
-            </svg>
+            </Svg>
         );
     }
 }
