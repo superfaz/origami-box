@@ -2,7 +2,40 @@ import { connect } from 'react-redux';
 import { getMasu } from '../store';
 import { configureFace } from './helper';
 import Color from 'color';
-import './MasuTemplate.css';
+
+const lineStyle = {
+    fill: 'none',
+    strokeWidth: 0.2,
+};
+
+const cutStyle = {
+    ...lineStyle,
+    stroke: 'black',
+};
+
+const flipStyle = {
+    ...cutStyle,
+    strokeDasharray: [4,2], 
+};
+
+const invertedStyle = {
+    ...cutStyle,
+    strokeDasharray: [2,4], 
+};
+
+const markStyle = {
+    ...lineStyle,
+    stroke: 'blue',
+};
+
+const referenceStyle = {
+    ...lineStyle,
+    stroke: 'gray',
+    strokeDasharray: [0.4, 0.8], 
+};
+
+const Svg = ({...rest}) =>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" {...rest} />
 
 function MasuTemplate(props) {
     const pageLength = parseFloat(props.pageLength);
@@ -14,7 +47,7 @@ function MasuTemplate(props) {
 
     if (isNaN(l + w + h) || l <= 0 || w <= 0 || h <= 0) {
         return (
-            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}></svg>
+            <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}></Svg>
         );
     }
 
@@ -47,57 +80,59 @@ function MasuTemplate(props) {
 
     if (side === 'front') {
         return (
-            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}>
+            <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
+                width={`${pageWidth}mm`} height={`${pageLength}mm`}>
                 <g transform="rotate(45)">
-                    <polygon className="cut" points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
+                    <polygon style={cutStyle} points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
 
-                    <line className="flip" x1={-w_2 - h} y1={-l_2 - h} x2={w_2 + h} y2={-l_2 - h} />
-                    <line className="flip" x1={-w_2 - h2} y1={-l_2} x2={w_2 + h2} y2={-l_2} />
-                    <line className="flip" x1={-w_2 - h2} y1={l_2} x2={w_2 + h2} y2={l_2} />
-                    <line className="flip" x1={-w_2 - h} y1={l_2 + h} x2={w_2 + h} y2={l_2 + h} />
-                    <line className="inverted" x1={-w_2} y1={-l_2 - h2} x2={w_2} y2={-l_2 - h2} />
-                    <line className="inverted" x1={-w_2} y1={l_2 + h2} x2={w_2} y2={l_2 + h2} />
+                    <line style={flipStyle} x1={-w_2 - h} y1={-l_2 - h} x2={w_2 + h} y2={-l_2 - h} />
+                    <line style={flipStyle} x1={-w_2 - h2} y1={-l_2} x2={w_2 + h2} y2={-l_2} />
+                    <line style={flipStyle} x1={-w_2 - h2} y1={l_2} x2={w_2 + h2} y2={l_2} />
+                    <line style={flipStyle} x1={-w_2 - h} y1={l_2 + h} x2={w_2 + h} y2={l_2 + h} />
+                    <line style={invertedStyle} x1={-w_2} y1={-l_2 - h2} x2={w_2} y2={-l_2 - h2} />
+                    <line style={invertedStyle} x1={-w_2} y1={l_2 + h2} x2={w_2} y2={l_2 + h2} />
 
-                    <line className="flip" x1={-w_2 - h} y1={-l_2 - h} x2={-w_2 - h} y2={l_2 + h} />
-                    <line className="flip" x1={-w_2} y1={-l_2 - h2} x2={-w_2} y2={l_2 + h2} />
-                    <line className="flip" x1={w_2} y1={-l_2 - h2} x2={w_2} y2={l_2 + h2} />
-                    <line className="flip" x1={w_2 + h} y1={-l_2 - h} x2={w_2 + h} y2={l_2 + h} />
-                    <line className="inverted" x1={-w_2 - h2} y1={-l_2} x2={-w_2 - h2} y2={l_2} />
-                    <line className="inverted" x1={w_2 + h2} y1={-l_2} x2={w_2 + h2} y2={l_2} />
+                    <line style={flipStyle} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2 - h} y2={l_2 + h} />
+                    <line style={flipStyle} x1={-w_2} y1={-l_2 - h2} x2={-w_2} y2={l_2 + h2} />
+                    <line style={flipStyle} x1={w_2} y1={-l_2 - h2} x2={w_2} y2={l_2 + h2} />
+                    <line style={flipStyle} x1={w_2 + h} y1={-l_2 - h} x2={w_2 + h} y2={l_2 + h} />
+                    <line style={invertedStyle} x1={-w_2 - h2} y1={-l_2} x2={-w_2 - h2} y2={l_2} />
+                    <line style={invertedStyle} x1={w_2 + h2} y1={-l_2} x2={w_2 + h2} y2={l_2} />
 
-                    <line className="inverted" x1={-w_2 - h} y1={-l_2 - h} x2={-w_2} y2={-l_2} />
-                    <line className="inverted" x1={w_2 + h} y1={-l_2 - h} x2={w_2} y2={-l_2} />
-                    <line className="inverted" x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
-                    <line className="inverted" x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
+                    <line style={invertedStyle} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2} y2={-l_2} />
+                    <line style={invertedStyle} x1={w_2 + h} y1={-l_2 - h} x2={w_2} y2={-l_2} />
+                    <line style={invertedStyle} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
+                    <line style={invertedStyle} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
-                    <line className="mark" x1={0} y1={l_2 - h2 - w_2} x2={-mark} y2={l_2 - h2 - w_2 + mark} />
-                    <line className="mark" x1={0} y1={l_2 - h2 - w_2} x2={mark} y2={l_2 - h2 - w_2 + mark} />
-                    <line className="mark" x1={0} y1={l_2 - w_2} x2={-mark} y2={l_2 - w_2 + mark} />
-                    <line className="mark" x1={0} y1={l_2 - w_2} x2={mark} y2={l_2 - w_2 + mark} />
+                    <line style={markStyle} x1={0} y1={l_2 - h2 - w_2} x2={-mark} y2={l_2 - h2 - w_2 + mark} />
+                    <line style={markStyle} x1={0} y1={l_2 - h2 - w_2} x2={mark} y2={l_2 - h2 - w_2 + mark} />
+                    <line style={markStyle} x1={0} y1={l_2 - w_2} x2={-mark} y2={l_2 - w_2 + mark} />
+                    <line style={markStyle} x1={0} y1={l_2 - w_2} x2={mark} y2={l_2 - w_2 + mark} />
 
-                    <line className="mark" x1={0} y1={-l_2 + h2 + w_2} x2={-mark} y2={-l_2 + h2 + w_2 - mark} />
-                    <line className="mark" x1={0} y1={-l_2 + h2 + w_2} x2={mark} y2={-l_2 + h2 + w_2 - mark} />
-                    <line className="mark" x1={0} y1={-l_2 + w_2} x2={-mark} y2={-l_2 + w_2 - mark} />
-                    <line className="mark" x1={0} y1={-l_2 + w_2} x2={mark} y2={-l_2 + w_2 - mark} />
+                    <line style={markStyle} x1={0} y1={-l_2 + h2 + w_2} x2={-mark} y2={-l_2 + h2 + w_2 - mark} />
+                    <line style={markStyle} x1={0} y1={-l_2 + h2 + w_2} x2={mark} y2={-l_2 + h2 + w_2 - mark} />
+                    <line style={markStyle} x1={0} y1={-l_2 + w_2} x2={-mark} y2={-l_2 + w_2 - mark} />
+                    <line style={markStyle} x1={0} y1={-l_2 + w_2} x2={mark} y2={-l_2 + w_2 - mark} />
 
-                    <line className="mark" x1={w_2 - h2 - l_2} y1={0} x2={w_2 - h2 - l_2 + mark} y2={-mark} />
-                    <line className="mark" x1={w_2 - h2 - l_2} y1={0} x2={w_2 - h2 - l_2 + mark} y2={mark} />
-                    <line className="mark" x1={w_2 - l_2} y1={0} x2={w_2 - l_2 + mark} y2={-mark} />
-                    <line className="mark" x1={w_2 - l_2} y1={0} x2={w_2 - l_2 + mark} y2={mark} />
+                    <line style={markStyle} x1={w_2 - h2 - l_2} y1={0} x2={w_2 - h2 - l_2 + mark} y2={-mark} />
+                    <line style={markStyle} x1={w_2 - h2 - l_2} y1={0} x2={w_2 - h2 - l_2 + mark} y2={mark} />
+                    <line style={markStyle} x1={w_2 - l_2} y1={0} x2={w_2 - l_2 + mark} y2={-mark} />
+                    <line style={markStyle} x1={w_2 - l_2} y1={0} x2={w_2 - l_2 + mark} y2={mark} />
 
-                    <line className="mark" x1={-w_2 + h2 + l_2} y1={0} x2={-w_2 + h2 + l_2 - mark} y2={-mark} />
-                    <line className="mark" x1={-w_2 + h2 + l_2} y1={0} x2={-w_2 + h2 + l_2 - mark} y2={mark} />
-                    <line className="mark" x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={-mark} />
-                    <line className="mark" x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={mark} />
+                    <line style={markStyle} x1={-w_2 + h2 + l_2} y1={0} x2={-w_2 + h2 + l_2 - mark} y2={-mark} />
+                    <line style={markStyle} x1={-w_2 + h2 + l_2} y1={0} x2={-w_2 + h2 + l_2 - mark} y2={mark} />
+                    <line style={markStyle} x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={-mark} />
+                    <line style={markStyle} x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={mark} />
                 </g>
-            </svg>
+            </Svg>
         );
     }
     else {
         const color = Color(props.detail.background);
-        const style = { stroke: color.isDark() ? 'white' : 'black' };
+        const style = { ...referenceStyle, stroke: color.isDark() ? 'white' : 'black' };
         return (
-            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}>
+            <svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
+                width={`${pageWidth}mm`} height={`${pageLength}mm`}>
                 <defs>
                     <clipPath id="cut-off-background">
                         <polygon points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
@@ -114,26 +149,26 @@ function MasuTemplate(props) {
                             preserveAspectRatio="none" clipPath="url(#cut-off-background)" />
                     }
 
-                    <polygon className="reference" style={style} points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
+                    <polygon style={style} points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
 
-                    <line className="reference" style={style} x1={-w_2 - h} y1={-l_2 - h} x2={w_2 + h} y2={-l_2 - h} />
-                    <line className="reference" style={style} x1={-w_2 - h2} y1={-l_2} x2={w_2 + h2} y2={-l_2} />
-                    <line className="reference" style={style} x1={-w_2 - h2} y1={l_2} x2={w_2 + h2} y2={l_2} />
-                    <line className="reference" style={style} x1={-w_2 - h} y1={l_2 + h} x2={w_2 + h} y2={l_2 + h} />
-                    <line className="reference" style={style} x1={-w_2} y1={-l_2 - h2} x2={w_2} y2={-l_2 - h2} />
-                    <line className="reference" style={style} x1={-w_2} y1={l_2 + h2} x2={w_2} y2={l_2 + h2} />
+                    <line style={style} x1={-w_2 - h} y1={-l_2 - h} x2={w_2 + h} y2={-l_2 - h} />
+                    <line style={style} x1={-w_2 - h2} y1={-l_2} x2={w_2 + h2} y2={-l_2} />
+                    <line style={style} x1={-w_2 - h2} y1={l_2} x2={w_2 + h2} y2={l_2} />
+                    <line style={style} x1={-w_2 - h} y1={l_2 + h} x2={w_2 + h} y2={l_2 + h} />
+                    <line style={style} x1={-w_2} y1={-l_2 - h2} x2={w_2} y2={-l_2 - h2} />
+                    <line style={style} x1={-w_2} y1={l_2 + h2} x2={w_2} y2={l_2 + h2} />
 
-                    <line className="reference" style={style} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2 - h} y2={l_2 + h} />
-                    <line className="reference" style={style} x1={-w_2} y1={-l_2 - h2} x2={-w_2} y2={l_2 + h2} />
-                    <line className="reference" style={style} x1={w_2} y1={-l_2 - h2} x2={w_2} y2={l_2 + h2} />
-                    <line className="reference" style={style} x1={w_2 + h} y1={-l_2 - h} x2={w_2 + h} y2={l_2 + h} />
-                    <line className="reference" style={style} x1={-w_2 - h2} y1={-l_2} x2={-w_2 - h2} y2={l_2} />
-                    <line className="reference" style={style} x1={w_2 + h2} y1={-l_2} x2={w_2 + h2} y2={l_2} />
+                    <line style={style} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2 - h} y2={l_2 + h} />
+                    <line style={style} x1={-w_2} y1={-l_2 - h2} x2={-w_2} y2={l_2 + h2} />
+                    <line style={style} x1={w_2} y1={-l_2 - h2} x2={w_2} y2={l_2 + h2} />
+                    <line style={style} x1={w_2 + h} y1={-l_2 - h} x2={w_2 + h} y2={l_2 + h} />
+                    <line style={style} x1={-w_2 - h2} y1={-l_2} x2={-w_2 - h2} y2={l_2} />
+                    <line style={style} x1={w_2 + h2} y1={-l_2} x2={w_2 + h2} y2={l_2} />
 
-                    <line className="reference" style={style} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2} y2={-l_2} />
-                    <line className="reference" style={style} x1={w_2 + h} y1={-l_2 - h} x2={w_2} y2={-l_2} />
-                    <line className="reference" style={style} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
-                    <line className="reference" style={style} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
+                    <line style={style} x1={-w_2 - h} y1={-l_2 - h} x2={-w_2} y2={-l_2} />
+                    <line style={style} x1={w_2 + h} y1={-l_2 - h} x2={w_2} y2={-l_2} />
+                    <line style={style} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
+                    <line style={style} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
                     {props.detail.texts.map((text, i) =>
                         <Text key={i} text={text} />
