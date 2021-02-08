@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -12,6 +13,9 @@ function Nav() {
                     <li className="nav-item dropdown">
                         <ul id="languageDropdown" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {i18n.language}
+                            <Helmet>
+                                <html lang={i18n.language} />
+                            </Helmet>
                         </ul>
                         <ul className="dropdown-menu" aria-labelledby="languageDropdown">
                             <li><button className="dropdown-item" onClick={() => i18n.changeLanguage('en')}>en (English)</button></li>
