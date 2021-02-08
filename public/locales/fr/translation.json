@@ -35,9 +35,9 @@
             "cancel": "Annuler"
         },
         "stepZGenerate": {
-            "title": "Préparer le PDF",
+            "title": "Préparer l'impression",
             "linkTo": "Préparer l'impression",
-            "generatePDF": "Générer le PDF"
+            "print": "Imprimer"
         },
         "dimensions": {
             "label": "Dimensions (mm)",

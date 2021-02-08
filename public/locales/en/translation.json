@@ -35,9 +35,9 @@
             "cancel": "Go back"
         },
         "stepZGenerate": {
-            "title": "Prepare PDF",
+            "title": "Prepare the Print",
             "linkTo": "Prepare the print",
-            "generatePDF": "Generate PDF"
+            "print": "Print"
         },
         "dimensions": {
             "label": "What are the dimensions of the box (in millimeters)?",

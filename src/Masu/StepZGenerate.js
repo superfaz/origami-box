@@ -12,12 +12,7 @@ class StepZGenerate extends React.Component {
         super(props);
 
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.onGeneratePdf = this.onGeneratePdf.bind(this);
         this.print = this.print.bind(this);
-    }
-
-    onGeneratePdf() {
-        // generatePdf(this.props);
     }
 
     print() {
@@ -78,7 +73,7 @@ class StepZGenerate extends React.Component {
                             {!this.props.withBackDesign &&
                                 <Link className="btn btn-link" to="/">{t('masu.stepAGeneral.linkBack')}</Link>
                             }
-                            <button type="button" className="btn btn-primary ms-auto" onClick={this.print}>{t('masu.stepZGenerate.generatePDF')}</button>
+                            <button type="button" className="btn btn-primary ms-auto" onClick={this.print}>{t('masu.stepZGenerate.print')}</button>
                         </div>
                     </form>
                 </div>
