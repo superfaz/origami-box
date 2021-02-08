@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
 import { Link } from 'react-router-dom';
-import generatePdf from './generatePdf';
 import classNames from 'classnames/dedupe';
 import MasuTemplate from './MasuTemplate';
 
@@ -14,10 +13,31 @@ class StepZGenerate extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.onGeneratePdf = this.onGeneratePdf.bind(this);
+        this.print = this.print.bind(this);
     }
 
     onGeneratePdf() {
-        generatePdf(this.props);
+        // generatePdf(this.props);
+    }
+
+    print() {
+        var newWindow = window.open();
+        newWindow.document.body.innerHTML += `
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        </style>`;
+        newWindow.document.body.innerHTML += document.getElementsByClassName("template")[0].outerHTML;
+        newWindow.document.body.innerHTML += document.getElementsByClassName("template")[1].outerHTML;
+        newWindow.print();
+        newWindow.close();
     }
 
     handleInputChange(e) {
@@ -58,7 +78,7 @@ class StepZGenerate extends React.Component {
                             {!this.props.withBackDesign &&
                                 <Link className="btn btn-link" to="/">{t('masu.stepAGeneral.linkBack')}</Link>
                             }
-                            <button type="button" className="btn btn-primary ms-auto" onClick={this.onGeneratePdf}>{t('masu.stepZGenerate.generatePDF')}</button>
+                            <button type="button" className="btn btn-primary ms-auto" onClick={this.print}>{t('masu.stepZGenerate.generatePDF')}</button>
                         </div>
                     </form>
                 </div>
