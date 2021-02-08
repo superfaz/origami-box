@@ -129,7 +129,13 @@ function MasuTemplate(props) {
     }
     else {
         const color = Color(props.detail.background);
-        const style = { ...referenceStyle, stroke: color.isDark() ? 'white' : 'black' };
+        const withoutReference = props.print ?? false;
+        const style = {
+            ...referenceStyle,
+            stroke: color.isDark() ? 'white' : 'black',
+            display: withoutReference ? 'none' : 'inline',
+        };
+
         return (
             <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
                 width={`${pageWidth}mm`} height={`${pageLength}mm`}>

@@ -26,6 +26,9 @@ class StepZGenerate extends React.Component {
             font-family: 'Open Sans', sans-serif;
             font-weight: 400;
         }
+        .noprint {
+            display: none;
+        }
         @media print {
             @page {
                 size: A4;
@@ -39,7 +42,7 @@ class StepZGenerate extends React.Component {
         }
 
         newWindow.print();
-        newWindow.close();
+        // newWindow.close();
     }
 
     handleInputChange(e) {
@@ -88,15 +91,15 @@ class StepZGenerate extends React.Component {
                     {this.props.withBackDesign &&
                         <div className="row">
                             <div className="col-12 col-lg-6">
-                                <MasuTemplate side="front" detail={this.props.box} />
+                                <MasuTemplate side="front" detail={this.props.box} print="true" />
                             </div>
                             <div className="col-12 col-lg-6">
-                                <MasuTemplate side="back" detail={this.props.box} />
+                                <MasuTemplate side="back" detail={this.props.box} print="true" />
                             </div>
                         </div>
                     }
                     {!this.props.withBackDesign &&
-                        <MasuTemplate side="front" detail={this.props.box} />
+                        <MasuTemplate side="front" detail={this.props.box} print="true" />
                     }
                 </div>
             </div>
