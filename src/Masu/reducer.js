@@ -35,10 +35,10 @@ export function updateDetail(detailKey, name, value) {
     };
 }
 
-export function addText(block, content, face) {
+export function addText(block, content, face, family) {
     return {
         type: 'ADD_TEXT',
-        payload: { block, content, face },
+        payload: { block, content, face, family },
     };
 }
 
@@ -80,7 +80,8 @@ export default function masuReducer(state = initialState, action) {
                         ...state[action.payload.block].texts,
                         {
                             content: action.payload.content,
-                            face: action.payload.face
+                            face: action.payload.face,
+                            family: action.payload.family,
                         }
                     ]
                 }

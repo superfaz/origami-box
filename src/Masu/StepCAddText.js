@@ -14,6 +14,7 @@ class StepCAddText extends React.Component {
             redirect: false,
             content: '',
             face: 'front',
+            family: '',
         };
 
         this.onInputChange = this.onInputChange.bind(this);
@@ -27,7 +28,7 @@ class StepCAddText extends React.Component {
     onSubmit(event) {
         event.preventDefault();
 
-        this.props.addText('box', this.state.content, this.state.face);
+        this.props.addText('box', this.state.content, this.state.face, this.state.family);
         this.setState({ redirect: true })
     }
 
@@ -52,6 +53,12 @@ class StepCAddText extends React.Component {
                                 <option value="left">{t('masu.face.left')}</option>
                                 <option value="right">{t('masu.face.right')}</option>
                             </select>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="family">{t('masu.stepCAddText.family')}</label>
+                            <input type="text" name="family" className="form-control"
+                                value={this.state.family} onChange={this.onInputChange} placeholder="Open Sans" />
+                            <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
                         </div>
                         <div className="mb-3 mt-5 d-flex">
                             <Link className="btn btn-link" to="/back">{t('masu.stepCAddText.cancel')}</Link>

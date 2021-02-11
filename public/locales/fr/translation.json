@@ -31,6 +31,8 @@
             "linkTo": "Ajouter un texte",
             "content": "Contenu",
             "face": "Face",
+            "family": "Police",
+            "familyExplanation": "Nom de la police 'google font' à utiliser",
             "submit": "Valider ce texte",
             "cancel": "Annuler"
         },

@@ -31,6 +31,8 @@
             "linkTo": "Add a text",
             "content": "Content",
             "face": "Face",
+            "family": "Font",
+            "familyExplanation": "Name of the google font to be used",
             "submit": "Add this text",
             "cancel": "Go back"
         },

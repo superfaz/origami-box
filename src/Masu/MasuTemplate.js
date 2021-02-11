@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { getMasu } from '../store';
 import { configureFace } from './helper';
 import Color from 'color';
+import { Helmet } from 'react-helmet';
 
 const lineStyle = {
     fill: 'none',
@@ -64,15 +65,20 @@ function MasuTemplate(props) {
     const mark = 2.5;
 
     function Text(props) {
-        let configuration = { textAnchor: "middle", dominantBaseline: "middle", x: null, y: null, rotate: null };
         const text = props.text;
+        let configuration = { textAnchor: "middle", dominantBaseline: "middle", x: null, y: null, rotate: null };
+        let style = { fontSize: 8 };
+        if (text.family !== '') {
+            style.fontFamily = text.family;
+        }
+
         configureFace(configuration, text.face, l_2, w_2, h_2);
 
         return (
             <text textAnchor={configuration.textAnchor} dominantBaseline={configuration.dominantBaseline}
                 x={configuration.x} y={configuration.y}
                 transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}
-                style={{ fontSize: 8 }}>
+                style={style}>
                 {text.content}
             </text>
         );
@@ -139,6 +145,14 @@ function MasuTemplate(props) {
         return (
             <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
                 width={`${pageWidth}mm`} height={`${pageLength}mm`}>
+                <Helmet>
+                    {props.text && props.text.family &&
+                        <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?family=" + props.text.family.replace(' ', '+')} />
+                    }
+                    {props.detail.texts.map((text) =>
+                        <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?family=" + text.family.replace(' ', '+')} />
+                    )}
+                </Helmet>
                 <defs>
                     <clipPath id="cut-off-background">
                         <polygon points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />

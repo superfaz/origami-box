@@ -16,33 +16,40 @@ class StepZGenerate extends React.Component {
     }
 
     print() {
-        var newWindow = window.open();
-        newWindow.document.body.innerHTML += `
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Quicksand:wght@500&family=Source+Code+Pro:wght@400');
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 400;
-        }
-        .noprint {
-            display: none;
-        }
-        @media print {
-            @page {
-                size: A4;
+        let newWindow = window.open('empty.html', '_blank');
+        newWindow.onload = () => {
+            newWindow.document.head.innerHTML = `
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <style>
+            * {
                 margin: 0;
+                padding: 0;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 400;
             }
-        </style>`;
-        var templates = document.getElementsByClassName("template");
-        for (let index = 0; index < templates.length; index++) {
-            const template = templates[index];
-            newWindow.document.body.innerHTML += template.outerHTML;
-        }
+            @media print {
+                @page {
+                    size: A4;
+                    margin: 0;
+                }
+            </style>`;
 
-        newWindow.print();
-        newWindow.close();
+            let templates = document.getElementsByClassName("template");
+            for (let index = 0; index < templates.length; index++) {
+                const template = templates[index];
+                newWindow.document.body.innerHTML += template.outerHTML;
+            }
+
+            let fonts = ['family=Open+Sans', 'family=Pacifico'];
+            let link = newWindow.document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `https://fonts.googleapis.com/css2?${fonts.join('&')}&display=block`;
+            link.onload = () => {
+                newWindow.print();
+            }
+
+            newWindow.document.head.appendChild(link);
+        };
     }
 
     handleInputChange(e) {
@@ -85,10 +92,10 @@ class StepZGenerate extends React.Component {
                     {this.props.withBackDesign &&
                         <div className="row">
                             <div className="col-12 col-lg-6">
-                                <MasuTemplate side="front" detail={this.props.box} print="true" />
+                                <MasuTemplate key="front" side="front" detail={this.props.box} print="true" />
                             </div>
                             <div className="col-12 col-lg-6">
-                                <MasuTemplate side="back" detail={this.props.box} print="true" />
+                                <MasuTemplate key="back" side="back" detail={this.props.box} print="true" />
                             </div>
                         </div>
                     }
