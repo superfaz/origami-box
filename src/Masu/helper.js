@@ -1,5 +1,4 @@
-export function getRotationMatrix(angle)
-{
+export function getRotationMatrix(angle) {
     const radian = angle * Math.PI / 180;
     const cos = Math.cos(radian).toFixed(5);
     const sin = Math.sin(radian).toFixed(5);
@@ -10,9 +9,18 @@ function isPositive(value) {
     return value !== undefined && parseFloat(value) > 0;
 }
 
-export function isGeneralValid(masu)
-{
+export function isGeneralValid(masu) {
     return masu !== undefined && isPositive(masu.length) && isPositive(masu.width) && isPositive(masu.height);
+}
+
+export function getFonts(masu) {
+    if (masu === undefined) {
+        return [];
+    }
+    else {
+        let fonts = masu.box.texts.map(t => t.family).map(t => t === '' ? 'Open Sans' : t).sort();
+        return [...new Set(fonts)];
+    }
 }
 
 export function configureFace(configuration, face, l_2, w_2, h_2) {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getMasu } from '../store';
-import { configureFace } from './helper';
+import { configureFace, getFonts } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 
@@ -142,6 +142,10 @@ function MasuTemplate(props) {
             display: withoutReference ? 'none' : 'inline',
         };
 
+        const fonts = getFonts(props)
+            .map(f => 'family=' + f.replace(' ', '+'))
+            .join('&');
+        const fontHref = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
         return (
             <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
                 width={`${pageWidth}mm`} height={`${pageLength}mm`}>
@@ -149,9 +153,9 @@ function MasuTemplate(props) {
                     {props.text && props.text.family &&
                         <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?family=" + props.text.family.replace(' ', '+')} />
                     }
-                    {props.detail.texts.map((text) =>
-                        <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?family=" + text.family.replace(' ', '+')} />
-                    )}
+                    {fonts!=='' &&
+                        <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?" + fonts} />
+                    }
                 </Helmet>
                 <defs>
                     <clipPath id="cut-off-background">

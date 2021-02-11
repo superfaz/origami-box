@@ -6,6 +6,7 @@ import { getMasu } from '../store';
 import classNames from 'classnames/dedupe';
 import MasuTemplate from './MasuTemplate';
 import Nav from './Nav';
+import { getFonts } from './helper';
 
 class StepZGenerate extends React.Component {
     constructor(props) {
@@ -40,12 +41,15 @@ class StepZGenerate extends React.Component {
                 newWindow.document.body.innerHTML += template.outerHTML;
             }
 
-            let fonts = ['family=Open+Sans', 'family=Pacifico'];
+            let fonts = getFonts(this.props)
+                .map(f => 'family=' + f.replace(' ', '+'))
+                .join('&');
             let link = newWindow.document.createElement('link');
             link.rel = 'stylesheet';
-            link.href = `https://fonts.googleapis.com/css2?${fonts.join('&')}&display=block`;
+            link.href = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
             link.onload = () => {
-                newWindow.print();
+                // setTimeout used to ensure rendering before print
+                setTimeout(() => newWindow.print(), 1);
             }
 
             newWindow.document.head.appendChild(link);
