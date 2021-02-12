@@ -13,12 +13,16 @@ export function isGeneralValid(masu) {
     return masu !== undefined && isPositive(masu.length) && isPositive(masu.width) && isPositive(masu.height);
 }
 
+export function getTexts(masu) {
+    return Object.keys(masu.box.texts).map(k => masu.box.texts[k]);
+}
+
 export function getFonts(masu) {
     if (masu === undefined) {
         return [];
     }
     else {
-        let fonts = masu.box.texts.map(t => t.family).map(t => t === '' ? 'Open Sans' : t).sort();
+        let fonts = getTexts(masu).map(t => t.family).map(t => t === '' ? 'Open Sans' : t).sort();
         return [...new Set(fonts)];
     }
 }

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getMasu } from '../store';
-import { configureFace, getFonts } from './helper';
+import { configureFace, getFonts, getTexts } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 
@@ -194,7 +194,7 @@ function MasuTemplate(props) {
                     <line style={style} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
                     <line style={style} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
-                    {props.detail.texts.map((text, i) =>
+                    {getTexts(props).map((text, i) =>
                         <Text key={i} text={text} />
                     )}
 

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const initialState = {
     pageFormat: 'A4-p',
     pageLength: 297,
@@ -11,13 +13,13 @@ const initialState = {
         key: 'box',
         background: '#8ED1FC',
         backgroundImage: null,
-        texts: [],
+        texts: {},
     },
     lid: {
         key: 'lid',
         background: '#8ED1FC',
         backgroundImage: null,
-        texts: [],
+        texts: {},
     },
 };
 
@@ -72,18 +74,20 @@ export default function masuReducer(state = initialState, action) {
             };
 
         case 'ADD_TEXT':
-            var result = {
+            let key = uuidv4();
+            let result = {
                 ...state,
                 [action.payload.block]: {
                     ...state[action.payload.block],
-                    texts: [
+                    texts: {
                         ...state[action.payload.block].texts,
-                        {
+                        [key]: {
+                            key: key,
                             content: action.payload.content,
                             face: action.payload.face,
                             family: action.payload.family,
                         }
-                    ]
+                    }
                 }
             }
             return result;

@@ -60,10 +60,10 @@ class StepBBoxDesign extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {block.texts.map((text, i) =>
-                                        <tr key={i}>
-                                            <td>{text.content}</td>
-                                            <td>{t(`masu.face.${text.face}`)}</td>
+                                    {Object.keys(block.texts).map(key =>
+                                        <tr key={key}>
+                                            <td>{block.texts[key].content}</td>
+                                            <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                                         </tr>
                                     )}
                                 </tbody>
