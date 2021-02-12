@@ -50,15 +50,15 @@ class StepBBoxDesign extends React.Component {
                             <table className="table">
                                 <thead>
                                     <tr>
-                                        <th>{t('masu.stepBBoxDesign.textFace')}</th>
                                         <th>{t('masu.stepBBoxDesign.textContent')}</th>
+                                        <th>{t('masu.stepBBoxDesign.textFace')}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {block.texts.map((text, i) =>
                                         <tr key={i}>
-                                            <td>{t(`masu.face.${text.face}`)}</td>
                                             <td>{text.content}</td>
+                                            <td>{t(`masu.face.${text.face}`)}</td>
                                         </tr>
                                     )}
                                 </tbody>
