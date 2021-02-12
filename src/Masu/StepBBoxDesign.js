@@ -21,11 +21,16 @@ class StepBBoxDesign extends React.Component {
     }
 
     handleBackgroundImageChange(event) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            this.props.updateDetail(this.props.block.key, 'backgroundImage', reader.result);
-        };
-        reader.readAsDataURL(event.target.files[0]);
+        if (event.target.files.length > 0) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                this.props.updateDetail(this.props.block.key, 'backgroundImage', reader.result);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        else {
+            this.props.updateDetail(this.props.block.key, 'backgroundImage', null);
+        }
     }
 
     render() {
