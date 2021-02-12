@@ -14,7 +14,8 @@ export default function Footer() {
             <hr />
             <div className="d-flex justify-content-between">
                 <p>&copy; {copyright(2021)} François Karman</p>
-                <p><a href="https://github.com/superfaz/origami-box" target="_blank" rel="noreferrer" className="btn btn-success">
+                <p><a href="https://github.com/superfaz/origami-box" target="_blank" rel="noreferrer" className="btn btn-success"
+                aria-label="View on GitHub">
                     <i className="bi bi-github"></i></a>
                 </p>
             </div>
