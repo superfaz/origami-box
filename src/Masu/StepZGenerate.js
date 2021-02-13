@@ -49,7 +49,10 @@ class StepZGenerate extends React.Component {
             link.href = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
             link.onload = () => {
                 // setTimeout used to ensure rendering before print
-                setTimeout(() => newWindow.print(), 1);
+                setTimeout(() => {
+                    newWindow.print();
+                    newWindow.close();
+                }, 1);
             }
 
             newWindow.document.head.appendChild(link);
