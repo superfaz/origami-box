@@ -85,7 +85,7 @@ class StepBBoxDesign extends React.Component {
               <div className="mb-5"></div>
             }
             <div className="d-flex">
-              <Link className="btn btn-outline-primary" to="/back/text/test">{t('masu.stepCAddText.linkTo')}</Link>
+              <Link className="btn btn-outline-primary" to="/back/text">{t('masu.stepCAddText.linkTo')}</Link>
             </div>
           </div>
           <div className="mb-3 mt-5 d-flex">

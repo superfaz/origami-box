@@ -34,7 +34,7 @@ class Nav extends React.PureComponent {
         <ol className="breadcrumb">
           <BreadcrumbItem path="/" title={t('masu.stepAGeneral.title')} withLink={isGeneralValid(this.props)} />
           {this.props.withBackDesign &&
-            <BreadcrumbItem path={["/back", "/back/addText"]} title={t('masu.stepBBoxDesign.title')} withLink={isGeneralValid(this.props)} />
+            <BreadcrumbItem path={["/back", "/back/text"]} title={t('masu.stepBBoxDesign.title')} withLink={isGeneralValid(this.props)} />
           }
           <BreadcrumbItem path="/generate" title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(this.props)} />
         </ol>
