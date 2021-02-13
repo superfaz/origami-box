@@ -3,7 +3,7 @@ import { withTranslation } from 'react-i18next';
 import StepAGeneral from './StepAGeneral';
 import StepBBoxDesign from './StepBBoxDesign';
 import StepZGenerate from './StepZGenerate';
-import StepCAddText from './StepCAddText';
+import StepCBoxText from './StepCBoxText';
 import { connect } from 'react-redux';
 import { getMasu } from '../store';
 import { Switch, Route } from 'react-router-dom';
@@ -22,8 +22,11 @@ class Masu extends React.Component {
           <Route exact path="/back">
             <StepBBoxDesign title={t('masu.stepBBoxDesign.title')} block={this.props.box} />
           </Route>
-          <Route exact path="/back/addText">
-            <StepCAddText />
+          <Route exact path="/back/text/:id">
+            <StepCBoxText />
+          </Route>
+          <Route exact path="/back/text">
+            <StepCBoxText />
           </Route>
           {/* <Route path="/lid">
                 <FormDetail title={t('masu.lid.title')} block={this.props.lid} />

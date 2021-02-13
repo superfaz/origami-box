@@ -7,7 +7,7 @@ import { addText } from './reducer';
 import MasuTemplate from './MasuTemplate';
 import Nav from './Nav';
 
-class StepCAddText extends React.Component {
+class StepCBoxText extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,4 +77,4 @@ class StepCAddText extends React.Component {
     }
 }
 
-export default withTranslation()(connect(state => getMasu(state), { addText })(StepCAddText));
+export default withTranslation()(connect(state => getMasu(state), { addText })(StepCBoxText));
