@@ -16,7 +16,7 @@ export default function Footer() {
                 <p>&copy; {copyright(2021)} François Karman</p>
                 <p><a href="https://github.com/superfaz/origami-box" target="_blank" rel="noreferrer" className="btn btn-success"
                 aria-label="View on GitHub">
-                    <i class="fab fa-github"></i></a>
+                    <i className="fab fa-github"></i></a>
                 </p>
             </div>
         </div>
