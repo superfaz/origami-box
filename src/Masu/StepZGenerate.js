@@ -40,18 +40,27 @@ export default function StepZGenerate() {
       let fonts = getFonts(masu)
         .map(f => 'family=' + f.replace(' ', '+'))
         .join('&');
-      let link = newWindow.document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
-      link.onload = () => {
-        // setTimeout used to ensure rendering before print
-        setTimeout(() => {
+      if (fonts !== '') {
+        let link = newWindow.document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
+        link.onload = () => {
+          // setTimeout used to ensure rendering before print
+          setTimeout(() => {
+            newWindow.print();
+            newWindow.close();
+          }, 1);
+        }
+
+        newWindow.document.head.appendChild(link);
+      }
+      else {
+          // setTimeout used to ensure rendering before print
+          setTimeout(() => {
           newWindow.print();
           newWindow.close();
         }, 1);
       }
-
-      newWindow.document.head.appendChild(link);
     };
   }
 
