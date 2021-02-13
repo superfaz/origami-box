@@ -1,56 +1,56 @@
 {
-    "masu": {
-        "title": "Masu",
-        "format": {
-            "label": "Format",
-            "A4": "A4",
-            "letter": "letter"
-        },
-        "face": {
-            "front": "Front",
-            "back": "Back",
-            "left": "Left",
-            "right": "Right"
-        },
-        "stepAGeneral": {
-            "title": "General options",
-            "linkBack": "Back to the general options"
-        },
-        "stepBBoxDesign": {
-            "title": "Box",
-            "linkTo": "Define the box design",
-            "linkBack": "Back to the box design",
-            "backgroundColor": "Apply a background color?",
-            "backgroundImage": "Define a texture?",
-            "texts": "Texts",
-            "textFace": "Face",
-            "textContent": "Text(s)",
-            "textDelete": "Delete this text"
-        },
-        "stepCAddText": {
-            "title": "Add a text",
-            "linkTo": "Add a text",
-            "content": "Content",
-            "face": "Face",
-            "family": "Font",
-            "familyExplanation": "Name of the google font to be used",
-            "submit": "Add this text",
-            "cancel": "Go back"
-        },
-        "stepZGenerate": {
-            "title": "Prepare the Print",
-            "linkTo": "Prepare the print",
-            "print": "Print"
-        },
-        "dimensions": {
-            "label": "What are the dimensions of the box (in millimeters)?",
-            "length": "Length",
-            "width": "Width",
-            "height": "Height"
-        },
-        "withBackDesign": "With a specific design for the back",
-        "withLid": "Add a second template for a lid",
-        "front": "Front",
-        "back": "Back"
-    }
+  "masu": {
+    "title": "Masu",
+    "format": {
+      "label": "Format",
+      "A4": "A4",
+      "letter": "letter"
+    },
+    "face": {
+      "front": "Front",
+      "back": "Back",
+      "left": "Left",
+      "right": "Right"
+    },
+    "stepAGeneral": {
+      "title": "General options",
+      "linkBack": "Back to the general options"
+    },
+    "stepBBoxDesign": {
+      "title": "Box",
+      "linkTo": "Define the box design",
+      "linkBack": "Back to the box design",
+      "backgroundColor": "Apply a background color?",
+      "backgroundImage": "Define a texture?",
+      "texts": "Texts",
+      "textFace": "Face",
+      "textContent": "Text(s)",
+      "textDelete": "Delete this text"
+    },
+    "stepCAddText": {
+      "title": "Add a text",
+      "linkTo": "Add a text",
+      "content": "Content",
+      "face": "Face",
+      "family": "Font",
+      "familyExplanation": "Name of the google font to be used",
+      "submit": "Add this text",
+      "cancel": "Go back"
+    },
+    "stepZGenerate": {
+      "title": "Prepare the Print",
+      "linkTo": "Prepare the print",
+      "print": "Print"
+    },
+    "dimensions": {
+      "label": "What are the dimensions of the box (in millimeters)?",
+      "length": "Length",
+      "width": "Width",
+      "height": "Height"
+    },
+    "withBackDesign": "With a specific design for the back",
+    "withLid": "Add a second template for a lid",
+    "front": "Front",
+    "back": "Back"
+  }
 }

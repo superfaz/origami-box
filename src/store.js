@@ -2,11 +2,11 @@ import { combineReducers, createStore } from 'redux';
 import masuReducer from './Masu/reducer';
 
 const reducers = combineReducers({
-    masu: masuReducer,
+  masu: masuReducer,
 });
 
 export function getMasu(state) {
-    return state.masu;
+  return state.masu;
 }
 
 export default createStore(reducers);

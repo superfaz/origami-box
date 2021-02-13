@@ -1,56 +1,56 @@
 {
-    "masu": {
-        "title": "Masu",
-        "format": {
-            "label": "Format",
-            "A4": "A4",
-            "letter": "lettre (US)"
-        },
-        "face": {
-            "front": "Avant",
-            "back": "Arrière",
-            "left": "Gauche",
-            "right": "Droite"
-        },
-        "stepAGeneral": {
-            "title": "Options générales",
-            "linkBack": "Retour aux options générales"
-        },
-        "stepBBoxDesign": {
-            "title": "Boîte",
-            "linkTo": "Définir le design de la boîte",
-            "linkBack": "Retour au design de la boîte",
-            "backgroundColor": "Appliquer une couleur de fond?",
-            "backgroundImage": "Appliquer une texture?",
-            "texts": "Ajouter des textes?",
-            "textFace": "Face",
-            "textContent": "Texte(s)",
-            "textDelete": "Supprimer ce texte"
-        },
-        "stepCAddText": {
-            "title": "Ajouter un texte",
-            "linkTo": "Ajouter un texte",
-            "content": "Contenu",
-            "face": "Face",
-            "family": "Police",
-            "familyExplanation": "Nom de la police 'google font' à utiliser",
-            "submit": "Valider ce texte",
-            "cancel": "Annuler"
-        },
-        "stepZGenerate": {
-            "title": "Préparer l'impression",
-            "linkTo": "Préparer l'impression",
-            "print": "Imprimer"
-        },
-        "dimensions": {
-            "label": "Dimensions (mm)",
-            "length": "Longueur",
-            "width": "Largeur",
-            "height": "Hauteur"
-        },
-        "withBackDesign": "Définir un design spécifique pour le verso",
-        "withLid": "Créer un second modèle pour un couvercle",
-        "front": "Recto",
-        "back": "Verso"
-    }
+  "masu": {
+    "title": "Masu",
+    "format": {
+      "label": "Format",
+      "A4": "A4",
+      "letter": "lettre (US)"
+    },
+    "face": {
+      "front": "Avant",
+      "back": "Arrière",
+      "left": "Gauche",
+      "right": "Droite"
+    },
+    "stepAGeneral": {
+      "title": "Options générales",
+      "linkBack": "Retour aux options générales"
+    },
+    "stepBBoxDesign": {
+      "title": "Boîte",
+      "linkTo": "Définir le design de la boîte",
+      "linkBack": "Retour au design de la boîte",
+      "backgroundColor": "Appliquer une couleur de fond?",
+      "backgroundImage": "Appliquer une texture?",
+      "texts": "Ajouter des textes?",
+      "textFace": "Face",
+      "textContent": "Texte(s)",
+      "textDelete": "Supprimer ce texte"
+    },
+    "stepCAddText": {
+      "title": "Ajouter un texte",
+      "linkTo": "Ajouter un texte",
+      "content": "Contenu",
+      "face": "Face",
+      "family": "Police",
+      "familyExplanation": "Nom de la police 'google font' à utiliser",
+      "submit": "Valider ce texte",
+      "cancel": "Annuler"
+    },
+    "stepZGenerate": {
+      "title": "Préparer l'impression",
+      "linkTo": "Préparer l'impression",
+      "print": "Imprimer"
+    },
+    "dimensions": {
+      "label": "Dimensions (mm)",
+      "length": "Longueur",
+      "width": "Largeur",
+      "height": "Hauteur"
+    },
+    "withBackDesign": "Définir un design spécifique pour le verso",
+    "withLid": "Créer un second modèle pour un couvercle",
+    "front": "Recto",
+    "back": "Verso"
+  }
 }
