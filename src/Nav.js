@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-function Nav() {
+export default function Nav() {
     const { i18n } = useTranslation();
     return (
         <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark text-light">
@@ -27,5 +27,3 @@ function Nav() {
         </nav>
     );
 }
-
-export default Nav;
