@@ -1,16 +1,18 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { Link, withRouter } from "react-router-dom";
+import { useTranslation, withTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Link, useLocation, withRouter } from "react-router-dom";
 import { getMasu } from '../store';
 import classNames from 'classnames';
 import { isGeneralValid } from './helper';
 import './Nav.css';
 
-const BreadcrumbItem = withRouter(function (props) {
+function BreadcrumbItem(props) {
   const { path, title, withLink } = props;
   const paths = Array.isArray(path) ? path : [path];
-  const currentPath = props.location.pathname;
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <li className={classNames(
       "breadcrumb-item d-flex align-bottom",
@@ -23,24 +25,21 @@ const BreadcrumbItem = withRouter(function (props) {
       {!(withLink && !paths.includes(currentPath)) && title}
     </li>
   );
-});
-
-class Nav extends React.PureComponent {
-  render() {
-    const { t } = this.props;
-
-    return (
-      <nav className="nav-steps" aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <BreadcrumbItem path="/" title={t('masu.stepAGeneral.title')} withLink={isGeneralValid(this.props)} />
-          {this.props.withBackDesign &&
-            <BreadcrumbItem path={["/back", "/back/text"]} title={t('masu.stepBBoxDesign.title')} withLink={isGeneralValid(this.props)} />
-          }
-          <BreadcrumbItem path="/generate" title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(this.props)} />
-        </ol>
-      </nav>
-    );
-  }
 }
 
-export default withTranslation()(connect(state => getMasu(state))(Nav));
+export default function Nav() {
+  const { t } = useTranslation();
+  const masu = useSelector(getMasu);
+
+  return (
+    <nav className="nav-steps" aria-label="breadcrumb">
+      <ol className="breadcrumb">
+        <BreadcrumbItem path="/" title={t('masu.stepAGeneral.title')} withLink={isGeneralValid(masu)} />
+        {masu.withBackDesign &&
+          <BreadcrumbItem path={["/back", "/back/text"]} title={t('masu.stepBBoxDesign.title')} withLink={isGeneralValid(masu)} />
+        }
+        <BreadcrumbItem path="/generate" title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(masu)} />
+      </ol>
+    </nav>
+  );
+}

@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { getMasu } from '../store';
 import { configureFace, getFonts, getTexts } from './helper';
 import Color from 'color';
@@ -38,13 +38,14 @@ const referenceStyle = {
 const Svg = ({ ...rest }) =>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" {...rest} />
 
-function MasuTemplate(props) {
-  const pageLength = parseFloat(props.pageLength);
-  const pageWidth = parseFloat(props.pageWidth);
+export default function MasuTemplate(props) {
+  const masu = useSelector(getMasu);
+  const pageLength = parseFloat(masu.pageLength);
+  const pageWidth = parseFloat(masu.pageWidth);
 
-  const l = parseFloat(props.length);
-  const w = parseFloat(props.width);
-  const h = parseFloat(props.height);
+  const l = parseFloat(masu.length);
+  const w = parseFloat(masu.width);
+  const h = parseFloat(masu.height);
 
   if (isNaN(l + w + h) || l <= 0 || w <= 0 || h <= 0) {
     return (
@@ -142,7 +143,7 @@ function MasuTemplate(props) {
       display: withoutReference ? 'none' : 'inline',
     };
 
-    const fonts = getFonts(props)
+    const fonts = getFonts(masu)
       .map(f => 'family=' + f.replace(' ', '+'))
       .join('&');
     const fontHref = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
@@ -194,7 +195,7 @@ function MasuTemplate(props) {
           <line style={style} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
           <line style={style} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
-          {getTexts(props).map((text, i) =>
+          {getTexts(masu).map((text, i) =>
             <Text key={i} text={text} />
           )}
 
@@ -206,5 +207,3 @@ function MasuTemplate(props) {
     );
   }
 }
-
-export default connect(state => getMasu(state))(MasuTemplate);

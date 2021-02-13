@@ -1,6 +1,5 @@
-import React from 'react';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
 import classNames from 'classnames/dedupe';
@@ -8,15 +7,12 @@ import MasuTemplate from './MasuTemplate';
 import Nav from './Nav';
 import { getFonts } from './helper';
 
-class StepZGenerate extends React.Component {
-  constructor(props) {
-    super(props);
+export default function StepZGenerate() {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const masu = useSelector(getMasu);
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.print = this.print.bind(this);
-  }
-
-  print() {
+  function print() {
     let newWindow = window.open('empty.html', '_blank');
     newWindow.onload = () => {
       newWindow.document.head.innerHTML = `
@@ -41,7 +37,7 @@ class StepZGenerate extends React.Component {
         newWindow.document.body.innerHTML += template.outerHTML;
       }
 
-      let fonts = getFonts(this.props)
+      let fonts = getFonts(masu)
         .map(f => 'family=' + f.replace(' ', '+'))
         .join('&');
       let link = newWindow.document.createElement('link');
@@ -59,7 +55,7 @@ class StepZGenerate extends React.Component {
     };
   }
 
-  handleInputChange(e) {
+  function handleInputChange(e) {
     if (e.target.checkValidity()) {
       e.target.className = classNames(e.target.className, "is-valid", { "is-invalid": false });
     }
@@ -67,52 +63,40 @@ class StepZGenerate extends React.Component {
       e.target.className = classNames(e.target.className, "is-invalid", { "is-valid": false });
     }
 
-    if (e.target.form.checkValidity()) {
-      this.setState({ valid: true });
-    }
-    else {
-      this.setState({ valid: false });
-    }
-
-    this.props.updateGeneral(e.target.name, e.target.value);
+    dispatch(updateGeneral(e.target.name, e.target.value));
   }
 
-  render() {
-    const { t } = this.props;
-    return (
-      <div className="row">
-        <Nav />
-        <div className="col-md-6 col-lg-4 mb-3">
-          <form>
-            <div className="mb-3">
-              <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
-              <select name="pageFormat" className="form-select" value={this.props.pageFormat} onChange={this.handleInputChange}>
-                <option value="A4-p">{t('masu.format.A4')}</option>
-              </select>
-            </div>
-            <div className="mb-3 mt-5 d-flex">
-              <button type="button" className="btn btn-primary ms-auto" onClick={this.print}>{t('masu.stepZGenerate.print')}</button>
-            </div>
-          </form>
-        </div>
-        <div className="col-md-6 col-lg-8 mb-3">
-          {this.props.withBackDesign &&
-            <div className="row">
-              <div className="col-12 col-lg-6">
-                <MasuTemplate key="front" side="front" detail={this.props.box} print="true" />
-              </div>
-              <div className="col-12 col-lg-6">
-                <MasuTemplate key="back" side="back" detail={this.props.box} print="true" />
-              </div>
-            </div>
-          }
-          {!this.props.withBackDesign &&
-            <MasuTemplate side="front" detail={this.props.box} print="true" />
-          }
-        </div>
+  return (
+    <div className="row">
+      <Nav />
+      <div className="col-md-6 col-lg-4 mb-3">
+        <form>
+          <div className="mb-3">
+            <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
+            <select name="pageFormat" className="form-select" value={masu.pageFormat} onChange={handleInputChange}>
+              <option value="A4-p">{t('masu.format.A4')}</option>
+            </select>
+          </div>
+          <div className="mb-3 mt-5 d-flex">
+            <button type="button" className="btn btn-primary ms-auto" onClick={print}>{t('masu.stepZGenerate.print')}</button>
+          </div>
+        </form>
       </div>
-    );
-  }
+      <div className="col-md-6 col-lg-8 mb-3">
+        {masu.withBackDesign &&
+          <div className="row">
+            <div className="col-12 col-lg-6">
+              <MasuTemplate key="front" side="front" detail={masu.box} print="true" />
+            </div>
+            <div className="col-12 col-lg-6">
+              <MasuTemplate key="back" side="back" detail={masu.box} print="true" />
+            </div>
+          </div>
+        }
+        {!masu.withBackDesign &&
+          <MasuTemplate side="front" detail={masu.box} print="true" />
+        }
+      </div>
+    </div>
+  );
 }
-
-export default withTranslation()(connect(state => getMasu(state), { updateGeneral })(StepZGenerate));
