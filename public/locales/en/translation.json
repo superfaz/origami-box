@@ -24,7 +24,8 @@
             "backgroundImage": "Define a texture?",
             "texts": "Texts",
             "textFace": "Face",
-            "textContent": "Text(s)"
+            "textContent": "Text(s)",
+            "textDelete": "Delete this text"
         },
         "stepCAddText": {
             "title": "Add a text",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { updateDetail } from './reducer';
+import { updateDetail, deleteText } from './reducer';
 import { TwitterPicker } from 'react-color';
 import MasuTemplate from './MasuTemplate';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,7 @@ class StepBBoxDesign extends React.Component {
 
         this.handleBackgroundColorChange = this.handleBackgroundColorChange.bind(this);
         this.handleBackgroundImageChange = this.handleBackgroundImageChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleBackgroundColorChange(color) {
@@ -31,6 +32,10 @@ class StepBBoxDesign extends React.Component {
         else {
             this.props.updateDetail(this.props.block.key, 'backgroundImage', null);
         }
+    }
+
+    handleDelete(key) {
+        this.props.deleteText(this.props.block.key, key);
     }
 
     render() {
@@ -57,13 +62,20 @@ class StepBBoxDesign extends React.Component {
                                     <tr>
                                         <th>{t('masu.stepBBoxDesign.textContent')}</th>
                                         <th>{t('masu.stepBBoxDesign.textFace')}</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {Object.keys(block.texts).map(key =>
-                                        <tr key={key}>
+                                        <tr key={key} className="align-middle">
                                             <td>{block.texts[key].content}</td>
                                             <td>{t(`masu.face.${block.texts[key].face}`)}</td>
+                                            <td className="text-end">
+                                                <button className="btn btn-outline-danger btn-sm"
+                                                    onClick={() => this.handleDelete(key)} title={t('masu.stepBBoxDesign.textDelete')}>
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     )}
                                 </tbody>
@@ -88,4 +100,4 @@ class StepBBoxDesign extends React.Component {
     }
 }
 
-export default withTranslation()(connect(state => getMasu(state), { updateDetail })(StepBBoxDesign));
+export default withTranslation()(connect(state => getMasu(state), { updateDetail, deleteText })(StepBBoxDesign));

@@ -44,6 +44,13 @@ export function addText(block, content, face, family) {
     };
 }
 
+export function deleteText(block, key) {
+    return {
+        type: 'DELETE_TEXT',
+        payload: { block, key },
+    };
+}
+
 export default function masuReducer(state = initialState, action) {
     switch (action.type) {
         case 'UPDATE_GENERAL':
@@ -75,7 +82,7 @@ export default function masuReducer(state = initialState, action) {
 
         case 'ADD_TEXT':
             let key = uuidv4();
-            let result = {
+            var result = {
                 ...state,
                 [action.payload.block]: {
                     ...state[action.payload.block],
@@ -90,6 +97,20 @@ export default function masuReducer(state = initialState, action) {
                     }
                 }
             }
+            return result;
+
+        case 'DELETE_TEXT':
+            var result = {
+                ...state,
+                [action.payload.block]: {
+                    ...state[action.payload.block],
+                    texts: {
+                        ...state[action.payload.block].texts
+                    }
+                }
+            }
+
+            delete result[action.payload.block].texts[action.payload.key];
             return result;
 
         default:
