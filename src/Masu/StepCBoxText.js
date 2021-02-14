@@ -53,17 +53,19 @@ export default function StepCBoxText(props) {
             </div>
           </fieldset>
           <fieldset>
-          <legend>{t('masu.stepCAddText.font')}</legend>
-          <div className="mb-3">
-              <label htmlFor="family">{t('masu.stepCAddText.family')}</label>
-              <input type="text" name="family" className="form-control"
-                value={state.family} onChange={onInputChange} placeholder="Open Sans" />
-              <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
-            </div>
+            <legend>{t('masu.stepCAddText.font')}</legend>
             <div className="mb-3">
-              <label htmlFor="size">{t('masu.stepCAddText.size')}</label>
-              <input type="number" name="size" className="form-control"
-                value={state.size} onChange={onInputChange} placeholder="8" />
+              <div className="d-flex">
+                <label htmlFor="family">{t('masu.stepCAddText.family')}</label>
+                <label htmlFor="size" className="ms-auto" style={{ width: '4.5rem' }}>{t('masu.stepCAddText.size')}</label>
+              </div>
+              <div className="input-group">
+                <input type="text" name="family" className="form-control"
+                  value={state.family} onChange={onInputChange} placeholder="Open Sans" />
+                <input type="number" name="size" className="form-control" style={{ maxWidth: '4.5rem' }}
+                  value={state.size} onChange={onInputChange} placeholder="8" />
+              </div>
+              <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">

@@ -36,7 +36,7 @@
       "font": "Font",
       "family": "Font Family",
       "familyExplanation": "Name of the google font to be used",
-      "size": "Font Size (mm)",
+      "size": "Size",
       "submit": "Add this text",
       "cancel": "Go back"
     },
