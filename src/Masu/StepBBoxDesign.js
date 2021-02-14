@@ -66,7 +66,7 @@ export default function StepBBoxDesign(props) {
                     <td className="text-end">
                       <button className="btn btn-outline-danger btn-sm"
                         onClick={() => handleDelete(key)} title={t('masu.stepBBoxDesign.textDelete')}>
-                        <i class="fas fa-times"></i>
+                        <i className="fas fa-times"></i>
                       </button>
                     </td>
                   </tr>
