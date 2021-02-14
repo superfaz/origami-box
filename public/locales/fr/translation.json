@@ -31,9 +31,12 @@
       "title": "Ajouter un texte",
       "linkTo": "Ajouter un texte",
       "content": "Contenu",
+      "positioning": "Position",
       "face": "Face",
-      "family": "Police",
+      "font": "Police",
+      "family": "Nom de la police",
       "familyExplanation": "Nom de la police 'google font' à utiliser",
+      "size": "Taille",
       "submit": "Valider ce texte",
       "cancel": "Annuler"
     },

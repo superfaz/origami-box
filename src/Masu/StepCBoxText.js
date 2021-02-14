@@ -16,6 +16,7 @@ export default function StepCBoxText(props) {
     content: '',
     face: 'front',
     family: '',
+    size: 8,
   });
 
   function onInputChange(event) {
@@ -24,8 +25,7 @@ export default function StepCBoxText(props) {
 
   function onSubmit(event) {
     event.preventDefault();
-
-    dispatch(addText('box', state.content, state.face, state.family));
+    dispatch(addText('box', state));
     setRedirect(true);
   }
 
@@ -39,22 +39,33 @@ export default function StepCBoxText(props) {
             <input type="text" name="content" className="form-control" required
               value={state.content} onChange={onInputChange} />
           </div>
+          <fieldset>
+            <legend>{t('masu.stepCAddText.positioning')}</legend>
+            <div className="mb-3">
+              <label htmlFor="face">{t('masu.stepCAddText.face')}</label>
+              <select className="form-select" name="face" required
+                value={state.face} onChange={onInputChange}>
+                <option value="front">{t('masu.face.front')}</option>
+                <option value="back">{t('masu.face.back')}</option>
+                <option value="left">{t('masu.face.left')}</option>
+                <option value="right">{t('masu.face.right')}</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset>
+          <legend>{t('masu.stepCAddText.font')}</legend>
           <div className="mb-3">
-            <label htmlFor="face">{t('masu.stepCAddText.face')}</label>
-            <select className="form-select" name="face" required
-              value={state.face} onChange={onInputChange}>
-              <option value="front">{t('masu.face.front')}</option>
-              <option value="back">{t('masu.face.back')}</option>
-              <option value="left">{t('masu.face.left')}</option>
-              <option value="right">{t('masu.face.right')}</option>
-            </select>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="family">{t('masu.stepCAddText.family')}</label>
-            <input type="text" name="family" className="form-control"
-              value={state.family} onChange={onInputChange} placeholder="Open Sans" />
-            <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
-          </div>
+              <label htmlFor="family">{t('masu.stepCAddText.family')}</label>
+              <input type="text" name="family" className="form-control"
+                value={state.family} onChange={onInputChange} placeholder="Open Sans" />
+              <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="size">{t('masu.stepCAddText.size')}</label>
+              <input type="number" name="size" className="form-control"
+                value={state.size} onChange={onInputChange} placeholder="8" />
+            </div>
+          </fieldset>
           <div className="mb-3 mt-5 d-flex">
             <Link className="btn btn-link" to="/back">{t('masu.stepCAddText.cancel')}</Link>
             <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepCAddText.submit')}</button>

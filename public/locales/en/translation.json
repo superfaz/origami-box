@@ -31,9 +31,12 @@
       "title": "Add a text",
       "linkTo": "Add a text",
       "content": "Content",
+      "positioning": "Positioning",
       "face": "Face",
-      "family": "Font",
+      "font": "Font",
+      "family": "Font Family",
       "familyExplanation": "Name of the google font to be used",
+      "size": "Font Size (mm)",
       "submit": "Add this text",
       "cancel": "Go back"
     },
