@@ -68,7 +68,12 @@ export default function MasuTemplate(props) {
   function Text(props) {
     const text = props.text;
     let configuration = { x: null, y: null, rotate: null };
-    let style = { textAnchor: "middle", dominantBaseline: "middle", fontSize: text.size ?? 8 };
+    let style = {
+      textAnchor: "middle",
+      dominantBaseline: "middle",
+      fontSize: text.size,
+      fill: text.color,
+    };
     if (text.family !== '') {
       style.fontFamily = text.family;
     }

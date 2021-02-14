@@ -1,4 +1,7 @@
 {
+  "colorpicker": {
+    "title": "Select a color"
+  },
   "masu": {
     "title": "Masu",
     "format": {

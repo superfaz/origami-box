@@ -6,6 +6,7 @@ import { addText } from './reducer';
 import MasuTemplate from './MasuTemplate';
 import Nav from './Nav';
 import { getMasu } from '../store';
+import ColorPicker from '../ColorPicker';
 
 export default function StepCBoxText(props) {
   const dispatch = useDispatch();
@@ -17,10 +18,15 @@ export default function StepCBoxText(props) {
     face: 'front',
     family: '',
     size: 8,
+    color: 'black',
   });
 
   function onInputChange(event) {
     setState({ ...state, [event.target.name]: event.target.value });
+  }
+
+  function onColorChange(color) {
+    setState({ ...state, color: color.hex });
   }
 
   function onSubmit(event) {
@@ -62,6 +68,8 @@ export default function StepCBoxText(props) {
               <div className="input-group">
                 <input type="text" name="family" className="form-control"
                   value={state.family} onChange={onInputChange} placeholder="Open Sans" />
+                <ColorPicker name="color" style={{ maxWidth: '3rem' }}
+                  color={state.color} onColorChange={onColorChange} />
                 <input type="number" name="size" className="form-control" style={{ maxWidth: '4.5rem' }}
                   value={state.size} onChange={onInputChange} placeholder="8" />
               </div>
