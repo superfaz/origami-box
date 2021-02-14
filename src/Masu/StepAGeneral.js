@@ -42,17 +42,14 @@ export default function StepAGeneral() {
           <div className="mb-3">
             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
             <div className="input-group">
-              <input name="length" type="number" inputMode="numeric" style={{ width: 'calc(100%/3)' }}
-                className="form-control" autoFocus required min="1"
-                placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
+              <input name="length" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
+                autoFocus required min="1" placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
                 value={masu.length} onChange={handleInputChange} />
-              <input name="width" type="number" inputMode="numeric" style={{ width: 'calc(100%/3)' }}
-                className="form-control" required min="1"
-                placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
+              <input name="width" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
+                required min="1" placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
                 value={masu.width} onChange={handleInputChange} />
-              <input name="height" type="number" inputMode="numeric" style={{ width: 'calc(100%/3)' }}
-                className="form-control" required min="1"
-                placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
+              <input name="height" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
+                required min="1" placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
                 value={masu.height} onChange={handleInputChange} />
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getMasu } from '../store';
 import { configureFace, getFonts, getTexts } from './helper';
 import Color from 'color';
@@ -67,8 +67,8 @@ export default function MasuTemplate(props) {
 
   function Text(props) {
     const text = props.text;
-    let configuration = { textAnchor: "middle", dominantBaseline: "middle", x: null, y: null, rotate: null };
-    let style = { fontSize: 8 };
+    let configuration = { x: null, y: null, rotate: null };
+    let style = { textAnchor: "middle", dominantBaseline: "middle", fontSize: text.size ?? 8 };
     if (text.family !== '') {
       style.fontFamily = text.family;
     }
@@ -76,8 +76,7 @@ export default function MasuTemplate(props) {
     configureFace(configuration, text.face, l_2, w_2, h_2);
 
     return (
-      <text textAnchor={configuration.textAnchor} dominantBaseline={configuration.dominantBaseline}
-        x={configuration.x} y={configuration.y}
+      <text x={configuration.x} y={configuration.y}
         transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}
         style={style}>
         {text.content}
