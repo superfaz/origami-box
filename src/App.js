@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import Nav from './Nav';
 import Footer from './Footer';
 import Masu from './Masu/';

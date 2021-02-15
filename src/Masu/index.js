@@ -1,4 +1,3 @@
-import React from 'react';
 import StepAGeneral from './StepAGeneral';
 import StepBBoxDesign from './StepBBoxDesign';
 import StepZGenerate from './StepZGenerate';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation, withTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link, useLocation, withRouter } from "react-router-dom";
