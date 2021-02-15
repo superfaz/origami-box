@@ -15,6 +15,16 @@
       "left": "Gauche",
       "right": "Droite"
     },
+    "horizontal": {
+      "left": "Gauche",
+      "center": "Centre",
+      "right": "Droite"
+    },
+    "vertical": {
+      "top": "Haut",
+      "middle": "Milieu",
+      "bottom": "Bas"
+    },
     "stepAGeneral": {
       "title": "Options générales",
       "linkBack": "Retour aux options générales"
@@ -36,6 +46,7 @@
       "content": "Contenu",
       "positioning": "Position",
       "face": "Face",
+      "horizontal": "Position",
       "font": "Police",
       "family": "Nom de la police",
       "familyExplanation": "Nom de la police 'google font' à utiliser",

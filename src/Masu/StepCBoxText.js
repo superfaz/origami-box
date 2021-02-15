@@ -16,6 +16,8 @@ export default function StepCBoxText(props) {
   const [state, setState] = useState({
     content: '',
     face: 'front',
+    horizontal: 'center',
+    vertical: 'middle',
     family: '',
     size: 8,
     color: 'black',
@@ -57,6 +59,23 @@ export default function StepCBoxText(props) {
                 <option value="right">{t('masu.face.right')}</option>
               </select>
             </div>
+            <div className="mb-3">
+              <label htmlFor="horizontal">{t('masu.stepCAddText.horizontal')}</label>
+              <div className="input-group">
+                <select className="form-select" name="horizontal" required
+                  value={state.horizontal} onChange={onInputChange}>
+                  <option value="left">{t('masu.horizontal.left')}</option>
+                  <option value="center">{t('masu.horizontal.center')}</option>
+                  <option value="right">{t('masu.horizontal.right')}</option>
+                </select>
+                <select className="form-select" name="vertical" required
+                  value={state.vertical} onChange={onInputChange}>
+                  <option value="top">{t('masu.vertical.top')}</option>
+                  <option value="middle">{t('masu.vertical.middle')}</option>
+                  <option value="bottom">{t('masu.vertical.bottom')}</option>
+                </select>
+              </div>
+            </div>
           </fieldset>
           <fieldset>
             <legend>{t('masu.stepCAddText.font')}</legend>
@@ -71,7 +90,7 @@ export default function StepCBoxText(props) {
                 <ColorPicker name="color" style={{ maxWidth: '3rem' }}
                   color={state.color} onColorChange={onColorChange} />
                 <input type="number" name="size" className="form-control" style={{ maxWidth: '4.5rem' }}
-                  value={state.size} onChange={onInputChange} placeholder="8" />
+                  value={state.size} required min="1" onChange={onInputChange} placeholder="8" />
               </div>
               <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
             </div>

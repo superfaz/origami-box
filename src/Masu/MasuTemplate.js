@@ -3,6 +3,7 @@ import { getMasu } from '../store';
 import { configureFace, getFonts, getTexts } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
+import { useEffect, useRef, useState } from 'react';
 
 const lineStyle = {
   fill: 'none',
@@ -67,25 +68,30 @@ export default function MasuTemplate(props) {
 
   function Text(props) {
     const text = props.text;
-    let configuration = { x: null, y: null, rotate: null };
-    let style = {
-      textAnchor: "middle",
-      dominantBaseline: "middle",
-      fontSize: text.size,
-      fill: text.color,
-    };
+    const textRef = useRef(null);
+    const [box, setBox] = useState(null);
+
+    const { configuration, style } = configureFace(text, l_2, w_2, h_2);
+    style.fontSize = text.size;
+    style.fill = text.color;
+    style.lineHeight = 1;
+
     if (text.family !== '') {
       style.fontFamily = text.family;
     }
 
-    configureFace(configuration, text.face, l_2, w_2, h_2);
+    useEffect(() => setBox(textRef.current?.getBBox()), [textRef, text, text.content, text.family]);
 
     return (
-      <text x={configuration.x} y={configuration.y}
-        transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}
-        style={style}>
-        {text.content}
-      </text>
+      <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
+        {box &&
+          <rect x={box.x} y={box.y} width={box.width} height={box.height} style={{ strokeWidth: 0.2 }}
+            stroke="black" fill="yellow" />
+        }
+        <text ref={textRef} style={style} x={configuration.x} y={configuration.y}>
+          {text.content}
+        </text>
+      </g>
     );
   }
 

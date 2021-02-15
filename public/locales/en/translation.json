@@ -15,6 +15,16 @@
       "left": "Left",
       "right": "Right"
     },
+    "horizontal": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "vertical": {
+      "top": "Top",
+      "middle": "Middle",
+      "bottom": "Bottom"
+    },
     "stepAGeneral": {
       "title": "General options",
       "linkBack": "Back to the general options"
@@ -36,6 +46,7 @@
       "content": "Content",
       "positioning": "Positioning",
       "face": "Face",
+      "horizontal": "Position",
       "font": "Font",
       "family": "Font Family",
       "familyExplanation": "Name of the google font to be used",

@@ -27,29 +27,74 @@ export function getFonts(masu) {
   }
 }
 
-export function configureFace(configuration, face, l_2, w_2, h_2) {
-  switch (face) {
+export function configureFace(text, l_2, w_2, h_2) {
+  let configuration = { horiX: 0, horiY: 0, vertX: 0, vertY: 0 };
+  let style = {};
+
+  switch (text.face) {
     case 'front':
       configuration.x = 0;
       configuration.y = l_2 + h_2;
       configuration.rotate = 180;
+      configuration.horiX = -w_2;
+      configuration.vertY = -h_2;
       break;
     case 'back':
       configuration.x = 0;
       configuration.y = -l_2 - h_2;
       configuration.rotate = 0;
+      configuration.horiX = w_2;
+      configuration.vertY = h_2;
       break;
     case 'left':
       configuration.x = w_2 + h_2;
       configuration.y = 0;
       configuration.rotate = 90;
+      configuration.horiY = l_2;
+      configuration.vertX = -h_2;
       break;
     case 'right':
       configuration.x = -w_2 - h_2;
       configuration.y = 0;
       configuration.rotate = -90;
+      configuration.horiY = -l_2;
+      configuration.vertX = h_2;
       break;
     default:
-      console.log('text.face not supported');
+      console.log(`text.face '${text.face}' not supported`);
   }
+
+  switch (text.horizontal) {
+    case 'left':
+      style.textAnchor = 'start';
+      configuration.x -= configuration.horiX;
+      configuration.y -= configuration.horiY;
+      break;
+    case 'center':
+      style.textAnchor = 'middle';
+      break;
+    case 'right':
+      style.textAnchor = 'end';
+      configuration.x += configuration.horiX;
+      configuration.y += configuration.horiY;
+      break;
+  }
+
+  switch (text.vertical) {
+    case 'top':
+      style.dominantBaseline = 'hanging';
+      configuration.x -= configuration.vertX;
+      configuration.y -= configuration.vertY;
+      break;
+    case 'middle':
+      style.dominantBaseline = 'middle';
+      break;
+    case 'bottom':
+      style.dominantBaseline = 'auto';
+      configuration.x += configuration.vertX;
+      configuration.y += configuration.vertY;
+      break;
+  }
+
+  return { configuration, style };
 }
