@@ -82,15 +82,15 @@ export function configureFace(text, l_2, w_2, h_2) {
 
   switch (text.vertical) {
     case 'top':
-      style.dominantBaseline = 'hanging';
+      style.dominantBaseline = 'text-before-edge';
       configuration.x -= configuration.vertX;
       configuration.y -= configuration.vertY;
       break;
     case 'middle':
-      style.dominantBaseline = 'middle';
+      style.dominantBaseline = 'central';
       break;
     case 'bottom':
-      style.dominantBaseline = 'auto';
+      style.dominantBaseline = 'text-after-edge';
       configuration.x += configuration.vertX;
       configuration.y += configuration.vertY;
       break;

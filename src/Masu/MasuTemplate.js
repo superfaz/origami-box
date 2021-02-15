@@ -84,7 +84,7 @@ export default function MasuTemplate(props) {
 
     return (
       <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
-        {box &&
+        {box && process.env.REACT_APP_SVG_DEBUG &&
           <rect x={box.x} y={box.y} width={box.width} height={box.height} style={{ strokeWidth: 0.2 }}
             stroke="black" fill="yellow" />
         }
