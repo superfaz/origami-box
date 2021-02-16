@@ -47,6 +47,7 @@
       "positioning": "Positioning",
       "face": "Face",
       "horizontal": "Position",
+      "margins": "Margins",
       "font": "Font",
       "family": "Font Family",
       "familyExplanation": "Name of the google font to be used",

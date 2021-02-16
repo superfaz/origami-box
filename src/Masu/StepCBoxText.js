@@ -18,6 +18,8 @@ export default function StepCBoxText(props) {
     face: 'front',
     horizontal: 'center',
     vertical: 'middle',
+    marginHorizontal: 2,
+    marginVertical: 2,
     family: '',
     size: 8,
     color: 'black',
@@ -74,6 +76,15 @@ export default function StepCBoxText(props) {
                   <option value="middle">{t('masu.vertical.middle')}</option>
                   <option value="bottom">{t('masu.vertical.bottom')}</option>
                 </select>
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="marginHorizontal">{t('masu.stepCAddText.margins')}</label>
+              <div className="input-group">
+                <input type="number" name="marginHorizontal" className="form-control" required
+                  min={0} value={state.marginHorizontal} onChange={onInputChange} />
+                <input type="number" name="marginVertical" className="form-control" required
+                  min={0} value={state.marginVertical} onChange={onInputChange} />
               </div>
             </div>
           </fieldset>

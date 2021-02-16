@@ -36,29 +36,29 @@ export function configureFace(text, l_2, w_2, h_2) {
       configuration.x = 0;
       configuration.y = l_2 + h_2;
       configuration.rotate = 180;
-      configuration.horiX = -w_2;
-      configuration.vertY = -h_2;
+      configuration.horiX = -w_2 + text.marginHorizontal;
+      configuration.vertY = -h_2 + text.marginVertical;
       break;
     case 'back':
       configuration.x = 0;
       configuration.y = -l_2 - h_2;
       configuration.rotate = 0;
-      configuration.horiX = w_2;
-      configuration.vertY = h_2;
+      configuration.horiX = w_2 - text.marginHorizontal;
+      configuration.vertY = h_2 - text.marginVertical;
       break;
     case 'left':
       configuration.x = w_2 + h_2;
       configuration.y = 0;
       configuration.rotate = 90;
-      configuration.horiY = l_2;
-      configuration.vertX = -h_2;
+      configuration.horiY = l_2 - text.marginHorizontal;
+      configuration.vertX = -h_2 + text.marginVertical;
       break;
     case 'right':
       configuration.x = -w_2 - h_2;
       configuration.y = 0;
       configuration.rotate = -90;
-      configuration.horiY = -l_2;
-      configuration.vertX = h_2;
+      configuration.horiY = -l_2 + text.marginHorizontal;
+      configuration.vertX = h_2 - text.marginVertical;
       break;
     default:
       console.log(`text.face '${text.face}' not supported`);

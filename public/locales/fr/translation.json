@@ -47,6 +47,7 @@
       "positioning": "Position",
       "face": "Face",
       "horizontal": "Position",
+      "margins": "Marges",
       "font": "Police",
       "family": "Nom de la police",
       "familyExplanation": "Nom de la police 'google font' à utiliser",
