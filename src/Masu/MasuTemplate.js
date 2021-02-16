@@ -4,6 +4,7 @@ import { configureFace, getFonts, getTexts } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 import { useEffect, useRef, useState } from 'react';
+import { SvgPaper } from '../Generic/Svg';
 
 const lineStyle = {
   fill: 'none',
@@ -36,9 +37,6 @@ const referenceStyle = {
   strokeDasharray: [0.4, 0.8],
 };
 
-const Svg = ({ ...rest }) =>
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" {...rest} />
-
 export default function MasuTemplate(props) {
   const masu = useSelector(getMasu);
   const pageLength = parseFloat(masu.pageLength);
@@ -50,7 +48,7 @@ export default function MasuTemplate(props) {
 
   if (isNaN(l + w + h) || l <= 0 || w <= 0 || h <= 0) {
     return (
-      <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}></Svg>
+      <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}></SvgPaper>
     );
   }
 
@@ -97,8 +95,7 @@ export default function MasuTemplate(props) {
 
   if (side === 'front') {
     return (
-      <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
-        width={`${pageWidth}mm`} height={`${pageLength}mm`}>
+      <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}>
         <g transform="rotate(45)">
           <polygon style={cutStyle} points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
 
@@ -141,7 +138,7 @@ export default function MasuTemplate(props) {
           <line style={markStyle} x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={-mark} />
           <line style={markStyle} x1={-w_2 + l_2} y1={0} x2={-w_2 + l_2 - mark} y2={mark} />
         </g>
-      </Svg>
+      </SvgPaper>
     );
   }
   else {
@@ -158,8 +155,7 @@ export default function MasuTemplate(props) {
       .join('&');
     const fontHref = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
     return (
-      <Svg className="template" viewBox={`${-pageWidth / 2} ${-pageLength / 2} ${pageWidth} ${pageLength}`}
-        width={`${pageWidth}mm`} height={`${pageLength}mm`}>
+      <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}>
         <Helmet>
           {props.text && props.text.family &&
             <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?family=" + props.text.family.replace(' ', '+')} />
@@ -213,7 +209,7 @@ export default function MasuTemplate(props) {
             <Text key='new' text={props.text} />
           }
         </g>
-      </Svg>
+      </SvgPaper>
     );
   }
 }
