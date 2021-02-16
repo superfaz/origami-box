@@ -82,9 +82,9 @@ export default function StepCBoxText(props) {
               <label htmlFor="marginHorizontal">{t('masu.stepCAddText.margins')}</label>
               <div className="input-group">
                 <input type="number" name="marginHorizontal" className="form-control" required
-                  min={0} value={state.marginHorizontal} onChange={onInputChange} />
+                  value={state.marginHorizontal} onChange={onInputChange} />
                 <input type="number" name="marginVertical" className="form-control" required
-                  min={0} value={state.marginVertical} onChange={onInputChange} />
+                  value={state.marginVertical} onChange={onInputChange} />
               </div>
             </div>
           </fieldset>

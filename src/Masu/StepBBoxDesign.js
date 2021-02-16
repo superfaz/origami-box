@@ -39,7 +39,7 @@ export default function StepBBoxDesign(props) {
         <div className="mb-3">
           <label htmlFor="backgroundColor" className="form-label">{t('masu.stepBBoxDesign.backgroundColor')}</label>
           <TwitterPicker name="backgroundColor" triangle="hide" width="312px"
-            colors={['#FFFFFF', '#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF']}
+            colors={['#000000', '#FFFFFF', '#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF']}
             color={block.background} onChangeComplete={handleBackgroundColorChange} />
         </div>
         <div className="mb-3">

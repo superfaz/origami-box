@@ -28,6 +28,14 @@ export function getFonts(masu) {
 }
 
 export function configureFace(text, l_2, w_2, h_2) {
+  const margins = { hori: parseFloat(text.marginHorizontal), vert: parseFloat(text.marginVertical) };
+  if (isNaN(margins.hori)) {
+    margins.hori = 0
+  };
+  if (isNaN(margins.vert)) {
+    margins.vert = 0
+  };
+
   let configuration = { horiX: 0, horiY: 0, vertX: 0, vertY: 0 };
   let style = {};
 
@@ -36,29 +44,29 @@ export function configureFace(text, l_2, w_2, h_2) {
       configuration.x = 0;
       configuration.y = l_2 + h_2;
       configuration.rotate = 180;
-      configuration.horiX = -w_2 + text.marginHorizontal;
-      configuration.vertY = -h_2 + text.marginVertical;
+      configuration.horiX = -w_2 + margins.hori;
+      configuration.vertY = -h_2 + margins.vert;
       break;
     case 'back':
       configuration.x = 0;
       configuration.y = -l_2 - h_2;
       configuration.rotate = 0;
-      configuration.horiX = w_2 - text.marginHorizontal;
-      configuration.vertY = h_2 - text.marginVertical;
+      configuration.horiX = w_2 - margins.hori;
+      configuration.vertY = h_2 - margins.vert;
       break;
     case 'left':
       configuration.x = w_2 + h_2;
       configuration.y = 0;
       configuration.rotate = 90;
-      configuration.horiY = l_2 - text.marginHorizontal;
-      configuration.vertX = -h_2 + text.marginVertical;
+      configuration.horiY = l_2 - margins.hori;
+      configuration.vertX = -h_2 + margins.vert;
       break;
     case 'right':
       configuration.x = -w_2 - h_2;
       configuration.y = 0;
       configuration.rotate = -90;
-      configuration.horiY = -l_2 + text.marginHorizontal;
-      configuration.vertX = h_2 - text.marginVertical;
+      configuration.horiY = -l_2 + margins.hori;
+      configuration.vertX = h_2 - margins.vert;
       break;
     default:
       console.log(`text.face '${text.face}' not supported`);
