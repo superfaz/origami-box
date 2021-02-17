@@ -1,0 +1,27 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="512px" height="512px" viewBox="-50 -50 100 100">
+  <style>
+    * {
+      stroke: white;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+      fill: #FCB900;
+    }
+
+    .detail {
+      stroke-width: 0.4;
+      color: #CCCCCC;
+      fill: none;
+    }
+  </style>
+  <rect x="-50" y="-50" width="100" height="100" rx="10" style="fill: #212529; stroke: none" />
+  <g transform="scale(1.2, -1.2) translate(-33.83885,3.66115)">
+    <path d="M 17.6777 17.6777 h 50 v -25 h -50 z" />
+    <path class="detail" d="M 17.6777 17.6777 m 0 -25 l 25 25 l 25 -25" />
+    <path d="M 0 0 l 17.6777 17.6777 v -25 l -17.6777 -17.6777 z" />
+    <path d="M 50 0 l 17.6777 17.6777 v -25 l -17.6777 -17.6777 z" />
+    <path d="M 0 0 h 50 v -25 h -50 z" />
+    <path class="detail" d="M 0 -25 l 25 25 l 25 -25" />
+  </g>
+
+</svg>

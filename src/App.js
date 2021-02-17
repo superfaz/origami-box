@@ -2,11 +2,12 @@ import './App.css';
 import { Suspense } from 'react';
 import Nav from './Nav';
 import Footer from './Footer';
-import Masu from './Masu/';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Process from './Process';
 import { AppInsightsContext } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from './AppInsights';
+import Masu from './Masu/';
+import Process from './Process';
+import Logo from './Logo';
 
 export default function App() {
   return (
@@ -15,6 +16,9 @@ export default function App() {
         <BrowserRouter>
           <Nav />
           <Switch>
+            <Route path="/logo">
+              <Logo />
+            </Route>
             <Route path="/process">
               <Process />
             </Route>
