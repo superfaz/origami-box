@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getMasu } from '../store';
-import { configurePositioning, configurePositioningSimple, getFonts, getTexts, getImages } from './helper';
+import { configurePositioning, configureFace, getFonts, getTexts, getImages } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 import { useEffect, useRef, useState } from 'react';
@@ -95,7 +95,7 @@ export default function MasuTemplate(props) {
 
   function Image(props) {
     const { image } = props;
-    const configuration = configurePositioningSimple(image, l_2, w_2, h_2);
+    const configuration = configureFace(image, l_2, w_2, h_2);
 
     return (
       <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>

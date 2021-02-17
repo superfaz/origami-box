@@ -31,7 +31,7 @@ export function getFonts(masu) {
   }
 }
 
-export function configurePositioningSimple(element, l_2, w_2, h_2) {
+export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert: 0 }) {
   let configuration = { horiX: 0, horiY: 0, vertX: 0, vertY: 0 };
 
   switch (element.face) {
@@ -39,30 +39,34 @@ export function configurePositioningSimple(element, l_2, w_2, h_2) {
       configuration.x = 0;
       configuration.y = l_2 + h_2;
       configuration.rotate = 180;
-      configuration.horiX = -w_2;
-      configuration.vertY = -h_2;
+      configuration.horiX = -w_2 + margins.hori;
+      configuration.vertY = -h_2 + margins.vert;
       break;
+
     case 'back':
       configuration.x = 0;
       configuration.y = -l_2 - h_2;
       configuration.rotate = 0;
-      configuration.horiX = w_2;
-      configuration.vertY = h_2;
+      configuration.horiX = w_2 - margins.hori;
+      configuration.vertY = h_2 - margins.vert;
       break;
+
     case 'left':
       configuration.x = w_2 + h_2;
       configuration.y = 0;
       configuration.rotate = 90;
-      configuration.horiY = l_2;
-      configuration.vertX = -h_2;
+      configuration.horiY = l_2 - margins.hori;
+      configuration.vertX = -h_2 + margins.vert;
       break;
+
     case 'right':
       configuration.x = -w_2 - h_2;
       configuration.y = 0;
       configuration.rotate = -90;
-      configuration.horiY = -l_2;
-      configuration.vertX = h_2;
+      configuration.horiY = -l_2 + margins.hori;
+      configuration.vertX = h_2 - margins.vert;
       break;
+
     default:
       console.log(`face '${element.face}' not supported`);
   }
@@ -79,41 +83,8 @@ export function configurePositioning(text, l_2, w_2, h_2) {
     margins.vert = 0
   };
 
-  let configuration = { horiX: 0, horiY: 0, vertX: 0, vertY: 0 };
   let style = {};
-
-  switch (text.face) {
-    case 'front':
-      configuration.x = 0;
-      configuration.y = l_2 + h_2;
-      configuration.rotate = 180;
-      configuration.horiX = -w_2 + margins.hori;
-      configuration.vertY = -h_2 + margins.vert;
-      break;
-    case 'back':
-      configuration.x = 0;
-      configuration.y = -l_2 - h_2;
-      configuration.rotate = 0;
-      configuration.horiX = w_2 - margins.hori;
-      configuration.vertY = h_2 - margins.vert;
-      break;
-    case 'left':
-      configuration.x = w_2 + h_2;
-      configuration.y = 0;
-      configuration.rotate = 90;
-      configuration.horiY = l_2 - margins.hori;
-      configuration.vertX = -h_2 + margins.vert;
-      break;
-    case 'right':
-      configuration.x = -w_2 - h_2;
-      configuration.y = 0;
-      configuration.rotate = -90;
-      configuration.horiY = -l_2 + margins.hori;
-      configuration.vertX = h_2 - margins.vert;
-      break;
-    default:
-      console.log(`text.face '${text.face}' not supported`);
-  }
+  let configuration = configureFace(text, l_2, w_2, h_2, margins);
 
   switch (text.horizontal) {
     case 'left':
