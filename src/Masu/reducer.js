@@ -14,12 +14,14 @@ const initialState = {
     background: '#8ED1FC',
     backgroundImage: null,
     texts: {},
+    images: {},
   },
   lid: {
     key: 'lid',
     background: '#8ED1FC',
     backgroundImage: null,
     texts: {},
+    images: {},
   },
 };
 

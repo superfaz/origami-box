@@ -48,36 +48,59 @@ export default function StepBBoxDesign(props) {
             onChange={handleBackgroundImageChange} />
         </div>
         <div className="mb-3">
-          {block.texts.length !== 0 &&
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>{t('masu.stepBBoxDesign.textContent')}</th>
-                  <th>{t('masu.stepBBoxDesign.textFace')}</th>
-                  <th></th>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>{t('masu.stepBBoxDesign.textContent')}</th>
+                <th>{t('masu.stepBBoxDesign.textFace')}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(block.texts).map(key =>
+                <tr key={key} className="align-middle">
+                  <td>{block.texts[key].content}</td>
+                  <td>{t(`masu.face.${block.texts[key].face}`)}</td>
+                  <td className="text-end">
+                    <button className="btn btn-outline-danger btn-sm"
+                      onClick={() => handleDelete(key)} title={t('masu.stepBBoxDesign.textDelete')}>
+                      <i className="fas fa-times"></i>
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {Object.keys(block.texts).map(key =>
-                  <tr key={key} className="align-middle">
-                    <td>{block.texts[key].content}</td>
-                    <td>{t(`masu.face.${block.texts[key].face}`)}</td>
-                    <td className="text-end">
-                      <button className="btn btn-outline-danger btn-sm"
-                        onClick={() => handleDelete(key)} title={t('masu.stepBBoxDesign.textDelete')}>
-                        <i className="fas fa-times"></i>
-                      </button>
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          }
-          {block.texts.length === 0 &&
-            <div className="mb-5"></div>
-          }
+              )}
+            </tbody>
+          </table>
           <div className="d-flex">
             <Link className="btn btn-outline-primary" to="/back/text">{t('masu.stepCAddText.linkTo')}</Link>
+          </div>
+        </div>
+        <div className="mb-3">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>{t('masu.stepBBoxDesign.imageContent')}</th>
+                <th>{t('masu.stepBBoxDesign.imageFace')}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(block.images).map(key =>
+                <tr key={key} className="align-middle">
+                  <td>{block.images[key].content}</td>
+                  <td>{t(`masu.face.${block.images[key].face}`)}</td>
+                  <td className="text-end">
+                    <button className="btn btn-outline-danger btn-sm"
+                      onClick={() => handleDelete(key)} title={t('masu.stepBBoxDesign.imageDelete')}>
+                      <i className="fas fa-times"></i>
+                    </button>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <div className="d-flex">
+            <Link className="btn btn-outline-primary" to="/back/image">{t('masu.stepDAddImage.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">

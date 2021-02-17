@@ -35,10 +35,12 @@
       "linkBack": "Back to the box design",
       "backgroundColor": "Apply a background color?",
       "backgroundImage": "Define a texture?",
-      "texts": "Texts",
       "textFace": "Face",
       "textContent": "Text(s)",
-      "textDelete": "Delete this text"
+      "textDelete": "Delete this text",
+      "imageFace": "Face",
+      "imageContent": "Image(s)",
+      "imageDelete": "Delete this image"
     },
     "stepCAddText": {
       "title": "Add a text",
@@ -54,6 +56,9 @@
       "size": "Size",
       "submit": "Add this text",
       "cancel": "Go back"
+    },
+    "stepDAddImage": {
+      "linkTo": "Add an image"
     },
     "stepZGenerate": {
       "title": "Prepare the Print",

@@ -38,7 +38,10 @@
       "texts": "Ajouter des textes?",
       "textFace": "Face",
       "textContent": "Texte(s)",
-      "textDelete": "Supprimer ce texte"
+      "textDelete": "Supprimer ce texte",
+      "imageFace": "Face",
+      "imageContent": "Image(s)",
+      "imageDelete": "Supprimer cette image"
     },
     "stepCAddText": {
       "title": "Ajouter un texte",
@@ -54,6 +57,9 @@
       "size": "Taille",
       "submit": "Valider ce texte",
       "cancel": "Annuler"
+    },
+    "stepDAddImage": {
+      "linkTo": "Ajouter une image"
     },
     "stepZGenerate": {
       "title": "Préparer l'impression",
