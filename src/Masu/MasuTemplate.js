@@ -214,20 +214,20 @@ export default function MasuTemplate(props) {
           <line style={style} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
           <line style={style} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
-          {getTexts(masu).map((text) =>
-            <Text key={text.key} text={text} />
-          )}
-
-          {props.text !== undefined &&
-            <Text key='new' text={props.text} />
-          }
-
           {getImages(masu).map((image) =>
             <Image key={image.key} image={image} />
           )}
 
           {props.image !== undefined &&
             <Image key='new' image={props.image} />
+          }
+
+          {getTexts(masu).map((text) =>
+            <Text key={text.key} text={text} />
+          )}
+
+          {props.text !== undefined &&
+            <Text key='new' text={props.text} />
           }
         </g>
       </SvgPaper>
