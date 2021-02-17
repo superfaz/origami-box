@@ -170,7 +170,7 @@ export default function MasuTemplate(props) {
           </clipPath>
         </defs>
 
-        <g transform="rotate(-45)">
+        <g transform="rotate(135)">
           <polygon points={`0,-${max_2 + 5} ${max_2 + 5},0 0,${max_2 + 5} -${max_2 + 5},0`} style={{
             fill: props.detail.background
           }} />
