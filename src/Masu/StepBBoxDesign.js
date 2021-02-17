@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { updateDetail, deleteText } from './reducer';
+import { updateDetail, deleteText, deleteImage } from './reducer';
 import { TwitterPicker } from 'react-color';
 import MasuTemplate from './MasuTemplate';
 import { Link } from 'react-router-dom';
@@ -28,8 +28,12 @@ export default function StepBBoxDesign(props) {
     }
   }
 
-  function handleDelete(key) {
+  function handleTextDelete(key) {
     dispatch(deleteText(block.key, key));
+  }
+
+  function handleImageDelete(key) {
+    dispatch(deleteImage(block.key, key));
   }
 
   return (
@@ -63,7 +67,7 @@ export default function StepBBoxDesign(props) {
                   <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
                     <button className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleDelete(key)} title={t('masu.stepBBoxDesign.textDelete')}>
+                      onClick={() => handleTextDelete(key)} title={t('masu.stepBBoxDesign.textDelete')}>
                       <i className="fas fa-times"></i>
                     </button>
                   </td>
@@ -87,11 +91,11 @@ export default function StepBBoxDesign(props) {
             <tbody>
               {Object.keys(block.images).map(key =>
                 <tr key={key} className="align-middle">
-                  <td>{block.images[key].content}</td>
+                  <td><img src={block.images[key].content} style={{height: '2rem'}} /></td>
                   <td>{t(`masu.face.${block.images[key].face}`)}</td>
                   <td className="text-end">
                     <button className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleDelete(key)} title={t('masu.stepBBoxDesign.imageDelete')}>
+                      onClick={() => handleImageDelete(key)} title={t('masu.stepBBoxDesign.imageDelete')}>
                       <i className="fas fa-times"></i>
                     </button>
                   </td>
@@ -100,7 +104,7 @@ export default function StepBBoxDesign(props) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to="/back/image">{t('masu.stepDAddImage.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to="/back/image">{t('masu.stepDImage.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">

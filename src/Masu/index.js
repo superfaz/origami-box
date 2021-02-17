@@ -1,11 +1,12 @@
-import StepAGeneral from './StepAGeneral';
-import StepBBoxDesign from './StepBBoxDesign';
-import StepZGenerate from './StepZGenerate';
-import StepCBoxText from './StepCBoxText';
 import { useSelector } from 'react-redux';
-import { getMasu } from '../store';
 import { Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getMasu } from '../store';
+import StepAGeneral from './StepAGeneral';
+import StepBBoxDesign from './StepBBoxDesign';
+import StepCBoxText from './StepCBoxText';
+import StepDImage from './StepDImage';
+import StepZGenerate from './StepZGenerate';
 
 export default function Masu() {
   const { t } = useTranslation();
@@ -26,6 +27,9 @@ export default function Masu() {
         </Route>
         <Route exact path="/back/text">
           <StepCBoxText />
+        </Route>
+        <Route exact path="/back/image">
+          <StepDImage />
         </Route>
         {/* <Route path="/lid">
                 <FormDetail title={t('masu.lid.title')} block={masu.lid} />

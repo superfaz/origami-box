@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getMasu } from '../store';
-import { configureFace, getFonts, getTexts } from './helper';
+import { configurePositioning, configurePositioningSimple, getFonts, getTexts, getImages } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 import { useEffect, useRef, useState } from 'react';
@@ -69,7 +69,7 @@ export default function MasuTemplate(props) {
     const textRef = useRef(null);
     const [box, setBox] = useState(null);
 
-    const { configuration, style } = configureFace(text, l_2, w_2, h_2);
+    const { configuration, style } = configurePositioning(text, l_2, w_2, h_2);
     style.fontSize = text.size;
     style.fill = text.color;
     style.lineHeight = 1;
@@ -89,6 +89,17 @@ export default function MasuTemplate(props) {
         <text ref={textRef} style={style} x={configuration.x} y={configuration.y}>
           {text.content}
         </text>
+      </g>
+    );
+  }
+
+  function Image(props) {
+    const { image } = props;
+    const configuration = configurePositioningSimple(image, l_2, w_2, h_2);
+
+    return (
+      <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
+        <image href={image.content} x={configuration.x - h_2} y={configuration.y - h_2} height={h} />
       </g>
     );
   }
@@ -176,8 +187,10 @@ export default function MasuTemplate(props) {
           }} />
 
           {Boolean(props.detail.backgroundImage) &&
-            <image href={props.detail.backgroundImage} x={-max_2} y={-max_2} width={max} height={max}
-              preserveAspectRatio="none" clipPath="url(#cut-off-background)" />
+            <g transform="rotate(180)">
+              <image href={props.detail.backgroundImage} x={-max_2} y={-max_2} width={max} height={max}
+                preserveAspectRatio="none" clipPath="url(#cut-off-background)" />
+            </g>
           }
 
           <polygon style={style} points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
@@ -201,12 +214,20 @@ export default function MasuTemplate(props) {
           <line style={style} x1={-w_2 - h} y1={l_2 + h} x2={-w_2} y2={l_2} />
           <line style={style} x1={w_2 + h} y1={l_2 + h} x2={w_2} y2={l_2} />
 
-          {getTexts(masu).map((text, i) =>
-            <Text key={i} text={text} />
+          {getTexts(masu).map((text) =>
+            <Text key={text.key} text={text} />
           )}
 
           {props.text !== undefined &&
             <Text key='new' text={props.text} />
+          }
+
+          {getImages(masu).map((image) =>
+            <Image key={image.key} image={image} />
+          )}
+
+          {props.image !== undefined &&
+            <Image key='new' image={props.image} />
           }
         </g>
       </SvgPaper>

@@ -43,7 +43,6 @@
       "imageDelete": "Delete this image"
     },
     "stepCAddText": {
-      "title": "Add a text",
       "linkTo": "Add a text",
       "content": "Content",
       "positioning": "Positioning",
@@ -57,8 +56,12 @@
       "submit": "Add this text",
       "cancel": "Go back"
     },
-    "stepDAddImage": {
-      "linkTo": "Add an image"
+    "stepDImage": {
+      "linkTo": "Add an image",
+      "content": "File",
+      "face": "Face",
+      "submit": "Add this image",
+      "cancel": "Go back"
     },
     "stepZGenerate": {
       "title": "Prepare the Print",

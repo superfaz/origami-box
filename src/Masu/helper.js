@@ -17,6 +17,10 @@ export function getTexts(masu) {
   return Object.keys(masu.box.texts).map(k => masu.box.texts[k]);
 }
 
+export function getImages(masu) {
+  return Object.keys(masu.box.images).map(k => masu.box.images[k]);
+}
+
 export function getFonts(masu) {
   if (masu === undefined) {
     return [];
@@ -27,7 +31,46 @@ export function getFonts(masu) {
   }
 }
 
-export function configureFace(text, l_2, w_2, h_2) {
+export function configurePositioningSimple(element, l_2, w_2, h_2) {
+  let configuration = { horiX: 0, horiY: 0, vertX: 0, vertY: 0 };
+
+  switch (element.face) {
+    case 'front':
+      configuration.x = 0;
+      configuration.y = l_2 + h_2;
+      configuration.rotate = 180;
+      configuration.horiX = -w_2;
+      configuration.vertY = -h_2;
+      break;
+    case 'back':
+      configuration.x = 0;
+      configuration.y = -l_2 - h_2;
+      configuration.rotate = 0;
+      configuration.horiX = w_2;
+      configuration.vertY = h_2;
+      break;
+    case 'left':
+      configuration.x = w_2 + h_2;
+      configuration.y = 0;
+      configuration.rotate = 90;
+      configuration.horiY = l_2;
+      configuration.vertX = -h_2;
+      break;
+    case 'right':
+      configuration.x = -w_2 - h_2;
+      configuration.y = 0;
+      configuration.rotate = -90;
+      configuration.horiY = -l_2;
+      configuration.vertX = h_2;
+      break;
+    default:
+      console.log(`face '${element.face}' not supported`);
+  }
+
+  return configuration;
+}
+
+export function configurePositioning(text, l_2, w_2, h_2) {
   const margins = { hori: parseFloat(text.marginHorizontal), vert: parseFloat(text.marginVertical) };
   if (isNaN(margins.hori)) {
     margins.hori = 0

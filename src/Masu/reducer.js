@@ -53,9 +53,23 @@ export function deleteText(block, key) {
   };
 }
 
+export function addImage(block, image) {
+  return {
+    type: 'ADD_IMAGE',
+    payload: { block, image },
+  };
+}
+
+export function deleteImage(block, key) {
+  return {
+    type: 'DELETE_IMAGE',
+    payload: { block, key },
+  };
+}
+
 export default function masuReducer(state = initialState, action) {
   switch (action.type) {
-    case 'UPDATE_GENERAL':
+    case 'UPDATE_GENERAL': {
       if (action.payload.name === 'pageFormat') {
         const pageLength = action.payload.value === 'A4-p' ? 297 : 210;
         const pageWidth = action.payload.value === 'A4-p' ? 210 : 297;
@@ -72,8 +86,9 @@ export default function masuReducer(state = initialState, action) {
           [action.payload.name]: action.payload.value,
         };
       }
+    }
 
-    case 'UPDATE_DETAIL':
+    case 'UPDATE_DETAIL': {
       return {
         ...state,
         [action.payload.detailKey]: {
@@ -81,8 +96,9 @@ export default function masuReducer(state = initialState, action) {
           [action.payload.name]: action.payload.value,
         }
       };
+    }
 
-    case 'ADD_TEXT':
+    case 'ADD_TEXT': {
       let key = uuidv4();
       var result = {
         ...state,
@@ -98,8 +114,9 @@ export default function masuReducer(state = initialState, action) {
         }
       }
       return result;
+    }
 
-    case 'DELETE_TEXT':
+    case 'DELETE_TEXT': {
       var result = {
         ...state,
         [action.payload.block]: {
@@ -112,6 +129,40 @@ export default function masuReducer(state = initialState, action) {
 
       delete result[action.payload.block].texts[action.payload.key];
       return result;
+    }
+
+    case 'ADD_IMAGE': {
+      let key = uuidv4();
+      var result = {
+        ...state,
+        [action.payload.block]: {
+          ...state[action.payload.block],
+          images: {
+            ...state[action.payload.block].images,
+            [key]: {
+              ...action.payload.image,
+              key: key,
+            }
+          }
+        }
+      }
+      return result;
+    }
+
+    case 'DELETE_IMAGE': {
+      var result = {
+        ...state,
+        [action.payload.block]: {
+          ...state[action.payload.block],
+          images: {
+            ...state[action.payload.block].images
+          }
+        }
+      }
+
+      delete result[action.payload.block].images[action.payload.key];
+      return result;
+    }
 
     default:
       return state;
