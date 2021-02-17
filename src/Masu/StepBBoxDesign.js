@@ -48,7 +48,7 @@ export default function StepBBoxDesign(props) {
         </div>
         <div className="mb-3">
           <label htmlFor="backgroundImage" className="form-label">{t('masu.stepBBoxDesign.backgroundImage')}</label>
-          <input className="form-control" type="file" name="backgroundImage" id="backgroundImage" accept="image/png, image/jpeg"
+          <input className="form-control" type="file" name="backgroundImage" id="backgroundImage" accept="image/png, image/jpeg, image/svg+xml"
             onChange={handleBackgroundImageChange} />
         </div>
         <div className="mb-3">

@@ -48,7 +48,7 @@ export default function StepDImage() {
           <div className="mb-3">
             <label htmlFor="content">{t('masu.stepDImage.content')}</label>
             <input className="form-control" type="file" name="content" id="content"
-              accept="image/png, image/jpeg" required
+              accept="image/png, image/jpeg, image/svg+xml" required
               onChange={handleImageChange} />
           </div>
           <div className="mb-3">
