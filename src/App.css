@@ -3,3 +3,7 @@ svg.template {
   width: 100%;
   height: auto;
 }
+
+#root > nav + .container {
+  margin-top: 1rem;
+}

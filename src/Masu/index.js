@@ -12,7 +12,7 @@ export default function Masu() {
   const masu = useSelector(getMasu);
 
   return (
-    <div className="container mt-2">
+    <div className="container">
       <h1>{t('masu.title')}</h1>
       <Switch>
         <Route exact path="/">
