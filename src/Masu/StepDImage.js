@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { getMasu } from "../store";
 import { addImage } from "./reducer";
-import MasuTemplate from "./MasuTemplate";
+import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
 
 export default function StepDImage() {
@@ -84,7 +84,7 @@ export default function StepDImage() {
         </form>
       </div>
       <div className="col-md-6 col-lg-8 mb-3">
-        <MasuTemplate side="back" detail={masu.box} image={state} />
+        <MasuTemplateBack detail={masu.box} image={state} />
       </div>
     </div>
   );

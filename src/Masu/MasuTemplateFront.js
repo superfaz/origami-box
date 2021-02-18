@@ -1,0 +1,52 @@
+import { useSelector } from "react-redux";
+import { SvgPaper } from "../Generic/Svg";
+import { getMasu } from "../store";
+import { useMasuMeasurement } from "./helper";
+import SvgCut from "./SvgCut";
+
+const styles = {};
+styles.line = {
+  fill: 'none',
+  strokeWidth: 0.2,
+};
+
+styles.cut = {
+  ...styles.line,
+  stroke: 'black',
+};
+
+styles.flip = {
+  ...styles.cut,
+  strokeDasharray: [4, 2],
+};
+
+styles.inverted = {
+  ...styles.cut,
+  strokeDasharray: [2, 4],
+};
+
+styles.mark = {
+  ...styles.line,
+  stroke: 'blue',
+};
+
+export default function MasuTemplateFront() {
+  const masu = useSelector(getMasu);
+  const pageLength = parseFloat(masu.pageLength);
+  const pageWidth = parseFloat(masu.pageWidth);
+
+  const m = useMasuMeasurement(masu);
+  if (m === null) {
+    return (
+      <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}></SvgPaper>
+    );
+  }
+
+  return (
+    <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}>
+      <g transform="rotate(45)">
+        <SvgCut masu={masu} styles={styles} />
+      </g>
+    </SvgPaper>
+  );
+}

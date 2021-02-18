@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames/dedupe';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
-import { Link } from 'react-router-dom';
-import MasuTemplate from './MasuTemplate';
 import Nav from './Nav';
-import classNames from 'classnames/dedupe';
+import MasuTemplateFront from './MasuTemplateFront';
 
 export default function StepAGeneral() {
   const dispatch = useDispatch();
@@ -78,7 +78,7 @@ export default function StepAGeneral() {
         </form>
       </div>
       <div className="col-md-6 col-lg-8 mb-3">
-        <MasuTemplate side="front" detail={masu.box} />
+        <MasuTemplateFront />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { updateDetail, deleteText, deleteImage } from './reducer';
 import { TwitterPicker } from 'react-color';
-import MasuTemplate from './MasuTemplate';
+import MasuTemplateBack from './MasuTemplateBack';
 import { Link } from 'react-router-dom';
 import Nav from './Nav';
 
@@ -112,7 +112,7 @@ export default function StepBBoxDesign(props) {
         </div>
       </div>
       <div className="col-md-6 col-lg-8 mb-3">
-        <MasuTemplate side="back" detail={block} />
+        <MasuTemplateBack detail={block} />
       </div>
     </div>
   );

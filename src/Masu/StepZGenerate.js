@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import classNames from 'classnames/dedupe';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
-import classNames from 'classnames/dedupe';
-import MasuTemplate from './MasuTemplate';
-import Nav from './Nav';
 import { getFonts } from './helper';
+import Nav from './Nav';
+import MasuTemplateFront from './MasuTemplateFront';
+import MasuTemplateBack from './MasuTemplateBack';
 
 export default function StepZGenerate() {
   const dispatch = useDispatch();
@@ -55,8 +56,8 @@ export default function StepZGenerate() {
         newWindow.document.head.appendChild(link);
       }
       else {
-          // setTimeout used to ensure rendering before print
-          setTimeout(() => {
+        // setTimeout used to ensure rendering before print
+        setTimeout(() => {
           newWindow.print();
           newWindow.close();
         }, 1);
@@ -95,15 +96,15 @@ export default function StepZGenerate() {
         {masu.withBackDesign &&
           <div className="row">
             <div className="col-12 col-lg-6">
-              <MasuTemplate key="front" side="front" detail={masu.box} print="true" />
+              <MasuTemplateFront detail={masu.box} print="true" />
             </div>
             <div className="col-12 col-lg-6">
-              <MasuTemplate key="back" side="back" detail={masu.box} print="true" />
+              <MasuTemplateBack detail={masu.box} print="true" />
             </div>
           </div>
         }
         {!masu.withBackDesign &&
-          <MasuTemplate side="front" detail={masu.box} print="true" />
+          <MasuTemplateFront detail={masu.box} />
         }
       </div>
     </div>

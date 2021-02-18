@@ -31,6 +31,30 @@ export function getFonts(masu) {
   }
 }
 
+export function useMasuMeasurement(masu) {
+
+  const l = parseFloat(masu.length);
+  const w = parseFloat(masu.width);
+  const h = parseFloat(masu.height);
+
+  if (isNaN(l + w + h) || l <= 0 || w <= 0 || h <= 0) {
+    return null;
+  }
+
+  const max = l + w + 4.0 * h;
+  return {
+    l,
+    w,
+    h,
+    max,
+    l_2: l / 2.0,
+    w_2: w / 2.0,
+    h_2: h / 2.0,
+    max_2: max / 2.0,
+    h2: h * 2.0,
+  };
+}
+
 export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert: 0 }) {
   let configuration = { horiX: 0, horiY: 0, vertX: 0, vertY: 0 };
 

@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { addText } from './reducer';
-import MasuTemplate from './MasuTemplate';
+import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 import { getMasu } from '../store';
 import ColorPicker from '../ColorPicker';
@@ -116,7 +116,7 @@ export default function StepCBoxText(props) {
         </form>
       </div>
       <div className="col-md-6 col-lg-8 mb-3">
-        <MasuTemplate side="back" detail={masu.box} text={state} />
+        <MasuTemplateBack detail={masu.box} text={state} />
       </div>
     </div>
   );
