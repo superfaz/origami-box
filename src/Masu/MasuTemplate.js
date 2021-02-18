@@ -93,13 +93,34 @@ export default function MasuTemplate(props) {
     );
   }
 
+  function getImage(url) {
+    return new Promise((resolve, reject) => {
+      let img = new window.Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
   function Image(props) {
     const { image } = props;
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+    const [content, setContent] = useState(null);
     const configuration = configureFace(image, l_2, w_2, h_2);
 
+    getImage(image.content).then(img => {
+      setWidth(img.width);
+      setHeight(img.height);
+      setContent(image.content);
+    });
+
+    const clientWidth = width * h_2 / height;
     return (
       <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
-        <image href={image.content} x={configuration.x - h_2} y={configuration.y - h_2} height={h} />
+        {content !== null &&
+          <image href={content} x={configuration.x - clientWidth} y={configuration.y - h_2} height={h} />
+        }
       </g>
     );
   }
