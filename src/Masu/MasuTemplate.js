@@ -102,12 +102,26 @@ export default function MasuTemplate(props) {
     });
   }
 
-  function Image(props) {
-    const { image } = props;
+  function Image({ image }) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
     const [content, setContent] = useState(null);
     const configuration = configureFace(image, l_2, w_2, h_2);
+
+    if (height > 0) {
+      const clientWidth = width * h_2 / height;
+      switch (image.horizontal) {
+        case 'left':
+          configuration.x -= configuration.horiX;
+          break;
+        case 'center':
+          configuration.x += clientWidth;
+          break;
+        case 'right':
+          configuration.x += configuration.horiX + 2*clientWidth;
+          break;
+      }
+    }
 
     if (image.content !== null) {
       getImage(image.content)
@@ -121,12 +135,11 @@ export default function MasuTemplate(props) {
         });
     }
 
-    const clientWidth = width * h_2 / height;
     return (
       <g clipPath={`url(#${image.face})`}>
         <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
           {content !== null &&
-            <image href={content} x={configuration.x - clientWidth} y={configuration.y - h_2} height={h} />
+            <image href={content} x={configuration.x} y={configuration.y - h_2} height={h} />
           }
         </g>
       </g>

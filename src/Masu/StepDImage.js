@@ -15,6 +15,7 @@ export default function StepDImage() {
   const [state, setState] = useState({
     content: null,
     face: 'front',
+    horizontal: 'center',
   });
 
   function handleInputChange(event) {
@@ -51,16 +52,28 @@ export default function StepDImage() {
               accept="image/png, image/jpeg, image/svg+xml" required
               onChange={handleImageChange} />
           </div>
-          <div className="mb-3">
-            <label htmlFor="face">{t('masu.stepDImage.face')}</label>
-            <select className="form-select" name="face" required
-              value={state.face} onChange={handleInputChange}>
-              <option value="front">{t('masu.face.front')}</option>
-              <option value="back">{t('masu.face.back')}</option>
-              <option value="left">{t('masu.face.left')}</option>
-              <option value="right">{t('masu.face.right')}</option>
-            </select>
-          </div>
+          <fieldset>
+            <legend>{t('masu.stepDImage.positioning')}</legend>
+            <div className="mb-3">
+              <label htmlFor="face">{t('masu.stepDImage.face')}</label>
+              <select className="form-select" name="face" required
+                value={state.face} onChange={handleInputChange}>
+                <option value="front">{t('masu.face.front')}</option>
+                <option value="back">{t('masu.face.back')}</option>
+                <option value="left">{t('masu.face.left')}</option>
+                <option value="right">{t('masu.face.right')}</option>
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="horizontal">{t('masu.stepDImage.horizontal')}</label>
+              <select className="form-select" name="horizontal" required
+                value={state.horizontal} onChange={handleInputChange}>
+                <option value="left">{t('masu.horizontal.left')}</option>
+                <option value="center">{t('masu.horizontal.center')}</option>
+                <option value="right">{t('masu.horizontal.right')}</option>
+              </select>
+            </div>
+          </fieldset>
           <div className="mb-3 mt-5 d-flex">
             <Link className="btn btn-link" to="/back">{t('masu.stepDImage.cancel')}</Link>
             <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepDImage.submit')}</button>

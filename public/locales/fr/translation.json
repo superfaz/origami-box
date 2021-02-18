@@ -60,7 +60,9 @@
     "stepDImage": {
       "linkTo": "Ajouter une image",
       "content": "Fichier",
+      "positioning": "Position",
       "face": "Face",
+      "horizontal": "Alignment",
       "submit": "Ajouter cette image",
       "cancel": "Annuler"
     },
