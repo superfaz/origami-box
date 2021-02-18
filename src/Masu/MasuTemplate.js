@@ -109,11 +109,15 @@ export default function MasuTemplate(props) {
     const [content, setContent] = useState(null);
     const configuration = configureFace(image, l_2, w_2, h_2);
 
-    getImage(image.content).then(img => {
-      setWidth(img.width);
-      setHeight(img.height);
-      setContent(image.content);
-    });
+    getImage(image.content)
+      .then(img => {
+        setWidth(img.width);
+        setHeight(img.height);
+        setContent(image.content);
+      })
+      .catch(error => {
+        console.exception(error);
+      });
 
     const clientWidth = width * h_2 / height;
     return (
