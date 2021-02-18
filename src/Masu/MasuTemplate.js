@@ -109,22 +109,26 @@ export default function MasuTemplate(props) {
     const [content, setContent] = useState(null);
     const configuration = configureFace(image, l_2, w_2, h_2);
 
-    getImage(image.content)
-      .then(img => {
-        setWidth(img.width);
-        setHeight(img.height);
-        setContent(image.content);
-      })
-      .catch(error => {
-        console.exception(error);
-      });
+    if (image.content !== null) {
+      getImage(image.content)
+        .then(img => {
+          setWidth(img.width);
+          setHeight(img.height);
+          setContent(image.content);
+        })
+        .catch(error => {
+          console.error("Can't load the image", error);
+        });
+    }
 
     const clientWidth = width * h_2 / height;
     return (
-      <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
-        {content !== null &&
-          <image href={content} x={configuration.x - clientWidth} y={configuration.y - h_2} height={h} />
-        }
+      <g clipPath={`url(#${image.face})`}>
+        <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
+          {content !== null &&
+            <image href={content} x={configuration.x - clientWidth} y={configuration.y - h_2} height={h} />
+          }
+        </g>
       </g>
     );
   }
@@ -203,6 +207,18 @@ export default function MasuTemplate(props) {
         <defs>
           <clipPath id="cut-off-background">
             <polygon points={`0,-${max_2} ${max_2},0 0,${max_2} -${max_2},0`} />
+          </clipPath>
+          <clipPath id="front">
+            <polygon points={`-${w_2},${l_2} ${w_2},${l_2} ${w_2},${l_2 + h} -${w_2},${l_2 + h}`} />
+          </clipPath>
+          <clipPath id="back">
+            <polygon points={`-${w_2},-${l_2} ${w_2},-${l_2} ${w_2},-${l_2 + h} -${w_2},-${l_2 + h}`} />
+          </clipPath>
+          <clipPath id="left">
+            <polygon points={`${w_2},-${l_2} ${w_2},${l_2} ${w_2 + h},${l_2} ${w_2 + h},-${l_2}`} />
+          </clipPath>
+          <clipPath id="right">
+            <polygon points={`-${w_2},-${l_2} -${w_2},${l_2} -${w_2 + h},${l_2} -${w_2 + h},-${l_2}`} />
           </clipPath>
         </defs>
 
