@@ -1,3 +1,5 @@
+import { createFaces } from "./faces";
+
 export function getRotationMatrix(angle) {
   const radian = angle * Math.PI / 180;
   const cos = Math.cos(radian).toFixed(5);
@@ -71,47 +73,15 @@ export function useMasuMeasurement(masu) {
   };
 }
 
-export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert: 0 }) {
-  let configuration = { horiX: 0, horiY: 0, vertX: 0, vertY: 0 };
-
-  switch (element.face) {
-    case 'front':
-      configuration.x = 0;
-      configuration.y = l_2 + h_2;
-      configuration.rotate = 180;
-      configuration.hori = w_2 - margins.hori;
-      configuration.vert = h_2 - margins.vert;
-      break;
-
-    case 'back':
-      configuration.x = 0;
-      configuration.y = -l_2 - h_2;
-      configuration.rotate = 0;
-      configuration.hori = w_2 - margins.hori;
-      configuration.vert = h_2 - margins.vert;
-      break;
-
-    case 'left':
-      configuration.x = w_2 + h_2;
-      configuration.y = 0;
-      configuration.rotate = 90;
-      configuration.hori = l_2 - margins.hori;
-      configuration.vert = h_2 - margins.vert;
-      break;
-
-    case 'right':
-      configuration.x = -w_2 - h_2;
-      configuration.y = 0;
-      configuration.rotate = -90;
-      configuration.hori = l_2 - margins.hori;
-      configuration.vert = h_2 - margins.vert;
-      break;
-
-    default:
-      console.log(`face '${element.face}' not supported`);
+export function configureFace(element, l_2, w_2, h_2) {
+  const faces = createFaces(l_2, w_2, h_2);
+  const face = faces[element.face]
+  if (face === undefined) {
+    console.log(`face '${element.face}' not supported`);
+    return null;
   }
 
-  return configuration;
+  return face;
 }
 
 export function configurePositioning(text, l_2, w_2, h_2) {
@@ -124,33 +94,33 @@ export function configurePositioning(text, l_2, w_2, h_2) {
   };
 
   let style = {};
-  let configuration = configureFace(text, l_2, w_2, h_2, margins);
+  let configuration = configureFace(text, l_2, w_2, h_2);
 
   switch (text.horizontal) {
     case 'left':
       style.textAnchor = 'start';
-      configuration.x -= configuration.hori;
+      configuration.x -= configuration.hori - margins.hori;
       break;
     case 'center':
       style.textAnchor = 'middle';
       break;
     case 'right':
       style.textAnchor = 'end';
-      configuration.x += configuration.hori;
+      configuration.x += configuration.hori - margins.hori;
       break;
   }
 
   switch (text.vertical) {
     case 'top':
       style.dominantBaseline = 'text-before-edge';
-      configuration.y -= configuration.vert;
+      configuration.y -= configuration.vert - margins.vert;
       break;
     case 'middle':
       style.dominantBaseline = 'central';
       break;
     case 'bottom':
       style.dominantBaseline = 'text-after-edge';
-      configuration.y += configuration.vert;
+      configuration.y += configuration.vert - margins.vert;
       break;
   }
 

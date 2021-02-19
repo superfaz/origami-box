@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import { useEffect, useRef, useState } from 'react';
 import { SvgPaper } from '../Generic/Svg';
 import SvgCut from './SvgCut';
+import { createFaces } from './faces';
 
 const referenceStyle = {
   fill: 'none',
@@ -27,6 +28,8 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
   const texts = getTexts(masu, text);
 
   const m = useMasuMeasurement(masu);
+  const faces = createFaces(m.l_2, m.w_2, m.h_2);
+
   if (m === null) {
     return (
       <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}></SvgPaper>
@@ -171,53 +174,21 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
 
         <SvgCut masu={masu} styles={styles} />
 
-        {/* Front */}
-        <g clipPath="url(#front)">
-          <g transform={`rotate(180 0 ${m.l_2 + m.h_2})`}>
-            {images.filter(image => image.face === 'front').map(image =>
-              <Image key={image.key} image={image} />
-            )}
-            {texts.filter(text => text.face === 'front').map((text) =>
-              <Text key={text.key} text={text} />
-            )}
-          </g>
-        </g>
-
-        {/* Back */}
-        <g clipPath="url(#back)">
-          <g transform={`rotate(0 0 ${-m.l_2 - m.h_2})`}>
-            {images.filter(image => image.face === 'back').map(image =>
-              <Image key={image.key} image={image} />
-            )}
-            {texts.filter(text => text.face === 'back').map((text) =>
-              <Text key={text.key} text={text} />
-            )}
-          </g>
-        </g>
-
-        {/* Left */}
-        <g clipPath="url(#left)">
-          <g transform={`rotate(90 ${m.w_2 + m.h_2} 0)`}>
-            {images.filter(image => image.face === 'left').map(image =>
-              <Image key={image.key} image={image} />
-            )}
-            {texts.filter(text => text.face === 'left').map((text) =>
-              <Text key={text.key} text={text} />
-            )}
-          </g>
-        </g>
-
-        {/* Right */}
-        <g clipPath="url(#right)">
-          <g transform={`rotate(-90 ${-m.w_2 - m.h_2} 0)`}>
-            {images.filter(image => image.face === 'right').map(image =>
-              <Image key={image.key} image={image} />
-            )}
-            {texts.filter(text => text.face === 'right').map((text) =>
-              <Text key={text.key} text={text} />
-            )}
-          </g>
-        </g>
+        {Object.keys(faces).map(key => {
+          const face = faces[key];
+          return (
+            <g key={key} clipPath={`url(#${key})`}>
+              <g transform={`rotate(${face.rotate} ${face.x} ${face.y})`}>
+                {images.filter(image => image.face === key).map(image =>
+                  <Image key={image.key} image={image} />
+                )}
+                {texts.filter(text => text.face === key).map((text) =>
+                  <Text key={text.key} text={text} />
+                )}
+              </g>
+            </g>
+          );
+        })}
       </g>
     </SvgPaper>
   );
