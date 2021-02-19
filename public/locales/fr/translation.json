@@ -60,6 +60,10 @@
     "stepDImage": {
       "linkTo": "Ajouter une image",
       "content": "Fichier",
+      "size": "Taille",
+      "sizeAuto": "Automatique",
+      "width": "Largeur",
+      "height": "Hauteur",
       "positioning": "Position",
       "face": "Face",
       "horizontal": "Alignement",

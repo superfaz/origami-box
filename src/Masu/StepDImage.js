@@ -15,12 +15,20 @@ export default function StepDImage() {
   const [state, setState] = useState({
     content: null,
     face: 'front',
+    size: 'auto',
+    width: '',
+    height: '',
     horizontal: 'center',
     vertical: 'middle',
   });
 
   function handleInputChange(event) {
     setState({ ...state, [event.target.name]: event.target.value });
+  }
+
+  function handleSizeChange(event) {
+    const checked = event.target.checked;
+    setState({ ...state, size: checked ? 'auto' : 'manual' });
   }
 
   function handleImageChange(event) {
@@ -52,6 +60,22 @@ export default function StepDImage() {
             <input className="form-control" type="file" name="content" id="content"
               accept="image/png, image/jpeg, image/svg+xml" required
               onChange={handleImageChange} />
+          </div>
+          <div className="mb-3">
+            <label>{t('masu.stepDImage.size')}</label>
+            <div className="form-check form-switch">
+              <input className="form-check-input" type="checkbox" id="size" name="size"
+                checked={state.size === 'auto'} onChange={handleSizeChange} />
+              <label className="form-check-label" htmlFor="size">{t('masu.stepDImage.sizeAuto')}</label>
+            </div>
+            <div className="input-group">
+              <input type="number" className="form-control" name="width" placeholder="{t('masu.stepDImage.width')}"
+                disabled={state.size === 'auto'} required={state.size === 'manual'}
+                value={state.width} onChange={handleInputChange} />
+              <input type="number" className="form-control" name="height" placeholder="{t('masu.stepDImage.height')}"
+                disabled={state.size === 'auto'} required={state.size === 'manual'}
+                value={state.height} onChange={handleInputChange} />
+            </div>
           </div>
           <fieldset>
             <legend>{t('masu.stepDImage.positioning')}</legend>

@@ -59,6 +59,10 @@
     "stepDImage": {
       "linkTo": "Add an image",
       "content": "File",
+      "size": "Size",
+      "sizeAuto": "Automatic",
+      "width": "Width",
+      "height": "Height",
       "positioning": "Positioning",
       "face": "Face",
       "horizontal": "Alignment",
