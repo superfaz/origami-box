@@ -23,6 +23,7 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
   const masu = useSelector(getMasu);
   const pageLength = parseFloat(masu.pageLength);
   const pageWidth = parseFloat(masu.pageWidth);
+  const images = getImages(masu, image)
 
   const m = useMasuMeasurement(masu);
   if (m === null) {
@@ -75,16 +76,16 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
     const configuration = configureFace(image, m.l_2, m.w_2, m.h_2);
 
     if (height > 0) {
-      const clientWidth = width * m.h_2 / height;
+      const clientWidth = width * m.h / height;
       switch (image.horizontal) {
         case 'left':
-          configuration.x -= configuration.horiX;
+          configuration.x -= configuration.hori;
           break;
         case 'center':
-          configuration.x += clientWidth;
+          configuration.x -= clientWidth / 2;
           break;
         case 'right':
-          configuration.x += configuration.horiX + 2 * clientWidth;
+          configuration.x += configuration.hori - clientWidth;
           break;
       }
     }
@@ -102,12 +103,10 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
     }
 
     return (
-      <g clipPath={`url(#${image.face})`}>
-        <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
-          {content !== null &&
-            <image href={content} x={configuration.x} y={configuration.y - m.h_2} height={m.h} />
-          }
-        </g>
+      <g>
+        {content !== null &&
+          <image href={content} x={configuration.x} y={configuration.y - m.h_2} height={m.h} />
+        }
       </g>
     );
   }
@@ -171,13 +170,41 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
 
         <SvgCut masu={masu} styles={styles} />
 
-        {getImages(masu).map((image) =>
-          <Image key={image.key} image={image} />
-        )}
+        {/* Front */}
+        <g clipPath="url(#front)">
+          <g transform={`rotate(180 0 ${m.l_2 + m.h_2})`}>
+            {images.filter(image => image.face === 'front').map(image =>
+              <Image key={image.key} image={image} />
+            )}
+          </g>
+        </g>
 
-        {image !== null &&
-          <Image key='new' image={image} />
-        }
+        {/* Back */}
+        <g clipPath="url(#back)">
+          <g transform={`rotate(0 0 ${-m.l_2 - m.h_2})`}>
+            {images.filter(image => image.face === 'back').map(image =>
+              <Image key={image.key} image={image} />
+            )}
+          </g>
+        </g>
+
+        {/* Left */}
+        <g clipPath="url(#left)">
+          <g transform={`rotate(90 ${m.w_2 + m.h_2} 0)`}>
+            {images.filter(image => image.face === 'left').map(image =>
+              <Image key={image.key} image={image} />
+            )}
+          </g>
+        </g>
+
+        {/* Right */}
+        <g clipPath="url(#right)">
+          <g transform={`rotate(-90 ${-m.w_2 - m.h_2} 0)`}>
+            {images.filter(image => image.face === 'right').map(image =>
+              <Image key={image.key} image={image} />
+            )}
+          </g>
+        </g>
 
         {getTexts(masu).map((text) =>
           <Text key={text.key} text={text} />

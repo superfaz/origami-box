@@ -17,8 +17,16 @@ export function getTexts(masu) {
   return Object.keys(masu.box.texts).map(k => masu.box.texts[k]);
 }
 
-export function getImages(masu) {
-  return Object.keys(masu.box.images).map(k => masu.box.images[k]);
+export function getImages(masu, addition = null) {
+  const results = Object.keys(masu.box.images).map(k => masu.box.images[k]);
+
+  if (addition !== null) {
+    addition.key = 'new';
+    return results.concat(addition);
+  }
+  else {
+    return results;
+  }
 }
 
 export function getFonts(masu) {
@@ -63,6 +71,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.x = 0;
       configuration.y = l_2 + h_2;
       configuration.rotate = 180;
+      configuration.hori = w_2 - margins.hori;
       configuration.horiX = -w_2 + margins.hori;
       configuration.vertY = -h_2 + margins.vert;
       break;
@@ -71,6 +80,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.x = 0;
       configuration.y = -l_2 - h_2;
       configuration.rotate = 0;
+      configuration.hori = w_2 - margins.hori;
       configuration.horiX = w_2 - margins.hori;
       configuration.vertY = h_2 - margins.vert;
       break;
@@ -79,6 +89,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.x = w_2 + h_2;
       configuration.y = 0;
       configuration.rotate = 90;
+      configuration.hori = l_2 - margins.hori;
       configuration.horiY = l_2 - margins.hori;
       configuration.vertX = -h_2 + margins.vert;
       break;
@@ -87,6 +98,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.x = -w_2 - h_2;
       configuration.y = 0;
       configuration.rotate = -90;
+      configuration.hori = l_2 - margins.hori;
       configuration.horiY = -l_2 + margins.hori;
       configuration.vertX = h_2 - margins.vert;
       break;
