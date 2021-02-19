@@ -81,5 +81,8 @@
     "withLid": "Créer un second modèle pour un couvercle",
     "front": "Recto",
     "back": "Verso"
+  },
+  "footer": {
+    "github": "Voir sur GitHub"
   }
 }

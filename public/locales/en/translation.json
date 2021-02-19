@@ -80,5 +80,8 @@
     "withLid": "Add a second template for a lid",
     "front": "Front",
     "back": "Back"
+  },
+  "footer": {
+    "github": "View on GitHub"
   }
 }
