@@ -48,7 +48,7 @@
       "content": "Contenu",
       "positioning": "Position",
       "face": "Face",
-      "horizontal": "Position",
+      "horizontal": "Alignement",
       "margins": "Marges",
       "font": "Police",
       "family": "Nom de la police",
@@ -62,7 +62,7 @@
       "content": "Fichier",
       "positioning": "Position",
       "face": "Face",
-      "horizontal": "Alignment",
+      "horizontal": "Alignement",
       "submit": "Ajouter cette image",
       "cancel": "Annuler"
     },
