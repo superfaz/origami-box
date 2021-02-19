@@ -24,6 +24,7 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
   const pageLength = parseFloat(masu.pageLength);
   const pageWidth = parseFloat(masu.pageWidth);
   const images = getImages(masu, image)
+  const texts = getTexts(masu, text);
 
   const m = useMasuMeasurement(masu);
   if (m === null) {
@@ -48,7 +49,7 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
     useEffect(() => setBox(textRef.current?.getBBox()), [textRef, text, text.content, text.family]);
 
     return (
-      <g transform={`rotate(${configuration.rotate} ${configuration.x} ${configuration.y})`}>
+      <g>
         {box && process.env.REACT_APP_SVG_DEBUG &&
           <rect x={box.x} y={box.y} width={box.width} height={box.height} style={{ strokeWidth: 0.2 }}
             stroke="black" fill="yellow" />
@@ -176,6 +177,9 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
             {images.filter(image => image.face === 'front').map(image =>
               <Image key={image.key} image={image} />
             )}
+            {texts.filter(text => text.face === 'front').map((text) =>
+              <Text key={text.key} text={text} />
+            )}
           </g>
         </g>
 
@@ -184,6 +188,9 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
           <g transform={`rotate(0 0 ${-m.l_2 - m.h_2})`}>
             {images.filter(image => image.face === 'back').map(image =>
               <Image key={image.key} image={image} />
+            )}
+            {texts.filter(text => text.face === 'back').map((text) =>
+              <Text key={text.key} text={text} />
             )}
           </g>
         </g>
@@ -194,6 +201,9 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
             {images.filter(image => image.face === 'left').map(image =>
               <Image key={image.key} image={image} />
             )}
+            {texts.filter(text => text.face === 'left').map((text) =>
+              <Text key={text.key} text={text} />
+            )}
           </g>
         </g>
 
@@ -203,16 +213,11 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
             {images.filter(image => image.face === 'right').map(image =>
               <Image key={image.key} image={image} />
             )}
+            {texts.filter(text => text.face === 'right').map((text) =>
+              <Text key={text.key} text={text} />
+            )}
           </g>
         </g>
-
-        {getTexts(masu).map((text) =>
-          <Text key={text.key} text={text} />
-        )}
-
-        {text !== null &&
-          <Text key='new' text={text} />
-        }
       </g>
     </SvgPaper>
   );

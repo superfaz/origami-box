@@ -13,8 +13,16 @@ export function isGeneralValid(masu) {
   return masu !== undefined && isPositive(masu.length) && isPositive(masu.width) && isPositive(masu.height);
 }
 
-export function getTexts(masu) {
-  return Object.keys(masu.box.texts).map(k => masu.box.texts[k]);
+export function getTexts(masu, addition = null) {
+  const results = Object.keys(masu.box.texts).map(k => masu.box.texts[k]);
+
+  if (addition !== null) {
+    addition.key = 'new';
+    return results.concat(addition);
+  }
+  else {
+    return results;
+  }
 }
 
 export function getImages(masu, addition = null) {
@@ -72,8 +80,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.y = l_2 + h_2;
       configuration.rotate = 180;
       configuration.hori = w_2 - margins.hori;
-      configuration.horiX = -w_2 + margins.hori;
-      configuration.vertY = -h_2 + margins.vert;
+      configuration.vert = h_2 - margins.vert;
       break;
 
     case 'back':
@@ -81,8 +88,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.y = -l_2 - h_2;
       configuration.rotate = 0;
       configuration.hori = w_2 - margins.hori;
-      configuration.horiX = w_2 - margins.hori;
-      configuration.vertY = h_2 - margins.vert;
+      configuration.vert = h_2 - margins.vert;
       break;
 
     case 'left':
@@ -90,8 +96,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.y = 0;
       configuration.rotate = 90;
       configuration.hori = l_2 - margins.hori;
-      configuration.horiY = l_2 - margins.hori;
-      configuration.vertX = -h_2 + margins.vert;
+      configuration.vert = h_2 - margins.vert;
       break;
 
     case 'right':
@@ -99,8 +104,7 @@ export function configureFace(element, l_2, w_2, h_2, margins = { hori: 0, vert:
       configuration.y = 0;
       configuration.rotate = -90;
       configuration.hori = l_2 - margins.hori;
-      configuration.horiY = -l_2 + margins.hori;
-      configuration.vertX = h_2 - margins.vert;
+      configuration.vert = h_2 - margins.vert;
       break;
 
     default:
@@ -125,32 +129,28 @@ export function configurePositioning(text, l_2, w_2, h_2) {
   switch (text.horizontal) {
     case 'left':
       style.textAnchor = 'start';
-      configuration.x -= configuration.horiX;
-      configuration.y -= configuration.horiY;
+      configuration.x -= configuration.hori;
       break;
     case 'center':
       style.textAnchor = 'middle';
       break;
     case 'right':
       style.textAnchor = 'end';
-      configuration.x += configuration.horiX;
-      configuration.y += configuration.horiY;
+      configuration.x += configuration.hori;
       break;
   }
 
   switch (text.vertical) {
     case 'top':
       style.dominantBaseline = 'text-before-edge';
-      configuration.x -= configuration.vertX;
-      configuration.y -= configuration.vertY;
+      configuration.y -= configuration.vert;
       break;
     case 'middle':
       style.dominantBaseline = 'central';
       break;
     case 'bottom':
       style.dominantBaseline = 'text-after-edge';
-      configuration.x += configuration.vertX;
-      configuration.y += configuration.vertY;
+      configuration.y += configuration.vert;
       break;
   }
 
