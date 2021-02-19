@@ -78,41 +78,41 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
 
     if (image.size === 'auto') {
       if (face.width >= face.height) {
-        width = image.originalWidth * face.height / image.originalHeight;
-        height = face.height;
+        height = face.height - 2 * image.marginVertical;
+        width = image.originalWidth * height / image.originalHeight;
       }
       else {
-        width = face.width;
-        height = image.originalHeight * face.width / image.originalWidth;
+        width = face.width - 2 * image.marginHorizontal;
+        height = image.originalHeight * width / image.originalWidth;
       }
     }
 
-    if (width === null || height === null) {
+    if (width === null || height === null || isNaN(width) || isNaN(height)) {
       // Manual size not provided
       return null;
     }
 
     switch (image.horizontal) {
       case 'left':
-        x -= face.hori;
+        x -= face.hori - image.marginHorizontal;
         break;
       case 'center':
         x -= width / 2;
         break;
       case 'right':
-        x += face.hori - width;
+        x += face.hori - width - image.marginHorizontal;
         break;
     }
 
     switch (image.vertical) {
       case 'top':
-        y -= face.vert;
+        y -= face.vert - image.marginVertical;
         break;
       case 'middle':
         y -= height / 2;
         break;
       case 'bottom':
-        y += face.vert - height;
+        y += face.vert - height - image.marginVertical;
         break;
     }
 

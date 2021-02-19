@@ -23,10 +23,18 @@ export default function StepDImage() {
     height: '',
     horizontal: 'center',
     vertical: 'middle',
+    marginHorizontal: 0,
+    marginVertical: 0,
   });
 
   function handleInputChange(event) {
-    setState({ ...state, [event.target.name]: event.target.value });
+    if (event.target.type === 'number') {
+      const number = parseFloat(event.target.value);
+      setState({ ...state, [event.target.name]: isNaN(number) ? event.target.value : number });
+    }
+    else {
+      setState({ ...state, [event.target.name]: event.target.value });
+    }
   }
 
   function handleSizeChange(event) {
@@ -115,6 +123,15 @@ export default function StepDImage() {
                   <option value="middle">{t('masu.vertical.middle')}</option>
                   <option value="bottom">{t('masu.vertical.bottom')}</option>
                 </select>
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="marginHorizontal">{t('masu.stepDImage.margins')}</label>
+              <div className="input-group">
+                <input type="number" name="marginHorizontal" className="form-control" required
+                  value={state.marginHorizontal} onChange={handleInputChange} />
+                <input type="number" name="marginVertical" className="form-control" required
+                  value={state.marginVertical} onChange={handleInputChange} />
               </div>
             </div>
           </fieldset>
