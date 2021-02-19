@@ -16,6 +16,7 @@ export default function StepDImage() {
     content: null,
     face: 'front',
     horizontal: 'center',
+    vertical: 'middle',
   });
 
   function handleInputChange(event) {
@@ -66,12 +67,20 @@ export default function StepDImage() {
             </div>
             <div className="mb-3">
               <label htmlFor="horizontal">{t('masu.stepDImage.horizontal')}</label>
-              <select className="form-select" name="horizontal" required
-                value={state.horizontal} onChange={handleInputChange}>
-                <option value="left">{t('masu.horizontal.left')}</option>
-                <option value="center">{t('masu.horizontal.center')}</option>
-                <option value="right">{t('masu.horizontal.right')}</option>
-              </select>
+              <div className="input-group">
+                <select className="form-select" name="horizontal" required
+                  value={state.horizontal} onChange={handleInputChange}>
+                  <option value="left">{t('masu.horizontal.left')}</option>
+                  <option value="center">{t('masu.horizontal.center')}</option>
+                  <option value="right">{t('masu.horizontal.right')}</option>
+                </select>
+                <select className="form-select" name="vertical" required
+                  value={state.vertical} onChange={handleInputChange}>
+                  <option value="top">{t('masu.vertical.top')}</option>
+                  <option value="middle">{t('masu.vertical.middle')}</option>
+                  <option value="bottom">{t('masu.vertical.bottom')}</option>
+                </select>
+              </div>
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">

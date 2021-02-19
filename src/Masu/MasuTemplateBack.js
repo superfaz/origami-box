@@ -79,40 +79,66 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
     const [content, setContent] = useState(null);
     const configuration = configureFace(image, m.l_2, m.w_2, m.h_2);
 
+    useEffect(() => {
+      let isMounted = true;
+      if (image.content !== null) {
+        getImage(image.content)
+          .then(img => {
+            if (isMounted) {
+              setWidth(img.width);
+              setHeight(img.height);
+              setContent(image.content);
+            }
+          })
+          .catch(error => {
+            console.error("Can't load the image", error);
+          });
+      }
+
+      return () => { isMounted = false; };
+    }, [image, image.content]);
+
     if (height > 0) {
-      const clientWidth = width * m.h / height;
-      switch (image.horizontal) {
-        case 'left':
-          configuration.x -= configuration.hori;
-          break;
-        case 'center':
-          configuration.x -= clientWidth / 2;
-          break;
-        case 'right':
-          configuration.x += configuration.hori - clientWidth;
-          break;
+      if (configuration.hori >= configuration.vert) {
+        const step = width * configuration.vert / height;
+        switch (image.horizontal) {
+          case 'left':
+            configuration.x -= configuration.hori;
+            break;
+          case 'center':
+            configuration.x -= step;
+            break;
+          case 'right':
+            configuration.x += configuration.hori - 2 * step;
+            break;
+        }
+
+        return (
+          <image href={content} x={configuration.x} y={configuration.y - configuration.vert} height={2 * configuration.vert} />
+        );
+      }
+      else {
+        const step = height * configuration.hori / width;
+        switch (image.vertical) {
+          case 'top':
+            configuration.y -= configuration.vert;
+            break;
+          case 'middle':
+            configuration.y -= step;
+            break;
+          case 'bottom':
+            configuration.y += configuration.vert - 2 * step;
+            break;
+        }
+
+        return (
+          <image href={content} x={configuration.x - configuration.hori} y={configuration.y} width={2 * configuration.hori} />
+        );
       }
     }
-
-    if (image.content !== null) {
-      getImage(image.content)
-        .then(img => {
-          setWidth(img.width);
-          setHeight(img.height);
-          setContent(image.content);
-        })
-        .catch(error => {
-          console.error("Can't load the image", error);
-        });
+    else {
+      return null;
     }
-
-    return (
-      <g>
-        {content !== null &&
-          <image href={content} x={configuration.x} y={configuration.y - m.h_2} height={m.h} />
-        }
-      </g>
-    );
   }
 
   const color = Color(detail.background);
