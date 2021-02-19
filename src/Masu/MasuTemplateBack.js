@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux';
 import { getMasu } from '../store';
-import { configurePositioning, configureFace, getFonts, getTexts, getImages, useMasuMeasurement, loadImageAsync } from './helper';
+import { getFonts, getTexts, getImages, useMasuMeasurement } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
-import { useEffect, useRef, useState } from 'react';
 import { SvgPaper } from '../Generic/Svg';
-import SvgCut from './SvgCut';
 import { createFaces } from './faces';
+import SvgCut from './SvgCut';
+import SvgImage from './SvgImage';
+import SvgText from './SvgText';
 
 const referenceStyle = {
   fill: 'none',
@@ -33,91 +34,6 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
   if (m === null) {
     return (
       <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}></SvgPaper>
-    );
-  }
-
-  function Text({ text }) {
-    const textRef = useRef(null);
-    const [box, setBox] = useState(null);
-
-    const { configuration, style } = configurePositioning(text, m.l_2, m.w_2, m.h_2);
-    style.fontSize = text.size;
-    style.fill = text.color;
-    style.lineHeight = 1;
-
-    if (text.family !== '') {
-      style.fontFamily = text.family;
-    }
-
-    useEffect(() => setBox(textRef.current?.getBBox()), [textRef, text, text.content, text.family]);
-
-    return (
-      <g>
-        {box && process.env.REACT_APP_SVG_DEBUG &&
-          <rect x={box.x} y={box.y} width={box.width} height={box.height} style={{ strokeWidth: 0.2 }}
-            stroke="black" fill="yellow" />
-        }
-        <text ref={textRef} style={style} x={configuration.x} y={configuration.y}>
-          {text.content}
-        </text>
-      </g>
-    );
-  }
-
-  function Image({ image }) {
-    if (image.content === null) {
-      // Image file not provided
-      return null;
-    }
-
-    const face = configureFace(image, m.l_2, m.w_2, m.h_2);
-    let width = image.size === 'auto' ? null : parseFloat(image.width);
-    let height = image.size === 'auto' ? null : parseFloat(image.height);
-    let x = face.x;
-    let y = face.y;
-
-    if (image.size === 'auto') {
-      if (face.width >= face.height) {
-        height = face.height - 2 * image.marginVertical;
-        width = image.originalWidth * height / image.originalHeight;
-      }
-      else {
-        width = face.width - 2 * image.marginHorizontal;
-        height = image.originalHeight * width / image.originalWidth;
-      }
-    }
-
-    if (width === null || height === null || isNaN(width) || isNaN(height)) {
-      // Manual size not provided
-      return null;
-    }
-
-    switch (image.horizontal) {
-      case 'left':
-        x -= face.hori - image.marginHorizontal;
-        break;
-      case 'center':
-        x -= width / 2;
-        break;
-      case 'right':
-        x += face.hori - width - image.marginHorizontal;
-        break;
-    }
-
-    switch (image.vertical) {
-      case 'top':
-        y -= face.vert - image.marginVertical;
-        break;
-      case 'middle':
-        y -= height / 2;
-        break;
-      case 'bottom':
-        y += face.vert - height - image.marginVertical;
-        break;
-    }
-
-    return (
-      <image href={image.content} x={x} y={y} width={width} height={height} />
     );
   }
 
@@ -186,10 +102,10 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
             <g key={key} clipPath={`url(#${key})`}>
               <g transform={`rotate(${face.rotate} ${face.x} ${face.y})`}>
                 {images.filter(image => image.face === key).map(image =>
-                  <Image key={image.key} image={image} />
+                  <SvgImage key={image.key} image={image} />
                 )}
                 {texts.filter(text => text.face === key).map((text) =>
-                  <Text key={text.key} text={text} />
+                  <SvgText key={text.key} text={text} />
                 )}
               </g>
             </g>
