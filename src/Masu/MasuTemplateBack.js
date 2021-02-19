@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getMasu } from '../store';
-import { configurePositioning, configureFace, getFonts, getTexts, getImages, useMasuMeasurement } from './helper';
+import { configurePositioning, configureFace, getFonts, getTexts, getImages, useMasuMeasurement, loadImageAsync } from './helper';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 import { useEffect, useRef, useState } from 'react';
@@ -64,81 +64,61 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
     );
   }
 
-  function getImage(url) {
-    return new Promise((resolve, reject) => {
-      let img = new window.Image();
-      img.onload = () => resolve(img);
-      img.onerror = reject;
-      img.src = url;
-    });
-  }
-
   function Image({ image }) {
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
-    const [content, setContent] = useState(null);
-    const configuration = configureFace(image, m.l_2, m.w_2, m.h_2);
-
-    useEffect(() => {
-      let isMounted = true;
-      if (image.content !== null) {
-        getImage(image.content)
-          .then(img => {
-            if (isMounted) {
-              setWidth(img.width);
-              setHeight(img.height);
-              setContent(image.content);
-            }
-          })
-          .catch(error => {
-            console.error("Can't load the image", error);
-          });
-      }
-
-      return () => { isMounted = false; };
-    }, [image, image.content]);
-
-    if (height > 0) {
-      if (configuration.hori >= configuration.vert) {
-        const step = width * configuration.vert / height;
-        switch (image.horizontal) {
-          case 'left':
-            configuration.x -= configuration.hori;
-            break;
-          case 'center':
-            configuration.x -= step;
-            break;
-          case 'right':
-            configuration.x += configuration.hori - 2 * step;
-            break;
-        }
-
-        return (
-          <image href={content} x={configuration.x} y={configuration.y - configuration.vert} height={2 * configuration.vert} />
-        );
-      }
-      else {
-        const step = height * configuration.hori / width;
-        switch (image.vertical) {
-          case 'top':
-            configuration.y -= configuration.vert;
-            break;
-          case 'middle':
-            configuration.y -= step;
-            break;
-          case 'bottom':
-            configuration.y += configuration.vert - 2 * step;
-            break;
-        }
-
-        return (
-          <image href={content} x={configuration.x - configuration.hori} y={configuration.y} width={2 * configuration.hori} />
-        );
-      }
-    }
-    else {
+    if (image.content === null) {
+      // Image file not provided
       return null;
     }
+
+    const face = configureFace(image, m.l_2, m.w_2, m.h_2);
+    let width = image.size === 'auto' ? null : parseFloat(image.width);
+    let height = image.size === 'auto' ? null : parseFloat(image.height);
+    let x = face.x;
+    let y = face.y;
+
+    if (image.size === 'auto') {
+      if (face.width >= face.height) {
+        width = image.originalWidth * face.height / image.originalHeight;
+        height = face.height;
+      }
+      else {
+        width = face.width;
+        height = image.originalHeight * face.width / image.originalWidth;
+      }
+    }
+
+    if (width === null || height === null) {
+      // Manual size not provided
+      return null;
+    }
+
+    switch (image.horizontal) {
+      case 'left':
+        x -= face.hori;
+        break;
+      case 'center':
+        x -= width / 2;
+        break;
+      case 'right':
+        x += face.hori - width;
+        break;
+    }
+
+    switch (image.vertical) {
+      case 'top':
+        y -= face.vert;
+        break;
+      case 'middle':
+        y -= height / 2;
+        break;
+      case 'bottom':
+        y += face.vert - height;
+        break;
+    }
+
+    return (
+      <image href={image.content} x={x} y={y} width={width} height={height} />
+    );
   }
 
   const color = Color(detail.background);

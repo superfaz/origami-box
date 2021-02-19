@@ -6,6 +6,7 @@ import { getMasu } from "../store";
 import { addImage } from "./reducer";
 import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
+import { loadImageAsync } from "./helper";
 
 export default function StepDImage() {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export default function StepDImage() {
   const [redirect, setRedirect] = useState(false);
   const [state, setState] = useState({
     content: null,
+    originalWidth: null,
+    originalHeight: null,
     face: 'front',
     size: 'auto',
     width: '',
@@ -35,12 +38,20 @@ export default function StepDImage() {
     if (event.target.files.length > 0) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setState({ ...state, [event.target.name]: reader.result });
+        loadImageAsync(reader.result)
+          .then(img => {
+            setState({ ...state, content: reader.result, originalWidth: img.width, originalHeight: img.height });
+          })
+          .catch(error => {
+            console.error("Can't load properly the image", error);
+            setState({ ...state, content: null, originalWidth: null, originalHeight: null });
+          });
       };
+
       reader.readAsDataURL(event.target.files[0]);
     }
     else {
-      setState({ ...state, [event.target.name]: null });
+      setState({ ...state, content: null, originalWidth: null, originalHeight: null });
     }
   }
 
@@ -69,10 +80,10 @@ export default function StepDImage() {
               <label className="form-check-label" htmlFor="size">{t('masu.stepDImage.sizeAuto')}</label>
             </div>
             <div className="input-group">
-              <input type="number" className="form-control" name="width" placeholder="{t('masu.stepDImage.width')}"
+              <input type="number" className="form-control" name="width" placeholder={t('masu.stepDImage.width')}
                 disabled={state.size === 'auto'} required={state.size === 'manual'}
                 value={state.width} onChange={handleInputChange} />
-              <input type="number" className="form-control" name="height" placeholder="{t('masu.stepDImage.height')}"
+              <input type="number" className="form-control" name="height" placeholder={t('masu.stepDImage.height')}
                 disabled={state.size === 'auto'} required={state.size === 'manual'}
                 value={state.height} onChange={handleInputChange} />
             </div>
