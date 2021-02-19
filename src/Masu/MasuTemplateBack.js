@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { getMasu } from '../store';
-import { getFonts, getTexts, getImages, useMasuMeasurement } from './helper';
+import { useMasuMeasurement } from './helper';
+import { getFonts, getTexts, getImages } from './selectors';
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 import { SvgPaper } from '../Generic/Svg';

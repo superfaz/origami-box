@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/dedupe';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
-import { getFonts } from './helper';
+import { getFonts } from './selectors';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
 import MasuTemplateBack from './MasuTemplateBack';
@@ -38,7 +38,7 @@ export default function StepZGenerate() {
         newWindow.document.body.innerHTML += template.outerHTML;
       }
 
-      let fonts = getFonts(masu)
+      const fonts = getFonts(masu)
         .map(f => 'family=' + f.replace(' ', '+'))
         .join('&');
       if (fonts !== '') {

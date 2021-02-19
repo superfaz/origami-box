@@ -1,6 +1,6 @@
-import { useTranslation, withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Link, useLocation, withRouter } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getMasu } from '../store';
 import classNames from 'classnames';
 import { isGeneralValid } from './helper';
