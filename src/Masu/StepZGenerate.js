@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/dedupe';
+import ReactJson from 'react-json-view';
 import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
 import { getFonts } from './selectors';
@@ -91,6 +92,11 @@ export default function StepZGenerate() {
             <button type="button" className="btn btn-primary ms-auto" onClick={print}>{t('masu.stepZGenerate.print')}</button>
           </div>
         </form>
+        {process.env.REACT_APP_JSON_DEBUG &&
+          <div className="mb-3">
+            <ReactJson src={masu} />
+          </div>
+        }
       </div>
       <div className="col-md-6 col-lg-8 mb-3">
         {masu.withBackDesign &&
