@@ -27,6 +27,12 @@
     },
     "stepAGeneral": {
       "title": "Options générales",
+      "withDesign": "Définir un design spécifique pour la boîte",
+      "withDesignOff": "Seul le patron de pliage sera préparé",
+      "withDesignOn": "Vous pourrez définir le design de la boîte en ajoutant textes et images",
+      "withLid": "Avec un couvercle",
+      "withLidOff": "",
+      "withLidOn": "Un second patron de pliage sera préparer pour le couvercle de la boîte",
       "linkBack": "Retour aux options générales"
     },
     "stepBBoxDesign": {
@@ -71,6 +77,10 @@
       "submit": "Ajouter cette image",
       "cancel": "Annuler"
     },
+    "stepELidDesign": {
+      "title": "Couvercle",
+      "linkTo": "Définir le couvercle"
+    },
     "stepZGenerate": {
       "title": "Préparer l'impression",
       "linkTo": "Préparer l'impression",
@@ -82,8 +92,6 @@
       "width": "Largeur",
       "height": "Hauteur"
     },
-    "withBackDesign": "Définir un design spécifique pour le verso",
-    "withLid": "Créer un second modèle pour un couvercle",
     "front": "Recto",
     "back": "Verso"
   },

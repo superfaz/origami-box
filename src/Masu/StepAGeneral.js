@@ -53,21 +53,26 @@ export default function StepAGeneral() {
             <div className="form-check form-switch">
               <input className="form-check-input" type="checkbox" id="withBackDesign" name="withBackDesign"
                 checked={masu.withBackDesign} onChange={handleCheckedChange} />
-              <label className="form-check-label" htmlFor="withBackDesign">{t('masu.withBackDesign')}</label>
+              <label className="form-check-label" htmlFor="withBackDesign">{t('masu.stepAGeneral.withDesign')}</label>
             </div>
+            <div className="text-muted">{t(`masu.stepAGeneral.withDesign${masu.withBackDesign ? 'On' : 'Off'}`)}</div>
           </div>
-          <div className="mb-3 d-none">
+          <div className="mb-3">
             <div className="form-check form-switch">
               <input className="form-check-input" type="checkbox" id="withLid" name="withLid"
                 checked={masu.withLid} onChange={handleCheckedChange} />
-              <label className="form-check-label" htmlFor="withLid">{t('masu.withLid')}</label>
+              <label className="form-check-label" htmlFor="withLid">{t('masu.stepAGeneral.withLid')}</label>
             </div>
+            <div className="text-muted">{t(`masu.stepAGeneral.withLid${masu.withLid ? 'On' : 'Off'}`)}</div>
           </div>
           <div className="mb-3 mt-5 d-flex">
             {masu.withBackDesign &&
               <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/back">{t('masu.stepBBoxDesign.linkTo')}</Link>
             }
-            {!masu.withBackDesign &&
+            {!masu.withBackDesign && masu.withLid &&
+              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/lid">{t('masu.stepELidDesign.linkTo')}</Link>
+            }
+            {!masu.withBackDesign && !masu.withLid &&
               <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
             }
           </div>

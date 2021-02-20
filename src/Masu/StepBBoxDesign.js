@@ -1,15 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TwitterPicker } from 'react-color';
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { updateDetail, deleteText, deleteImage } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
+import { getMasu } from '../store';
 
 export default function StepBBoxDesign({ block }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const masu = useSelector(getMasu);
 
   function handleBackgroundColorChange(color) {
     dispatch(updateDetail(block.key, 'background', color.hex));
@@ -108,7 +110,12 @@ export default function StepBBoxDesign({ block }) {
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">
-          <Link className="btn btn-primary ms-auto" to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
+          {masu.withLid &&
+            <Link className="btn btn-primary ms-auto" to="/lid">{t('masu.stepELidDesign.linkTo')}</Link>
+          }
+          {!masu.withLid &&
+            <Link className="btn btn-primary ms-auto" to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
+          }
         </div>
       </LeftForm>
       <RightPreview>

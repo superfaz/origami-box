@@ -36,6 +36,9 @@ export default function Nav() {
         {masu.withBackDesign &&
           <BreadcrumbItem path={["/back", "/back/text", "/back/image"]} title={t('masu.stepBBoxDesign.title')} withLink={isGeneralValid(masu)} />
         }
+        {masu.withLid &&
+          <BreadcrumbItem path="/lid" title={t('masu.stepELidDesign.title')} withLink={isGeneralValid(masu)} />
+        }
         <BreadcrumbItem path="/generate" title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(masu)} />
       </ol>
     </nav>

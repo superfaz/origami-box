@@ -27,6 +27,12 @@
     },
     "stepAGeneral": {
       "title": "General options",
+      "withDesign": "With a specific design",
+      "withDesignOff": "Only the folding template will be prepared",
+      "withDesignOn": "You will be able to use images and texts to design the box",
+      "withLid": "With a lid",
+      "withLidOff": "",
+      "withLidOn": "A second template will be prepared for the lid of the box",
       "linkBack": "Back to the general options"
     },
     "stepBBoxDesign": {
@@ -70,6 +76,10 @@
       "submit": "Add this image",
       "cancel": "Go back"
     },
+    "stepELidDesign": {
+      "title": "Lid",
+      "linkTo": "Design the lid"
+    },
     "stepZGenerate": {
       "title": "Prepare the Print",
       "linkTo": "Prepare the print",
@@ -81,8 +91,6 @@
       "width": "Width",
       "height": "Height"
     },
-    "withBackDesign": "With a specific design for the back",
-    "withLid": "Add a second template for a lid",
     "front": "Front",
     "back": "Back"
   },
