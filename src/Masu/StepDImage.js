@@ -6,7 +6,7 @@ import { getMasu } from "../store";
 import { addImage } from "./reducer";
 import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
-import { loadImageAsync } from "./helper";
+import { checkValidity, loadImageAsync } from "./helper";
 
 export default function StepDImage() {
   const dispatch = useDispatch();
@@ -28,13 +28,8 @@ export default function StepDImage() {
   });
 
   function handleInputChange(event) {
-    if (event.target.type === 'number') {
-      const number = parseFloat(event.target.value);
-      setState({ ...state, [event.target.name]: isNaN(number) ? event.target.value : number });
-    }
-    else {
-      setState({ ...state, [event.target.name]: event.target.value });
-    }
+    const value = checkValidity(event.target);
+    setState({ ...state, [event.target.name]: value });
   }
 
   function handleSizeChange(event) {

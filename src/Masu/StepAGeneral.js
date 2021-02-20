@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
-import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
+import { updateGeneral } from './reducer';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
+import { checkValidity } from './helper';
 
 export default function StepAGeneral() {
   const dispatch = useDispatch();
@@ -19,30 +20,13 @@ export default function StepAGeneral() {
     setValid(form.current.checkValidity());
   });
 
-  function handleInputChange(e) {
-    if (e.target.checkValidity()) {
-      e.target.className = classNames(e.target.className, "is-valid", { "is-invalid": false });
-    }
-    else {
-      e.target.className = classNames(e.target.className, "is-invalid", { "is-valid": false });
-    }
-
-    if (e.target.type === 'number') {
-      const number = Number(e.target.value);
-      if (!isNaN(number)) {
-        dispatch(updateGeneral(e.target.name, number));
-      }
-      else {
-        dispatch(updateGeneral(e.target.name, e.target.value));
-      }
-    }
-    else {
-      dispatch(updateGeneral(e.target.name, e.target.value));
-    }
+  function handleInputChange(event) {
+    const value = checkValidity(event.target);
+    dispatch(updateGeneral(event.target.name, value));
   }
 
-  function handleCheckedChange(e) {
-    dispatch(updateGeneral(e.target.name, e.target.checked));
+  function handleCheckedChange(event) {
+    dispatch(updateGeneral(event.target.name, event.target.checked));
   }
 
   return (

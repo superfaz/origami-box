@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { updateDetail, deleteText, deleteImage } from './reducer';
-import { TwitterPicker } from 'react-color';
-import MasuTemplateBack from './MasuTemplateBack';
 import { Link } from 'react-router-dom';
+import { TwitterPicker } from 'react-color';
+import { updateDetail, deleteText, deleteImage } from './reducer';
+import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 
 export default function StepBBoxDesign(props) {

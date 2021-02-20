@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from "react-router-dom";
-import { getMasu } from '../store';
 import classNames from 'classnames';
+import { getMasu } from '../store';
 import { isGeneralValid } from './helper';
 import './Nav.css';
 

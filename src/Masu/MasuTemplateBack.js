@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
-import { getMasu } from '../store';
-import Color from 'color';
 import { Helmet } from 'react-helmet';
+import Color from 'color';
+import { getMasu } from '../store';
+import { SvgPaper } from '../Generic/Svg';
 import { useMasuMeasurement } from './helper';
 import { getFonts, getTexts, getImages } from './selectors';
 import { createFaces } from './faces';
-import { SvgPaper } from '../Generic/Svg';
 import SvgCut from './SvgCut';
 import SvgImage from './SvgImage';
 import SvgText from './SvgText';

@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import classNames from 'classnames/dedupe';
 import ReactJson from 'react-json-view';
-import { updateGeneral } from './reducer';
 import { getMasu } from '../store';
+import { updateGeneral } from './reducer';
 import { getFonts } from './selectors';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
 import MasuTemplateBack from './MasuTemplateBack';
+import { checkValidity } from './helper';
 
 export default function StepZGenerate() {
   const dispatch = useDispatch();
@@ -66,15 +66,9 @@ export default function StepZGenerate() {
     };
   }
 
-  function handleInputChange(e) {
-    if (e.target.checkValidity()) {
-      e.target.className = classNames(e.target.className, "is-valid", { "is-invalid": false });
-    }
-    else {
-      e.target.className = classNames(e.target.className, "is-invalid", { "is-valid": false });
-    }
-
-    dispatch(updateGeneral(e.target.name, e.target.value));
+  function handleInputChange(event) {
+    const value = checkValidity(event.target);
+    dispatch(updateGeneral(event.target.name, value));
   }
 
   return (

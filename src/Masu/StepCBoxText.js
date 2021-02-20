@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { getMasu } from '../store';
+import ColorPicker from '../ColorPicker';
 import { addText } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
-import { getMasu } from '../store';
-import ColorPicker from '../ColorPicker';
+import { checkValidity } from './helper';
 
 export default function StepCBoxText(props) {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ export default function StepCBoxText(props) {
   });
 
   function handleInputChange(event) {
-    setState({ ...state, [event.target.name]: event.target.value });
+    const value = checkValidity(event.target);
+    setState({ ...state, [event.target.name]: value });
   }
 
   function handleColorChange(color) {
