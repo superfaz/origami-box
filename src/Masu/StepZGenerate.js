@@ -94,7 +94,7 @@ export default function StepZGenerate() {
         </form>
         {process.env.REACT_APP_JSON_DEBUG &&
           <div className="mb-3">
-            <ReactJson src={masu} />
+            <ReactJson src={masu} name="masu" />
           </div>
         }
       </div>

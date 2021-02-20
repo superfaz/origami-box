@@ -63,7 +63,7 @@ export default function StepDImage() {
     }
   }
 
-  function onSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     dispatch(addImage('box', state));
     setRedirect(true);
@@ -73,7 +73,7 @@ export default function StepDImage() {
     <div className="row">
       <Nav />
       <div className="col-md-6 col-lg-4 mb-3">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="content">{t('masu.stepDImage.content')}</label>
             <input className="form-control" type="file" name="content" id="content"

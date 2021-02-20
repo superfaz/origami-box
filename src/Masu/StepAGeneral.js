@@ -27,7 +27,18 @@ export default function StepAGeneral() {
       e.target.className = classNames(e.target.className, "is-invalid", { "is-valid": false });
     }
 
-    dispatch(updateGeneral(e.target.name, e.target.value));
+    if (e.target.type === 'number') {
+      const number = Number(e.target.value);
+      if (!isNaN(number)) {
+        dispatch(updateGeneral(e.target.name, number));
+      }
+      else {
+        dispatch(updateGeneral(e.target.name, e.target.value));
+      }
+    }
+    else {
+      dispatch(updateGeneral(e.target.name, e.target.value));
+    }
   }
 
   function handleCheckedChange(e) {

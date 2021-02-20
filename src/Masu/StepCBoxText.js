@@ -25,15 +25,15 @@ export default function StepCBoxText(props) {
     color: 'black',
   });
 
-  function onInputChange(event) {
+  function handleInputChange(event) {
     setState({ ...state, [event.target.name]: event.target.value });
   }
 
-  function onColorChange(color) {
+  function handleColorChange(color) {
     setState({ ...state, color: color.hex });
   }
 
-  function onSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     dispatch(addText('box', state));
     setRedirect(true);
@@ -43,18 +43,18 @@ export default function StepCBoxText(props) {
     <div className="row">
       <Nav />
       <div className="col-md-6 col-lg-4 mb-3">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
             <input type="text" name="content" className="form-control" required
-              value={state.content} onChange={onInputChange} />
+              value={state.content} onChange={handleInputChange} />
           </div>
           <fieldset>
             <legend>{t('masu.stepCAddText.positioning')}</legend>
             <div className="mb-3">
               <label htmlFor="face">{t('masu.stepCAddText.face')}</label>
               <select className="form-select" name="face" required
-                value={state.face} onChange={onInputChange}>
+                value={state.face} onChange={handleInputChange}>
                 <option value="front">{t('masu.face.front')}</option>
                 <option value="back">{t('masu.face.back')}</option>
                 <option value="left">{t('masu.face.left')}</option>
@@ -65,13 +65,13 @@ export default function StepCBoxText(props) {
               <label htmlFor="horizontal">{t('masu.stepCAddText.horizontal')}</label>
               <div className="input-group">
                 <select className="form-select" name="horizontal" required
-                  value={state.horizontal} onChange={onInputChange}>
+                  value={state.horizontal} onChange={handleInputChange}>
                   <option value="left">{t('masu.horizontal.left')}</option>
                   <option value="center">{t('masu.horizontal.center')}</option>
                   <option value="right">{t('masu.horizontal.right')}</option>
                 </select>
                 <select className="form-select" name="vertical" required
-                  value={state.vertical} onChange={onInputChange}>
+                  value={state.vertical} onChange={handleInputChange}>
                   <option value="top">{t('masu.vertical.top')}</option>
                   <option value="middle">{t('masu.vertical.middle')}</option>
                   <option value="bottom">{t('masu.vertical.bottom')}</option>
@@ -82,9 +82,9 @@ export default function StepCBoxText(props) {
               <label htmlFor="marginHorizontal">{t('masu.stepCAddText.margins')}</label>
               <div className="input-group">
                 <input type="number" name="marginHorizontal" className="form-control" required
-                  value={state.marginHorizontal} onChange={onInputChange} />
+                  value={state.marginHorizontal} onChange={handleInputChange} />
                 <input type="number" name="marginVertical" className="form-control" required
-                  value={state.marginVertical} onChange={onInputChange} />
+                  value={state.marginVertical} onChange={handleInputChange} />
               </div>
             </div>
           </fieldset>
@@ -97,11 +97,11 @@ export default function StepCBoxText(props) {
               </div>
               <div className="input-group">
                 <input type="text" name="family" className="form-control"
-                  value={state.family} onChange={onInputChange} placeholder="Open Sans" />
+                  value={state.family} onChange={handleInputChange} placeholder="Open Sans" />
                 <ColorPicker name="color" style={{ maxWidth: '3rem' }}
-                  color={state.color} onColorChange={onColorChange} />
+                  color={state.color} onColorChange={handleColorChange} />
                 <input type="number" name="size" className="form-control" style={{ maxWidth: '4.5rem' }}
-                  value={state.size} required min="1" onChange={onInputChange} placeholder="8" />
+                  value={state.size} required min="1" onChange={handleInputChange} placeholder="8" />
               </div>
               <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
             </div>
