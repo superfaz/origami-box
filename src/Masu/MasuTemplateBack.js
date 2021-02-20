@@ -91,7 +91,7 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
         {Boolean(detail.backgroundImage) &&
           <g transform="rotate(180)">
             <image href={detail.backgroundImage} x={-m.max_2} y={-m.max_2} width={m.max} height={m.max}
-              preserveAspectRatio="none" clipPath="url(#max)" />
+              preserveAspectRatio="xMidYMid slice" clipPath="url(#max)" />
           </g>
         }
 
