@@ -9,7 +9,7 @@ import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 import { checkValidity } from './helper';
 
-export default function StepCBoxText(props) {
+export default function StepCText(props) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const masu = useSelector(getMasu);

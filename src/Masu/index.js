@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { getMasu } from '../store';
 import StepAGeneral from './StepAGeneral';
 import StepBBoxDesign from './StepBBoxDesign';
-import StepCBoxText from './StepCBoxText';
+import StepCText from './StepCText';
 import StepDImage from './StepDImage';
 import StepZGenerate from './StepZGenerate';
 
@@ -22,11 +22,8 @@ export default function Masu() {
         <Route exact path="/back">
           <StepBBoxDesign title={t('masu.stepBBoxDesign.title')} block={masu.box} />
         </Route>
-        <Route exact path="/back/text/:id">
-          <StepCBoxText />
-        </Route>
         <Route exact path="/back/text">
-          <StepCBoxText />
+          <StepCText />
         </Route>
         <Route exact path="/back/image">
           <StepDImage />
