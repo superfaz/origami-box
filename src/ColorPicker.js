@@ -4,9 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import './ColorPicker.css';
 
-export default function ColorPicker(props) {
+export default function ColorPicker({ color, onColorChange, ...rest }) {
   const { t } = useTranslation();
-  const { color, onColorChange } = props;
   const [displayPopup, setDisplayPopup] = useState(false);
 
   let colorStyle = {
@@ -14,7 +13,7 @@ export default function ColorPicker(props) {
   };
 
   return (
-    <div className="color-picker" style={props.style}>
+    <div className="color-picker" {...rest}>
       <button type="button" className="form-control" title={t('colorpicker.title')} onClick={() => setDisplayPopup(!displayPopup)}>
         <div className="color-picker-color" style={colorStyle} />
       </button>

@@ -6,8 +6,7 @@ import { getMasu } from '../store';
 import { isGeneralValid } from './helper';
 import './Nav.css';
 
-function BreadcrumbItem(props) {
-  const { path, title, withLink } = props;
+function BreadcrumbItem({ path, title, withLink }) {
   const paths = Array.isArray(path) ? path : [path];
   const location = useLocation();
   const currentPath = location.pathname;

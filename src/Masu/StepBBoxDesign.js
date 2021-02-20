@@ -6,10 +6,9 @@ import { updateDetail, deleteText, deleteImage } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 
-export default function StepBBoxDesign(props) {
+export default function StepBBoxDesign({ block }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { block } = props;
 
   function handleBackgroundColorChange(color) {
     dispatch(updateDetail(block.key, 'background', color.hex));
@@ -91,7 +90,7 @@ export default function StepBBoxDesign(props) {
             <tbody>
               {Object.keys(block.images).map(key =>
                 <tr key={key} className="align-middle">
-                  <td><img src={block.images[key].content} style={{height: '2rem'}} /></td>
+                  <td><img src={block.images[key].content} style={{ height: '2rem' }} /></td>
                   <td>{t(`masu.face.${block.images[key].face}`)}</td>
                   <td className="text-end">
                     <button className="btn btn-outline-danger btn-sm"
