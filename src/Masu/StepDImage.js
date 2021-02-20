@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { getMasu } from "../store";
+import { LeftForm, RightPreview } from '../Generic/Grid';
 import { addImage } from "./reducer";
 import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
@@ -67,7 +68,7 @@ export default function StepDImage() {
   return (
     <div className="row">
       <Nav />
-      <div className="col-md-6 col-lg-4 mb-3">
+      <LeftForm>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="content">{t('masu.stepDImage.content')}</label>
@@ -138,10 +139,10 @@ export default function StepDImage() {
             }
           </div>
         </form>
-      </div>
-      <div className="col-md-6 col-lg-8 mb-3">
+      </LeftForm>
+      <RightPreview>
         <MasuTemplateBack detail={masu.box} image={state} />
-      </div>
+      </RightPreview>
     </div>
   );
 }

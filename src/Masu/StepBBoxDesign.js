@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TwitterPicker } from 'react-color';
+import { LeftForm, RightPreview } from '../Generic/Grid';
 import { updateDetail, deleteText, deleteImage } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
@@ -38,7 +39,7 @@ export default function StepBBoxDesign({ block }) {
   return (
     <div className="row">
       <Nav />
-      <div className="col-md-6 col-lg-4 mb-3">
+      <LeftForm>
         <div className="mb-3">
           <label htmlFor="backgroundColor" className="form-label">{t('masu.stepBBoxDesign.backgroundColor')}</label>
           <TwitterPicker name="backgroundColor" triangle="hide" width="312px"
@@ -109,10 +110,10 @@ export default function StepBBoxDesign({ block }) {
         <div className="mb-3 mt-5 d-flex">
           <Link className="btn btn-primary ms-auto" to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
         </div>
-      </div>
-      <div className="col-md-6 col-lg-8 mb-3">
+      </LeftForm>
+      <RightPreview>
         <MasuTemplateBack detail={block} />
-      </div>
+      </RightPreview>
     </div>
   );
 }

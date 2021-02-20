@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactJson from 'react-json-view';
 import { getMasu } from '../store';
+import { LeftForm, RightPreview } from '../Generic/Grid';
 import { updateGeneral } from './reducer';
 import { getFonts } from './selectors';
 import Nav from './Nav';
@@ -74,7 +75,7 @@ export default function StepZGenerate() {
   return (
     <div className="row">
       <Nav />
-      <div className="col-md-6 col-lg-4 mb-3">
+      <LeftForm>
         <form>
           <div className="mb-3">
             <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
@@ -91,8 +92,8 @@ export default function StepZGenerate() {
             <ReactJson src={masu} name="masu" />
           </div>
         }
-      </div>
-      <div className="col-md-6 col-lg-8 mb-3">
+      </LeftForm>
+      <RightPreview>
         {masu.withBackDesign &&
           <div className="row">
             <div className="col-12 col-lg-6">
@@ -106,7 +107,7 @@ export default function StepZGenerate() {
         {!masu.withBackDesign &&
           <MasuTemplateFront detail={masu.box} />
         }
-      </div>
+      </RightPreview>
     </div>
   );
 }

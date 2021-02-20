@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
 import { getMasu } from '../store';
+import { LeftForm, RightPreview } from '../Generic/Grid';
 import { updateGeneral } from './reducer';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
@@ -32,7 +33,7 @@ export default function StepAGeneral() {
   return (
     <div className="row">
       <Nav />
-      <div className="col-md-6 col-lg-4 mb-3">
+      <LeftForm>
         <form ref={form} noValidate>
           <div className="mb-3">
             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
@@ -71,10 +72,10 @@ export default function StepAGeneral() {
             }
           </div>
         </form>
-      </div>
-      <div className="col-md-6 col-lg-8 mb-3">
+      </LeftForm>
+      <RightPreview>
         <MasuTemplateFront />
-      </div>
+      </RightPreview>
     </div>
   );
 }
