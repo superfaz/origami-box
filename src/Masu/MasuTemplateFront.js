@@ -15,14 +15,14 @@ styles.cut = {
   stroke: 'black',
 };
 
-styles.flip = {
+styles.valley = {
   ...styles.cut,
   strokeDasharray: [4, 2],
 };
 
-styles.inverted = {
+styles.mountain = {
   ...styles.cut,
-  strokeDasharray: [2, 4],
+  strokeDasharray: [2, 1, 0.4, 1],
 };
 
 styles.mark = {

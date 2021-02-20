@@ -47,8 +47,8 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
   const styles = {
     line: style,
     cut: style,
-    flip: style,
-    inverted: style,
+    valley: style,
+    mountain: style,
     mark: noneStyle
   };
 
