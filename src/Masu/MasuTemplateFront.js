@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import QRCode from "qrcode.react";
 import { SvgPaper } from "../Generic/Svg";
 import { getMasu } from "../store";
 import { useMasuMeasurement } from "./helper";
@@ -30,7 +31,7 @@ styles.mark = {
   stroke: 'blue',
 };
 
-export default function MasuTemplateFront({ lid = false }) {
+export default function MasuTemplateFront({ lid = false, print = false }) {
   const masu = useSelector(getMasu);
   const pageLength = parseFloat(masu.pageLength);
   const pageWidth = parseFloat(masu.pageWidth);
@@ -47,6 +48,15 @@ export default function MasuTemplateFront({ lid = false }) {
       <g transform="rotate(45)">
         <SvgCut m={m} styles={styles} />
       </g>
+
+      {/* Footer for print */}
+      {print &&
+        <g transform={`translate(${pageWidth / 2 - 30} ${pageLength / 2 - 30})`}>
+          <QRCode renderAs="svg" size="20" value="https://www.corniro.com" />
+          <text x="-10" y="20" style={{ fontFamily: 'Open Sans', fontSize: 5, textAnchor: "end" }}>designed with corniro.com</text>
+        </g>
+      }
+
     </SvgPaper>
   );
 }
