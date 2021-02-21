@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import StepAGeneral from './StepAGeneral';
-import StepBBoxDesign from './StepBBoxDesign';
+import StepBDesign from './StepBDesign';
 import StepCText from './StepCText';
 import StepDImage from './StepDImage';
 import StepZGenerate from './StepZGenerate';
@@ -17,7 +17,7 @@ export default function Masu() {
           <StepAGeneral />
         </Route>
         <Route exact path="/base">
-          <StepBBoxDesign />
+          <StepBDesign />
         </Route>
         <Route exact path="/base/text">
           <StepCText />
@@ -26,7 +26,7 @@ export default function Masu() {
           <StepDImage />
         </Route>
         <Route exact path="/lid">
-          <StepBBoxDesign lid />
+          <StepBDesign lid />
         </Route>
         <Route exact path="/lid/text">
           <StepCText lid />

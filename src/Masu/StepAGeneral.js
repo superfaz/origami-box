@@ -91,8 +91,11 @@ export default function StepAGeneral() {
             </div>
           }
           <div className="mb-3 mt-5 d-flex">
-            {masu.withDesign &&
-              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/base">{t('masu.stepBBoxDesign.linkTo')}</Link>
+            {masu.withDesign && !masu.withLid &&
+              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/base">{t('masu.stepBDesign.box.linkTo')}</Link>
+            }
+            {masu.withDesign && masu.withLid &&
+              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/base">{t('masu.stepBDesign.base.linkTo')}</Link>
             }
             {!masu.withDesign &&
               <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>

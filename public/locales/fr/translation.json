@@ -27,7 +27,6 @@
     },
     "stepAGeneral": {
       "title": "Options générales",
-      "linkBack": "Retour aux options générales",
       "withDesign": "Définir un design spécifique",
       "withDesignOff": "Seul le patron de pliage sera préparé",
       "withDesignOn": "Vous pourrez définir le design de la boîte en ajoutant textes et images",
@@ -40,10 +39,19 @@
       "lidHeightAuto": "Automatique",
       "lidHeightExplanation": "La hauteur du couvercle sera calculée de telle façon que les patrons de la base et du couvercle auront les mêmes dimensions"
     },
-    "stepBBoxDesign": {
-      "title": "Boîte",
-      "linkTo": "Définir le design de la boîte",
-      "linkBack": "Retour au design de la boîte",
+    "stepBDesign": {
+      "box": {
+        "title": "Boîte",
+        "linkTo": "Définir le design de la boîte"
+      },
+      "base": {
+        "title": "Base",
+        "linkTo": "Définir le design de la base"
+      },
+      "lid": {
+        "title": "Couvercle",
+        "linkTo": "Définir le design du couvercle"
+      },
       "backgroundColor": "Appliquer une couleur de fond?",
       "backgroundImage": "Appliquer une texture?",
       "textFace": "Face",
@@ -80,10 +88,6 @@
       "margins": "Marges",
       "submit": "Ajouter cette image",
       "cancel": "Annuler"
-    },
-    "stepELidDesign": {
-      "title": "Couvercle",
-      "linkTo": "Définir le couvercle"
     },
     "stepZGenerate": {
       "title": "Préparer l'impression",

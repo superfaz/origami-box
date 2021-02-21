@@ -8,7 +8,7 @@ import { updateDetail, deleteText, deleteImage } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 
-export default function StepBBoxDesign({ lid = false }) {
+export default function StepBDesign({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const masu = useSelector(getMasu);
@@ -44,12 +44,12 @@ export default function StepBBoxDesign({ lid = false }) {
       <Nav />
       <LeftForm>
         <div className="mb-3">
-          <label htmlFor="backgroundColor" className="form-label">{t('masu.stepBBoxDesign.backgroundColor')}</label>
+          <label htmlFor="backgroundColor" className="form-label">{t('masu.stepBDesign.backgroundColor')}</label>
           <ColorPicker name="backgroundColor" style={{ maxWidth: '3rem' }}
             color={block.background} onColorChange={handleBackgroundColorChange} />
         </div>
         <div className="mb-3">
-          <label htmlFor="backgroundImage" className="form-label">{t('masu.stepBBoxDesign.backgroundImage')}</label>
+          <label htmlFor="backgroundImage" className="form-label">{t('masu.stepBDesign.backgroundImage')}</label>
           <input className="form-control" type="file" name="backgroundImage" id="backgroundImage" accept="image/png, image/jpeg, image/svg+xml"
             onChange={handleBackgroundImageChange} />
         </div>
@@ -57,8 +57,8 @@ export default function StepBBoxDesign({ lid = false }) {
           <table className="table">
             <thead>
               <tr>
-                <th>{t('masu.stepBBoxDesign.textContent')}</th>
-                <th>{t('masu.stepBBoxDesign.textFace')}</th>
+                <th>{t('masu.stepBDesign.textContent')}</th>
+                <th>{t('masu.stepBDesign.textFace')}</th>
                 <th></th>
               </tr>
             </thead>
@@ -68,7 +68,7 @@ export default function StepBBoxDesign({ lid = false }) {
                   <td>{block.texts[key].content}</td>
                   <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
-                    <button className="btn btn-outline-danger btn-sm" title={t('masu.stepBBoxDesign.textDelete')}
+                    <button className="btn btn-outline-danger btn-sm" title={t('masu.stepBDesign.textDelete')}
                       onClick={() => handleTextDelete(key)}>
                       <i className="fas fa-times"></i>
                     </button>
@@ -85,8 +85,8 @@ export default function StepBBoxDesign({ lid = false }) {
           <table className="table">
             <thead>
               <tr>
-                <th>{t('masu.stepBBoxDesign.imageContent')}</th>
-                <th>{t('masu.stepBBoxDesign.imageFace')}</th>
+                <th>{t('masu.stepBDesign.imageContent')}</th>
+                <th>{t('masu.stepBDesign.imageFace')}</th>
                 <th></th>
               </tr>
             </thead>
@@ -97,7 +97,7 @@ export default function StepBBoxDesign({ lid = false }) {
                   <td>{t(`masu.face.${block.images[key].face}`)}</td>
                   <td className="text-end">
                     <button className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleImageDelete(key)} title={t('masu.stepBBoxDesign.imageDelete')}>
+                      onClick={() => handleImageDelete(key)} title={t('masu.stepBDesign.imageDelete')}>
                       <i className="fas fa-times"></i>
                     </button>
                   </td>
@@ -111,7 +111,7 @@ export default function StepBBoxDesign({ lid = false }) {
         </div>
         <div className="mb-3 mt-5 d-flex">
           {!lid && masu.withLid &&
-            <Link className="btn btn-primary ms-auto" to="/lid">{t('masu.stepELidDesign.linkTo')}</Link>
+            <Link className="btn btn-primary ms-auto" to="/lid">{t('masu.stepBDesign.lid.linkTo')}</Link>
           }
           {(lid || !masu.withLid) &&
             <Link className="btn btn-primary ms-auto" to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>

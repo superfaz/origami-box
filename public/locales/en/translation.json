@@ -27,7 +27,6 @@
     },
     "stepAGeneral": {
       "title": "General options",
-      "linkBack": "Back to the general options",
       "withDesign": "With a specific design",
       "withDesignOff": "Only the folding template will be prepared",
       "withDesignOn": "You will be able to use images and texts to design the box",
@@ -40,10 +39,19 @@
       "lidHeightAuto": "Automatic",
       "lidHeightExplanation": "The height of the lid will be calculated to ensure that the patron of both the base and the lid have the same size"
     },
-    "stepBBoxDesign": {
-      "title": "Box",
-      "linkTo": "Define the box design",
-      "linkBack": "Back to the box design",
+    "stepBDesign": {
+      "box": {
+        "title": "Box",
+        "linkTo": "Define the box design"
+      },
+      "base": {
+        "title": "Base",
+        "linkTo": "Define the base design"
+      },
+      "lid": {
+        "title": "Lid",
+        "linkTo": "Design the lid design"
+      },
       "backgroundColor": "Apply a background color?",
       "backgroundImage": "Define a texture?",
       "textFace": "Face",
@@ -80,10 +88,6 @@
       "margins": "Margins",
       "submit": "Add this image",
       "cancel": "Go back"
-    },
-    "stepELidDesign": {
-      "title": "Lid",
-      "linkTo": "Design the lid"
     },
     "stepZGenerate": {
       "title": "Prepare the Print",

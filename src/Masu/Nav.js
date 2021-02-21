@@ -35,11 +35,14 @@ export default function Nav() {
     <nav className="nav-steps" aria-label="breadcrumb">
       <ol className="breadcrumb">
         <BreadcrumbItem path="/" title={t('masu.stepAGeneral.title')} withLink={isGeneralValid(masu)} />
-        {masu.withDesign &&
-          <BreadcrumbItem path={["/base", "/base/text", "/base/image"]} title={t('masu.stepBBoxDesign.title')} withLink={isGeneralValid(masu)} />
+        {!masu.withLid && masu.withDesign &&
+          <BreadcrumbItem path={["/base", "/base/text", "/base/image"]} title={t('masu.stepBDesign.box.title')} withLink={isGeneralValid(masu)} />
         }
         {masu.withLid && masu.withDesign &&
-          <BreadcrumbItem path={["/lid", "/lid/text", "/lid/image"]} title={t('masu.stepELidDesign.title')} withLink={isGeneralValid(masu)} />
+          <BreadcrumbItem path={["/base", "/base/text", "/base/image"]} title={t('masu.stepBDesign.base.title')} withLink={isGeneralValid(masu)} />
+        }
+        {masu.withLid && masu.withDesign &&
+          <BreadcrumbItem path={["/lid", "/lid/text", "/lid/image"]} title={t('masu.stepBDesign.lid.title')} withLink={isGeneralValid(masu)} />
         }
         <BreadcrumbItem path="/generate" title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(masu)} />
       </ol>
