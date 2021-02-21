@@ -15,7 +15,7 @@ export default function StepCText({ lid = false }) {
   const [redirect, setRedirect] = useState(false);
   const [state, setState] = useState({
     content: '',
-    face: 'front',
+    face: 'top',
     horizontal: 'center',
     vertical: 'middle',
     marginHorizontal: 2,
@@ -56,6 +56,7 @@ export default function StepCText({ lid = false }) {
               <label htmlFor="face">{t('masu.stepCAddText.face')}</label>
               <select className="form-select" name="face" required
                 value={state.face} onChange={handleInputChange}>
+                <option value="top">{t('masu.face.top')}</option>
                 <option value="front">{t('masu.face.front')}</option>
                 <option value="back">{t('masu.face.back')}</option>
                 <option value="left">{t('masu.face.left')}</option>

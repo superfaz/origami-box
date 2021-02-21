@@ -10,6 +10,7 @@
       "letter": "lettre (US)"
     },
     "face": {
+      "top": "Dessus",
       "front": "Avant",
       "back": "Arrière",
       "left": "Gauche",

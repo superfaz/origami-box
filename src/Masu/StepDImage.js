@@ -16,7 +16,7 @@ export default function StepDImage({ lid = false }) {
     content: null,
     originalWidth: null,
     originalHeight: null,
-    face: 'front',
+    face: 'top',
     size: 'auto',
     width: '',
     height: '',
@@ -96,6 +96,7 @@ export default function StepDImage({ lid = false }) {
               <label htmlFor="face">{t('masu.stepDImage.face')}</label>
               <select className="form-select" name="face" required
                 value={state.face} onChange={handleInputChange}>
+                <option value="top">{t('masu.face.top')}</option>
                 <option value="front">{t('masu.face.front')}</option>
                 <option value="back">{t('masu.face.back')}</option>
                 <option value="left">{t('masu.face.left')}</option>

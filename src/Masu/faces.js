@@ -36,6 +36,15 @@ export function createFaces(l_2, w_2, h_2) {
       hori: l_2,
       vert: h_2,
     },
+    top: {
+      x: 0,
+      y: 0,
+      width: 2 * w_2,
+      height: 2 * l_2,
+      rotate: 180,
+      hori: w_2,
+      vert: l_2,
+    }
   }
 
   return faces;
