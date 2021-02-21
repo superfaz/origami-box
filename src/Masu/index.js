@@ -1,7 +1,5 @@
-import { useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getMasu } from '../store';
 import StepAGeneral from './StepAGeneral';
 import StepBBoxDesign from './StepBBoxDesign';
 import StepCText from './StepCText';
@@ -10,7 +8,6 @@ import StepZGenerate from './StepZGenerate';
 
 export default function Masu() {
   const { t } = useTranslation();
-  const masu = useSelector(getMasu);
 
   return (
     <div className="container">

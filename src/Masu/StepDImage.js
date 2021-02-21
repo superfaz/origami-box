@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { getMasu } from "../store";
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { addImage } from "./reducer";
 import MasuTemplateBack from "./MasuTemplateBack";
@@ -12,7 +11,6 @@ import { checkValidity, loadImageAsync } from "./helper";
 export default function StepDImage({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const masu = useSelector(getMasu);
   const [redirect, setRedirect] = useState(false);
   const [state, setState] = useState({
     content: null,

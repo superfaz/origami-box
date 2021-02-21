@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { getMasu } from '../store';
+import { useDispatch } from 'react-redux';
 import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { addText } from './reducer';
@@ -13,7 +12,6 @@ import { checkValidity } from './helper';
 export default function StepCText({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const masu = useSelector(getMasu);
   const [redirect, setRedirect] = useState(false);
   const [state, setState] = useState({
     content: '',
