@@ -77,7 +77,7 @@ export default function StepBBoxDesign({ block }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to="/back/text">{t('masu.stepCAddText.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to="/base/text">{t('masu.stepCAddText.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3">
@@ -105,7 +105,7 @@ export default function StepBBoxDesign({ block }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to="/back/image">{t('masu.stepDImage.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to="/base/image">{t('masu.stepDImage.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">

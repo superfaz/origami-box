@@ -56,11 +56,11 @@ export default function StepAGeneral() {
           </div>
           <div className="mb-3">
             <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="withBackDesign" name="withBackDesign"
-                checked={masu.withBackDesign} onChange={handleCheckedChange} />
-              <label className="form-check-label" htmlFor="withBackDesign">{t('masu.stepAGeneral.withDesign')}</label>
+              <input className="form-check-input" type="checkbox" id="withDesign" name="withDesign"
+                checked={masu.withDesign} onChange={handleCheckedChange} />
+              <label className="form-check-label" htmlFor="withDesign">{t('masu.stepAGeneral.withDesign')}</label>
             </div>
-            <div className="text-muted">{t(`masu.stepAGeneral.withDesign${masu.withBackDesign ? 'On' : 'Off'}`)}</div>
+            <div className="text-muted">{t(`masu.stepAGeneral.withDesign${masu.withDesign ? 'On' : 'Off'}`)}</div>
           </div>
           <div className="mb-3">
             <div className="form-check form-switch">
@@ -91,10 +91,10 @@ export default function StepAGeneral() {
             </div>
           }
           <div className="mb-3 mt-5 d-flex">
-            {masu.withBackDesign &&
-              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/back">{t('masu.stepBBoxDesign.linkTo')}</Link>
+            {masu.withDesign &&
+              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/base">{t('masu.stepBBoxDesign.linkTo')}</Link>
             }
-            {!masu.withBackDesign &&
+            {!masu.withDesign &&
               <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
             }
           </div>

@@ -28,10 +28,10 @@ export default function StepELidDesign() {
         </div>
       </LeftForm>
       <RightPreview>
-        {masu.withBackDesign &&
+        {masu.withDesign &&
           <MasuTemplateBack detail={masu.lid} />
         }
-        {!masu.withBackDesign &&
+        {!masu.withDesign &&
           <MasuTemplateFront lid />
         }
       </RightPreview>

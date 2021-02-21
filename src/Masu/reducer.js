@@ -7,7 +7,7 @@ const initialState = {
   length: '',
   width: '',
   height: '',
-  withBackDesign: true,
+  withDesign: true,
   withLid: false,
   box: {
     key: 'box',

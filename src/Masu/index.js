@@ -20,13 +20,13 @@ export default function Masu() {
         <Route exact path="/">
           <StepAGeneral />
         </Route>
-        <Route exact path="/back">
+        <Route exact path="/base">
           <StepBBoxDesign title={t('masu.stepBBoxDesign.title')} block={masu.box} />
         </Route>
-        <Route exact path="/back/text">
+        <Route exact path="/base/text">
           <StepCText />
         </Route>
-        <Route exact path="/back/image">
+        <Route exact path="/base/image">
           <StepDImage />
         </Route>
         <Route exact path="/lid">

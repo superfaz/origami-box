@@ -98,7 +98,7 @@ export default function StepZGenerate() {
           <div className="col-12 col-lg-6 mb-3">
             <MasuTemplateFront print="true" />
           </div>
-          {masu.withBackDesign &&
+          {masu.withDesign &&
             <div className="col-12 col-lg-6 mb-3">
               <MasuTemplateBack detail={masu.box} print="true" />
             </div>
@@ -108,7 +108,7 @@ export default function StepZGenerate() {
               <MasuTemplateFront lid print="true" />
             </div>
           }
-          {masu.withLid && masu.withBackDesign &&
+          {masu.withLid && masu.withDesign &&
             <div className="col-12 col-lg-6 mb-3">
               <MasuTemplateBack detail={masu.lid} print="true" />
             </div>
