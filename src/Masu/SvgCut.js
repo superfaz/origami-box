@@ -1,7 +1,4 @@
-import { useMasuMeasurement } from "./helper";
-
-export default function SvgCut({ masu, styles }) {
-  const m = useMasuMeasurement(masu);
+export default function SvgCut({ m, styles }) {
   const mark = 2.5;
 
   return (

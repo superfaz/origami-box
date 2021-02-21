@@ -95,7 +95,7 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
           </g>
         }
 
-        <SvgCut masu={masu} styles={styles} />
+        <SvgCut m={m} styles={styles} />
 
         {Object.keys(faces).map(key => {
           const face = faces[key];

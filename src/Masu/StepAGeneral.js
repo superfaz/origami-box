@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
 import { getMasu } from '../store';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { updateGeneral } from './reducer';
+import { updateDetail, updateGeneral } from './reducer';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
 import { checkValidity } from './helper';
@@ -24,6 +24,11 @@ export default function StepAGeneral() {
   function handleInputChange(event) {
     const value = checkValidity(event.target);
     dispatch(updateGeneral(event.target.name, value));
+  }
+
+  function handleLidInputChange(event) {
+    const value = checkValidity(event.target);
+    dispatch(updateDetail('lid', event.target.name, value));
   }
 
   function handleCheckedChange(event) {
@@ -65,6 +70,26 @@ export default function StepAGeneral() {
             </div>
             <div className="text-muted">{t(`masu.stepAGeneral.withLid${masu.withLid ? 'On' : 'Off'}`)}</div>
           </div>
+          {masu.withLid &&
+            <div className="mb-3">
+              <label htmlFor="delta" className="form-label">{t('masu.stepAGeneral.delta')}</label>
+              <input className="form-control" type="number" name="delta" id="delta" required
+                min="0" max="10"
+                value={masu.lid.delta} onChange={handleLidInputChange} />
+              <div className="text-muted">{t('masu.stepAGeneral.deltaExplanation')}</div>
+            </div>
+          }
+          {masu.withLid &&
+            <div className="mb-3">
+              <label htmlFor="lidHeight" className="form-label">{t('masu.stepAGeneral.lidHeight')}</label>
+              <input className="form-control" type="number" name="height" id="lidHeight"
+                min="0" max={masu.height} placeholder={t('masu.stepAGeneral.lidHeightAuto')}
+                value={masu.lid.height} onChange={handleLidInputChange} />
+              {masu.lid.height === '' &&
+                <div className="text-muted">{t('masu.stepAGeneral.lidHeightExplanation')}</div>
+              }
+            </div>
+          }
           <div className="mb-3 mt-5 d-flex">
             {masu.withBackDesign &&
               <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/back">{t('masu.stepBBoxDesign.linkTo')}</Link>
@@ -79,7 +104,19 @@ export default function StepAGeneral() {
         </form>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateFront />
+        {masu.withLid &&
+          <div className="row">
+            <div className="col-12 col-lg-6 mb-3">
+              <MasuTemplateFront />
+            </div>
+            <div className="col-12 col-lg-6 mb-3">
+              <MasuTemplateFront lid />
+            </div>
+          </div>
+        }
+        {!masu.withLid &&
+          <MasuTemplateFront />
+        }
       </RightPreview>
     </div>
   );

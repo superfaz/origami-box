@@ -27,13 +27,18 @@
     },
     "stepAGeneral": {
       "title": "Options générales",
-      "withDesign": "Définir un design spécifique pour la boîte",
+      "linkBack": "Retour aux options générales",
+      "withDesign": "Définir un design spécifique",
       "withDesignOff": "Seul le patron de pliage sera préparé",
       "withDesignOn": "Vous pourrez définir le design de la boîte en ajoutant textes et images",
       "withLid": "Avec un couvercle",
       "withLidOff": "",
-      "withLidOn": "Un second patron de pliage sera préparer pour le couvercle de la boîte",
-      "linkBack": "Retour aux options générales"
+      "withLidOn": "Un second patron de pliage sera préparé pour le couvercle de la boîte",
+      "delta": "Delta",
+      "deltaExplanation": "Différence entre les dimensions (longueur, largeur) du couvercle et celles de la base de la boîte",
+      "lidHeight": "Hauteur du couvercle",
+      "lidHeightAuto": "Automatique",
+      "lidHeightExplanation": "La hauteur du couvercle sera calculée de telle façon que les patrons de la base et du couvercle auront les mêmes dimensions"
     },
     "stepBBoxDesign": {
       "title": "Boîte",

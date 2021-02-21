@@ -38,14 +38,21 @@ export function checkValidity(target) {
   return target.value;
 }
 
-export function useMasuMeasurement(masu) {
+export function useMasuMeasurement(masu, lid = false) {
 
-  const l = parseFloat(masu.length);
-  const w = parseFloat(masu.width);
-  const h = parseFloat(masu.height);
+  let l = parseFloat(masu.length);
+  let w = parseFloat(masu.width);
+  let h = parseFloat(masu.height);
 
   if (isNaN(l + w + h) || l <= 0 || w <= 0 || h <= 0) {
     return null;
+  }
+
+  // Adjust for lid, if needed
+  if (lid) {
+    l += masu.lid.delta;
+    w += masu.lid.delta;
+    h = masu.lid.height === '' ? h - .5 * masu.lid.delta : masu.lid.height;
   }
 
   const max = l + w + 4.0 * h;

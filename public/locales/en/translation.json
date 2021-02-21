@@ -27,13 +27,18 @@
     },
     "stepAGeneral": {
       "title": "General options",
+      "linkBack": "Back to the general options",
       "withDesign": "With a specific design",
       "withDesignOff": "Only the folding template will be prepared",
       "withDesignOn": "You will be able to use images and texts to design the box",
       "withLid": "With a lid",
       "withLidOff": "",
       "withLidOn": "A second template will be prepared for the lid of the box",
-      "linkBack": "Back to the general options"
+      "delta": "Delta",
+      "deltaExplanation": "Difference between lid length/width compared to the base of the box",
+      "lidHeight": "Lid height",
+      "lidHeightAuto": "Automatic",
+      "lidHeightExplanation": "The height of the lid will be calculated to ensure that the patron of both the base and the lid have the same size"
     },
     "stepBBoxDesign": {
       "title": "Box",

@@ -30,12 +30,12 @@ styles.mark = {
   stroke: 'blue',
 };
 
-export default function MasuTemplateFront() {
+export default function MasuTemplateFront({ lid = false }) {
   const masu = useSelector(getMasu);
   const pageLength = parseFloat(masu.pageLength);
   const pageWidth = parseFloat(masu.pageWidth);
 
-  const m = useMasuMeasurement(masu);
+  const m = useMasuMeasurement(masu, lid);
   if (m === null) {
     return (
       <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}></SvgPaper>
@@ -45,7 +45,7 @@ export default function MasuTemplateFront() {
   return (
     <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}>
       <g transform="rotate(45)">
-        <SvgCut masu={masu} styles={styles} />
+        <SvgCut m={m} styles={styles} />
       </g>
     </SvgPaper>
   );

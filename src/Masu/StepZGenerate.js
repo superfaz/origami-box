@@ -94,19 +94,26 @@ export default function StepZGenerate() {
         }
       </LeftForm>
       <RightPreview>
-        {masu.withBackDesign &&
-          <div className="row">
-            <div className="col-12 col-lg-6">
-              <MasuTemplateFront detail={masu.box} print="true" />
-            </div>
-            <div className="col-12 col-lg-6">
+        <div className="row">
+          <div className="col-12 col-lg-6 mb-3">
+            <MasuTemplateFront print="true" />
+          </div>
+          {masu.withBackDesign &&
+            <div className="col-12 col-lg-6 mb-3">
               <MasuTemplateBack detail={masu.box} print="true" />
             </div>
-          </div>
-        }
-        {!masu.withBackDesign &&
-          <MasuTemplateFront detail={masu.box} />
-        }
+          }
+          {masu.withLid &&
+            <div className="col-12 col-lg-6 mb-3">
+              <MasuTemplateFront lid print="true" />
+            </div>
+          }
+          {masu.withLid && masu.withBackDesign &&
+            <div className="col-12 col-lg-6 mb-3">
+              <MasuTemplateBack detail={masu.lid} print="true" />
+            </div>
+          }
+        </div>
       </RightPreview>
     </div>
   );
