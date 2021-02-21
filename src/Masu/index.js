@@ -6,7 +6,6 @@ import StepAGeneral from './StepAGeneral';
 import StepBBoxDesign from './StepBBoxDesign';
 import StepCText from './StepCText';
 import StepDImage from './StepDImage';
-import StepELidDesign from './StepELidDesign';
 import StepZGenerate from './StepZGenerate';
 
 export default function Masu() {
@@ -21,7 +20,7 @@ export default function Masu() {
           <StepAGeneral />
         </Route>
         <Route exact path="/base">
-          <StepBBoxDesign title={t('masu.stepBBoxDesign.title')} block={masu.box} />
+          <StepBBoxDesign />
         </Route>
         <Route exact path="/base/text">
           <StepCText />
@@ -30,7 +29,13 @@ export default function Masu() {
           <StepDImage />
         </Route>
         <Route exact path="/lid">
-          <StepELidDesign />
+          <StepBBoxDesign lid />
+        </Route>
+        <Route exact path="/lid/text">
+          <StepCText lid />
+        </Route>
+        <Route exact path="/lid/image">
+          <StepDImage lid />
         </Route>
         <Route exact path="/generate">
           <StepZGenerate />

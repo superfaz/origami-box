@@ -9,7 +9,7 @@ import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
 import { checkValidity, loadImageAsync } from "./helper";
 
-export default function StepDImage() {
+export default function StepDImage({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const masu = useSelector(getMasu);
@@ -61,7 +61,7 @@ export default function StepDImage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addImage('box', state));
+    dispatch(addImage(lid ? 'lid' : 'base', state));
     setRedirect(true);
   }
 
@@ -132,16 +132,16 @@ export default function StepDImage() {
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link className="btn btn-link" to="/base">{t('masu.stepDImage.cancel')}</Link>
+            <Link className="btn btn-link" to={`/${lid ? 'lid' : 'base'}`}>{t('masu.stepDImage.cancel')}</Link>
             <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepDImage.submit')}</button>
             {redirect &&
-              <Redirect to="/base" />
+              <Redirect to={`/${lid ? 'lid' : 'base'}`} />
             }
           </div>
         </form>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateBack detail={masu.box} image={state} />
+        <MasuTemplateBack lid={lid} image={state} />
       </RightPreview>
     </div>
   );

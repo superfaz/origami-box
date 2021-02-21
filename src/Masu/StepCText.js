@@ -10,7 +10,7 @@ import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 import { checkValidity } from './helper';
 
-export default function StepCText() {
+export default function StepCText({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const masu = useSelector(getMasu);
@@ -38,7 +38,7 @@ export default function StepCText() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addText('box', state));
+    dispatch(addText(lid ? 'lid' : 'base', state));
     setRedirect(true);
   }
 
@@ -110,16 +110,16 @@ export default function StepCText() {
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link className="btn btn-link" to="/base">{t('masu.stepCAddText.cancel')}</Link>
+            <Link className="btn btn-link" to={`/${lid ? 'lid' : 'base'}`}>{t('masu.stepCAddText.cancel')}</Link>
             <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepCAddText.submit')}</button>
             {redirect &&
-              <Redirect to="/base" />
+              <Redirect to={`/${lid ? 'lid' : 'base'}`} />
             }
           </div>
         </form>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateBack detail={masu.box} text={state} />
+        <MasuTemplateBack lid={lid} text={state} />
       </RightPreview>
     </div>
   );

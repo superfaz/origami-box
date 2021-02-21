@@ -22,14 +22,15 @@ const noneStyle = {
   stroke: 'none',
 };
 
-export default function MasuTemplateBack({ detail, print = false, text = null, image = null }) {
+export default function MasuTemplateBack({ lid = false, print = false, text = null, image = null }) {
   const masu = useSelector(getMasu);
+  const block = lid ? masu.lid : masu.base;
   const pageLength = parseFloat(masu.pageLength);
   const pageWidth = parseFloat(masu.pageWidth);
-  const images = getImages(masu, image)
-  const texts = getTexts(masu, text);
+  const images = getImages(block, image);
+  const texts = getTexts(block, text);
 
-  const m = useMasuMeasurement(masu);
+  const m = useMasuMeasurement(masu, lid);
   const faces = createFaces(m.l_2, m.w_2, m.h_2);
 
   if (m === null) {
@@ -38,7 +39,7 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
     );
   }
 
-  const color = Color(detail.background);
+  const color = Color(block.background);
   const style = {
     ...referenceStyle,
     stroke: color.isDark() ? 'white' : 'black',
@@ -85,12 +86,12 @@ export default function MasuTemplateBack({ detail, print = false, text = null, i
 
       <g transform="rotate(135)">
         <polygon points={`0,-${m.max_2 + 5} ${m.max_2 + 5},0 0,${m.max_2 + 5} -${m.max_2 + 5},0`} style={{
-          fill: detail.background
+          fill: block.background
         }} />
 
-        {Boolean(detail.backgroundImage) &&
+        {Boolean(block.backgroundImage) &&
           <g transform="rotate(180)">
-            <image href={detail.backgroundImage} x={-m.max_2} y={-m.max_2} width={m.max} height={m.max}
+            <image href={block.backgroundImage} x={-m.max_2} y={-m.max_2} width={m.max} height={m.max}
               preserveAspectRatio="xMidYMid slice" clipPath="url(#max)" />
           </g>
         }

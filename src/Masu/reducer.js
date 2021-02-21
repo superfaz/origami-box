@@ -9,8 +9,8 @@ const initialState = {
   height: '',
   withDesign: true,
   withLid: false,
-  box: {
-    key: 'box',
+  base: {
+    key: 'base',
     background: '#8ED1FC',
     backgroundImage: null,
     texts: {},

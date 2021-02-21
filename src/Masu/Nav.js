@@ -20,7 +20,9 @@ function BreadcrumbItem({ path, title, withLink }) {
       {withLink && !paths.includes(currentPath) &&
         <Link to={paths[0]}>{title}</Link>
       }
-      {!(withLink && !paths.includes(currentPath)) && title}
+      {!(withLink && !paths.includes(currentPath)) &&
+        title
+      }
     </li>
   );
 }
@@ -37,7 +39,7 @@ export default function Nav() {
           <BreadcrumbItem path={["/base", "/base/text", "/base/image"]} title={t('masu.stepBBoxDesign.title')} withLink={isGeneralValid(masu)} />
         }
         {masu.withLid && masu.withDesign &&
-          <BreadcrumbItem path="/lid" title={t('masu.stepELidDesign.title')} withLink={isGeneralValid(masu)} />
+          <BreadcrumbItem path={["/lid", "/lid/text", "/lid/image"]} title={t('masu.stepELidDesign.title')} withLink={isGeneralValid(masu)} />
         }
         <BreadcrumbItem path="/generate" title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(masu)} />
       </ol>

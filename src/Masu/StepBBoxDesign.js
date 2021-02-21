@@ -8,10 +8,11 @@ import { updateDetail, deleteText, deleteImage } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 
-export default function StepBBoxDesign({ block }) {
+export default function StepBBoxDesign({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const masu = useSelector(getMasu);
+  const block = lid ? masu.lid : masu.base;
 
   function handleBackgroundColorChange(color) {
     dispatch(updateDetail(block.key, 'background', color.hex));
@@ -67,8 +68,8 @@ export default function StepBBoxDesign({ block }) {
                   <td>{block.texts[key].content}</td>
                   <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
-                    <button className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleTextDelete(key)} title={t('masu.stepBBoxDesign.textDelete')}>
+                    <button className="btn btn-outline-danger btn-sm" title={t('masu.stepBBoxDesign.textDelete')}
+                      onClick={() => handleTextDelete(key)}>
                       <i className="fas fa-times"></i>
                     </button>
                   </td>
@@ -77,7 +78,7 @@ export default function StepBBoxDesign({ block }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to="/base/text">{t('masu.stepCAddText.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to={`/${block.key}/text`}>{t('masu.stepCAddText.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3">
@@ -105,20 +106,20 @@ export default function StepBBoxDesign({ block }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to="/base/image">{t('masu.stepDImage.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to={`/${block.key}/image`}>{t('masu.stepDImage.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">
-          {masu.withLid &&
+          {!lid && masu.withLid &&
             <Link className="btn btn-primary ms-auto" to="/lid">{t('masu.stepELidDesign.linkTo')}</Link>
           }
-          {!masu.withLid &&
+          {(lid || !masu.withLid) &&
             <Link className="btn btn-primary ms-auto" to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
           }
         </div>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateBack detail={block} />
+        <MasuTemplateBack lid={lid} />
       </RightPreview>
     </div>
   );
