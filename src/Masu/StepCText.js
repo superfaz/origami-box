@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMasu } from '../store';
-import ColorPicker from '../ColorPicker';
+import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { addText } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';

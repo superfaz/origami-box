@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { TwitterPicker } from 'react-color';
+import { getMasu } from '../store';
+import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { updateDetail, deleteText, deleteImage } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
-import { getMasu } from '../store';
 
 export default function StepBBoxDesign({ block }) {
   const dispatch = useDispatch();
@@ -44,10 +44,12 @@ export default function StepBBoxDesign({ block }) {
       <LeftForm>
         <div className="mb-3">
           <label htmlFor="backgroundColor" className="form-label">{t('masu.stepBBoxDesign.backgroundColor')}</label>
-          <TwitterPicker name="backgroundColor" triangle="hide" width="312px"
+          <ColorPicker name="backgroundColor" style={{ maxWidth: '3rem' }}
+            color={block.background} onColorChange={handleBackgroundColorChange} />
+          {/*                 <TwitterPicker name="backgroundColor" triangle="hide" width="312px"
             colors={['#000000', '#FFFFFF', '#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF']}
             color={block.background} onChangeComplete={handleBackgroundColorChange} />
-        </div>
+ */}        </div>
         <div className="mb-3">
           <label htmlFor="backgroundImage" className="form-label">{t('masu.stepBBoxDesign.backgroundImage')}</label>
           <input className="form-control" type="file" name="backgroundImage" id="backgroundImage" accept="image/png, image/jpeg, image/svg+xml"
