@@ -52,7 +52,7 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
       {/* Footer for print */}
       {print &&
         <g transform={`translate(${pageWidth / 2 - 30} ${pageLength / 2 - 30})`}>
-          <QRCode renderAs="svg" size="20" value="https://www.corniro.com" />
+          <QRCode renderAs="svg" size={20} value="https://www.corniro.com" />
           <text x="-10" y="20" style={{ fontFamily: 'Open Sans', fontSize: 5, textAnchor: "end" }}>designed with corniro.com</text>
         </g>
       }
