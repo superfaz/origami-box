@@ -30,6 +30,7 @@ export function getFonts(masu) {
     let fonts = getTexts(masu.base)
       .concat(getTexts(masu.lid))
       .map(t => t.family)
+      .concat(['Open Sans'])
       .map(t => t === '' ? 'Open Sans' : t)
       .sort();
     return [...new Set(fonts)];
