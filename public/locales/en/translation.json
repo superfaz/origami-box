@@ -66,6 +66,7 @@
       "linkTo": "Add a text",
       "content": "Content",
       "multiline": "With multiple lines?",
+      "lineSpacing": "Line spacing",
       "positioning": "Positioning",
       "face": "Face",
       "horizontal": "Alignment",

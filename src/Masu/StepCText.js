@@ -21,6 +21,7 @@ export default function StepCText({ lid = false }) {
     vertical: 'middle',
     marginHorizontal: 2,
     marginVertical: 2,
+    lineSpacing: 1.15,
     family: '',
     size: 8,
     color: 'black',
@@ -67,6 +68,14 @@ export default function StepCText({ lid = false }) {
               <label className="form-check-label" htmlFor="withDesign">{t('masu.stepCText.multiline')}</label>
             </div>
           </div>
+          {multiline &&
+            <div className="mb-3">
+              <label htmlFor="lineSpacing">{t('masu.stepCText.lineSpacing')}</label>
+              <input type="number" name="lineSpacing" className="form-control" required
+                min="0" step="0.01"
+                value={state.lineSpacing} onChange={handleInputChange} />
+            </div>
+          }
           <fieldset>
             <legend>{t('masu.stepCText.positioning')}</legend>
             <div className="mb-3">

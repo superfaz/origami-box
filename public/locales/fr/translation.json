@@ -65,6 +65,7 @@
     "stepCText": {
       "linkTo": "Ajouter un texte",
       "content": "Contenu",
+      "lineSpacing": "Interligne",
       "multiline": "Avec plusieurs lignes?",
       "positioning": "Position",
       "face": "Face",

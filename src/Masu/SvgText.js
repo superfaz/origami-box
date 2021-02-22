@@ -8,7 +8,6 @@ export default function Text({ text }) {
   const m = useMasuMeasurement(masu);
   const textRef = useRef(null);
   const [box, setBox] = useState(null);
-  const lineSpacing = 1.15;
 
   let { configuration, style } = configurePositioning(text, m.l_2, m.w_2, m.h_2);
   style.fontSize = text.size;
@@ -23,7 +22,7 @@ export default function Text({ text }) {
 
   // Multiline management - required as SVG doesn't support it and only align the baseline.
   const lines = text.content.split('\n');
-  const lineHeight = lineSpacing * text.size;
+  const lineHeight = text.lineSpacing * text.size;
   switch (text.vertical) {
     case 'top':
       // All good
