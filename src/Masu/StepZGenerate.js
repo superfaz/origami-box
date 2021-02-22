@@ -21,7 +21,7 @@ export default function StepZGenerate() {
       newWindow.document.head.innerHTML = `
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <style>
-        * {
+        :not(tspan) {
             margin: 0;
             padding: 0;
             font-family: 'Open Sans', sans-serif;
