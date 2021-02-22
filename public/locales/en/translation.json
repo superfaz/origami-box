@@ -65,6 +65,7 @@
     "stepCAddText": {
       "linkTo": "Add a text",
       "content": "Content",
+      "multiline": "With multiple lines?",
       "positioning": "Positioning",
       "face": "Face",
       "horizontal": "Alignment",

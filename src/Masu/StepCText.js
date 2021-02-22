@@ -13,6 +13,7 @@ export default function StepCText({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [redirect, setRedirect] = useState(false);
+  const [multiline, setMultiline] = useState(false);
   const [state, setState] = useState({
     content: '',
     face: 'top',
@@ -45,10 +46,26 @@ export default function StepCText({ lid = false }) {
       <Nav />
       <LeftForm>
         <form onSubmit={handleSubmit}>
+          {!multiline &&
+            <div className="mb-3">
+              <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
+              <input type="text" name="content" className="form-control" required
+                value={state.content} onChange={handleInputChange} />
+            </div>
+          }
+          {multiline &&
+            <div className="mb-3">
+              <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
+              <textarea name="content" className="form-control" rows="5"
+                value={state.content} onChange={handleInputChange} />
+            </div>
+          }
           <div className="mb-3">
-            <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
-            <input type="text" name="content" className="form-control" required
-              value={state.content} onChange={handleInputChange} />
+            <div className="form-check form-switch">
+              <input className="form-check-input" type="checkbox" id="multiline" name="multiline"
+                checked={multiline} onChange={e => setMultiline(e.target.checked)} />
+              <label className="form-check-label" htmlFor="withDesign">{t('masu.stepCAddText.multiline')}</label>
+            </div>
           </div>
           <fieldset>
             <legend>{t('masu.stepCAddText.positioning')}</legend>

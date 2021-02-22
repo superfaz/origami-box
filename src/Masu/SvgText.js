@@ -27,7 +27,9 @@ export default function Text({ text }) {
           stroke="black" fill="yellow" />
       }
       <text ref={textRef} style={style} x={configuration.x} y={configuration.y}>
-        {text.content}
+        {text.content.split('\n').map((line, index) => {
+          return <tspan key={index} x={0} y={1.15 * index * text.size}>{line}</tspan>
+        })}
       </text>
     </g>
   );
