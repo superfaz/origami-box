@@ -8,17 +8,33 @@ export default function Text({ text }) {
   const m = useMasuMeasurement(masu);
   const textRef = useRef(null);
   const [box, setBox] = useState(null);
+  const lineSpacing = 1.15;
 
-  const { configuration, style } = configurePositioning(text, m.l_2, m.w_2, m.h_2);
+  let { configuration, style } = configurePositioning(text, m.l_2, m.w_2, m.h_2);
   style.fontSize = text.size;
   style.fill = text.color;
-  style.lineHeight = 1;
 
   if (text.family !== '') {
     style.fontFamily = text.family;
   }
 
+  // Used for debugging only - see REACT_APP_SVG_DEBUG
   useEffect(() => setBox(textRef.current?.getBBox()), [textRef, text, text.content, text.family]);
+
+  // Multiline management - required as SVG doesn't support it and only align the baseline.
+  const lines = text.content.split('\n');
+  const lineHeight = lineSpacing * text.size;
+  switch (text.vertical) {
+    case 'top':
+      // All good
+      break;
+    case 'middle':
+      configuration.y -= (lines.length - 1) * lineHeight / 2;
+      break;
+    case 'bottom':
+      configuration.y -= (lines.length - 1) * lineHeight;
+      break;
+  }
 
   return (
     <g>
@@ -27,8 +43,8 @@ export default function Text({ text }) {
           stroke="black" fill="yellow" />
       }
       <text ref={textRef} style={style} x={configuration.x} y={configuration.y}>
-        {text.content.split('\n').map((line, index) => {
-          return <tspan key={index} x={0} y={1.15 * index * text.size}>{line}</tspan>
+        {lines.map((line, index) => {
+          return <tspan key={index} x={configuration.x} y={configuration.y + index * lineHeight}>{line}</tspan>
         })}
       </text>
     </g>
