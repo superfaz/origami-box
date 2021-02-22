@@ -48,14 +48,14 @@ export default function StepCText({ lid = false }) {
         <form onSubmit={handleSubmit}>
           {!multiline &&
             <div className="mb-3">
-              <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
+              <label htmlFor="content">{t('masu.stepCText.content')}</label>
               <input type="text" name="content" className="form-control" required
                 value={state.content} onChange={handleInputChange} />
             </div>
           }
           {multiline &&
             <div className="mb-3">
-              <label htmlFor="content">{t('masu.stepCAddText.content')}</label>
+              <label htmlFor="content">{t('masu.stepCText.content')}</label>
               <textarea name="content" className="form-control" rows="5"
                 value={state.content} onChange={handleInputChange} />
             </div>
@@ -64,13 +64,13 @@ export default function StepCText({ lid = false }) {
             <div className="form-check form-switch">
               <input className="form-check-input" type="checkbox" id="multiline" name="multiline"
                 checked={multiline} onChange={e => setMultiline(e.target.checked)} />
-              <label className="form-check-label" htmlFor="withDesign">{t('masu.stepCAddText.multiline')}</label>
+              <label className="form-check-label" htmlFor="withDesign">{t('masu.stepCText.multiline')}</label>
             </div>
           </div>
           <fieldset>
-            <legend>{t('masu.stepCAddText.positioning')}</legend>
+            <legend>{t('masu.stepCText.positioning')}</legend>
             <div className="mb-3">
-              <label htmlFor="face">{t('masu.stepCAddText.face')}</label>
+              <label htmlFor="face">{t('masu.stepCText.face')}</label>
               <select className="form-select" name="face" required
                 value={state.face} onChange={handleInputChange}>
                 <option value="top">{t('masu.face.top')}</option>
@@ -81,7 +81,7 @@ export default function StepCText({ lid = false }) {
               </select>
             </div>
             <div className="mb-3">
-              <label htmlFor="horizontal">{t('masu.stepCAddText.horizontal')}</label>
+              <label htmlFor="horizontal">{t('masu.stepCText.horizontal')}</label>
               <div className="input-group">
                 <select className="form-select" name="horizontal" required
                   value={state.horizontal} onChange={handleInputChange}>
@@ -98,7 +98,7 @@ export default function StepCText({ lid = false }) {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="marginHorizontal">{t('masu.stepCAddText.margins')}</label>
+              <label htmlFor="marginHorizontal">{t('masu.stepCText.margins')}</label>
               <div className="input-group">
                 <input type="number" name="marginHorizontal" className="form-control" required
                   value={state.marginHorizontal} onChange={handleInputChange} />
@@ -108,11 +108,11 @@ export default function StepCText({ lid = false }) {
             </div>
           </fieldset>
           <fieldset>
-            <legend>{t('masu.stepCAddText.font')}</legend>
+            <legend>{t('masu.stepCText.font')}</legend>
             <div className="mb-3">
               <div className="d-flex">
-                <label htmlFor="family">{t('masu.stepCAddText.family')}</label>
-                <label htmlFor="size" className="ms-auto" style={{ width: '4.5rem' }}>{t('masu.stepCAddText.size')}</label>
+                <label htmlFor="family">{t('masu.stepCText.family')}</label>
+                <label htmlFor="size" className="ms-auto" style={{ width: '4.5rem' }}>{t('masu.stepCText.size')}</label>
               </div>
               <div className="input-group">
                 <input type="text" name="family" className="form-control"
@@ -122,12 +122,12 @@ export default function StepCText({ lid = false }) {
                 <input type="number" name="size" className="form-control" style={{ maxWidth: '4.5rem' }}
                   value={state.size} required min="1" onChange={handleInputChange} placeholder="8" />
               </div>
-              <div className="text-muted">{t('masu.stepCAddText.familyExplanation')}</div>
+              <div className="text-muted">{t('masu.stepCText.familyExplanation')}</div>
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link className="btn btn-link" to={`/${lid ? 'lid' : 'base'}`}>{t('masu.stepCAddText.cancel')}</Link>
-            <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepCAddText.submit')}</button>
+            <Link className="btn btn-link" to={`/${lid ? 'lid' : 'base'}`}>{t('masu.stepCText.cancel')}</Link>
+            <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepCText.submit')}</button>
             {redirect &&
               <Redirect to={`/${lid ? 'lid' : 'base'}`} />
             }

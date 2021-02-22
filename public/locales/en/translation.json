@@ -62,7 +62,7 @@
       "imageContent": "Image(s)",
       "imageDelete": "Delete this image"
     },
-    "stepCAddText": {
+    "stepCText": {
       "linkTo": "Add a text",
       "content": "Content",
       "multiline": "With multiple lines?",

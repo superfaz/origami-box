@@ -78,7 +78,7 @@ export default function StepBDesign({ lid = false }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to={`/${block.key}/text`}>{t('masu.stepCAddText.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to={`/${block.key}/text`}>{t('masu.stepCText.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3">
