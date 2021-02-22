@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { getMasu } from "../store";
 import { configureFace, useMasuMeasurement } from "./helper";
 
-export default function SvgImage({ image }) {
+export default function SvgImage({ image, lid = false}) {
   const masu = useSelector(getMasu);
-  const m = useMasuMeasurement(masu);
+  const m = useMasuMeasurement(masu, lid);
   if (image.content === null) {
     // Image file not provided
     return null;
@@ -60,4 +60,3 @@ export default function SvgImage({ image }) {
     <image href={image.content} x={x} y={y} width={width} height={height} />
   );
 }
-

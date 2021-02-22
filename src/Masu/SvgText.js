@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { getMasu } from "../store";
 import { configurePositioning, useMasuMeasurement } from "./helper";
 
-export default function Text({ text }) {
+export default function Text({ text, lid = false }) {
   const masu = useSelector(getMasu);
-  const m = useMasuMeasurement(masu);
+  const m = useMasuMeasurement(masu, lid);
   const textRef = useRef(null);
   const [box, setBox] = useState(null);
 

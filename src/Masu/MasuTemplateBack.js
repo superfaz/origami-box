@@ -105,10 +105,10 @@ export default function MasuTemplateBack({ lid = false, print = false, text = nu
             <g key={key} clipPath={`url(#${key})`}>
               <g transform={`rotate(${rotate} ${face.x} ${face.y})`}>
                 {images.filter(image => image.face === key).map(image =>
-                  <SvgImage key={image.key} image={image} />
+                  <SvgImage key={image.key} image={image} lid={lid} />
                 )}
                 {texts.filter(text => text.face === key).map((text) =>
-                  <SvgText key={text.key} text={text} />
+                  <SvgText key={text.key} text={text} lid={lid} />
                 )}
               </g>
             </g>
