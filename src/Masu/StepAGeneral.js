@@ -44,13 +44,16 @@ export default function StepAGeneral() {
             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
             <div className="input-group">
               <input name="length" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
-                autoFocus required min="1" placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
+                autoFocus required min="1" step="0.01"
+                placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
                 value={masu.length} onChange={handleInputChange} />
               <input name="width" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
-                required min="1" placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
+                required min="1" step="0.01"
+                placeholder={t('masu.dimensions.width')} aria-label={t('masu.dimensions.width')}
                 value={masu.width} onChange={handleInputChange} />
               <input name="height" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
-                required min="1" placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
+                required min="1" step="0.01"
+                placeholder={t('masu.dimensions.height')} aria-label={t('masu.dimensions.height')}
                 value={masu.height} onChange={handleInputChange} />
             </div>
           </div>
@@ -74,7 +77,7 @@ export default function StepAGeneral() {
             <div className="mb-3">
               <label htmlFor="delta" className="form-label">{t('masu.stepAGeneral.delta')}</label>
               <input className="form-control" type="number" name="delta" id="delta" required
-                min="0" max="10"
+                min="0" max="10" step="0.01"
                 value={masu.lid.delta} onChange={handleLidInputChange} />
               <div className="text-muted">{t('masu.stepAGeneral.deltaExplanation')}</div>
             </div>
@@ -83,7 +86,8 @@ export default function StepAGeneral() {
             <div className="mb-3">
               <label htmlFor="lidHeight" className="form-label">{t('masu.stepAGeneral.lidHeight')}</label>
               <input className="form-control" type="number" name="height" id="lidHeight"
-                min="0" max={masu.height} placeholder={t('masu.stepAGeneral.lidHeightAuto')}
+                min="0" max={masu.height} step="0.01"
+                placeholder={t('masu.stepAGeneral.lidHeightAuto')}
                 value={masu.lid.height} onChange={handleLidInputChange} />
               {masu.lid.height === '' &&
                 <div className="text-muted">{t('masu.stepAGeneral.lidHeightExplanation')}</div>

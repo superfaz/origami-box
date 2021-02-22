@@ -83,10 +83,10 @@ export default function StepDImage({ lid = false }) {
             </div>
             <div className="input-group">
               <input type="number" className="form-control" name="width" placeholder={t('masu.stepDImage.width')}
-                disabled={state.size === 'auto'} required={state.size === 'manual'}
+                disabled={state.size === 'auto'} required={state.size === 'manual'} min="0" step="0.01"
                 value={state.width} onChange={handleInputChange} />
               <input type="number" className="form-control" name="height" placeholder={t('masu.stepDImage.height')}
-                disabled={state.size === 'auto'} required={state.size === 'manual'}
+                disabled={state.size === 'auto'} required={state.size === 'manual'} min="0" step="0.01"
                 value={state.height} onChange={handleInputChange} />
             </div>
           </div>
@@ -123,9 +123,11 @@ export default function StepDImage({ lid = false }) {
             <div className="mb-3">
               <label htmlFor="marginHorizontal">{t('masu.stepDImage.margins')}</label>
               <div className="input-group">
-                <input type="number" name="marginHorizontal" className="form-control" required
+                <input type="number" name="marginHorizontal" className="form-control"
+                  required step="0.01"
                   value={state.marginHorizontal} onChange={handleInputChange} />
-                <input type="number" name="marginVertical" className="form-control" required
+                <input type="number" name="marginVertical" className="form-control"
+                  required step="0.01"
                   value={state.marginVertical} onChange={handleInputChange} />
               </div>
             </div>
