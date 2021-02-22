@@ -121,14 +121,14 @@ export default function StepCText({ lid = false }) {
             <div className="mb-3">
               <div className="d-flex">
                 <label htmlFor="family">{t('masu.stepCText.family')}</label>
-                <label htmlFor="size" className="ms-auto" style={{ width: '4.5rem' }}>{t('masu.stepCText.size')}</label>
+                <label htmlFor="size" className="ms-auto" style={{ width: '6rem' }}>{t('masu.stepCText.size')}</label>
               </div>
               <div className="input-group">
                 <input type="text" name="family" className="form-control"
                   value={state.family} onChange={handleInputChange} placeholder="Open Sans" />
                 <ColorPicker name="color" style={{ maxWidth: '3rem' }}
                   color={state.color} onColorChange={handleColorChange} />
-                <input type="number" name="size" className="form-control" style={{ maxWidth: '4.5rem' }}
+                <input type="number" name="size" className="form-control" style={{ maxWidth: '6rem' }}
                   value={state.size} required min="1" onChange={handleInputChange} placeholder="8" />
               </div>
               <div className="text-muted">{t('masu.stepCText.familyExplanation')}</div>
