@@ -65,7 +65,11 @@ export default function StepBDesign({ lid = false }) {
             <tbody>
               {Object.keys(block.texts).map(key =>
                 <tr key={key} className="align-middle">
-                  <td>{block.texts[key].content}</td>
+                  <td>{block.texts[key].content.split('\n')
+                    .map((line, index) => {
+                      return <div key={index}>{line}</div>;
+                    })
+                  }</td>
                   <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
                     <button className="btn btn-outline-danger btn-sm" title={t('masu.stepBDesign.textDelete')}
