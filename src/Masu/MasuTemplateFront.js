@@ -45,6 +45,14 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
 
   return (
     <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}>
+      {print &&
+        <g transform={`translate(${-pageWidth / 2 + 10} ${-pageLength / 2 + 10})`}>
+          <text x="0" y="0" style={{ fontFamily: 'Open Sans', fontSize: 10, dominantBaseline: 'text-before-edge' }}>
+            {lid ? 'Lid' : masu.withLid ? 'Base' : 'Box'}
+          </text>
+        </g>
+      }
+
       <g transform="rotate(45)">
         <SvgCut m={m} styles={styles} />
       </g>
