@@ -100,7 +100,7 @@ export default function MasuTemplateBack({ lid = false, print = false, text = nu
 
         {Object.keys(faces).map(key => {
           const face = faces[key];
-          const rotate = lid && key != 'top' ? 180 - face.rotate : face.rotate;
+          const rotate = lid && key !== 'top' ? 180 - face.rotate : face.rotate;
           return (
             <g key={key} clipPath={`url(#${key})`}>
               <g transform={`rotate(${rotate} ${face.x} ${face.y})`}>

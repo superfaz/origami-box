@@ -33,6 +33,8 @@ export default function Text({ text, lid = false }) {
     case 'bottom':
       configuration.y -= (lines.length - 1) * lineHeight;
       break;
+    default:
+      throw new Error(`The vertical value '${text.vertical}' is not managed`);
   }
 
   return (

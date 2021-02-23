@@ -97,7 +97,7 @@ export default function StepBDesign({ lid = false }) {
             <tbody>
               {Object.keys(block.images).map(key =>
                 <tr key={key} className="align-middle">
-                  <td><img src={block.images[key].content} style={{ height: '2rem' }} /></td>
+                  <td><img alt="" src={block.images[key].content} style={{ height: '2rem' }} /></td>
                   <td>{t(`masu.face.${block.images[key].face}`)}</td>
                   <td className="text-end">
                     <button className="btn btn-outline-danger btn-sm"

@@ -104,6 +104,8 @@ export function configurePositioning(text, l_2, w_2, h_2) {
       style.textAnchor = 'end';
       configuration.x += configuration.hori - margins.hori;
       break;
+    default:
+      throw new Error(`The horizontal value '${text.horizontal}' is not managed`);
   }
 
   switch (text.vertical) {
@@ -118,6 +120,8 @@ export function configurePositioning(text, l_2, w_2, h_2) {
       style.dominantBaseline = 'text-after-edge';
       configuration.y += configuration.vert - margins.vert;
       break;
+    default:
+      throw new Error(`The vertical value '${text.vertical}' is not managed`);
   }
 
   return { configuration, style };

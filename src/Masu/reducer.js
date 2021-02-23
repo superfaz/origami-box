@@ -102,7 +102,7 @@ export default function masuReducer(state = initialState, action) {
 
     case 'ADD_TEXT': {
       let key = uuidv4();
-      var result = {
+      let result = {
         ...state,
         [action.payload.block]: {
           ...state[action.payload.block],
@@ -119,7 +119,7 @@ export default function masuReducer(state = initialState, action) {
     }
 
     case 'DELETE_TEXT': {
-      var result = {
+      let result = {
         ...state,
         [action.payload.block]: {
           ...state[action.payload.block],
@@ -135,7 +135,7 @@ export default function masuReducer(state = initialState, action) {
 
     case 'ADD_IMAGE': {
       let key = uuidv4();
-      var result = {
+      let result = {
         ...state,
         [action.payload.block]: {
           ...state[action.payload.block],
@@ -152,7 +152,7 @@ export default function masuReducer(state = initialState, action) {
     }
 
     case 'DELETE_IMAGE': {
-      var result = {
+      let result = {
         ...state,
         [action.payload.block]: {
           ...state[action.payload.block],

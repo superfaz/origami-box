@@ -42,6 +42,8 @@ export default function SvgImage({ image, lid = false}) {
     case 'right':
       x += face.hori - width - image.marginHorizontal;
       break;
+    default:
+      throw new Error(`The horizontal value '${image.horizontal}' is not managed`);
   }
 
   switch (image.vertical) {
@@ -54,7 +56,9 @@ export default function SvgImage({ image, lid = false}) {
     case 'bottom':
       y += face.vert - height - image.marginVertical;
       break;
-  }
+      default:
+        throw new Error(`The vertical value '${image.vertical}' is not managed`);
+    }
 
   return (
     <image href={image.content} x={x} y={y} width={width} height={height} />

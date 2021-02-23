@@ -8,9 +8,9 @@ export default function Nav() {
     <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark text-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <img src="/logo-plain.svg" height="30" className="me-2 align-top" />
+          <img alt="logo" src="/logo-plain.svg" height="30" className="me-2 align-top" />
           Origami Box
-          </Link>
+        </Link>
         <ul className="navbar-nav">
           <li className="nav-item dropdown">
             <ul id="languageDropdown" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">

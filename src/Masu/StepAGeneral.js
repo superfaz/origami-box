@@ -19,7 +19,7 @@ export default function StepAGeneral() {
 
   useEffect(() => {
     setValid(form.current.checkValidity());
-  });
+  }, [form, masu]);
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
