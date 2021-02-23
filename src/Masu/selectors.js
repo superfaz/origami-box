@@ -1,13 +1,13 @@
 export function getTexts(block, addition = null) {
-  const results = Object.keys(block.texts).map(k => block.texts[k]);
+  let texts = {
+    ...block.texts,
+  }
 
   if (addition !== null) {
-    addition.key = 'new';
-    return results.concat(addition);
+    texts[addition.key ?? 'new'] = addition;
   }
-  else {
-    return results;
-  }
+
+  return Object.keys(texts).map(k => texts[k]);
 }
 
 export function getImages(block, addition = null) {

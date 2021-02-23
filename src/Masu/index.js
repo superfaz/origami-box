@@ -19,7 +19,7 @@ export default function Masu() {
         <Route exact path="/base">
           <StepBDesign />
         </Route>
-        <Route exact path="/base/text">
+        <Route exact path={["/base/text", "/base/text/:key"]}>
           <StepCText />
         </Route>
         <Route exact path="/base/image">

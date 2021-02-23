@@ -57,6 +57,7 @@
       "backgroundImage": "Appliquer une texture?",
       "textFace": "Face",
       "textContent": "Texte(s)",
+      "textEdit": "Editer ce texte",
       "textDelete": "Supprimer ce texte",
       "imageFace": "Face",
       "imageContent": "Image(s)",

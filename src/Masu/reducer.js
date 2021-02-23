@@ -41,9 +41,9 @@ export function updateDetail(detailKey, name, value) {
   };
 }
 
-export function addText(block, text) {
+export function addOrUpdateText(block, text) {
   return {
-    type: 'ADD_TEXT',
+    type: 'ADDORUPDATE_TEXT',
     payload: { block, text },
   };
 }
@@ -100,8 +100,8 @@ export default function masuReducer(state = initialState, action) {
       };
     }
 
-    case 'ADD_TEXT': {
-      let key = uuidv4();
+    case 'ADDORUPDATE_TEXT': {
+      let key = action.payload.text.key ?? uuidv4();
       let result = {
         ...state,
         [action.payload.block]: {

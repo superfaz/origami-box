@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMasu } from '../store';
 import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { addText } from './reducer';
+import { addOrUpdateText } from './reducer';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 import { checkValidity } from './helper';
@@ -12,20 +13,27 @@ import { checkValidity } from './helper';
 export default function StepCText({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { key } = useParams();
+  const masu = useSelector(getMasu);
+
+  const initialState = key !== undefined
+    ? masu.base.texts[key]
+    : {
+      content: '',
+      face: 'top',
+      horizontal: 'center',
+      vertical: 'middle',
+      marginHorizontal: 2,
+      marginVertical: 2,
+      lineSpacing: 1.15,
+      family: '',
+      size: 8,
+      color: 'black',
+    };
+
   const [redirect, setRedirect] = useState(false);
   const [multiline, setMultiline] = useState(false);
-  const [state, setState] = useState({
-    content: '',
-    face: 'top',
-    horizontal: 'center',
-    vertical: 'middle',
-    marginHorizontal: 2,
-    marginVertical: 2,
-    lineSpacing: 1.15,
-    family: '',
-    size: 8,
-    color: 'black',
-  });
+  const [state, setState] = useState(initialState);
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
@@ -38,7 +46,7 @@ export default function StepCText({ lid = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addText(lid ? 'lid' : 'base', state));
+    dispatch(addOrUpdateText(lid ? 'lid' : 'base', state));
     setRedirect(true);
   }
 

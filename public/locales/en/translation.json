@@ -57,6 +57,7 @@
       "backgroundImage": "Define a texture?",
       "textFace": "Face",
       "textContent": "Text(s)",
+      "textEdit": "Edit this text",
       "textDelete": "Delete this text",
       "imageFace": "Face",
       "imageContent": "Image(s)",
@@ -75,7 +76,7 @@
       "family": "Font Family",
       "familyExplanation": "Name of the google font to be used",
       "size": "Size",
-      "submit": "Add this text",
+      "submit": "Save this text",
       "cancel": "Go back"
     },
     "stepDImage": {

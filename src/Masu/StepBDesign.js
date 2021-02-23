@@ -72,9 +72,13 @@ export default function StepBDesign({ lid = false }) {
                   }</td>
                   <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
-                    <button className="btn btn-outline-danger btn-sm" title={t('masu.stepBDesign.textDelete')}
+                    <Link className="btn btn-outline-primary ms-1 btn-sm" title={t('masu.stepBDesign.textEdit')}
+                      to={`/${block.key}/text/${key}`}>
+                      <i className="fas fa-pen" style={{ width: '14px' }}></i>
+                    </Link>
+                    <button className="btn btn-outline-danger ms-1 btn-sm" title={t('masu.stepBDesign.textDelete')}
                       onClick={() => handleTextDelete(key)}>
-                      <i className="fas fa-times"></i>
+                      <i className="fas fa-times" style={{ width: '14px' }}></i>
                     </button>
                   </td>
                 </tr>
