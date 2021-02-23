@@ -43,15 +43,15 @@
     "stepBDesign": {
       "box": {
         "title": "Box",
-        "linkTo": "Define the box design"
+        "linkTo": "Design the box"
       },
       "base": {
         "title": "Base",
-        "linkTo": "Define the base design"
+        "linkTo": "Design the base"
       },
       "lid": {
         "title": "Lid",
-        "linkTo": "Design the lid design"
+        "linkTo": "Design the lid"
       },
       "backgroundColor": "Apply a background color?",
       "backgroundImage": "Define a texture?",
