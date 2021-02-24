@@ -16,7 +16,7 @@ export default function StepDImage({ lid = false }) {
   const masu = useSelector(getMasu);
 
   const initialState = key !== undefined
-    ? masu.base.images[key]
+    ? lid ? masu.lid.images[key] : masu.base.images[key]
     : {
       content: null,
       originalWidth: null,

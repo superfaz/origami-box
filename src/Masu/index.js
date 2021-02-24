@@ -28,10 +28,10 @@ export default function Masu() {
         <Route exact path="/lid">
           <StepBDesign lid />
         </Route>
-        <Route exact path="/lid/text">
+        <Route exact path={["/lid/text", "/lid/text/:key"]}>
           <StepCText lid />
         </Route>
-        <Route exact path="/lid/image">
+        <Route exact path={["/lid/image", "/lid/image/:key"]}>
           <StepDImage lid />
         </Route>
         <Route exact path="/generate">

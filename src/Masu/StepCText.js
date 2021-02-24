@@ -17,7 +17,7 @@ export default function StepCText({ lid = false }) {
   const masu = useSelector(getMasu);
 
   const initialState = key !== undefined
-    ? masu.base.texts[key]
+    ? lid ? masu.lid.texts[key] : masu.base.texts[key]
     : {
       content: '',
       face: 'top',
