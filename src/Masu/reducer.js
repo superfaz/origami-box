@@ -55,9 +55,9 @@ export function deleteText(block, key) {
   };
 }
 
-export function addImage(block, image) {
+export function addOrUpdateImage(block, image) {
   return {
-    type: 'ADD_IMAGE',
+    type: 'ADDORUPDATE_IMAGE',
     payload: { block, image },
   };
 }
@@ -133,8 +133,8 @@ export default function masuReducer(state = initialState, action) {
       return result;
     }
 
-    case 'ADD_IMAGE': {
-      let key = uuidv4();
+    case 'ADDORUPDATE_IMAGE': {
+      let key = action.payload.image.key ?? uuidv4();
       let result = {
         ...state,
         [action.payload.block]: {

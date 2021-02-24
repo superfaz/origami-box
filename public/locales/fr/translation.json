@@ -61,6 +61,7 @@
       "textDelete": "Supprimer ce texte",
       "imageFace": "Face",
       "imageContent": "Image(s)",
+      "imageEdit": "Editer cette image",
       "imageDelete": "Supprimer cette image"
     },
     "stepCText": {
@@ -90,7 +91,7 @@
       "face": "Face",
       "horizontal": "Alignement",
       "margins": "Marges",
-      "submit": "Ajouter cette image",
+      "submit": "Valider cette image",
       "cancel": "Annuler"
     },
     "stepZGenerate": {

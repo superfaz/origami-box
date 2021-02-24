@@ -104,9 +104,13 @@ export default function StepBDesign({ lid = false }) {
                   <td><img alt="" src={block.images[key].content} style={{ height: '2rem' }} /></td>
                   <td>{t(`masu.face.${block.images[key].face}`)}</td>
                   <td className="text-end">
-                    <button className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleImageDelete(key)} title={t('masu.stepBDesign.imageDelete')}>
-                      <i className="fas fa-times"></i>
+                    <Link className="btn btn-outline-primary ms-1 btn-sm" title={t('masu.stepBDesign.imageEdit')}
+                      to={`/${block.key}/image/${key}`}>
+                      <i className="fas fa-pen" style={{ width: '14px' }}></i>
+                    </Link>
+                    <button className="btn btn-outline-danger ms-1 btn-sm" title={t('masu.stepBDesign.imageDelete')}
+                      onClick={() => handleImageDelete(key)}>
+                      <i className="fas fa-times" style={{ width: '14px' }}></i>
                     </button>
                   </td>
                 </tr>

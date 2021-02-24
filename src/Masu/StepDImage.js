@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect, useParams } from "react-router-dom";
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { addImage } from "./reducer";
+import { getMasu } from "../store";
+import { addOrUpdateImage } from "./reducer";
 import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
 import { checkValidity, loadImageAsync } from "./helper";
@@ -11,20 +12,27 @@ import { checkValidity, loadImageAsync } from "./helper";
 export default function StepDImage({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { key } = useParams();
+  const masu = useSelector(getMasu);
+
+  const initialState = key !== undefined
+    ? masu.base.images[key]
+    : {
+      content: null,
+      originalWidth: null,
+      originalHeight: null,
+      face: 'top',
+      size: 'auto',
+      width: '',
+      height: '',
+      horizontal: 'center',
+      vertical: 'middle',
+      marginHorizontal: 0,
+      marginVertical: 0,
+    };
+
   const [redirect, setRedirect] = useState(false);
-  const [state, setState] = useState({
-    content: null,
-    originalWidth: null,
-    originalHeight: null,
-    face: 'top',
-    size: 'auto',
-    width: '',
-    height: '',
-    horizontal: 'center',
-    vertical: 'middle',
-    marginHorizontal: 0,
-    marginVertical: 0,
-  });
+  const [state, setState] = useState(initialState);
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
@@ -59,7 +67,7 @@ export default function StepDImage({ lid = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addImage(lid ? 'lid' : 'base', state));
+    dispatch(addOrUpdateImage(lid ? 'lid' : 'base', state));
     setRedirect(true);
   }
 
@@ -71,7 +79,7 @@ export default function StepDImage({ lid = false }) {
           <div className="mb-3">
             <label htmlFor="content">{t('masu.stepDImage.content')}</label>
             <input className="form-control" type="file" name="content" id="content"
-              accept="image/png, image/jpeg, image/svg+xml" required
+              accept="image/png, image/jpeg, image/svg+xml" required={state.content === null}
               onChange={handleImageChange} />
           </div>
           <div className="mb-3">

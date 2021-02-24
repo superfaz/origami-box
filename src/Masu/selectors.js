@@ -1,7 +1,7 @@
 export function getTexts(block, addition = null) {
   let texts = {
     ...block.texts,
-  }
+  };
 
   if (addition !== null) {
     texts[addition.key ?? 'new'] = addition;
@@ -11,15 +11,15 @@ export function getTexts(block, addition = null) {
 }
 
 export function getImages(block, addition = null) {
-  const results = Object.keys(block.images).map(k => block.images[k]);
+  let images = {
+    ...block.images,
+  };
 
   if (addition !== null) {
-    addition.key = 'new';
-    return results.concat(addition);
+    images[addition.key ?? 'new'] = addition;
   }
-  else {
-    return results;
-  }
+
+  return Object.keys(images).map(k => images[k]);
 }
 
 export function getFonts(masu) {
