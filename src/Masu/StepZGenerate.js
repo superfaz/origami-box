@@ -80,7 +80,7 @@ export default function StepZGenerate() {
           <div className="mb-3">
             <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
             <select name="pageFormat" className="form-select" value={masu.pageFormat} onChange={handleInputChange}>
-              <option value="A4-p">{t('masu.format.A4')}</option>
+              <option value="A4">{t('masu.format.A4')}</option>
             </select>
           </div>
           <div className="mb-3 mt-5 d-flex">
