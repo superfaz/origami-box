@@ -2,6 +2,16 @@
   "colorpicker": {
     "title": "Choisir une couleur"
   },
+  "home": {
+    "title": "Bienvenue <1>",
+    "description": "Ce site permet de créer des patrons d'origami pour la création de boites de stockage. Parfaite pour des jeux de plateau, mais pas seulement.",
+    "start": "Créer un modèle",
+    "beta": {
+      "header": "Version Alpha",
+      "title": "Ce site est tout neuf et encore en construction.",
+      "text": "En conséquence, il peut changer de façon importante d'un jour à l'autre. Je préfère prévenir...  :)"
+    }
+  },
   "masu": {
     "title": "Masu",
     "format": {

@@ -141,10 +141,10 @@ export default function StepDImage({ lid = false }) {
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link className="btn btn-link" to={`/${lid ? 'lid' : 'base'}`}>{t('masu.stepDImage.cancel')}</Link>
+            <Link className="btn btn-link" to={`/masu/${lid ? 'lid' : 'base'}`}>{t('masu.stepDImage.cancel')}</Link>
             <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepDImage.submit')}</button>
             {redirect &&
-              <Redirect to={`/${lid ? 'lid' : 'base'}`} />
+              <Redirect to={`/masu/${lid ? 'lid' : 'base'}`} />
             }
           </div>
         </form>

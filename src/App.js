@@ -5,6 +5,7 @@ import Footer from './Footer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppInsightsContext } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from './AppInsights';
+import Home from './Home';
 import Masu from './Masu/';
 import Process from './Process';
 import Logo from './Logo';
@@ -16,14 +17,17 @@ export default function App() {
         <BrowserRouter>
           <Nav />
           <Switch>
-            <Route path="/logo">
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/masu">
+              <Masu />
+            </Route>
+            <Route exact path="/logo">
               <Logo />
             </Route>
-            <Route path="/process">
+            <Route exact path="/process">
               <Process />
-            </Route>
-            <Route path="/">
-              <Masu />
             </Route>
           </Switch>
           <Footer />

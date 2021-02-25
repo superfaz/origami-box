@@ -16,7 +16,7 @@ export default function StepZGenerate() {
   const masu = useSelector(getMasu);
 
   function print() {
-    let newWindow = window.open('empty.html', '_blank');
+    let newWindow = window.open('/empty.html', '_blank');
     newWindow.onload = () => {
       newWindow.document.head.innerHTML = `
         <link rel="preconnect" href="https://fonts.gstatic.com" />

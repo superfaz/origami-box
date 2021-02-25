@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
 import { getMasu } from '../store';
 import { LeftForm, RightPreview } from '../Generic/Grid';
@@ -16,6 +16,7 @@ export default function StepAGeneral() {
   const [valid, setValid] = useState(false);
   const form = useRef(null);
   const masu = useSelector(getMasu);
+  const { url } = useRouteMatch();
 
   useEffect(() => {
     setValid(form.current.checkValidity());
@@ -96,13 +97,19 @@ export default function StepAGeneral() {
           }
           <div className="mb-3 mt-5 d-flex">
             {masu.withDesign && !masu.withLid &&
-              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/base">{t('masu.stepBDesign.box.linkTo')}</Link>
+              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to={`${url}/base`}>
+                {t('masu.stepBDesign.box.linkTo')}
+              </Link>
             }
             {masu.withDesign && masu.withLid &&
-              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/base">{t('masu.stepBDesign.base.linkTo')}</Link>
+              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to={`${url}/base`}>
+                {t('masu.stepBDesign.base.linkTo')}
+              </Link>
             }
             {!masu.withDesign &&
-              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to="/generate">{t('masu.stepZGenerate.linkTo')}</Link>
+              <Link className={classNames("btn btn-primary ms-auto", { "disabled": !valid })} to={`${url}/generate`}>
+                {t('masu.stepZGenerate.linkTo')}
+              </Link>
             }
           </div>
         </form>
