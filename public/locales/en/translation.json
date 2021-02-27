@@ -38,6 +38,7 @@
     },
     "stepAGeneral": {
       "title": "General options",
+      "reset": "Reset the template",
       "withDesign": "With a specific design",
       "withDesignOff": "Only the folding template will be prepared",
       "withDesignOn": "You will be able to use images and texts to design the box",

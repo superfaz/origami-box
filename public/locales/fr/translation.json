@@ -38,6 +38,7 @@
     },
     "stepAGeneral": {
       "title": "Options générales",
+      "reset": "Réinitialiser le modèle",
       "withDesign": "Définir un design spécifique",
       "withDesignOff": "Seul le patron de pliage sera préparé",
       "withDesignOn": "Vous pourrez définir le design de la boîte en ajoutant textes et images",

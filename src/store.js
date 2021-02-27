@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, compose, createStore } from 'redux';
+import persistState from 'redux-localstorage';
 import masuReducer from './Masu/reducer';
 
 const reducers = combineReducers({
@@ -9,4 +10,6 @@ export function getMasu(state) {
   return state.masu;
 }
 
-export default createStore(reducers);
+const enhancers = compose(persistState(null, { key: 'state' }));
+
+export default createStore(reducers, enhancers);

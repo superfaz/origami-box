@@ -5,7 +5,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
 import { getMasu } from '../store';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { updateDetail, updateGeneral } from './reducer';
+import { reset, updateDetail, updateGeneral } from './reducer';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
 import { checkValidity } from './helper';
@@ -21,6 +21,10 @@ export default function StepAGeneral() {
   useEffect(() => {
     setValid(form.current.checkValidity());
   }, [form, masu]);
+
+  function handleReset(event) {
+    dispatch(reset());
+  }
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
@@ -40,6 +44,10 @@ export default function StepAGeneral() {
     <div className="row">
       <Nav />
       <LeftForm>
+        <div className="mb-3">
+          <button className="btn btn-warning"
+            onClick={handleReset}>{t('masu.stepAGeneral.reset')}</button>
+        </div>
         <form ref={form} noValidate>
           <div className="mb-3">
             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>

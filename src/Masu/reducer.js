@@ -27,6 +27,12 @@ const initialState = {
   },
 };
 
+export function reset() {
+  return {
+    type: 'RESET',
+  };
+}
+
 export function updateGeneral(name, value) {
   return {
     type: 'UPDATE_GENERAL',
@@ -71,6 +77,10 @@ export function deleteImage(block, key) {
 
 export default function masuReducer(state = initialState, action) {
   switch (action.type) {
+    case 'RESET': {
+      return initialState;
+    }
+
     case 'UPDATE_GENERAL': {
       if (action.payload.name === 'pageFormat') {
         const pageLength = action.payload.value === 'A4' ? 297 : 210;
