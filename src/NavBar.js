@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { getProfile } from './store';
-import { Login } from './Profile';
-import { logout } from './Profile/reducer';
+import { Login, Logout } from './Profile';
 
 function ProfileMenu() {
   const dispatch = useDispatch();
@@ -13,25 +12,17 @@ function ProfileMenu() {
   const name = profile.name;
   const { t } = useTranslation();
 
-  function handleLogout() {
-    dispatch(logout());
-  }
-
   return (
     <div>
       <div className="card-body">
         <p className="card-text">
           <Trans i18nKey="navbar.welcome">
-            Signed in as <strong>{{name}}</strong>
+            Signed in as <strong>{{ name }}</strong>
           </Trans>
         </p>
       </div>
       <div className="list-group list-group-flush">
-        <button className="list-group-item list-group-item-action"
-          onClick={handleLogout}>
-          <i className="fas fa-sign-out-alt me-2"></i>
-          <span>{t('profile.logout')}</span>
-        </button>
+        <Logout className="list-group-item list-group-item-action" />
       </div>
     </div>
   );
