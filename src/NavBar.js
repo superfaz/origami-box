@@ -1,13 +1,12 @@
 import { Helmet } from 'react-helmet';
 import { useTranslation, Trans } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { getProfile } from './store';
 import { Login, Logout } from './Profile';
 
 function ProfileMenu() {
-  const dispatch = useDispatch();
   const profile = useSelector(getProfile);
   const name = profile.name;
   const { t } = useTranslation();
