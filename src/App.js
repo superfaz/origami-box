@@ -6,10 +6,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppInsightsContext } from '@microsoft/applicationinsights-react-js';
 import { reactPlugin } from './AppInsights';
 import Home from './Home';
-import Masu from './Masu/';
+import Masu from './Masu';
 import Process from './Process';
 import Logo from './Logo';
-import { FacebookProvider } from './Profile/ProfileProvider';
+import { FacebookProvider } from './Profile';
 
 export default function App() {
   return (
