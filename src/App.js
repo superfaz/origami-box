@@ -9,29 +9,32 @@ import Home from './Home';
 import Masu from './Masu/';
 import Process from './Process';
 import Logo from './Logo';
+import { FacebookProvider } from './Facebook';
 
 export default function App() {
   return (
     <Suspense fallback="Loading...">
       <AppInsightsContext.Provider value={reactPlugin}>
-        <BrowserRouter>
-          <Nav />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/masu">
-              <Masu />
-            </Route>
-            <Route exact path="/logo">
-              <Logo />
-            </Route>
-            <Route exact path="/process">
-              <Process />
-            </Route>
-          </Switch>
-          <Footer />
-        </BrowserRouter>
+        <FacebookProvider>
+          <BrowserRouter>
+            <Nav />
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/masu">
+                <Masu />
+              </Route>
+              <Route exact path="/logo">
+                <Logo />
+              </Route>
+              <Route exact path="/process">
+                <Process />
+              </Route>
+            </Switch>
+            <Footer />
+          </BrowserRouter>
+        </FacebookProvider>
       </AppInsightsContext.Provider>
     </Suspense>
   );
