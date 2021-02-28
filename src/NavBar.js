@@ -9,7 +9,6 @@ import { Login, Logout } from './Profile';
 function ProfileMenu() {
   const profile = useSelector(getProfile);
   const name = profile.name;
-  const { t } = useTranslation();
 
   return (
     <div>
