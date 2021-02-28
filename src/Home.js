@@ -1,6 +1,7 @@
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { Login } from "./Facebook";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ export default function Home() {
         <div className="col-lg-6 mb-3">
           <p className="lead">{t('home.description')}</p>
           <Link to="/masu" className="btn btn-lg btn-primary">{t('home.start')}</Link>
+          <Login className="btn-lg ms-3" />
         </div>
         <div className="col-lg-6 mb-3">
           <div className="card text-dark bg-warning mb-3">

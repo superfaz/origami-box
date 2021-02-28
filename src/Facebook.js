@@ -1,9 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import classNames from 'classnames/dedupe';
 
-export const FacebookContext = React.createContext();
+export const FacebookContext = React.createContext({ user: {}, setUser: () => { } });
+
+function manageLoginStatus(response, setUser) {
+  if (process.env.REACT_APP_FACEBOOK_DEBUG) {
+    console.log('login response', response);
+  }
+
+  if (response.authResponse) {
+    // User is authenticated
+    setUser({
+      accessToken: response.accessToken,
+      userId: response.userID,
+    });
+
+    window.FB.api('/me', profileResponse => {
+      if (process.env.REACT_APP_FACEBOOK_DEBUG) {
+        console.log('/me', profileResponse);
+      }
+
+      setUser({
+        accessToken: response.accessToken,
+        userId: response.userID,
+        name: profileResponse.name,
+      });
+    });
+  } else {
+    // User is not authenticated
+    setUser({});
+  }
+}
 
 export function FacebookProvider({ children }) {
-  const [state, setState] = useState({ isInitialized: false });
+  const [user, setUser] = useState({});
   const facebookAppId = process.env.REACT_APP_FACEBOOK_APPID;
 
   useEffect(() => {
@@ -16,12 +46,9 @@ export function FacebookProvider({ children }) {
         version: 'v10.0'
       });
 
-      window.FB.AppEvents.logPageView();
-
       window.FB.getLoginStatus(response => {
         console.log('Facebook SDK initialized');
-        console.log(response);
-        setState({ isInitialized: true });
+        manageLoginStatus(response, setUser);
       });
     };
   }, [facebookAppId]);
@@ -36,8 +63,25 @@ export function FacebookProvider({ children }) {
   }(document, 'script', 'facebook-jssdk'));
 
   return (
-    <FacebookContext.Provider value={state}>
+    <FacebookContext.Provider value={{ user, setUser }}>
       {children}
     </FacebookContext.Provider>
+  );
+}
+
+export function Login({ className = null, ...rest }) {
+  const { setUser } = useContext(FacebookContext);
+
+  function handleClick() {
+    window.FB.login(function (response) {
+      manageLoginStatus(response, setUser);
+    });
+  }
+
+  return (
+    <button className={classNames("btn btn-outline-primary", className)} onClick={handleClick} {...rest}>
+      <i className="fab fa-facebook me-2 float-start" style={{ marginLeft: '-.125em', fontSize: '1.5em' }}></i>
+      Login with Facebook
+    </button>
   );
 }
