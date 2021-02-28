@@ -1,6 +1,6 @@
 import './App.css';
 import { Suspense } from 'react';
-import Nav from './Nav';
+import NavBar from './NavBar';
 import Footer from './Footer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppInsightsContext } from '@microsoft/applicationinsights-react-js';
@@ -17,7 +17,7 @@ export default function App() {
       <AppInsightsContext.Provider value={reactPlugin}>
         <FacebookProvider>
           <BrowserRouter>
-            <Nav />
+            <NavBar />
             <Switch>
               <Route exact path="/">
                 <Home />
