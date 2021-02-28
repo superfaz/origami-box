@@ -9,7 +9,7 @@ import Home from './Home';
 import Masu from './Masu/';
 import Process from './Process';
 import Logo from './Logo';
-import { FacebookProvider } from './Facebook';
+import { FacebookProvider } from './Profile/ProfileProvider';
 
 export default function App() {
   return (

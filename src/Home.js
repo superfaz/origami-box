@@ -1,7 +1,7 @@
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Login } from "./Facebook";
+import { Login } from "./Profile/Login";
 
 export default function Home() {
   const { t } = useTranslation();
