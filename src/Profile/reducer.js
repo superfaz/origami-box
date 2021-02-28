@@ -26,7 +26,7 @@ export function connected(response) {
       });
 
       // Retrieve the user miniature
-      window.FB.api('/me/picture', 'GET', { redirect: false }, response => {
+      window.FB.api('/me/picture', 'GET', { redirect: false, height: 40 }, response => {
         if (process.env.REACT_APP_FACEBOOK_DEBUG) {
           console.log('/me/picture', response);
         }
@@ -34,6 +34,18 @@ export function connected(response) {
         dispatch(setField('picture', response.data.url));
       });
     }
+  }
+}
+
+export function logout() {
+  return (dispatch) => {
+    window.FB.logout(response => {
+      if (process.env.REACT_APP_FACEBOOK_DEBUG) {
+        console.log('logout', response);
+      }
+
+      dispatch(reset());
+    });
   }
 }
 

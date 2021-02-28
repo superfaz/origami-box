@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
-
+import 'tippy.js/dist/tippy.css';
 import './index.css';
 
 ReactDOM.render(
