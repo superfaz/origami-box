@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
@@ -10,6 +10,8 @@ import { logout } from './Profile/reducer';
 function ProfileMenu() {
   const dispatch = useDispatch();
   const profile = useSelector(getProfile);
+  const name = profile.name;
+  const { t } = useTranslation();
 
   function handleLogout() {
     dispatch(logout());
@@ -18,13 +20,17 @@ function ProfileMenu() {
   return (
     <div>
       <div className="card-body">
-        <p className="card-text">Signed in as <b>{profile.name}</b></p>
+        <p className="card-text">
+          <Trans i18nKey="navbar.welcome">
+            Signed in as <strong>{{name}}</strong>
+          </Trans>
+        </p>
       </div>
       <div className="list-group list-group-flush">
         <button className="list-group-item list-group-item-action"
           onClick={handleLogout}>
           <i className="fas fa-sign-out-alt me-2"></i>
-          Sign out
+          <span>{t('profile.logout')}</span>
         </button>
       </div>
     </div>
@@ -32,7 +38,7 @@ function ProfileMenu() {
 }
 
 export default function NavBar() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const profile = useSelector(getProfile);
 
   return (
@@ -66,7 +72,7 @@ export default function NavBar() {
           }
           {!profile.accessToken &&
             <Login className="btn  ms-3 btn-outline-primary text-white">
-              Sign in
+              {t('navbar.signin')}
             </Login>
           }
         </ul>

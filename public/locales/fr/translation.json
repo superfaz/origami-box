@@ -12,6 +12,14 @@
       "text": "En conséquence, il peut changer de façon importante d'un jour à l'autre. Je préfère prévenir...  :)"
     }
   },
+  "navbar": {
+    "welcome": "Connecter en tant que <1>{{name}}</1>",
+    "signin": "Se connecter"
+  },
+  "profile": {
+    "login": "Continuer avec Facebook",
+    "logout": "Se déconnecter"
+  },
   "masu": {
     "title": "Masu",
     "format": {

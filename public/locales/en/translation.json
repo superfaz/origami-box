@@ -12,6 +12,14 @@
       "text": "As a result, it is likely to change drastically from one release to the other. Just saying...  :)"
     }
   },
+  "navbar": {
+    "welcome": "Signed in as <1>{{name}}</1>",
+    "signin": "Sign in"
+  },
+  "profile": {
+    "login": "Continue with Facebook",
+    "logout": "Logout"
+  },
   "masu": {
     "title": "Masu",
     "format": {

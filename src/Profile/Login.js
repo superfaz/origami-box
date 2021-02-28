@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import classNames from 'classnames';
+import classNames from 'classnames/dedupe';
 import { connected } from "./reducer";
 
 export function Login({ className = null, children, ...rest }) {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   function handleClick() {
     window.FB.login(function (response) {
@@ -16,7 +18,7 @@ export function Login({ className = null, children, ...rest }) {
       {!children &&
         <>
           <i className="fab fa-facebook me-2 float-start" style={{ marginLeft: '-.125em', fontSize: '1.5em' }}></i>
-          <span>Login with Facebook</span>
+          <span>{t('profile.login')}</span>
         </>
       }
       {children}
