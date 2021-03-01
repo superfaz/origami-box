@@ -1,21 +1,23 @@
 import { Helmet } from 'react-helmet';
 import { useTranslation, Trans } from 'react-i18next';
+import Loader from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { getProfile } from './store';
 import { Login, Logout } from './Profile';
 
+import './NavBar.css';
+
 function ProfileMenu() {
   const profile = useSelector(getProfile);
-  const name = profile.name;
 
   return (
     <div>
       <div className="card-body">
         <p className="card-text">
           <Trans i18nKey="navbar.welcome">
-            Signed in as <strong>{{ name }}</strong>
+            Signed in as <strong>{{ name: profile.name }}</strong>
           </Trans>
         </p>
       </div>
@@ -23,6 +25,21 @@ function ProfileMenu() {
         <Logout className="list-group-item list-group-item-action" />
       </div>
     </div>
+  );
+}
+
+function LanguageMenu() {
+  const { i18n } = useTranslation();
+
+  return (
+    <div>
+      <div className="list-group list-group-flush">
+        <button className="list-group-item list-group-item-action"
+          onClick={() => i18n.changeLanguage('en')}>en (English)</button>
+        <button className="list-group-item list-group-item-action"
+          onClick={() => i18n.changeLanguage('fr')}>fr (Français)</button>
+      </div>
+    </div >
   );
 }
 
@@ -38,32 +55,41 @@ export default function NavBar() {
           Origami Box
         </Link>
         <ul className="navbar-nav">
-          <li className="nav-item dropdown ms-3">
-            <ul id="languageDropdown" className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {i18n.language}
-              <Helmet>
-                <html lang={i18n.language} />
-              </Helmet>
-            </ul>
-            <ul className="dropdown-menu" aria-labelledby="languageDropdown">
-              <li><button className="dropdown-item" onClick={() => i18n.changeLanguage('en')}>en (English)</button></li>
-              <li><button className="dropdown-item" onClick={() => i18n.changeLanguage('fr')}>fr (Français)</button></li>
-            </ul>
+          <li className="nav-item ms-3">
+            <Tippy className="card" content={<LanguageMenu />}
+              interactive={true} interactiveBorder={20} trigger="click"
+              placement="bottom-end" theme="light-border">
+              <button className="btn nav-link">
+                {i18n.language} <i className="fas fa-caret-down"></i>
+              </button>
+            </Tippy>
+            <Helmet>
+              <html lang={i18n.language} />
+            </Helmet>
           </li>
-          {profile.picture &&
-            <li className="nav_item ms-3">
+          <li className="nav_item ms-3">
+            {!profile.accessToken &&
+              <Login className="btn btn-outline-primary text-white">
+                {t('navbar.signin')}
+              </Login>
+            }
+            {profile.accessToken && !profile.picture &&
+              <Loader
+                className="mt-2"
+                type="Bars"
+                color="#fff"
+                height='1.5rem'
+                width='40px'
+                timeout={0} />
+            }
+            {profile.picture &&
               <Tippy className="card" content={<ProfileMenu />}
-                interactive={true} interactiveBorder={20}
-                placement='bottom-end' theme='light-border'>
+                interactive={true} interactiveBorder={20} trigger="click"
+                placement="bottom-end" theme="light-border">
                 <img src={profile.picture} alt={profile.name} className="rounded" />
               </Tippy>
-            </li>
-          }
-          {!profile.accessToken &&
-            <Login className="btn  ms-3 btn-outline-primary text-white">
-              {t('navbar.signin')}
-            </Login>
-          }
+            }
+          </li>
         </ul>
       </div>
     </nav>

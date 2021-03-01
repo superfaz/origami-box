@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import 'tippy.js/dist/tippy.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './index.css';
 
 ReactDOM.render(

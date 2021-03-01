@@ -7,23 +7,3 @@ svg.template {
 #root > nav + .container {
   margin-top: 1rem;
 }
-
-.tippy-box .list-group-item-action:focus, .tippy-box .list-group-item-action:hover {
-  z-index: 1;
-  color: #fff;
-  text-decoration: none;
-  background-color: #0d6efd;
-}
-
-.tippy-content > div {
-  margin: -5px -9px;
-}
-
-.list-group-flush>.list-group-item:first-child {
-  border-width: 1px 0 1px 0;
-}
-
-.list-group-flush>.list-group-item:last-child {
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-}
