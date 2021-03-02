@@ -10,6 +10,7 @@ import Masu from './Masu';
 import Process from './Process';
 import Logo from './Logo';
 import { FacebookProvider } from './Profile';
+import TemplateList from './Template/TemplateList';
 
 export default function App() {
   return (
@@ -24,6 +25,9 @@ export default function App() {
               </Route>
               <Route path="/masu">
                 <Masu />
+              </Route>
+              <Route path="/template">
+                <TemplateList />
               </Route>
               <Route exact path="/logo">
                 <Logo />
