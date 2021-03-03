@@ -7,12 +7,12 @@ Origami templates to create paper boxes. Perfect for board games, but not only.
 
 This project is build with Javascript using ReactJS.
 
-The dependencies and scripts are using `npm`
+The dependencies and scripts are using `yarn`
 
 | scripts | usage |
 |---------|-------|
-| `npm start` | Runs the app in the development mode (with auto-reload and lint errors) |
-| `npm run build` | Builds the app for production to the `build` folder. |
+| `yarn start` | Runs the app in the development mode (with auto-reload and lint errors) |
+| `yarn build` | Builds the app for production to the `build` folder. |
 
 ## Packaging and Deployment
 
