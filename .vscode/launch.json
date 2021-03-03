@@ -10,6 +10,13 @@
       "name": "Launch Edge against localhost",
       "url": "https://localhost:3000",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Attach to Node Functions",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "preLaunchTask": "func: host start"
     }
   ]
 }
