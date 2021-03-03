@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactJson from 'react-json-view';
 import { getMasu } from '../store';
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { updateGeneral } from './reducer';
@@ -87,11 +86,6 @@ export default function StepZGenerate() {
             <button type="button" className="btn btn-primary ms-auto" onClick={print}>{t('masu.stepZGenerate.print')}</button>
           </div>
         </form>
-        {process.env.REACT_APP_JSON_DEBUG &&
-          <div className="mb-3">
-            <ReactJson src={masu} name="masu" />
-          </div>
-        }
       </LeftForm>
       <RightPreview>
         <div className="row">
