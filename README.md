@@ -2,17 +2,24 @@
 
 Origami templates to create paper boxes. Perfect for board games, but not only.
 
-
 ## Development
 
 This project is built with Javascript using **React**, leveraging **Azure Functions** and **Node.js** for API and **MongoDB** for storage.
 
-The dependencies and scripts are using `yarn`.
+### Pre-requisities
+
+| tool | website |
+|------|---------|
+| [`yarn`](https://yarnpkg.com/) | Used for front-end dependencies and scripts |
+| [`docker` / `docker-compose`](https://www.docker.com/) | Used for the additional module (mongodb and azure functions) |
+
+### Scripts
 
 | scripts | usage |
 |---------|-------|
 | `yarn start` | Runs the front-end in the development mode (with auto-reload and lint errors) |
-| `yarn build` | Builds the front-end for production to the `build` folder. |
+| `yarn local:db` | Starts the mongodb server for local development using docker |
+| `yarn local:api` | Starts the Azure Function Apis for local development |
 
 ## Packaging and Deployment
 

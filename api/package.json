@@ -6,5 +6,7 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "devDependencies": {}
+  "dependencies": {
+    "mongodb": "^3.6.4"
+  }
 }
