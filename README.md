@@ -19,7 +19,8 @@ This project is built with Javascript using **React**, leveraging **Azure Functi
 |---------|-------|
 | `yarn start` | Runs the front-end in the development mode (with auto-reload and lint errors) |
 | `yarn local:db` | Starts the mongodb server for local development using docker |
-| `yarn local:api` | Starts the Azure Function Apis for local development |
+| `yarn local:api` | Starts the Azure Function Apis for local development (with auto-reload) |
+| `yarn local` | starts both mondb and the apis for local development |
 
 ## Packaging and Deployment
 

@@ -33,6 +33,9 @@
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
   },
+  "devDependencies": {
+    "concurrently": "^6.0.0"
+  },
   "resolutions": {
     "react-side-effect": "^2.1.0"
   },
@@ -44,7 +47,8 @@
     "prelocal:db": "docker-compose down && docker-compose build",
     "local:db": "docker-compose up",
     "postlocal:db": "docker-compose down",
-    "local:api": "cd api && func start"
+    "local:api": "cd api && func start",
+    "local": "concurrently \"yarn local:db\" \"yarn local:api\""
   },
   "eslintConfig": {
     "extends": [
