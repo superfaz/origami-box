@@ -10,52 +10,63 @@ function assert(value, message) {
 }
 
 module.exports = async function (context, req) {
-  context.log('/api/template call');
-
-  const mongoUri = assert(process.env.MONGO_CONNECTION_STRING, 'MONGO_CONNECTION_STRING not defined');
-  const facebookAppId = assert(process.env.FACEBOOK_APP_ID, 'FACEBOOK_APP_ID not defined');
-  const facebookAppSecret = assert(process.env.FACEBOOK_APP_SECRET, 'FACEBOOK_APP_SECRET not defined');
-  const accessToken = assert(req.headers.accesstoken, 'Missing accesstoken in the request headers');
-  const userId = assert(req.headers.userid, 'Missing userid in the request headers');
-
-  const response = await axios.get('https://graph.facebook.com/debug_token', {
-    params: {
-      input_token: accessToken,
-      access_token: `${facebookAppId}|${facebookAppSecret}`,
-    }
-  });
-
-  // Confirm that the response is valid
-  if (response.status !== 200
-    && response.data.data.app_id !== facebookAppId) {
-    throw new Error('Invalid response');
-  }
-
-  // Confirm that the user is valid
-  if (response.data.data.is_valid !== true
-    && response.data.data.app_id !== facebookAppId
-    && response.data.data.user_id !== userId) {
-    throw new Error('Invalid user');
-  }
-
-  const client = new MongoClient(mongoUri, {
-    useUnifiedTopology: true
-  });
-
   try {
-    await client.connect();
+    context.log('/api/template call');
 
-    const database = client.db('application');
-    const templates = database.collection('templates');
+    const mongoUri = assert(process.env.MONGO_CONNECTION_STRING, 'MONGO_CONNECTION_STRING not defined');
+    const facebookAppId = assert(process.env.FACEBOOK_APP_ID, 'FACEBOOK_APP_ID not defined');
+    const facebookAppSecret = assert(process.env.FACEBOOK_APP_SECRET, 'FACEBOOK_APP_SECRET not defined');
+    const accessToken = assert(req.headers.accesstoken, 'Missing accesstoken in the request headers');
+    const userId = assert(req.headers.userid, 'Missing userid in the request headers');
 
-    const query = { userId: userId };
-    const results = templates.find(query);
+    const response = await axios.get('https://graph.facebook.com/debug_token', {
+      params: {
+        input_token: accessToken,
+        access_token: `${facebookAppId}|${facebookAppSecret}`,
+      }
+    });
 
-    context.res = {
-      body: await results.toArray(),
-    };
+    // Confirm that the response is valid
+    if (response.status !== 200
+      && response.data.data.app_id !== facebookAppId) {
+      throw new Error('Invalid response');
+    }
+
+    // Confirm that the user is valid
+    if (response.data.data.is_valid !== true
+      && response.data.data.app_id !== facebookAppId
+      && response.data.data.user_id !== userId) {
+      throw new Error('Invalid user');
+    }
+
+    const client = new MongoClient(mongoUri, {
+      useUnifiedTopology: true
+    });
+
+    try {
+      await client.connect();
+
+      const database = client.db('application');
+      const templates = database.collection('templates');
+
+      const query = { userId: userId };
+      const results = templates.find(query);
+
+      context.log('success');
+      context.res = {
+        body: await results.toArray(),
+      };
+    }
+    finally {
+      await client.close();
+    }
+
   }
-  finally {
-    await client.close();
+  catch (error) {
+    context.log('error', error);
+    context.res = {
+      status: 400,
+      body: { error: error.message }
+    }
   }
 }
