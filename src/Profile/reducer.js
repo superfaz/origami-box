@@ -1,28 +1,27 @@
-const initialState = {};
+const initialState = { status: 'unknown' };
 
-export function connected(response) {
+export function updateLoginStatus(response) {
   if (process.env.REACT_APP_FACEBOOK_DEBUG) {
     console.log('login response', response);
   }
 
   if (!response.authResponse) {
     // User is not connected
-    return reset();
+    return notConnected();
   }
   else {
     // User is connected
     return (dispatch) => {
-      // Set the access token
-      dispatch(setField('accessToken', response.authResponse.accessToken));
-      dispatch(setField('userId', response.authResponse.userID));
+      // Set the basic info
+      dispatch(connected(response.authResponse.accessToken, response.authResponse.userID));
 
-      // Retrieve the user id
+      // Retrieve the user name
       window.FB.api('/me', response => {
         if (process.env.REACT_APP_FACEBOOK_DEBUG) {
           console.log('/me', response);
         }
 
-        dispatch(setField('name', response.name));
+        dispatch(setName(response.name));
       });
 
       // Retrieve the user miniature
@@ -31,7 +30,7 @@ export function connected(response) {
           console.log('/me/picture', response);
         }
 
-        dispatch(setField('picture', response.data.url));
+        dispatch(setPicture(response.data.url));
       });
     }
   }
@@ -44,36 +43,77 @@ export function logout() {
         console.log('logout', response);
       }
 
-      dispatch(reset());
+      dispatch(notConnected());
     });
   }
 }
 
-export function reset() {
+export function notConnected() {
   return {
-    type: 'RESET',
+    type: 'NOT_CONNECTED',
   };
 }
 
-export function setField(name, value) {
+export function connected(accessToken, userId) {
   return {
-    type: 'SET_FIELD',
-    payload: { name, value },
+    type: 'CONNECTED',
+    payload: { accessToken, userId },
+  }
+}
+
+export function setName(name) {
+  return {
+    type: 'SET_NAME',
+    payload: { name },
+  };
+}
+
+export function setPicture(picture) {
+  return {
+    type: 'SET_PICTURE',
+    payload: { picture },
   };
 }
 
 export default function profileReducer(state = initialState, action) {
   switch (action.type) {
-    case 'RESET': {
-      return initialState;
+    case 'NOT_CONNECTED': {
+      return {
+        ...initialState,
+        status: 'not-connected'
+      };
     }
 
-    case 'SET_FIELD': {
-      const { name, value } = action.payload;
+    case 'CONNECTED': {
+      const { accessToken, userId } = action.payload;
       return {
         ...state,
-        [name]: value,
-      }
+        status: 'connected',
+        accessToken,
+        userId,
+      };
+    }
+
+    case 'SET_NAME': {
+      const { name } = action.payload;
+      const status = name && state.picture ? 'initialized' : state.status;
+
+      return {
+        ...state,
+        status,
+        name,
+      };
+    }
+
+    case 'SET_PICTURE': {
+      const { picture } = action.payload;
+      const status = state.name && picture ? 'initialized' : state.status;
+
+      return {
+        ...state,
+        status,
+        picture,
+      };
     }
 
     default: {

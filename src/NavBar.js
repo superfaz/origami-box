@@ -68,12 +68,7 @@ export default function NavBar() {
             </Helmet>
           </li>
           <li className="nav_item ms-3">
-            {!profile.accessToken &&
-              <Login className="btn btn-outline-primary text-white">
-                {t('navbar.signin')}
-              </Login>
-            }
-            {profile.accessToken && !profile.picture &&
+            {(profile.status === 'unknown' || profile.status === 'connected') &&
               <Loader
                 className="mt-2"
                 type="Bars"
@@ -82,7 +77,12 @@ export default function NavBar() {
                 width='40px'
                 timeout={0} />
             }
-            {profile.picture &&
+            {profile.status === 'not-connected' &&
+              <Login className="btn btn-outline-primary text-white">
+                {t('navbar.signin')}
+              </Login>
+            }
+            {profile.status === 'initialized' &&
               <Tippy className="card" content={<ProfileMenu />}
                 interactive={true} interactiveBorder={20} trigger="click"
                 placement="bottom-end" theme="light-border">

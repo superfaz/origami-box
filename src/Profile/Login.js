@@ -1,15 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import classNames from 'classnames/dedupe';
-import { connected } from "./reducer";
+import { updateLoginStatus } from "./reducer";
 
 export function Login({ className = null, children, ...rest }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   function handleClick() {
-    window.FB.login(function (response) {
-      dispatch(connected(response));
+    window.FB.login(response => {
+      dispatch(updateLoginStatus(response));
     });
   }
 

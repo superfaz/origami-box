@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Login } from "./Profile";
 import { getProfile } from "./store";
-import { isConnected } from "./Profile/selectors";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -21,7 +20,7 @@ export default function Home() {
         <div className="col-lg-6 mb-3">
           <p className="lead">{t('home.description')}</p>
           <Link to="/masu" className="btn btn-lg btn-primary">{t('home.start')}</Link>
-          {!isConnected(profile) &&
+          {profile.status === 'not-connected' &&
             <Login className="btn-lg ms-3" />
           }
         </div>

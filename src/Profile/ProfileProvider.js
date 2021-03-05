@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { connected } from './reducer';
+import { notConnected, updateLoginStatus } from './reducer';
 
 export function FacebookProvider({ children }) {
   const dispatch = useDispatch();
@@ -20,7 +20,10 @@ export function FacebookProvider({ children }) {
         console.log('Facebook SDK initialized');
 
         if (response.authResponse) {
-          dispatch(connected(response));
+          dispatch(updateLoginStatus(response));
+        }
+        else {
+          dispatch(notConnected());
         }
       });
     };
