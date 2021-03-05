@@ -2,8 +2,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   pageFormat: 'A4',
-  pageLength: 297,
-  pageWidth: 210,
   length: '',
   width: '',
   height: '',
@@ -82,22 +80,10 @@ export default function masuReducer(state = initialState, action) {
     }
 
     case 'UPDATE_GENERAL': {
-      if (action.payload.name === 'pageFormat') {
-        const pageLength = action.payload.value === 'A4' ? 297 : 210;
-        const pageWidth = action.payload.value === 'A4' ? 210 : 297;
-        return {
-          ...state,
-          [action.payload.name]: action.payload.value,
-          pageLength,
-          pageWidth,
-        };
-      }
-      else {
-        return {
-          ...state,
-          [action.payload.name]: action.payload.value,
-        };
-      }
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      };
     }
 
     case 'UPDATE_DETAIL': {

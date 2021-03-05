@@ -40,6 +40,9 @@ export function checkValidity(target) {
 
 export function useMasuMeasurement(masu, lid = false) {
 
+  let pageWidth = 210;
+  let pageHeight = 297;
+
   let l = parseFloat(masu.length);
   let w = parseFloat(masu.width);
   let h = parseFloat(masu.height);
@@ -57,6 +60,8 @@ export function useMasuMeasurement(masu, lid = false) {
 
   const max = l + w + 4.0 * h;
   return {
+    pageWidth,
+    pageHeight,
     l,
     w,
     h,

@@ -25,8 +25,6 @@ const noneStyle = {
 export default function MasuTemplateBack({ lid = false, print = false, text = null, image = null }) {
   const masu = useSelector(getMasu);
   const block = lid ? masu.lid : masu.base;
-  const pageLength = parseFloat(masu.pageLength);
-  const pageWidth = parseFloat(masu.pageWidth);
   const images = getImages(block, image);
   const texts = getTexts(block, text);
 
@@ -35,7 +33,7 @@ export default function MasuTemplateBack({ lid = false, print = false, text = nu
 
   if (m === null) {
     return (
-      <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}></SvgPaper>
+      <SvgPaper className="template" pageWidth={210} pageHeight={297}></SvgPaper>
     );
   }
 
@@ -57,7 +55,7 @@ export default function MasuTemplateBack({ lid = false, print = false, text = nu
     .map(f => 'family=' + f.replace(' ', '+'))
     .join('&');
   return (
-    <SvgPaper className="template" pageWidth={pageWidth} pageHeight={pageLength}>
+    <SvgPaper className="template" pageWidth={m.pageWidth} pageHeight={m.pageHeight}>
       <Helmet>
         {text && text.family &&
           <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?family=" + text.family.replace(' ', '+')} />
