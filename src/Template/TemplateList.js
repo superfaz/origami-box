@@ -1,11 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { isConnected } from '../Profile/selectors';
+import { getProfile } from '../store';
 
 export function useTemplates() {
   const [templates, setTemplates] = useState([]);
   const [error, setError] = useState(null);
+  const profile = useSelector(getProfile);
 
   useEffect(() => {
-    fetch('/api/template')
+    if (!isConnected(profile)) {
+      return;
+    }
+
+    fetch('/api/template', {
+      headers: {
+        accessToken: profile.accessToken,
+        userId: profile.userId,
+      }
+    })
       .then(response => {
         console.log(response);
         if (!response.ok) {
@@ -21,7 +34,7 @@ export function useTemplates() {
         console.error("Can't retrieve the templates", error);
         setError(error);
       });
-  }, []);
+  }, [profile]);
 
   return { templates, error };
 }

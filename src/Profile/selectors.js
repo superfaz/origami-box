@@ -1,6 +1,7 @@
 export function isConnected(profile) {
   return profile !== undefined
     && profile !== null
+    && profile.userId !== undefined
     && profile.accessToken !== undefined;
 }
 
