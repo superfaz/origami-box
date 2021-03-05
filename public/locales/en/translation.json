@@ -2,6 +2,11 @@
   "colorpicker": {
     "title": "Select a color"
   },
+  "navbar": {
+    "templates": "My templates",
+    "welcome": "Signed in as <1>{{name}}</1>",
+    "signin": "Sign in"
+  },
   "home": {
     "title": "Welcome <1>",
     "description": "This site provides origami templates to create paper boxes. Perfect for board games, but not only.",
@@ -12,9 +17,15 @@
       "text": "As a result, it is likely to change drastically from one release to the other. Just saying...  :)"
     }
   },
-  "navbar": {
-    "welcome": "Signed in as <1>{{name}}</1>",
-    "signin": "Sign in"
+  "templates": {
+    "title": "My templates",
+    "columns": {
+      "name": "Name",
+      "type": "Type",
+      "savedate": "Saved"
+    },
+    "empty": "There is no template saved",
+    "error": "An error occurs - Can't retrieve the templates"
   },
   "profile": {
     "login": "Continue with Facebook",

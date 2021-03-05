@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { isConnected } from '../Profile/selectors';
 import { getProfile } from '../store';
@@ -40,21 +41,28 @@ export function useTemplates() {
 }
 
 export default function TemplateList() {
+  const { t } = useTranslation();
   const { templates, error } = useTemplates();
   return (
     <div className="container">
-      <table>
+      <h1>{t('templates.title')}</h1>
+      <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Last save</th>
+            <th>{t('templates.columns.name')}</th>
+            <th>{t('templates.columns.type')}</th>
+            <th>{t('templates.columns.savedate')}</th>
           </tr>
         </thead>
         <tbody>
           {error &&
             <tr>
-              <td colSpan="3">Can't retrieve the templates</td>
+              <td colSpan="3">{t('templates.error')}</td>
+            </tr>
+          }
+          {!error && templates.length === 0 &&
+            <tr>
+              <td colSpan="3">{t('templates.empty')}</td>
             </tr>
           }
           {!error && templates.map(template =>

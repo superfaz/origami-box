@@ -2,6 +2,11 @@
   "colorpicker": {
     "title": "Choisir une couleur"
   },
+  "navbar": {
+    "templates": "Mes modèles",
+    "welcome": "Connecter en tant que <1>{{name}}</1>",
+    "signin": "Se connecter"
+  },
   "home": {
     "title": "Bienvenue <1>",
     "description": "Ce site permet de créer des patrons d'origami pour la création de boites de stockage. Parfaite pour des jeux de plateau, mais pas seulement.",
@@ -12,9 +17,15 @@
       "text": "En conséquence, il peut changer de façon importante d'un jour à l'autre. Je préfère prévenir...  :)"
     }
   },
-  "navbar": {
-    "welcome": "Connecter en tant que <1>{{name}}</1>",
-    "signin": "Se connecter"
+  "templates": {
+    "title": "Mes modèles",
+    "columns": {
+      "name": "Nom",
+      "type": "Type",
+      "savedate": "Date"
+    },
+    "empty": "Il n'y a aucun modèle",
+    "error": "Une erreur s'est produite - Impossible d'afficher la liste des modèles"
   },
   "profile": {
     "login": "Continuer avec Facebook",

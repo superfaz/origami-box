@@ -23,7 +23,7 @@ export default function App() {
             <Route path="/masu">
               <Masu />
             </Route>
-            <Route path="/template">
+            <Route path="/templates">
               <TemplateList />
             </Route>
             <Route exact path="/logo">
