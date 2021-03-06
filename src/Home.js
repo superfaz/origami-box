@@ -43,22 +43,6 @@ export default function Home() {
             <p>
               <button onClick={handleCreate} className="btn btn-lg btn-primary">{t('home.start')}</button>
             </p>
-            <div className="row">
-              {objectMap(templates, (id, template) =>
-                <div key={id} className="col-xl-4 col-lg-6 mb-3">
-                  <div className="card">
-                    <div className="card-body">
-                      <h5 className="card-title">{template.title}</h5>
-                      <h6 className="card-subtitle mb-2 text-muted">{t('home.template.unsaved')}</h6>
-                      <p className="card-text"></p>
-                      <Link to={`/edit/${id}`} className="card-link">{t('home.template.continue')}</Link>
-                      <button className="btn btn-link card-link"
-                        onClick={() => handleDiscard(id)}>{t('home.template.discard')}</button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
           <div className="col-xl-4 col-lg-6 mb-3">
             <div className="card text-dark bg-warning mb-3">
@@ -71,6 +55,20 @@ export default function Home() {
               </div>
             </div>
           </div>
+          {objectMap(templates, (id, template) =>
+            <div key={id} className="col-xl-4 col-lg-6 mb-3">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">{template.title}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">{t('home.template.unsaved')}</h6>
+                  <p className="card-text"></p>
+                  <Link to={`/edit/${id}`} className="card-link">{t('home.template.continue')}</Link>
+                  <button className="btn btn-link card-link"
+                    onClick={() => handleDiscard(id)}>{t('home.template.discard')}</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
