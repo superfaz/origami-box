@@ -1,13 +1,9 @@
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Login } from "./Profile";
-import { getProfile } from "./store";
 
 export default function Home() {
   const { t } = useTranslation();
-  const profile = useSelector(getProfile);
 
   return (
     <div className="container">
@@ -17,14 +13,13 @@ export default function Home() {
         </Trans>
       </h1>
       <div className="row">
-        <div className="col-lg-6 mb-3">
+        <div className="col-xl-8 col-lg-6 mb-3">
           <p className="lead">{t('home.description')}</p>
-          <Link to="/masu" className="btn btn-lg btn-primary">{t('home.start')}</Link>
-          {profile.status === 'not-connected' &&
-            <Login className="btn-lg ms-3" />
-          }
+          <p>
+            <Link to="/masu" className="btn btn-lg btn-primary">{t('home.start')}</Link>
+          </p>
         </div>
-        <div className="col-lg-6 mb-3">
+        <div className="col-xl-4 col-lg-6 mb-3">
           <div className="card text-dark bg-warning mb-3">
             <div className="card-header">{t('home.beta.header')}</div>
             <div className="card-body">
