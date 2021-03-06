@@ -2,12 +2,13 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { logout } from "./reducer";
 
-export function Logout({ className, ...rest }) {
+export function Logout({ className, onClick = () => { }, ...rest }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   function handleLogout() {
     dispatch(logout());
+    onClick();
   }
 
   return (

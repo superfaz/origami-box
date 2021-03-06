@@ -4,6 +4,7 @@
   },
   "date": "{{date, date}}",
   "navbar": {
+    "home": "Accueil",
     "templates": "Mes modèles",
     "welcome": "Connecter en tant que <1>{{name}}</1>",
     "signin": "Se connecter"

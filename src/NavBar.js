@@ -8,6 +8,7 @@ import Tippy from '@tippyjs/react';
 import { getProfile } from './store';
 import { Login, Logout } from './Profile';
 import { isConnected } from './Profile/selectors';
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 
 import './NavBar.css';
 
@@ -37,41 +38,90 @@ function LanguageMenu() {
     <div>
       <div className="list-group list-group-flush">
         <button className="list-group-item list-group-item-action"
-          onClick={() => i18n.changeLanguage('en')}>en (English)</button>
+          onClick={() => { i18n.changeLanguage('en'); collapse() }}>en (English)</button>
         <button className="list-group-item list-group-item-action"
-          onClick={() => i18n.changeLanguage('fr')}>fr (Français)</button>
+          onClick={() => { i18n.changeLanguage('fr'); collapse() }}>fr (Français)</button>
       </div>
     </div >
   );
+}
+
+function collapse() {
+  const navbar = document.getElementById('navbar');
+  const collapse = bootstrap.Collapse.getInstance(navbar);
+  if (collapse !== null) {
+    collapse.hide();
+  }
 }
 
 export default function NavBar() {
   const { t, i18n } = useTranslation();
   const profile = useSelector(getProfile);
   const location = useLocation();
+  const languages = i18n.options.supportedLngs.filter(lng => lng !== 'cimode');
 
   return (
     <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark text-light">
       <div className="container">
-        <Link className="navbar-brand" to="/">
-          <img alt="logo" src="/logo-plain.svg" height="30" className="me-2 align-top" />
-          Origami Box
-        </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
+        <Link className="navbar-brand" to="/" onClick={collapse}>
+          <img alt="logo" src="/logo-plain.svg" height="30" className="me-2 align-top" />
+          Origami Box
+        </Link>
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav me-auto">
+            <li className="nav-item">
+              <Link className={classNames("nav-link", { active: location.pathname === '/' })}
+                onClick={collapse}
+                to="/">{t('navbar.home')}</Link>
+            </li>
             {isConnected(profile) &&
               <li className="nav-item">
                 <Link className={classNames("nav-link", { active: location.pathname.startsWith('/templates') })}
+                  onClick={collapse}
                   to="/templates">{t('navbar.templates')}</Link>
               </li>
             }
+            <li className="nav-item d-lg-none">
+              Change language to:
+              <div className="btn-group ms-2">
+                {languages.map(lng =>
+                  <button key={lng}
+                    className={classNames("btn", { "btn-secondary": i18n.language === lng }, { "btn-outline-secondary": i18n.language !== lng })}
+                    onClick={() => {
+                      i18n.changeLanguage(lng);
+                      collapse();
+                    }}>{lng}</button>
+                )}
+              </div>
+            </li>
+            {profile.status === 'not-connected' &&
+              <li className="nav-item d-lg-none">
+                <Login className="nav-link btn">
+                  <i className="fas fa-sign-in-alt me-2"></i>
+                  {t('navbar.signin')}
+                </Login>
+              </li>
+            }
+            {profile.status === 'initialized' &&
+              <li className="nav-item d-lg-none">
+                <Link className="nav-link disabled" to="/profile" onClick={collapse}>
+                  <img src={profile.picture} height="24" alt={profile.name} className="rounded me-2" />
+                  {profile.name}
+                </Link>
+              </li>
+            }
+            {profile.status === 'initialized' &&
+              <li className="nav-item d-lg-none">
+                <Logout className="nav-link btn" onClick={collapse} />
+              </li>
+            }
           </ul>
-          <ul className="navbar-nav">
-            <li className="nav-item ms-3">
+          <ul className="navbar-nav d-none d-lg-flex">
+            <li className="nav-item ms-lg-3">
               <Tippy className="card" content={<LanguageMenu />}
                 interactive={true} interactiveBorder={20} trigger="click"
                 placement="bottom-end" theme="light-border">
@@ -83,7 +133,7 @@ export default function NavBar() {
                 <html lang={i18n.language} />
               </Helmet>
             </li>
-            <li className="nav-item ms-3">
+            <li className="nav-item ms-lg-3">
               {(profile.status === 'unknown' || profile.status === 'connected') &&
                 <Loader
                   className="mt-2"
