@@ -1,56 +1,78 @@
+import { useState } from "react";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+import objectMap from "./objectMap";
 import { getTemplates } from "./store";
+import { create, remove } from "./store/templates";
 
 export default function Home() {
   const { t } = useTranslation();
+  const [redirect, setRedirect] = useState(null);
   const templates = useSelector(getTemplates);
+  const dispatch = useDispatch();
 
-  return (
-    <div className="container">
-      <h1 className="display-3">
-        <Trans i18nKey="home.title">
-          Welcome <i className='far fa-smile-wink'></i>
-        </Trans>
-      </h1>
-      <div className="row">
-        <div className="col-xl-8 col-lg-6 mb-3">
-          <p className="lead mb-3">{t('home.description')}</p>
-          <p>
-            <Link to="/masu" className="btn btn-lg btn-primary">{t('home.start')}</Link>
-          </p>
-          {templates.length > 0 &&
+  function handleCreate() {
+    const id = uuidv4();
+    dispatch(create(id));
+    setRedirect('/edit/' + id);
+  }
+
+  function handleDiscard(id) {
+    dispatch(remove(id));
+  }
+
+  if (redirect !== null) {
+    return (
+      <Redirect to={redirect} />
+    );
+  }
+  else {
+    return (
+      <div className="container">
+        <h1 className="display-3">
+          <Trans i18nKey="home.title">
+            Welcome <i className='far fa-smile-wink'></i>
+          </Trans>
+        </h1>
+        <div className="row">
+          <div className="col-xl-8 col-lg-6 mb-3">
+            <p className="lead mb-3">{t('home.description')}</p>
+            <p>
+              <button onClick={handleCreate} className="btn btn-lg btn-primary">{t('home.start')}</button>
+            </p>
             <div className="row">
-              {templates.map(template =>
-                <div key={template.id} className="col-xl-4 col-lg-6 mb-3">
+              {objectMap(templates, (id, template) =>
+                <div key={id} className="col-xl-4 col-lg-6 mb-3">
                   <div className="card">
                     <div className="card-body">
                       <h5 className="card-title">{template.title}</h5>
-                      <h6 className="card-subtitle mb-2 text-muted">Unsaved template</h6>
+                      <h6 className="card-subtitle mb-2 text-muted">{t('home.template.unsaved')}</h6>
                       <p className="card-text"></p>
-                      <button className="card-link">Continue</button>
-                      <button className="card-link">Discard</button>
+                      <Link to={`/edit/${id}`} className="card-link">{t('home.template.continue')}</Link>
+                      <button className="btn btn-link card-link"
+                        onClick={() => handleDiscard(id)}>{t('home.template.discard')}</button>
                     </div>
                   </div>
                 </div>
               )}
             </div>
-          }
-        </div>
-        <div className="col-xl-4 col-lg-6 mb-3">
-          <div className="card text-dark bg-warning mb-3">
-            <div className="card-header">{t('home.beta.header')}</div>
-            <div className="card-body">
-              <h5 className="card-title">{t('home.beta.title')}</h5>
-              <div className="card-text">
-                <Trans i18nKey="home.beta.text"></Trans>
+          </div>
+          <div className="col-xl-4 col-lg-6 mb-3">
+            <div className="card text-dark bg-warning mb-3">
+              <div className="card-header">{t('home.beta.header')}</div>
+              <div className="card-body">
+                <h5 className="card-title">{t('home.beta.title')}</h5>
+                <div className="card-text">
+                  <Trans i18nKey="home.beta.text"></Trans>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
