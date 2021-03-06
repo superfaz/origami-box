@@ -6,28 +6,28 @@ const initialTemplate = {
   data: {},
 };
 
-export function create(id) {
+export function create(key) {
   return {
     type: 'CREATE',
-    payload: { id },
+    payload: { key },
   }
 }
 
-export function remove(id) {
+export function remove(key) {
   return {
     type: 'REMOVE',
-    payload: { id },
+    payload: { key },
   }
 }
 
 export default function templateReducer(state = initialState, action) {
   switch (action.type) {
     case 'CREATE': {
-      const { id } = action.payload;
+      const { key } = action.payload;
       return {
         ...state,
-        [id]: {
-          id,
+        [key]: {
+          key,
           ...initialTemplate,
           savedate: new Date().getTime(),
         },
@@ -35,12 +35,12 @@ export default function templateReducer(state = initialState, action) {
     }
 
     case 'REMOVE': {
-      const { id } = action.payload;
+      const { key } = action.payload;
       let result = {
         ...state,
       }
 
-      delete result[id];
+      delete result[key];
       return result;
     }
 
