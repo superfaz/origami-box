@@ -2,6 +2,7 @@
   "colorpicker": {
     "title": "Select a color"
   },
+  "date": "{{date, date}}",
   "navbar": {
     "templates": "My templates",
     "welcome": "Signed in as <1>{{name}}</1>",

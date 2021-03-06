@@ -1,7 +1,22 @@
+import dayjs from 'dayjs';
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/en';
+
+dayjs.extend(localizedFormat);
+
+function i18nFormating(value, format, lng) {
+  if (value instanceof Date || format === 'date') {
+    return dayjs(value).locale(lng).format('ll');
+  }
+  else {
+    return value;
+  }
+}
 
 i18n
   // load translation using http -> see /public/locales
@@ -21,6 +36,7 @@ i18n
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
+      format: i18nFormating
     },
   });
 

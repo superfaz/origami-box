@@ -21,7 +21,6 @@ export function useTemplates() {
       }
     })
       .then(response => {
-        console.log(response);
         if (!response.ok) {
           throw new Error("HTTP error " + response.status);
         }
@@ -66,10 +65,10 @@ export default function TemplateList() {
             </tr>
           }
           {!error && templates.map(template =>
-            <tr key={template.id}>
+            <tr key={template._id}>
               <td>{template.name}</td>
               <td>{template.type}</td>
-              <td>{template.savedate}</td>
+              <td>{t('date', { date: template.savedate })}</td>
             </tr>
           )}
         </tbody>

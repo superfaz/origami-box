@@ -2,6 +2,7 @@
   "colorpicker": {
     "title": "Choisir une couleur"
   },
+  "date": "{{date, date}}",
   "navbar": {
     "templates": "Mes modèles",
     "welcome": "Connecter en tant que <1>{{name}}</1>",
