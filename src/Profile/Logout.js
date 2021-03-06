@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { logout } from "./reducer";
+import { logout } from "../store/profile";
 
 export function Logout({ className, onClick = () => { }, ...rest }) {
   const { t } = useTranslation();

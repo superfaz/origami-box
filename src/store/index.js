@@ -1,9 +1,9 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import persistState from 'redux-localstorage';
 import thunk from 'redux-thunk';
-import masuReducer from './Masu/reducer';
-import profileReducer from './Profile/reducer';
-import templatesReducer from './Template/reducer';
+import masuReducer from './masu';
+import profileReducer from './profile';
+import templatesReducer from './templates';
 
 const reducers = combineReducers({
   profile: profileReducer,

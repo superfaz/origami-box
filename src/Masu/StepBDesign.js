@@ -4,7 +4,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { getMasu } from '../store';
 import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { updateDetail, deleteText, deleteImage } from './reducer';
+import { updateDetail, deleteText, deleteImage } from '../store/masu';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 

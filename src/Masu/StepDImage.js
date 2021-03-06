@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { getMasu } from "../store";
-import { addOrUpdateImage } from "./reducer";
+import { addOrUpdateImage } from "../store/masu";
 import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
 import { checkValidity, loadImageAsync } from "./helper";

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMasu } from '../store';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { updateGeneral } from './reducer';
+import { updateGeneral } from '../store/masu';
 import { getFonts } from './selectors';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';

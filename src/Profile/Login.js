@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { updateLoginStatus } from "./reducer";
+import { updateLoginStatus } from "../store/profile";
 
 export function Login({ className = null, onClick = () => { }, children, ...rest }) {
   const dispatch = useDispatch();

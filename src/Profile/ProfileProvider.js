@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { notConnected, updateLoginStatus } from './reducer';
+import { notConnected, updateLoginStatus } from '../store/profile';
 
 export function FacebookProvider({ children }) {
   const dispatch = useDispatch();

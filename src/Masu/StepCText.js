@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMasu } from '../store';
 import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { addOrUpdateText } from './reducer';
+import { addOrUpdateText } from '../store/masu';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 import { checkValidity } from './helper';
