@@ -8,6 +8,31 @@ const initialTemplate = {
   data: {},
 };
 
+const initialMasu = {
+  pageFormat: 'A4',
+  length: '',
+  width: '',
+  height: '',
+  withDesign: true,
+  withLid: false,
+  base: {
+    key: 'base',
+    background: '#8ED1FC',
+    backgroundImage: null,
+    texts: {},
+    images: {},
+  },
+  lid: {
+    key: 'lid',
+    delta: 2,
+    height: '',
+    background: '#8ED1FC',
+    backgroundImage: null,
+    texts: {},
+    images: {},
+  },
+};
+
 export function create(key) {
   return {
     type: 'CREATE',
@@ -81,6 +106,9 @@ export default function templateReducer(state = initialState, action) {
           key,
           ...initialTemplate,
           savedate: new Date().getTime(),
+          data: {
+            ...initialMasu
+          }
         },
       };
     }

@@ -15,6 +15,7 @@ export default function StepCText({ lid = false }) {
   const { t } = useTranslation();
   const { key } = useParams();
   const { template, data: masu } = useTemplate();
+  const baseUrl = '/edit/' + template.key;
 
   const initialState = key !== undefined
     ? lid ? masu.lid.texts[key] : masu.base.texts[key]
@@ -143,10 +144,10 @@ export default function StepCText({ lid = false }) {
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link className="btn btn-link" to={`/masu/${lid ? 'lid' : 'base'}`}>{t('masu.stepCText.cancel')}</Link>
+            <Link className="btn btn-link" to={`${baseUrl}/${lid ? 'lid' : 'base'}`}>{t('masu.stepCText.cancel')}</Link>
             <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepCText.submit')}</button>
             {redirect &&
-              <Redirect to={`/masu/${lid ? 'lid' : 'base'}`} />
+              <Redirect to={`${baseUrl}/${lid ? 'lid' : 'base'}`} />
             }
           </div>
         </form>

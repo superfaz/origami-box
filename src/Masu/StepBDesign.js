@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
 import { updateDetail, deleteText, deleteImage } from '../store/templates';
@@ -12,8 +12,8 @@ export default function StepBDesign({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { template, data: masu } = useTemplate();
-  const { url } = useRouteMatch();
   const block = lid ? masu.lid : masu.base;
+  const baseUrl = '/edit/' + template.key;
 
   function handleBackgroundColorChange(color) {
     dispatch(updateDetail(template.key, block.key, 'background', color.hex));
@@ -74,7 +74,7 @@ export default function StepBDesign({ lid = false }) {
                   <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
                     <Link className="btn btn-outline-primary ms-1 btn-sm" title={t('masu.stepBDesign.textEdit')}
-                      to={`${url}/text/${key}`}>
+                      to={`${baseUrl}/${block}/text/${key}`}>
                       <i className="fas fa-pen" style={{ width: '14px' }}></i>
                     </Link>
                     <button className="btn btn-outline-danger ms-1 btn-sm" title={t('masu.stepBDesign.textDelete')}
@@ -87,7 +87,7 @@ export default function StepBDesign({ lid = false }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to={`${url}/text`}>{t('masu.stepCText.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to={`${baseUrl}/${block}/text`}>{t('masu.stepCText.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3">
@@ -106,7 +106,7 @@ export default function StepBDesign({ lid = false }) {
                   <td>{t(`masu.face.${block.images[key].face}`)}</td>
                   <td className="text-end">
                     <Link className="btn btn-outline-primary ms-1 btn-sm" title={t('masu.stepBDesign.imageEdit')}
-                      to={`${url}/image/${key}`}>
+                      to={`${baseUrl}/${block}/image/${key}`}>
                       <i className="fas fa-pen" style={{ width: '14px' }}></i>
                     </Link>
                     <button className="btn btn-outline-danger ms-1 btn-sm" title={t('masu.stepBDesign.imageDelete')}
@@ -119,15 +119,15 @@ export default function StepBDesign({ lid = false }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to={`${url}/image`}>{t('masu.stepDImage.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to={`${baseUrl}/${block}/image`}>{t('masu.stepDImage.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">
           {!lid && masu.withLid &&
-            <Link className="btn btn-primary ms-auto" to={`/masu/lid`}>{t('masu.stepBDesign.lid.linkTo')}</Link>
+            <Link className="btn btn-primary ms-auto" to={`${baseUrl}/lid`}>{t('masu.stepBDesign.lid.linkTo')}</Link>
           }
           {(lid || !masu.withLid) &&
-            <Link className="btn btn-primary ms-auto" to={`/masu/generate`}>{t('masu.stepZGenerate.linkTo')}</Link>
+            <Link className="btn btn-primary ms-auto" to={`${baseUrl}/generate`}>{t('masu.stepZGenerate.linkTo')}</Link>
           }
         </div>
       </LeftForm>

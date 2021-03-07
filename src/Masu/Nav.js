@@ -35,16 +35,17 @@ export default function Nav() {
   return (
     <nav className="nav-steps" aria-label="breadcrumb">
       <ol className="breadcrumb">
-        <BreadcrumbItem exact path="/masu" title={t('masu.stepAGeneral.title')} withLink={isGeneralValid(masu)} />
+        <BreadcrumbItem exact path={`${path}`} title={t('masu.stepAGeneral.title')} withLink={isGeneralValid(masu)} />
         {!masu.withLid && masu.withDesign &&
-          <BreadcrumbItem path="/masu/base" title={t('masu.stepBDesign.box.title')} withLink={isGeneralValid(masu)} />
+          <BreadcrumbItem path={`${path}/base`} title={t('masu.stepBDesign.box.title')} withLink={isGeneralValid(masu)} />
         }
         {masu.withLid && masu.withDesign &&
-          <BreadcrumbItem path="/masu/base" title={t('masu.stepBDesign.base.title')} withLink={isGeneralValid(masu)} />
+          <BreadcrumbItem path={`${path}/base`} title={t('masu.stepBDesign.base.title')} withLink={isGeneralValid(masu)} />
         }
         {masu.withLid && masu.withDesign &&
-          <BreadcrumbItem path="/masu/lid" title={t('masu.stepBDesign.lid.title')} withLink={isGeneralValid(masu)} />
+          <BreadcrumbItem path={`${path}/lid`} title={t('masu.stepBDesign.lid.title')} withLink={isGeneralValid(masu)} />
         }
+        <BreadcrumbItem path={`${path}/generate`} title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(masu)} />
         {process.env.NODE_ENV === 'development' &&
           <BreadcrumbItem path={`${path}/debug`} title={t('masu.stepYDebug.title')} withLink={true} />
         }

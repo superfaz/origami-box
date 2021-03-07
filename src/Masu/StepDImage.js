@@ -13,7 +13,8 @@ export default function StepDImage({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { key } = useParams();
-  const masu = useTemplate();
+  const { template, data: masu } = useTemplate();
+  const baseUrl = '/edit/' + template.key;
 
   const initialState = key !== undefined
     ? lid ? masu.lid.images[key] : masu.base.images[key]
@@ -67,7 +68,7 @@ export default function StepDImage({ lid = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addOrUpdateImage(lid ? 'lid' : 'base', state));
+    dispatch(addOrUpdateImage(template.key, lid ? 'lid' : 'base', state));
     setRedirect(true);
   }
 
@@ -141,10 +142,10 @@ export default function StepDImage({ lid = false }) {
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link className="btn btn-link" to={`/masu/${lid ? 'lid' : 'base'}`}>{t('masu.stepDImage.cancel')}</Link>
+            <Link className="btn btn-link" to={`${baseUrl}/${lid ? 'lid' : 'base'}`}>{t('masu.stepDImage.cancel')}</Link>
             <button type="submit" className="btn btn-primary ms-auto">{t('masu.stepDImage.submit')}</button>
             {redirect &&
-              <Redirect to={`/masu/${lid ? 'lid' : 'base'}`} />
+              <Redirect to={`${baseUrl}/${lid ? 'lid' : 'base'}`} />
             }
           </div>
         </form>
