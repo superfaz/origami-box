@@ -1454,9 +1454,9 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@popperjs/core@^2.8.3":
+"@popperjs/core@^2.8.3", "@popperjs/core@^2.9.0":
   version "2.9.0"
-  resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.9.0.tgz"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.0.tgz#32e63212293dd3efbb521cd35a5020ab66eaa546"
   integrity sha512-wjtKehFAIARq2OxK8j3JrggNlEslJfNuSm2ArteIbKyRMts2g0a7KzTxfRVNUM+O0gnBJ2hNV8nWPOYBgI1sew==
 
 "@rollup/plugin-node-resolve@^7.1.1":
@@ -1612,9 +1612,9 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-"@tippyjs/react@^4.2.1":
+"@tippyjs/react@^4.2.3":
   version "4.2.3"
-  resolved "https://registry.npmjs.org/@tippyjs/react/-/react-4.2.3.tgz"
+  resolved "https://registry.yarnpkg.com/@tippyjs/react/-/react-4.2.3.tgz#c2dbe9eb71bd9ffa3974f9ba8e3a4a6fc1538aed"
   integrity sha512-44vBapqROQI7Q5nDtX1MMAgcAV+3DsIi+m/45CxQ72C5LDNmNDq9h3f04x3NHMrUhWcfgfgjYA2EmeLSH/4eRg==
   dependencies:
     tippy.js "^6.3.1"
@@ -5634,9 +5634,9 @@ i18next-http-backend@^1.1.1:
   dependencies:
     node-fetch "2.6.1"
 
-i18next@^19.9.0:
+i18next@^19.9.1:
   version "19.9.1"
-  resolved "https://registry.npmjs.org/i18next/-/i18next-19.9.1.tgz"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.9.1.tgz#7a072b75daf677aa51fd4ce55214f21702af3ffd"
   integrity sha512-9Azzyb3DvMJUMd7sPhwVEs6PQcogvdHmLQTjMQ+P+h3XwW4O66/8lgZTmYShgkjPOCqTw4Fwl5LOp/VhZgPo5A==
   dependencies:
     "@babel/runtime" "^7.12.0"
