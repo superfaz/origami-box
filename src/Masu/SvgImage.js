@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux";
-import { getMasu } from "../store";
+import { useTemplate } from "../hooks";
 import { configureFace, useMasuMeasurement } from "./helper";
 
-export default function SvgImage({ image, lid = false}) {
-  const masu = useSelector(getMasu);
+export default function SvgImage({ image, lid = false }) {
+  const { data: masu } = useTemplate();
   const m = useMasuMeasurement(masu, lid);
   if (image.content === null) {
     // Image file not provided
@@ -56,9 +55,9 @@ export default function SvgImage({ image, lid = false}) {
     case 'bottom':
       y += face.vert - height - image.marginVertical;
       break;
-      default:
-        throw new Error(`The vertical value '${image.vertical}' is not managed`);
-    }
+    default:
+      throw new Error(`The vertical value '${image.vertical}' is not managed`);
+  }
 
   return (
     <image href={image.content} x={x} y={y} width={width} height={height} />

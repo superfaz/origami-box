@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux";
 import QRCode from "qrcode.react";
 import { SvgPaper } from "../Generic/Svg";
-import { getMasu } from "../store";
 import { useMasuMeasurement } from "./helper";
 import SvgCut from "./SvgCut";
+import { useTemplate } from "../hooks";
 
 const styles = {};
 styles.line = {
@@ -32,7 +31,7 @@ styles.mark = {
 };
 
 export default function MasuTemplateFront({ lid = false, print = false }) {
-  const masu = useSelector(getMasu);
+  const { data: masu } = useTemplate();
   const m = useMasuMeasurement(masu, lid);
 
   if (m === null) {

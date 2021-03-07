@@ -1,21 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
 import classNames from 'classnames/dedupe';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { getMasu } from '../store';
-import { reset, updateDetail, updateGeneral } from '../store/masu';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
 import { checkValidity } from './helper';
+import { updateDetail, updateData } from '../store/templates';
+import { useTemplate } from '../hooks';
 
 export default function StepAGeneral() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [valid, setValid] = useState(false);
   const form = useRef(null);
-  const masu = useSelector(getMasu);
+  const { template, data: masu } = useTemplate();
   const { url } = useRouteMatch();
 
   useEffect(() => {
@@ -24,16 +24,16 @@ export default function StepAGeneral() {
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
-    dispatch(updateGeneral(event.target.name, value));
+    dispatch(updateData(template.key, event.target.name, value));
   }
 
   function handleLidInputChange(event) {
     const value = checkValidity(event.target);
-    dispatch(updateDetail('lid', event.target.name, value));
+    dispatch(updateDetail(template.key, 'lid', event.target.name, value));
   }
 
   function handleCheckedChange(event) {
-    dispatch(updateGeneral(event.target.name, event.target.checked));
+    dispatch(updateData(template.key, event.target.name, event.target.checked));
   }
 
   return (

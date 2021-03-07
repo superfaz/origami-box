@@ -1,18 +1,18 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { getMasu } from '../store';
+import { useDispatch } from 'react-redux';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { updateGeneral } from '../store/masu';
+import { updateData } from '../store/templates';
 import { getFonts } from './selectors';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
 import MasuTemplateBack from './MasuTemplateBack';
 import { checkValidity } from './helper';
+import { useTemplate } from '../hooks';
 
 export default function StepZGenerate() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const masu = useSelector(getMasu);
+  const { template, data: masu } = useTemplate();
 
   function print() {
     let newWindow = window.open('/empty.html', '_blank');
@@ -68,7 +68,7 @@ export default function StepZGenerate() {
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
-    dispatch(updateGeneral(event.target.name, value));
+    dispatch(updateData(template.key, event.target.name, value));
   }
 
   return (

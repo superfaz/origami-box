@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { getMasu } from "../store";
+import { useTemplate } from "../hooks";
 import { configurePositioning, useMasuMeasurement } from "./helper";
 
 export default function Text({ text, lid = false }) {
-  const masu = useSelector(getMasu);
+  const { data: masu } = useTemplate();
   const m = useMasuMeasurement(masu, lid);
   const textRef = useRef(null);
   const [box, setBox] = useState(null);

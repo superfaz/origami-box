@@ -20,7 +20,7 @@ export default function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/masu">
+            <Route path="/edit/:templateKey">
               <Masu />
             </Route>
             <Route path="/templates">

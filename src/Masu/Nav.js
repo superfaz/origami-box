@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { Link, useLocation } from "react-router-dom";
 import classNames from 'classnames';
-import { getMasu } from '../store';
 import { isGeneralValid } from './helper';
 import './Nav.css';
+import { useTemplate } from '../hooks';
 
 function BreadcrumbItem({ exact = false, path, title, withLink }) {
   const paths = Array.isArray(path) ? path : [path];
@@ -30,7 +29,7 @@ function BreadcrumbItem({ exact = false, path, title, withLink }) {
 
 export default function Nav() {
   const { t } = useTranslation();
-  const masu = useSelector(getMasu);
+  const { data: masu } = useTemplate();
 
   return (
     <nav className="nav-steps" aria-label="breadcrumb">

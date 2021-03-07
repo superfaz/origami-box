@@ -1,43 +1,43 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { getMasu } from '../store';
 import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { updateDetail, deleteText, deleteImage } from '../store/masu';
+import { updateDetail, deleteText, deleteImage } from '../store/templates';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
+import { useTemplate } from '../hooks';
 
 export default function StepBDesign({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const masu = useSelector(getMasu);
+  const { template, data: masu } = useTemplate();
   const { url } = useRouteMatch();
   const block = lid ? masu.lid : masu.base;
 
   function handleBackgroundColorChange(color) {
-    dispatch(updateDetail(block.key, 'background', color.hex));
+    dispatch(updateDetail(template.key, block.key, 'background', color.hex));
   }
 
   function handleBackgroundImageChange(event) {
     if (event.target.files.length > 0) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        dispatch(updateDetail(block.key, 'backgroundImage', reader.result));
+        dispatch(updateDetail(template.key, block.key, 'backgroundImage', reader.result));
       };
       reader.readAsDataURL(event.target.files[0]);
     }
     else {
-      dispatch(updateDetail(block.key, 'backgroundImage', null));
+      dispatch(updateDetail(template.key, block.key, 'backgroundImage', null));
     }
   }
 
   function handleTextDelete(key) {
-    dispatch(deleteText(block.key, key));
+    dispatch(deleteText(template.key, block.key, key));
   }
 
   function handleImageDelete(key) {
-    dispatch(deleteImage(block.key, key));
+    dispatch(deleteImage(template.key, block.key, key));
   }
 
   return (

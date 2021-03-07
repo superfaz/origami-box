@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { getMasu } from "../store";
-import { addOrUpdateImage } from "../store/masu";
+import { addOrUpdateImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
 import Nav from "./Nav";
 import { checkValidity, loadImageAsync } from "./helper";
+import { useTemplate } from "../hooks";
 
 export default function StepDImage({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { key } = useParams();
-  const masu = useSelector(getMasu);
+  const masu = useTemplate();
 
   const initialState = key !== undefined
     ? lid ? masu.lid.images[key] : masu.base.images[key]

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const initialState = {};
 
 const initialTemplate = {
@@ -18,6 +20,55 @@ export function remove(key) {
     type: 'REMOVE',
     payload: { key },
   }
+}
+
+export function updateTemplate(templateKey, field, value) {
+  return {
+    type: 'UPDATE_TEMPLATE',
+    payload: { templateKey, field, value }
+  }
+}
+
+export function updateData(templateKey, field, value) {
+  return {
+    type: 'UPDATE_DATA',
+    payload: { templateKey, field, value }
+  }
+}
+
+export function updateDetail(templateKey, block, field, value) {
+  return {
+    type: 'UPDATE_DETAIL',
+    payload: { templateKey, block, field, value }
+  }
+}
+
+export function addOrUpdateText(templateKey, block, text) {
+  return {
+    type: 'ADDORUPDATE_TEXT',
+    payload: { templateKey, block, text },
+  };
+}
+
+export function deleteText(templateKey, block, key) {
+  return {
+    type: 'DELETE_TEXT',
+    payload: { templateKey, block, key },
+  };
+}
+
+export function addOrUpdateImage(templateKey, block, image) {
+  return {
+    type: 'ADDORUPDATE_IMAGE',
+    payload: { templateKey, block, image },
+  };
+}
+
+export function deleteImage(templateKey, block, key) {
+  return {
+    type: 'DELETE_IMAGE',
+    payload: { templateKey, block, key },
+  };
 }
 
 export default function templateReducer(state = initialState, action) {
@@ -41,6 +92,140 @@ export default function templateReducer(state = initialState, action) {
       }
 
       delete result[key];
+      return result;
+    }
+
+    case 'UPDATE_TEMPLATE': {
+      const { templateKey, field, value } = action.payload;
+      return {
+        ...state,
+        [templateKey]: {
+          ...state[templateKey],
+          [field]: value
+        }
+      };
+    }
+
+    case 'UPDATE_DATA': {
+      const { templateKey, field, value } = action.payload;
+      return {
+        ...state,
+        [templateKey]: {
+          ...state[templateKey],
+          data: {
+            ...state[templateKey].data,
+            [field]: value
+          }
+        }
+      };
+    }
+
+    case 'UPDATE_DETAIL': {
+      const { templateKey, block, field, value } = action.payload;
+      return {
+        ...state,
+        [templateKey]: {
+          ...state[templateKey],
+          data: {
+            ...state[templateKey].data,
+            [block]: {
+              ...state[templateKey].data[block],
+              [field]: value
+            }
+          }
+        }
+      };
+    }
+
+    case 'ADDORUPDATE_TEXT': {
+      const { templateKey, block, text } = action.payload;
+      let key = text.key ?? uuidv4();
+      return {
+        ...state,
+        [templateKey]: {
+          ...state[templateKey],
+          data: {
+            ...state[templateKey].data,
+            [block]: {
+              ...state[templateKey].data[block],
+              texts: {
+                ...state[templateKey].data[block].texts,
+                [key]: {
+                  ...text,
+                  key: key,
+                }
+              }
+            }
+          }
+        }
+      };
+    }
+
+    case 'DELETE_TEXT': {
+      const { templateKey, block, key } = action.payload;
+      let result = {
+        ...state,
+        [templateKey]: {
+          ...state[templateKey],
+          data: {
+            ...state[templateKey].data,
+            [block]: {
+              ...state[templateKey].data[block],
+              texts: {
+                ...state[templateKey].data[block].texts
+              }
+            }
+          }
+        }
+      };
+
+      delete result[templateKey].data[block].texts[key];
+      return result;
+    }
+
+    case 'ADDORUPDATE_IMAGE': {
+      const { templateKey, block, image } = action.payload;
+      let key = image.key ?? uuidv4();
+      return {
+        ...state,
+        [templateKey]: {
+          ...state[templateKey],
+          data: {
+            ...state[templateKey].data,
+            [block]: {
+              ...state[templateKey].data[block],
+              images: {
+                ...state[templateKey].data[block].images,
+                [key]: {
+                  ...image,
+                  key: key,
+                }
+              }
+            }
+          }
+        }
+      };
+    }
+
+    case 'DELETE_IMAGE': {
+      const { templateKey, block, key } = action.payload;
+      let result = {
+        ...state,
+        [templateKey]: {
+          ...state[templateKey],
+          data: {
+            ...state[templateKey].data,
+            [block]: {
+              ...state[templateKey].data[block],
+              images: {
+                ...state[templateKey].data[block].images
+              }
+            }
+          }
+        }
+      };
+
+      delete result[templateKey].data[block].images[key];
       return result;
     }
 

@@ -1,7 +1,6 @@
-import { useSelector } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import Color from 'color';
-import { getMasu } from '../store';
+import { Helmet } from 'react-helmet';
+import { useTemplate } from '../hooks';
 import { SvgPaper } from '../Generic/Svg';
 import { useMasuMeasurement } from './helper';
 import { getFonts, getTexts, getImages } from './selectors';
@@ -23,7 +22,7 @@ const noneStyle = {
 };
 
 export default function MasuTemplateBack({ lid = false, print = false, text = null, image = null }) {
-  const masu = useSelector(getMasu);
+  const { data: masu } = useTemplate();
   const block = lid ? masu.lid : masu.base;
   const images = getImages(block, image);
   const texts = getTexts(block, text);

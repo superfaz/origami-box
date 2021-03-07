@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { Link, Redirect, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { getMasu } from '../store';
+import { useDispatch } from 'react-redux';
 import ColorPicker from '../Generic/ColorPicker';
 import { LeftForm, RightPreview } from '../Generic/Grid';
-import { addOrUpdateText } from '../store/masu';
+import { addOrUpdateText } from '../store/templates';
 import MasuTemplateBack from './MasuTemplateBack';
 import Nav from './Nav';
 import { checkValidity } from './helper';
+import { useTemplate } from '../hooks';
 
 export default function StepCText({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { key } = useParams();
-  const masu = useSelector(getMasu);
+  const { template, data: masu } = useTemplate();
 
   const initialState = key !== undefined
     ? lid ? masu.lid.texts[key] : masu.base.texts[key]
@@ -46,7 +46,7 @@ export default function StepCText({ lid = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addOrUpdateText(lid ? 'lid' : 'base', state));
+    dispatch(addOrUpdateText(template.key, lid ? 'lid' : 'base', state));
     setRedirect(true);
   }
 
