@@ -98,7 +98,7 @@ export default function NavBar() {
                 )}
               </div>
             </li>
-            {profile.status === 'not-connected' &&
+            {profile.status === 'not-connected' && process.env.REACT_APP_FACEBOOK !== 'false' &&
               <li className="nav-item d-lg-none">
                 <Login className="nav-link btn">
                   <i className="fas fa-sign-in-alt me-2"></i>
@@ -143,7 +143,7 @@ export default function NavBar() {
                   width='40px'
                   timeout={0} />
               }
-              {profile.status === 'not-connected' &&
+              {profile.status === 'not-connected' && process.env.REACT_APP_FACEBOOK !== 'false' &&
                 <Login className="btn btn-outline-primary text-white">
                   {t('navbar.signin')}
                 </Login>
