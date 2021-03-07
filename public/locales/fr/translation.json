@@ -38,6 +38,9 @@
     "login": "Continuer avec Facebook",
     "logout": "Se déconnecter"
   },
+  "template": {
+    "title": "Titre du modèle"
+  },
   "masu": {
     "title": "Masu",
     "format": {

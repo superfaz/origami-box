@@ -7,7 +7,7 @@ import { LeftForm, RightPreview } from '../Generic/Grid';
 import Nav from './Nav';
 import MasuTemplateFront from './MasuTemplateFront';
 import { checkValidity } from './helper';
-import { updateDetail, updateData } from '../store/templates';
+import { updateDetail, updateData, updateTemplate } from '../store/templates';
 import { useTemplate } from '../hooks';
 
 export default function StepAGeneral() {
@@ -21,6 +21,11 @@ export default function StepAGeneral() {
   useEffect(() => {
     setValid(form.current.checkValidity());
   }, [form, masu]);
+
+  function handleTemplateInputChange(event) {
+    const value = checkValidity(event.target);
+    dispatch(updateTemplate(template.key, event.target.name, value));
+  }
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
@@ -42,10 +47,15 @@ export default function StepAGeneral() {
       <LeftForm>
         <form ref={form} noValidate>
           <div className="mb-3">
+            <label htmlFor="title" className="form-label">{t('template.title')}</label>
+            <input name="title" type="text" className="form-control" autoFocus
+              value={template.title} onChange={handleTemplateInputChange} />
+          </div>
+          <div className="mb-3">
             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
             <div className="input-group">
               <input name="length" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
-                autoFocus required min="1" step="0.01"
+                required min="1" step="0.01"
                 placeholder={t('masu.dimensions.length')} aria-label={t('masu.dimensions.length')}
                 value={masu.length} onChange={handleInputChange} />
               <input name="width" type="number" className="form-control" style={{ width: 'calc(100%/3)' }}
