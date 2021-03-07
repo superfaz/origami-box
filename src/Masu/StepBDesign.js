@@ -74,7 +74,7 @@ export default function StepBDesign({ lid = false }) {
                   <td>{t(`masu.face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
                     <Link className="btn btn-outline-primary ms-1 btn-sm" title={t('masu.stepBDesign.textEdit')}
-                      to={`${baseUrl}/${block}/text/${key}`}>
+                      to={`${baseUrl}/${block.key}/text/${key}`}>
                       <i className="fas fa-pen" style={{ width: '14px' }}></i>
                     </Link>
                     <button className="btn btn-outline-danger ms-1 btn-sm" title={t('masu.stepBDesign.textDelete')}
@@ -87,7 +87,7 @@ export default function StepBDesign({ lid = false }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to={`${baseUrl}/${block}/text`}>{t('masu.stepCText.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to={`${baseUrl}/${block.key}/text`}>{t('masu.stepCText.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3">
@@ -106,7 +106,7 @@ export default function StepBDesign({ lid = false }) {
                   <td>{t(`masu.face.${block.images[key].face}`)}</td>
                   <td className="text-end">
                     <Link className="btn btn-outline-primary ms-1 btn-sm" title={t('masu.stepBDesign.imageEdit')}
-                      to={`${baseUrl}/${block}/image/${key}`}>
+                      to={`${baseUrl}/${block.key}/image/${key}`}>
                       <i className="fas fa-pen" style={{ width: '14px' }}></i>
                     </Link>
                     <button className="btn btn-outline-danger ms-1 btn-sm" title={t('masu.stepBDesign.imageDelete')}
@@ -119,7 +119,7 @@ export default function StepBDesign({ lid = false }) {
             </tbody>
           </table>
           <div className="d-flex">
-            <Link className="btn btn-outline-primary" to={`${baseUrl}/${block}/image`}>{t('masu.stepDImage.linkTo')}</Link>
+            <Link className="btn btn-outline-primary" to={`${baseUrl}/${block.key}/image`}>{t('masu.stepDImage.linkTo')}</Link>
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">
