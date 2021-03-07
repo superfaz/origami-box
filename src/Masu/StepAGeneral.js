@@ -22,10 +22,6 @@ export default function StepAGeneral() {
     setValid(form.current.checkValidity());
   }, [form, masu]);
 
-  function handleReset(event) {
-    dispatch(reset());
-  }
-
   function handleInputChange(event) {
     const value = checkValidity(event.target);
     dispatch(updateGeneral(event.target.name, value));
@@ -44,10 +40,6 @@ export default function StepAGeneral() {
     <div className="row">
       <Nav />
       <LeftForm>
-        <div className="mb-3">
-          <button className="btn btn-warning"
-            onClick={handleReset}>{t('masu.stepAGeneral.reset')}</button>
-        </div>
         <form ref={form} noValidate>
           <div className="mb-3">
             <label htmlFor="length" className="form-label">{t('masu.dimensions.label')}</label>
