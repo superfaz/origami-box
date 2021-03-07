@@ -131,6 +131,9 @@
       "submit": "Save this image",
       "cancel": "Go back"
     },
+    "stepYDebug": {
+      "title": "Debug"
+    },
     "stepZGenerate": {
       "title": "Prepare the Print",
       "linkTo": "Prepare the print",

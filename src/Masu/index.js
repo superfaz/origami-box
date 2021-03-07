@@ -4,6 +4,7 @@ import StepAGeneral from './StepAGeneral';
 import StepBDesign from './StepBDesign';
 import StepCText from './StepCText';
 import StepDImage from './StepDImage';
+import StepYDebug from './StepYDebug';
 import StepZGenerate from './StepZGenerate';
 
 export default function Masu() {
@@ -34,6 +35,9 @@ export default function Masu() {
         </Route>
         <Route exact path={[`${path}/lid/image`, `${path}/lid/image/:key`]}>
           <StepDImage lid />
+        </Route>
+        <Route exact path={`${path}/debug`}>
+          <StepYDebug />
         </Route>
         <Route exact path={`${path}/generate`}>
           <StepZGenerate />

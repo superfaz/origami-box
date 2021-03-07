@@ -29,7 +29,8 @@ function BreadcrumbItem({ exact = false, path, title, withLink }) {
 
 export default function Nav() {
   const { t } = useTranslation();
-  const { data: masu } = useTemplate();
+  const { template, data: masu } = useTemplate();
+  const path = '/edit/' + template.key;
 
   return (
     <nav className="nav-steps" aria-label="breadcrumb">
@@ -44,7 +45,9 @@ export default function Nav() {
         {masu.withLid && masu.withDesign &&
           <BreadcrumbItem path="/masu/lid" title={t('masu.stepBDesign.lid.title')} withLink={isGeneralValid(masu)} />
         }
-        <BreadcrumbItem path="/masu/generate" title={t('masu.stepZGenerate.title')} withLink={isGeneralValid(masu)} />
+        {process.env.NODE_ENV === 'development' &&
+          <BreadcrumbItem path={`${path}/debug`} title={t('masu.stepYDebug.title')} withLink={true} />
+        }
       </ol>
     </nav>
   );

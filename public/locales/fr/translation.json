@@ -131,6 +131,9 @@
       "submit": "Valider cette image",
       "cancel": "Annuler"
     },
+    "stepYDebug": {
+      "title": "Debug"
+    },
     "stepZGenerate": {
       "title": "Préparer l'impression",
       "linkTo": "Préparer l'impression",
