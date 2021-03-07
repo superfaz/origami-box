@@ -55,7 +55,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {objectMap(templates, (key, template) =>
+          {objectMap(templates, (template, key) =>
             <div key={key} className="col-xl-4 col-lg-6 mb-3">
               <div className="card">
                 <div className="card-body">

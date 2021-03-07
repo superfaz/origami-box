@@ -3,5 +3,5 @@ export default function objectMap(obj, action = () => { }) {
     return;
   }
 
-  return Object.keys(obj).map(key => { return action(key, obj[key], obj) });
+  return Object.keys(obj).map(key => { return action(obj[key], key, obj) });
 }
