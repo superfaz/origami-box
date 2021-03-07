@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { useTemplate } from "../hooks";
-import { configurePositioning, useMasuMeasurement } from "./helper";
+import { configurePositioning } from "./helper";
 
-export default function Text({ text, lid = false }) {
-  const { data: masu } = useTemplate();
-  const m = useMasuMeasurement(masu, lid);
+export default function SvgText({ text, m }) {
   const textRef = useRef(null);
   const [box, setBox] = useState(null);
 

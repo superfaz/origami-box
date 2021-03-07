@@ -1,7 +1,7 @@
 import Color from 'color';
 import { Helmet } from 'react-helmet';
 import { useTemplate } from '../hooks';
-import { SvgPaper } from '../Generic/Svg';
+import { Svg, SvgPaper } from '../Generic/Svg';
 import { useMasuMeasurement } from './helper';
 import { getFonts, getTexts, getImages } from './selectors';
 import { createFaces } from './faces';
@@ -21,8 +21,27 @@ const noneStyle = {
   stroke: 'none',
 };
 
-export default function MasuTemplateBack({ lid = false, print = false, text = null, image = null }) {
+function SvgRoot({ withPaper, m, children }) {
+  if (withPaper) {
+    return (
+      <SvgPaper className="template" pageWidth={m.pageWidth} pageHeight={m.pageHeight}>{children}</SvgPaper>
+    );
+  }
+  else {
+    return (
+      <Svg viewBox={`${-m.size_2 - 5} ${-m.size_2 - 5} ${m.size + 10} ${m.size + 10}`}>{children}</Svg>
+    );
+  }
+}
+
+export default function MasuTemplateBack({ lid = false, print = false, text = null, image = null, withPaper = true }) {
   const { data: masu } = useTemplate();
+  return (
+    <MasuTemplate masu={masu} lid={lid} print={print} text={text} image={image} withPaper={withPaper} />
+  );
+}
+
+export function MasuTemplate({ masu, lid = false, print = false, text = null, image = null, withPaper = true }) {
   const block = lid ? masu.lid : masu.base;
   const images = getImages(block, image);
   const texts = getTexts(block, text);
@@ -54,7 +73,7 @@ export default function MasuTemplateBack({ lid = false, print = false, text = nu
     .map(f => 'family=' + f.replace(' ', '+'))
     .join('&');
   return (
-    <SvgPaper className="template" pageWidth={m.pageWidth} pageHeight={m.pageHeight}>
+    <SvgRoot m={m} withPaper={withPaper}>
       <Helmet>
         {text && text.family &&
           <link rel="stylesheet" href={"https://fonts.googleapis.com/css2?family=" + text.family.replace(' ', '+')} />
@@ -102,16 +121,16 @@ export default function MasuTemplateBack({ lid = false, print = false, text = nu
             <g key={key} clipPath={`url(#${key})`}>
               <g transform={`rotate(${rotate} ${face.x} ${face.y})`}>
                 {images.filter(image => image.face === key).map(image =>
-                  <SvgImage key={image.key} image={image} lid={lid} />
+                  <SvgImage key={image.key} image={image} m={m} />
                 )}
                 {texts.filter(text => text.face === key).map((text) =>
-                  <SvgText key={text.key} text={text} lid={lid} />
+                  <SvgText key={text.key} text={text} m={m} />
                 )}
               </g>
             </g>
           );
         })}
       </g>
-    </SvgPaper>
+    </SvgRoot>
   );
 }

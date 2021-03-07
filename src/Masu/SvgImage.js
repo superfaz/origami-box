@@ -1,9 +1,6 @@
-import { useTemplate } from "../hooks";
-import { configureFace, useMasuMeasurement } from "./helper";
+import { configureFace } from "./helper";
 
-export default function SvgImage({ image, lid = false }) {
-  const { data: masu } = useTemplate();
-  const m = useMasuMeasurement(masu, lid);
+export default function SvgImage({ image, m }) {
   if (image.content === null) {
     // Image file not provided
     return null;

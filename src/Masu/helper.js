@@ -59,6 +59,8 @@ export function useMasuMeasurement(masu, lid = false) {
   }
 
   const max = l + w + 4.0 * h;
+  const size = max / Math.SQRT2;
+
   return {
     pageWidth,
     pageHeight,
@@ -66,10 +68,12 @@ export function useMasuMeasurement(masu, lid = false) {
     w,
     h,
     max,
+    size,
     l_2: l / 2.0,
     w_2: w / 2.0,
     h_2: h / 2.0,
     max_2: max / 2.0,
+    size_2: size / 2.0,
     h2: h * 2.0,
   };
 }
