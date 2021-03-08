@@ -9,6 +9,7 @@ import Process from './Process';
 import Logo from './Logo';
 import { FacebookProvider } from './Profile';
 import TemplateList from './Template/TemplateList';
+import Legal from './Legal';
 
 export default function App() {
   return (
@@ -31,6 +32,9 @@ export default function App() {
             </Route>
             <Route exact path="/process">
               <Process />
+            </Route>
+            <Route exact path="/legal">
+              <Legal />
             </Route>
           </Switch>
           <Footer />

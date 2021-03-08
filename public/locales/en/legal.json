@@ -1,0 +1,70 @@
+{
+  "privacy": {
+    "title": "Privacy Notice",
+    "description": "This privacy policy will explain how our organization uses the personal data we collect from you when you use our website.",
+    "chapter1": {
+      "title": "What data do we collect?",
+      "content": "Our organization collects the following data:",
+      "list1": "Personal identification information based on your Facebook public account (Unique Identifier, Name, Profile picture)"
+    },
+    "chapter2": {
+      "title": "How do we collect your data?",
+      "content": "You directly provide our organization with the data we collect. We collect data and process data when you:",
+      "list1": "Sign in to our service"
+    },
+    "chapter3": {
+      "title": "How will we use your data?",
+      "content": "Our organization collects your data so that we can:",
+      "list1": "Store your creation on our servers",
+      "sharing": "Our organization will not share your data with any 3rd parties."
+    },
+    "chapter4": {
+      "title": "How do we store your data?",
+      "content": "Our organization securely stores your data into an Azure datastore.",
+      "content2": "Our organization will keep your personal data for the duration of the service. You are able to remove your account, and the associated data, at any point in time from the profile page."
+    },
+    "chapter5": {
+      "title": "What are your data protection rights?",
+      "content": "Our organization would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:",
+      "list1": "<strong>The right to access</strong> – All your personal data can be accessed via the profile page.",
+      "list2": "<strong>The right to rectification</strong> – All your personal data can be modified via the profile page.",
+      "list3": "<strong>The right to erasure</strong> – You have the right to request that our organization erase your personal data. This action can be done via the profile page.",
+      "list4": "<strong>The right to restrict processing</strong> – You have the right to request that our organization restrict the processing of your personal data, under certain conditions.",
+      "list5": "<strong>The right to object to processing</strong> – You have the right to object to our organization's processing of your personal data, under certain conditions.",
+      "list6": "<strong>The right to data portability</strong> – You have the right to request that our organization transfer the data that we have collected to another organization, or directly to you, under certain conditions.",
+      "conditions": "If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us."
+    },
+    "chapter6": {
+      "title": "Cookies",
+      "content": "Cookies are text files placed on your computer to collect standard Internet log information and visitor behavior information. When you visit our websites, we may collect information from you automatically through cookies or similar technology.",
+      "link": "For further information, visit <1>the associated wikipedia page</1>."
+    },
+    "chapter7": {
+      "title": "How do we use cookies?",
+      "content": "Our organization uses cookies in a range of ways to improve your experience on our website, including:",
+      "list1": "Keeping you signed in",
+      "list2": "Understanding how you use our website"
+    },
+    "chapter8": {
+      "title": "What types of cookies do we use?",
+      "content": "There are a number of different types of cookies, however, our website uses:",
+      "list1": "Functionality – Our organization uses these cookies so that we recognize you on our website and remember your previously selected preferences. These could include what language you prefer and location you are in. A mix of first-party and third-party cookies are used."
+    },
+    "chapter9": {
+      "title": "How to manage cookies",
+      "content": "You can set your browser not to accept cookies, and the above website tells you how to remove cookies from your browser. However, in a few cases, some of our website features may not function as a result."
+    },
+    "chapter10": {
+      "title": "Privacy policies of other websites",
+      "content": "The corniro.com website contains links to other websites. Our privacy policy applies only to our website, so if you click on a link to another website, you should read their privacy policy."
+    },
+    "chapter11": {
+      "title": "Changes to our privacy policy",
+      "content": "Our organization keeps its privacy policy under regular review and places any updates on this web page. This privacy policy was last updated on 9 January 2019."
+    },
+    "chapter12": {
+      "title": "How to contact us",
+      "content": "If you have any questions about our organization privacy policy, the data we hold on you, or you would like to exercise one of your data protection rights, please do not hesitate to contact us."
+    }
+  }
+}
