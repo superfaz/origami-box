@@ -60,20 +60,20 @@ export default function Home() {
             <>
               <h2>{t('home.localSave.title')}</h2>
               <p className="lead">{t('home.localSave.description')}</p>
-              {objectMap(templates, (template, key) =>
-                <div key={key} className="col-xl-3 col-lg-4 col-sm-6 mb-3">
+              {objectMap(templates, (template, key, index) =>
+                <div key={`carouselTemplate${index}`} className="col-xl-3 col-lg-4 col-sm-6 mb-3">
                   <div className="card h-100">
                     <div className="card-img-top">
-                      <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval={false}>
-                        <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <div id={`carouselTemplate${index}`} className="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval={false}>
+                        <div className="carousel-indicators">
+                          <button type="button" data-bs-target={`#carouselTemplate${index}`} data-bs-slide-to="0" className="active"></button>
+                          <button type="button" data-bs-target={`#carouselTemplate${index}`} data-bs-slide-to="1"></button>
                         </div>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
+                        <div className="carousel-inner">
+                          <div className="carousel-item active">
                             <MasuTemplate masu={template.data} lid={true} withPaper={false} />
                           </div>
-                          <div class="carousel-item">
+                          <div className="carousel-item">
                             <MasuTemplate masu={template.data} lid={false} withPaper={false} />
                           </div>
                         </div>
