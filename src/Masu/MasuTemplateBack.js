@@ -42,18 +42,27 @@ export default function MasuTemplateBack({ lid = false, print = false, text = nu
 }
 
 export function MasuTemplate({ masu, lid = false, print = false, text = null, image = null, withPaper = true }) {
+  const m = useMasuMeasurement(masu, lid);
+
+  if (m === null) {
+    if (withPaper) {
+      return (
+        <SvgPaper className="template" pageWidth={210} pageHeight={297}></SvgPaper>
+      );
+    }
+    else {
+      return (
+        <Svg viewBox="0 0 100 100" width="100%" height="100%">
+          <rect x={0} y={0} width={100} height={100} style={{ fill: 'white' }} />
+        </Svg>
+      );
+    }
+  }
+
   const block = lid ? masu.lid : masu.base;
   const images = getImages(block, image);
   const texts = getTexts(block, text);
-
-  const m = useMasuMeasurement(masu, lid);
   const faces = createFaces(m.l_2, m.w_2, m.h_2);
-
-  if (m === null) {
-    return (
-      <SvgPaper className="template" pageWidth={210} pageHeight={297}></SvgPaper>
-    );
-  }
 
   const color = Color(block.background);
   const style = {

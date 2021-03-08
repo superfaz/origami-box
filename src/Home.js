@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-import { MasuTemplate } from "./Masu/MasuTemplateBack";
 import objectMap from "./objectMap";
 import { getTemplates } from "./store";
-import { create, remove } from "./store/templates";
+import { create } from "./store/templates";
+import { TemplateMiniature } from "./Template";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -19,10 +19,6 @@ export default function Home() {
     const key = uuidv4();
     dispatch(create(key));
     setRedirect('/edit/' + key);
-  }
-
-  function handleDiscard(key) {
-    dispatch(remove(key));
   }
 
   if (redirect !== null) {
@@ -61,34 +57,7 @@ export default function Home() {
               <h2>{t('home.localSave.title')}</h2>
               <p className="lead">{t('home.localSave.description')}</p>
               {objectMap(templates, (template, key, index) =>
-                <div key={`carouselTemplate${index}`} className="col-xl-3 col-lg-4 col-sm-6 mb-3">
-                  <div className="card h-100">
-                    <div className="card-img-top">
-                      <div id={`carouselTemplate${index}`} className="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval={false}>
-                        <div className="carousel-indicators">
-                          <button type="button" data-bs-target={`#carouselTemplate${index}`} data-bs-slide-to="0" className="active"></button>
-                          <button type="button" data-bs-target={`#carouselTemplate${index}`} data-bs-slide-to="1"></button>
-                        </div>
-                        <div className="carousel-inner">
-                          <div className="carousel-item active">
-                            <MasuTemplate masu={template.data} lid={true} withPaper={false} />
-                          </div>
-                          <div className="carousel-item">
-                            <MasuTemplate masu={template.data} lid={false} withPaper={false} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="card-body">
-                      <h5 className="card-title">{template.title}</h5>
-                      <h6 className="card-subtitle mb-2 text-muted">{t('home.template.unsaved')}</h6>
-                      <p className="card-text"></p>
-                      <Link to={`/edit/${key}`} className="card-link">{t('home.template.continue')}</Link>
-                      <button className="btn btn-link card-link"
-                        onClick={() => handleDiscard(key)}>{t('home.template.discard')}</button>
-                    </div>
-                  </div>
-                </div>
+                <TemplateMiniature key={key} template={template} index={index} />
               )}
             </>
           )}

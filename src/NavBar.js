@@ -7,7 +7,6 @@ import { Link, useLocation } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { getProfile } from './store';
 import { Login, Logout } from './Profile';
-import { isConnected } from './Profile/selectors';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 
 import './NavBar.css';
@@ -78,13 +77,11 @@ export default function NavBar() {
                 onClick={collapse}
                 to="/">{t('navbar.home')}</Link>
             </li>
-            {isConnected(profile) &&
-              <li className="nav-item">
-                <Link className={classNames("nav-link", { active: location.pathname.startsWith('/templates') })}
-                  onClick={collapse}
-                  to="/templates">{t('navbar.templates')}</Link>
-              </li>
-            }
+            <li className="nav-item">
+              <Link className={classNames("nav-link", { active: location.pathname.startsWith('/templates') })}
+                onClick={collapse}
+                to="/templates">{t('navbar.templates')}</Link>
+            </li>
             <li className="nav-item d-lg-none">
               Change language to:
               <div className="btn-group ms-2">
