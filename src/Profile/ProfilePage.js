@@ -11,8 +11,10 @@ export function ProfilePage() {
   const localTemplates = useSelector(getTemplates);
 
   function handleLocalClean() {
-    console.log('handleLocalChange');
     dispatch(removeAll());
+  }
+
+  function handleRemove() {
   }
 
   if (profile.status !== 'initialized') {
@@ -77,7 +79,8 @@ export function ProfilePage() {
                 <div className="mb-auto ms-3">{t('profile.danger.localCleanDescription')}</div>
               </div>
               <div className="list-group-item d-flex">
-                <button className="btn btn-dark text-nowrap mb-auto">{t('profile.danger.remove')}</button>
+                <button className="btn btn-dark text-nowrap mb-auto"
+                  data-bs-toggle="modal" data-bs-target="#removeModal">{t('profile.danger.remove')}</button>
                 <div className="mb-auto ms-3">{t('profile.danger.removeDescription')}</div>
               </div>
             </div>
@@ -100,6 +103,27 @@ export function ProfilePage() {
                   data-bs-dismiss="modal">{t('profile.localCleanModal.cancel')}</button>
                 <button type="button" className="btn btn-danger"
                   data-bs-dismiss="modal" onClick={handleLocalClean}>{t('profile.localCleanModal.confirm')}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="modal fade" id="removeModal"
+          data-bs-backdrop="static" data-bs-keyboard="false"
+          tabIndex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="removeModalLabel">{t('profile.removeModal.title')}</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal"
+                  aria-label={t('profile.removeModal.close')}></button>
+              </div>
+              <div className="modal-body">{t('profile.removeModal.content')}</div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-outline-secondary"
+                  data-bs-dismiss="modal">{t('profile.removeModal.cancel')}</button>
+                <button type="button" className="btn btn-danger"
+                  data-bs-dismiss="modal" onClick={handleRemove}>{t('profile.removeModal.confirm')}</button>
               </div>
             </div>
           </div>

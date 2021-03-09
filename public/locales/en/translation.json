@@ -66,7 +66,13 @@
     },
     "localCleanModal": {
       "title": "Clean-up local data",
-      "content": "This action will removed all information stored on this computer and linked to corniro.com. This action is irreversible.",
+      "content": "This action will remove all information stored on this computer and linked to corniro.com. This action is irreversible.",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "removeModal": {
+      "title": "Remove your Profile",
+      "content": "This action will remove all your templates and all your data on both this computer and on our datastore. This action is irreversible.",
       "cancel": "Cancel",
       "confirm": "Confirm"
     }
