@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useTranslation, Trans } from 'react-i18next';
 import Loader from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { getProfile } from './store';
 import { Login, Logout } from './Profile';
@@ -73,14 +73,12 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className={classNames("nav-link", { active: location.pathname === '/' })}
-                onClick={collapse}
-                to="/">{t('navbar.home')}</Link>
+              <NavLink className="nav-link" exact to="/"
+                onClick={collapse}>{t('navbar.home')}</NavLink>
             </li>
             <li className="nav-item">
-              <Link className={classNames("nav-link", { active: location.pathname.startsWith('/templates') })}
-                onClick={collapse}
-                to="/templates">{t('navbar.templates')}</Link>
+              <NavLink className="nav-link" to="/templates"
+                onClick={collapse}>{t('navbar.templates')}</NavLink>
             </li>
             <li className="nav-item d-lg-none">
               Change language to:
