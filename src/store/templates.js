@@ -47,6 +47,12 @@ export function remove(key) {
   }
 }
 
+export function removeAll() {
+  return {
+    type: 'REMOVE_ALL',
+  }
+}
+
 export function updateTemplate(templateKey, field, value) {
   return {
     type: 'UPDATE_TEMPLATE',
@@ -97,6 +103,8 @@ export function deleteImage(templateKey, block, key) {
 }
 
 export default function templateReducer(state = initialState, action) {
+  console.log('templateReducer called for ' + action.type);
+
   switch (action.type) {
     case 'CREATE': {
       const { key } = action.payload;
@@ -121,6 +129,10 @@ export default function templateReducer(state = initialState, action) {
 
       delete result[key];
       return result;
+    }
+
+    case 'REMOVE_ALL': {
+      return {};
     }
 
     case 'UPDATE_TEMPLATE': {

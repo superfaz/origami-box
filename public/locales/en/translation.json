@@ -63,6 +63,12 @@
       "localCleanDescription": "This action will remove any template stored locally.",
       "remove": "Remove profile",
       "removeDescription": "This action will remove locale and remote stored data, destroying any templates and content linked to your profile."
+    },
+    "localCleanModal": {
+      "title": "Clean-up local data",
+      "content": "This action will removed all information stored on this computer and linked to corniro.com. This action is irreversible.",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
     }
   },
   "template": {

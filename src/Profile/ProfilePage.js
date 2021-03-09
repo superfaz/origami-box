@@ -1,12 +1,23 @@
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProfile, getTemplates } from '../store';
+import { removeAll } from "../store/templates";
 import './ProfilePage.css'
 
 export function ProfilePage() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const profile = useSelector(getProfile);
   const localTemplates = useSelector(getTemplates);
+
+  function handleLocalClean() {
+    console.log('handleLocalChange');
+    dispatch(removeAll());
+  }
+
+  if (profile.status !== 'initialized') {
+    return null;
+  }
 
   return (
     <div className="container">
@@ -18,19 +29,19 @@ export function ProfilePage() {
             <div className="text-muted mb-3">{t('profile.facebookDescription')}</div>
             <div className="mb-3">
               <label htmlFor="userId">{t('profile.userId')}</label>
-              <input type="text" className="form-control" disabled value={profile.userId} />
+              <input id="userId" type="text" className="form-control" disabled value={profile.userId} />
               <div className="text-muted small">{t('profile.userIdDescription')}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="userId">{t('profile.name')}</label>
-              <input type="text" className="form-control" disabled value={profile.name} />
+              <label htmlFor="name">{t('profile.name')}</label>
+              <input id="name" type="text" className="form-control" disabled value={profile.name} />
               <div className="text-muted small">{t('profile.nameDescription')}</div>
             </div>
             <div className="mb-3">
-              <label htmlFor="userId">{t('profile.picture')}</label>
+              <label htmlFor="picture">{t('profile.picture')}</label>
               <div className="input-group">
                 <span className="input-group-text p-0"><img src={profile.picture} alt={profile.name} /></span>
-                <input type="text" className="form-control" disabled value={profile.picture} />
+                <input id="picture" type="text" className="form-control" disabled value={profile.picture} />
               </div>
               <div className="text-muted small">{t('profile.pictureDescription')}</div>
             </div>
@@ -72,6 +83,28 @@ export function ProfilePage() {
             </div>
           </div>
         </div>
+
+        <div className="modal fade" id="localCleanModal"
+          data-bs-backdrop="static" data-bs-keyboard="false"
+          tabIndex="-1" aria-labelledby="localCleanModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="localCleanModalLabel">{t('profile.localCleanModal.title')}</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal"
+                  aria-label={t('profile.localCleanModal.close')}></button>
+              </div>
+              <div className="modal-body">{t('profile.localCleanModal.content')}</div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-outline-secondary"
+                  data-bs-dismiss="modal">{t('profile.localCleanModal.cancel')}</button>
+                <button type="button" className="btn btn-danger"
+                  data-bs-dismiss="modal" onClick={handleLocalClean}>{t('profile.localCleanModal.confirm')}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
