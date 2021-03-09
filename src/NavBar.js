@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useTranslation, Trans } from 'react-i18next';
 import Loader from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { getProfile } from './store';
 import { Login, Logout } from './Profile';
@@ -56,7 +56,6 @@ function collapse() {
 export default function NavBar() {
   const { t, i18n } = useTranslation();
   const profile = useSelector(getProfile);
-  const location = useLocation();
   const languages = i18n.options.supportedLngs.filter(lng => lng !== 'cimode');
 
   return (
