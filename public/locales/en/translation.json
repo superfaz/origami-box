@@ -50,7 +50,7 @@
     "name": "Display Name",
     "nameDescription": "The name that you choose on Facebook, this information is retrieved via Facebook API and can be changed in your Facebook profile",
     "picture": "Profile Picture",
-    "pictureDescription": "The public profile picture that you choose on Facebook. This information is retrieves via Facebook API and can be changed in your Facebook profile",
+    "pictureDescription": "The public profile picture that you choose on Facebook. This information is retrieved via Facebook API and can be changed in your Facebook profile",
     "storage": "Data linked to your profile",
     "storageDescription": "Here is a summary of the data that you have created by using the corniro.com service",
     "localStorage": "Local data",

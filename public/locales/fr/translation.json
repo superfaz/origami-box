@@ -41,7 +41,41 @@
   },
   "profile": {
     "login": "Continuer avec Facebook",
-    "logout": "Se déconnecter"
+    "logout": "Se déconnecter",
+    "title": "Votre profil",
+    "facebook": "Vos informations liées à facebook",
+    "facebookDescription": "Les données présentées ici proviennent de votre connexion au service via Facebook. Nous les utilisons pour vous identifier lors de l'utilisation du service",
+    "userId": "Identifiant unique",
+    "userIdDescription": "Cet identifiant vous est propre et est unique à l'application corniro.com. Il s'agit de la seule information que nous stockons pour associer vos créations à votre compte",
+    "name": "Nom d'usage",
+    "nameDescription": "Ce nom est celui défini sur Facebook. Cette information est obtenue via les API Facebook et peut être modifiée dans votre profil Facebook",
+    "picture": "Photo de profil",
+    "pictureDescription": "La photo de profil est celle que vous avez choisie dans Facebook. Cette information est obtenue via les API Facebook et peut être modifiée dans votre profil Facebook",
+    "storage": "Données associées à votre profil",
+    "storageDescription": "Les données présentées ici sont celles que vous avez créées grâce au service corniro.com",
+    "localStorage": "Données locales",
+    "localStorageMessage": "{{count}} modèles",
+    "localStorageDescription": "Ces données sont stockées par votre navigateur et peuvent être supprimées si vous en nettoyez le cache. Chaque modèle peut être supprimé individuellement en utilisant le lien 'Supprimer' de la page 'Mes modèles'",
+    "danger": {
+      "title": "Danger zone",
+      "content": "Les actions suivantes peuvent être utilisées pour nettoyer votre profil ou le supprimer entièrement. Ces actions sont irréversible.",
+      "localClean": "Nettoyage des données locales",
+      "localCleanDescription": "Cette action supprimera tous les modèles stockés localement.",
+      "remove": "Détruire le profil",
+      "removeDescription": "Cette action supprimera les données locales et distantes ainsi que le profil utilisateur, détruisant ainsi l'ensemble des modèles et données que vous avez créé."
+    },
+    "localCleanModal": {
+      "title": "Nettoyage des données locales",
+      "content": "Cette action supprimera les informations stockées sur ce navigateur et liées au service corniro.com. Ces données ne pas stockées sur notre datastore et seront perdues. Cette action ne peut être inversée.",
+      "cancel": "Annuler",
+      "confirm": "Confirmer"
+    },
+    "removeModal": {
+      "title": "Détruire le profil",
+      "content": "Cette action vous permet de supprimer les modèles et l'ensemble de vos données associées au service corniro.com. Cette action ne peut être inversée.",
+      "cancel": "Annuler",
+      "confirm": "Confirmer"
+    }
   },
   "template": {
     "title": "Titre du modèle"
