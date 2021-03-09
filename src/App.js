@@ -7,7 +7,7 @@ import Home from './Home';
 import Masu from './Masu';
 import Process from './Process';
 import Logo from './Logo';
-import { FacebookProvider } from './Profile';
+import { FacebookProvider, ProfilePage } from './Profile';
 import TemplateList from './Template/TemplateList';
 import Legal from './Legal';
 
@@ -35,6 +35,9 @@ export default function App() {
             </Route>
             <Route exact path="/legal">
               <Legal />
+            </Route>
+            <Route exact path="/profile">
+              <ProfilePage />
             </Route>
           </Switch>
           <Footer />

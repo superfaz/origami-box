@@ -7,7 +7,8 @@
     "home": "Home",
     "templates": "My templates",
     "welcome": "Signed in as <1>{{name}}</1>",
-    "signin": "Sign in"
+    "signin": "Sign in",
+    "profile": "View your profile"
   },
   "home": {
     "title": "Welcome <1>",
@@ -40,7 +41,29 @@
   },
   "profile": {
     "login": "Continue with Facebook",
-    "logout": "Logout"
+    "logout": "Logout",
+    "title": "Your Profile",
+    "facebook": "Your facebook profile",
+    "facebookDescription": "Here are the data retrieved via Facebook login that we use to identify you and provide the service",
+    "userId": "Unique User Identifier",
+    "userIdDescription": "This identifier is unique to you and to the corniro.com application. As such, it is the sole information that we store to identify your creation and interaction",
+    "name": "Display Name",
+    "nameDescription": "The name that you choose on Facebook, this information is retrieved via Facebook API and can be changed in your Facebook profile",
+    "picture": "Profile Picture",
+    "pictureDescription": "The public profile picture that you choose on Facebook. This information is retrieves via Facebook API and can be changed in your Facebook profile",
+    "storage": "Data linked to your profile",
+    "storageDescription": "Here is a summary of the data that you have created by using the corniro.com service",
+    "localStorage": "Local data",
+    "localStorageMessage": "{{count}} templates",
+    "localStorageDescription": "Those data are stored by your browser and cleaning-up your cache could delete those information. They can be removed by using the 'Delete' link in the 'My Templates' page",
+    "danger": {
+      "title": "Danger zone",
+      "content": "The following actions can be used to clean-up your profile or delete it. Those actions are irreversible.",
+      "localClean": "Clean up local storage",
+      "localCleanDescription": "This action will remove any template stored locally.",
+      "remove": "Remove profile",
+      "removeDescription": "This action will remove locale and remote stored data, destroying any templates and content linked to your profile."
+    }
   },
   "template": {
     "title": "Template Title"

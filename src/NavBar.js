@@ -13,6 +13,7 @@ import './NavBar.css';
 
 function ProfileMenu() {
   const profile = useSelector(getProfile);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -24,6 +25,7 @@ function ProfileMenu() {
         </p>
       </div>
       <div className="list-group list-group-flush">
+        <NavLink to="/profile" className="list-group-item list-group-item-action">{t('navbar.profile')}</NavLink>
         <Logout className="list-group-item list-group-item-action" />
       </div>
     </div>
@@ -102,10 +104,10 @@ export default function NavBar() {
             }
             {profile.status === 'initialized' &&
               <li className="nav-item d-lg-none">
-                <Link className="nav-link disabled" to="/profile" onClick={collapse}>
+                <NavLink className="nav-link" to="/profile" onClick={collapse}>
                   <img src={profile.picture} height="24" alt={profile.name} className="rounded me-2" />
                   {profile.name}
-                </Link>
+                </NavLink>
               </li>
             }
             {profile.status === 'initialized' &&
