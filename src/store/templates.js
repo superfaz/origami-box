@@ -103,8 +103,6 @@ export function deleteImage(templateKey, block, key) {
 }
 
 export default function templateReducer(state = initialState, action) {
-  console.log('templateReducer called for ' + action.type);
-
   switch (action.type) {
     case 'CREATE': {
       const { key } = action.payload;
