@@ -1,18 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Quicksand:wght@500&family=Source+Code+Pro:wght@400');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Quicksand:wght@500&family=Source+Code+Pro:wght@400");
 
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-  font-family: 'Quicksand', sans-serif;
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Quicksand", sans-serif;
 }
 
 code {
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
 }
 
 .list-group-item {

@@ -1,15 +1,15 @@
-import './App.css';
-import { Suspense } from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './Home';
-import Masu from './Masu';
-import Process from './Process';
-import Logo from './Logo';
-import { FacebookProvider, ProfilePage } from './Profile';
-import TemplateList from './Template/TemplateList';
-import Legal from './Legal';
+import "./App.css";
+import { Suspense } from "react";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Home from "./Home";
+import Masu from "./Masu";
+import Process from "./Process";
+import Logo from "./Logo";
+import { FacebookProvider, ProfilePage } from "./Profile";
+import TemplateList from "./Template/TemplateList";
+import Legal from "./Legal";
 
 export default function App() {
   return (

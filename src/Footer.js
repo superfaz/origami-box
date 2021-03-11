@@ -5,8 +5,7 @@ function copyright(startYear) {
   const currentYear = new Date().getFullYear();
   if (startYear === currentYear) {
     return currentYear;
-  }
-  else {
+  } else {
     return `${startYear}-${currentYear}`;
   }
 }
@@ -20,11 +19,17 @@ export default function Footer() {
         <p>
           &copy; {copyright(2021)} François Karman
           <span className="ms-3 me-3">|</span>
-          <Link to="/legal">{t('legal:privacy.title')}</Link>
+          <Link to="/legal">{t("legal:privacy.title")}</Link>
         </p>
         <p>
-          <a href="https://github.com/superfaz/origami-box" target="_blank" rel="noreferrer" className="btn btn-success"
-            title={t('footer.github')} aria-label={t('footer.github')}>
+          <a
+            href="https://github.com/superfaz/origami-box"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-success"
+            title={t("footer.github")}
+            aria-label={t("footer.github")}
+          >
             <i className="fab fa-github"></i>
           </a>
         </p>

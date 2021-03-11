@@ -1,11 +1,11 @@
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import StepAGeneral from './StepAGeneral';
-import StepBDesign from './StepBDesign';
-import StepCText from './StepCText';
-import StepDImage from './StepDImage';
-import StepYDebug from './StepYDebug';
-import StepZGenerate from './StepZGenerate';
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import StepAGeneral from "./StepAGeneral";
+import StepBDesign from "./StepBDesign";
+import StepCText from "./StepCText";
+import StepDImage from "./StepDImage";
+import StepYDebug from "./StepYDebug";
+import StepZGenerate from "./StepZGenerate";
 
 export default function Masu() {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ export default function Masu() {
 
   return (
     <div className="container">
-      <h1>{t('masu.title')}</h1>
+      <h1>{t("masu.title")}</h1>
       <Switch>
         <Route exact path={path}>
           <StepAGeneral />

@@ -1,8 +1,8 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import persistState from 'redux-localstorage';
-import thunk from 'redux-thunk';
-import profileReducer from './profile';
-import templatesReducer from './templates';
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import persistState from "redux-localstorage";
+import thunk from "redux-thunk";
+import profileReducer from "./profile";
+import templatesReducer from "./templates";
 
 const reducers = combineReducers({
   profile: profileReducer,
@@ -18,7 +18,8 @@ export function getTemplates(state) {
 }
 
 const enhancers = compose(
-  persistState(['templates'], { key: 'templates' }),
-  applyMiddleware(thunk));
+  persistState(["templates"], { key: "templates" }),
+  applyMiddleware(thunk)
+);
 
 export default createStore(reducers, enhancers);

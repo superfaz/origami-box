@@ -1,13 +1,13 @@
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { LeftForm, RightPreview } from '../Generic/Grid';
-import { updateData } from '../store/templates';
-import { getFonts } from './selectors';
-import Nav from './Nav';
-import MasuTemplateFront from './MasuTemplateFront';
-import MasuTemplateBack from './MasuTemplateBack';
-import { checkValidity } from './helper';
-import { useTemplate } from '../hooks';
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { LeftForm, RightPreview } from "../Generic/Grid";
+import { updateData } from "../store/templates";
+import { getFonts } from "./selectors";
+import Nav from "./Nav";
+import MasuTemplateFront from "./MasuTemplateFront";
+import MasuTemplateBack from "./MasuTemplateBack";
+import { checkValidity } from "./helper";
+import { useTemplate } from "../hooks";
 
 export default function StepZGenerate() {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function StepZGenerate() {
   const { template, data: masu } = useTemplate();
 
   function print() {
-    let newWindow = window.open('/empty.html', '_blank');
+    let newWindow = window.open("/empty.html", "_blank");
     newWindow.onload = () => {
       newWindow.document.head.innerHTML = `
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -40,11 +40,11 @@ export default function StepZGenerate() {
       }
 
       const fonts = getFonts(masu)
-        .map(f => 'family=' + f.replace(' ', '+'))
-        .join('&');
-      if (fonts !== '') {
-        let link = newWindow.document.createElement('link');
-        link.rel = 'stylesheet';
+        .map((f) => "family=" + f.replace(" ", "+"))
+        .join("&");
+      if (fonts !== "") {
+        let link = newWindow.document.createElement("link");
+        link.rel = "stylesheet";
         link.href = `https://fonts.googleapis.com/css2?${fonts}&display=block`;
         link.onload = () => {
           // setTimeout used to ensure rendering before print
@@ -52,11 +52,10 @@ export default function StepZGenerate() {
             newWindow.print();
             newWindow.close();
           }, 1);
-        }
+        };
 
         newWindow.document.head.appendChild(link);
-      }
-      else {
+      } else {
         // setTimeout used to ensure rendering before print
         setTimeout(() => {
           newWindow.print();
@@ -77,13 +76,26 @@ export default function StepZGenerate() {
       <LeftForm>
         <form>
           <div className="mb-3">
-            <label htmlFor="pageFormat" className="form-label">{t('masu.format.label')}</label>
-            <select name="pageFormat" className="form-select" value={masu.pageFormat} onChange={handleInputChange}>
-              <option value="A4">{t('masu.format.A4')}</option>
+            <label htmlFor="pageFormat" className="form-label">
+              {t("masu.format.label")}
+            </label>
+            <select
+              name="pageFormat"
+              className="form-select"
+              value={masu.pageFormat}
+              onChange={handleInputChange}
+            >
+              <option value="A4">{t("masu.format.A4")}</option>
             </select>
           </div>
           <div className="mb-3 mt-5 d-flex">
-            <button type="button" className="btn btn-primary ms-auto" onClick={print}>{t('masu.stepZGenerate.print')}</button>
+            <button
+              type="button"
+              className="btn btn-primary ms-auto"
+              onClick={print}
+            >
+              {t("masu.stepZGenerate.print")}
+            </button>
           </div>
         </form>
       </LeftForm>
@@ -92,21 +104,21 @@ export default function StepZGenerate() {
           <div className="col-12 col-lg-6 mb-3">
             <MasuTemplateFront print="true" />
           </div>
-          {masu.withDesign &&
+          {masu.withDesign && (
             <div className="col-12 col-lg-6 mb-3">
               <MasuTemplateBack print="true" />
             </div>
-          }
-          {masu.withLid &&
+          )}
+          {masu.withLid && (
             <div className="col-12 col-lg-6 mb-3">
               <MasuTemplateFront lid print="true" />
             </div>
-          }
-          {masu.withLid && masu.withDesign &&
+          )}
+          {masu.withLid && masu.withDesign && (
             <div className="col-12 col-lg-6 mb-3">
               <MasuTemplateBack lid print="true" />
             </div>
-          }
+          )}
         </div>
       </RightPreview>
     </div>

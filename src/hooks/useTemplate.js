@@ -6,7 +6,9 @@ export function useTemplate() {
   const { templateKey } = useParams();
   const templates = useSelector(getTemplates);
   if (templateKey === undefined || templateKey == null) {
-    throw new Error("'useTemplateData' should be used inside a route with the 'templateKey' parameter");
+    throw new Error(
+      "'useTemplateData' should be used inside a route with the 'templateKey' parameter"
+    );
   }
 
   if (templates === undefined || templates === null) {
@@ -19,6 +21,6 @@ export function useTemplate() {
 
   return {
     template: templates[templateKey],
-    data: templates[templateKey].data
+    data: templates[templateKey].data,
   };
 }

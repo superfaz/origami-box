@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
 
 .json-node {
   display: flex;
   flex-direction: row;
-  font-family: 'Cutive Mono';
+  font-family: "Cutive Mono";
   font-size: small;
 }
 

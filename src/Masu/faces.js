@@ -44,8 +44,8 @@ export function createFaces(l_2, w_2, h_2) {
       rotate: 180,
       hori: w_2,
       vert: l_2,
-    }
-  }
+    },
+  };
 
   return faces;
 }

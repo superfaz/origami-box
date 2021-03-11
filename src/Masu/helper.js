@@ -1,8 +1,8 @@
-import classNames from 'classnames/dedupe';
+import classNames from "classnames/dedupe";
 import { createFaces } from "./faces";
 
 export function getRotationMatrix(angle) {
-  const radian = angle * Math.PI / 180;
+  const radian = (angle * Math.PI) / 180;
   const cos = Math.cos(radian).toFixed(5);
   const sin = Math.sin(radian).toFixed(5);
   return `${cos} ${sin} ${-sin} ${cos} 0 0`;
@@ -13,22 +13,30 @@ function isPositive(value) {
 }
 
 export function isGeneralValid(masu) {
-  return masu !== undefined && isPositive(masu.length) && isPositive(masu.width) && isPositive(masu.height);
+  return (
+    masu !== undefined &&
+    isPositive(masu.length) &&
+    isPositive(masu.width) &&
+    isPositive(masu.height)
+  );
 }
 
 export function checkValidity(target) {
   if (target.checkValidity()) {
-    target.className = classNames(target.className, "is-valid", { "is-invalid": false });
-  }
-  else {
-    target.className = classNames(target.className, "is-invalid", { "is-valid": false });
+    target.className = classNames(target.className, "is-valid", {
+      "is-invalid": false,
+    });
+  } else {
+    target.className = classNames(target.className, "is-invalid", {
+      "is-valid": false,
+    });
   }
 
-  if (target.value === '' || target.value === null) {
+  if (target.value === "" || target.value === null) {
     return target.value;
   }
 
-  if (target.type === 'number') {
+  if (target.type === "number") {
     const number = Number(target.value);
     if (!isNaN(number)) {
       return number;
@@ -39,7 +47,6 @@ export function checkValidity(target) {
 }
 
 export function useMasuMeasurement(masu, lid = false) {
-
   let pageWidth = 210;
   let pageHeight = 297;
 
@@ -55,7 +62,7 @@ export function useMasuMeasurement(masu, lid = false) {
   if (lid) {
     l += masu.lid.delta;
     w += masu.lid.delta;
-    h = masu.lid.height === '' ? h - .5 * masu.lid.delta : masu.lid.height;
+    h = masu.lid.height === "" ? h - 0.5 * masu.lid.delta : masu.lid.height;
   }
 
   const max = l + w + 4.0 * h;
@@ -80,7 +87,7 @@ export function useMasuMeasurement(masu, lid = false) {
 
 export function configureFace(element, l_2, w_2, h_2) {
   const faces = createFaces(l_2, w_2, h_2);
-  const face = faces[element.face]
+  const face = faces[element.face];
   if (face === undefined) {
     console.log(`face '${element.face}' not supported`);
     return null;
@@ -90,43 +97,48 @@ export function configureFace(element, l_2, w_2, h_2) {
 }
 
 export function configurePositioning(text, l_2, w_2, h_2) {
-  const margins = { hori: parseFloat(text.marginHorizontal), vert: parseFloat(text.marginVertical) };
+  const margins = {
+    hori: parseFloat(text.marginHorizontal),
+    vert: parseFloat(text.marginVertical),
+  };
   if (isNaN(margins.hori)) {
-    margins.hori = 0
-  };
+    margins.hori = 0;
+  }
   if (isNaN(margins.vert)) {
-    margins.vert = 0
-  };
+    margins.vert = 0;
+  }
 
   let style = {};
   let configuration = configureFace(text, l_2, w_2, h_2);
 
   switch (text.horizontal) {
-    case 'left':
-      style.textAnchor = 'start';
+    case "left":
+      style.textAnchor = "start";
       configuration.x -= configuration.hori - margins.hori;
       break;
-    case 'center':
-      style.textAnchor = 'middle';
+    case "center":
+      style.textAnchor = "middle";
       break;
-    case 'right':
-      style.textAnchor = 'end';
+    case "right":
+      style.textAnchor = "end";
       configuration.x += configuration.hori - margins.hori;
       break;
     default:
-      throw new Error(`The horizontal value '${text.horizontal}' is not managed`);
+      throw new Error(
+        `The horizontal value '${text.horizontal}' is not managed`
+      );
   }
 
   switch (text.vertical) {
-    case 'top':
-      style.dominantBaseline = 'text-before-edge';
+    case "top":
+      style.dominantBaseline = "text-before-edge";
       configuration.y -= configuration.vert - margins.vert;
       break;
-    case 'middle':
-      style.dominantBaseline = 'central';
+    case "middle":
+      style.dominantBaseline = "central";
       break;
-    case 'bottom':
-      style.dominantBaseline = 'text-after-edge';
+    case "bottom":
+      style.dominantBaseline = "text-after-edge";
       configuration.y += configuration.vert - margins.vert;
       break;
     default:

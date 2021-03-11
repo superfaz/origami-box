@@ -4,10 +4,10 @@ export function getTexts(block, addition = null) {
   };
 
   if (addition !== null) {
-    texts[addition.key ?? 'new'] = addition;
+    texts[addition.key ?? "new"] = addition;
   }
 
-  return Object.keys(texts).map(k => texts[k]);
+  return Object.keys(texts).map((k) => texts[k]);
 }
 
 export function getImages(block, addition = null) {
@@ -16,24 +16,22 @@ export function getImages(block, addition = null) {
   };
 
   if (addition !== null) {
-    images[addition.key ?? 'new'] = addition;
+    images[addition.key ?? "new"] = addition;
   }
 
-  return Object.keys(images).map(k => images[k]);
+  return Object.keys(images).map((k) => images[k]);
 }
 
 export function getFonts(masu) {
   if (masu === undefined) {
     return [];
-  }
-  else {
+  } else {
     let fonts = getTexts(masu.base)
       .concat(getTexts(masu.lid))
-      .map(t => t.family)
-      .concat(['Open Sans'])
-      .map(t => t === '' ? 'Open Sans' : t)
+      .map((t) => t.family)
+      .concat(["Open Sans"])
+      .map((t) => (t === "" ? "Open Sans" : t))
       .sort();
     return [...new Set(fonts)];
   }
 }
-

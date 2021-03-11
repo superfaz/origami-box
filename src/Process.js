@@ -1,4 +1,4 @@
-import JsonDisplay from './Generic/JsonDisplay';
+import JsonDisplay from "./Generic/JsonDisplay";
 
 export default function Process() {
   return (

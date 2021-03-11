@@ -1,1 +1,1 @@
-export * from './useTemplate';
+export * from "./useTemplate";

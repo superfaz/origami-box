@@ -1,24 +1,24 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
-  pageFormat: 'A4',
-  length: '',
-  width: '',
-  height: '',
+  pageFormat: "A4",
+  length: "",
+  width: "",
+  height: "",
   withDesign: true,
   withLid: false,
   base: {
-    key: 'base',
-    background: '#8ED1FC',
+    key: "base",
+    background: "#8ED1FC",
     backgroundImage: null,
     texts: {},
     images: {},
   },
   lid: {
-    key: 'lid',
+    key: "lid",
     delta: 2,
-    height: '',
-    background: '#8ED1FC',
+    height: "",
+    background: "#8ED1FC",
     backgroundImage: null,
     texts: {},
     images: {},
@@ -27,76 +27,76 @@ const initialState = {
 
 export function reset() {
   return {
-    type: 'RESET',
+    type: "RESET",
   };
 }
 
 export function updateGeneral(name, value) {
   return {
-    type: 'UPDATE_GENERAL',
+    type: "UPDATE_GENERAL",
     payload: { name, value },
   };
 }
 
 export function updateDetail(detailKey, name, value) {
   return {
-    type: 'UPDATE_DETAIL',
+    type: "UPDATE_DETAIL",
     payload: { detailKey, name, value },
   };
 }
 
 export function addOrUpdateText(block, text) {
   return {
-    type: 'ADDORUPDATE_TEXT',
+    type: "ADDORUPDATE_TEXT",
     payload: { block, text },
   };
 }
 
 export function deleteText(block, key) {
   return {
-    type: 'DELETE_TEXT',
+    type: "DELETE_TEXT",
     payload: { block, key },
   };
 }
 
 export function addOrUpdateImage(block, image) {
   return {
-    type: 'ADDORUPDATE_IMAGE',
+    type: "ADDORUPDATE_IMAGE",
     payload: { block, image },
   };
 }
 
 export function deleteImage(block, key) {
   return {
-    type: 'DELETE_IMAGE',
+    type: "DELETE_IMAGE",
     payload: { block, key },
   };
 }
 
 export default function masuReducer(state = initialState, action) {
   switch (action.type) {
-    case 'RESET': {
+    case "RESET": {
       return initialState;
     }
 
-    case 'UPDATE_GENERAL': {
+    case "UPDATE_GENERAL": {
       return {
         ...state,
         [action.payload.name]: action.payload.value,
       };
     }
 
-    case 'UPDATE_DETAIL': {
+    case "UPDATE_DETAIL": {
       return {
         ...state,
         [action.payload.detailKey]: {
           ...state[action.payload.detailKey],
           [action.payload.name]: action.payload.value,
-        }
+        },
       };
     }
 
-    case 'ADDORUPDATE_TEXT': {
+    case "ADDORUPDATE_TEXT": {
       let key = action.payload.text.key ?? uuidv4();
       let result = {
         ...state,
@@ -107,29 +107,29 @@ export default function masuReducer(state = initialState, action) {
             [key]: {
               ...action.payload.text,
               key: key,
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      };
       return result;
     }
 
-    case 'DELETE_TEXT': {
+    case "DELETE_TEXT": {
       let result = {
         ...state,
         [action.payload.block]: {
           ...state[action.payload.block],
           texts: {
-            ...state[action.payload.block].texts
-          }
-        }
-      }
+            ...state[action.payload.block].texts,
+          },
+        },
+      };
 
       delete result[action.payload.block].texts[action.payload.key];
       return result;
     }
 
-    case 'ADDORUPDATE_IMAGE': {
+    case "ADDORUPDATE_IMAGE": {
       let key = action.payload.image.key ?? uuidv4();
       let result = {
         ...state,
@@ -140,23 +140,23 @@ export default function masuReducer(state = initialState, action) {
             [key]: {
               ...action.payload.image,
               key: key,
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      };
       return result;
     }
 
-    case 'DELETE_IMAGE': {
+    case "DELETE_IMAGE": {
       let result = {
         ...state,
         [action.payload.block]: {
           ...state[action.payload.block],
           images: {
-            ...state[action.payload.block].images
-          }
-        }
-      }
+            ...state[action.payload.block].images,
+          },
+        },
+      };
 
       delete result[action.payload.block].images[action.payload.key];
       return result;

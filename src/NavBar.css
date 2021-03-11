@@ -1,4 +1,5 @@
-.tippy-box .list-group-item-action:focus, .tippy-box .list-group-item-action:hover {
+.tippy-box .list-group-item-action:focus,
+.tippy-box .list-group-item-action:hover {
   z-index: 1;
   color: #fff;
   text-decoration: none;
@@ -28,7 +29,7 @@
 #navbar .nav-item {
   margin-top: 0.25rem;
   padding-top: 0.25rem;
-  border-top: 1px solid rgba(255,255,255,.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 @media (min-width: 992px) {

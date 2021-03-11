@@ -1,6 +1,6 @@
-import Nav from './Nav';
-import { useTemplate } from '../hooks';
-import JsonDisplay from '../Generic/JsonDisplay';
+import Nav from "./Nav";
+import { useTemplate } from "../hooks";
+import JsonDisplay from "../Generic/JsonDisplay";
 
 export default function StepYDebug() {
   const { template } = useTemplate();

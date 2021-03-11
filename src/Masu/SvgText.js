@@ -5,28 +5,38 @@ export default function SvgText({ text, m }) {
   const textRef = useRef(null);
   const [box, setBox] = useState(null);
 
-  let { configuration, style } = configurePositioning(text, m.l_2, m.w_2, m.h_2);
+  let { configuration, style } = configurePositioning(
+    text,
+    m.l_2,
+    m.w_2,
+    m.h_2
+  );
   style.fontSize = text.size;
   style.fill = text.color;
 
-  if (text.family !== '') {
+  if (text.family !== "") {
     style.fontFamily = text.family;
   }
 
   // Used for debugging only - see REACT_APP_SVG_DEBUG
-  useEffect(() => setBox(textRef.current?.getBBox()), [textRef, text, text.content, text.family]);
+  useEffect(() => setBox(textRef.current?.getBBox()), [
+    textRef,
+    text,
+    text.content,
+    text.family,
+  ]);
 
   // Multiline management - required as SVG doesn't support it and only align the baseline.
-  const lines = text.content.split('\n');
+  const lines = text.content.split("\n");
   const lineHeight = text.lineSpacing * text.size;
   switch (text.vertical) {
-    case 'top':
+    case "top":
       // All good
       break;
-    case 'middle':
-      configuration.y -= (lines.length - 1) * lineHeight / 2;
+    case "middle":
+      configuration.y -= ((lines.length - 1) * lineHeight) / 2;
       break;
-    case 'bottom':
+    case "bottom":
       configuration.y -= (lines.length - 1) * lineHeight;
       break;
     default:
@@ -35,16 +45,30 @@ export default function SvgText({ text, m }) {
 
   return (
     <g>
-      {box && process.env.REACT_APP_SVG_DEBUG &&
-        <rect x={box.x} y={box.y} width={box.width} height={box.height} style={{ strokeWidth: 0.2 }}
-          stroke="black" fill="yellow" />
-      }
+      {box && process.env.REACT_APP_SVG_DEBUG && (
+        <rect
+          x={box.x}
+          y={box.y}
+          width={box.width}
+          height={box.height}
+          style={{ strokeWidth: 0.2 }}
+          stroke="black"
+          fill="yellow"
+        />
+      )}
       <text ref={textRef} style={style} x={configuration.x} y={configuration.y}>
         {lines.map((line, index) => {
-          return <tspan key={index} x={configuration.x} y={configuration.y + index * lineHeight}>{line}</tspan>
+          return (
+            <tspan
+              key={index}
+              x={configuration.x}
+              y={configuration.y + index * lineHeight}
+            >
+              {line}
+            </tspan>
+          );
         })}
       </text>
     </g>
   );
 }
-

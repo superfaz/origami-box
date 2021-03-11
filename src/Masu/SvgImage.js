@@ -7,19 +7,18 @@ export default function SvgImage({ image, m }) {
   }
 
   const face = configureFace(image, m.l_2, m.w_2, m.h_2);
-  let width = image.size === 'auto' ? null : parseFloat(image.width);
-  let height = image.size === 'auto' ? null : parseFloat(image.height);
+  let width = image.size === "auto" ? null : parseFloat(image.width);
+  let height = image.size === "auto" ? null : parseFloat(image.height);
   let x = face.x;
   let y = face.y;
 
-  if (image.size === 'auto') {
+  if (image.size === "auto") {
     if (face.width >= face.height) {
       height = face.height - 2 * image.marginVertical;
-      width = image.originalWidth * height / image.originalHeight;
-    }
-    else {
+      width = (image.originalWidth * height) / image.originalHeight;
+    } else {
       width = face.width - 2 * image.marginHorizontal;
-      height = image.originalHeight * width / image.originalWidth;
+      height = (image.originalHeight * width) / image.originalWidth;
     }
   }
 
@@ -29,27 +28,29 @@ export default function SvgImage({ image, m }) {
   }
 
   switch (image.horizontal) {
-    case 'left':
+    case "left":
       x -= face.hori - image.marginHorizontal;
       break;
-    case 'center':
+    case "center":
       x -= width / 2;
       break;
-    case 'right':
+    case "right":
       x += face.hori - width - image.marginHorizontal;
       break;
     default:
-      throw new Error(`The horizontal value '${image.horizontal}' is not managed`);
+      throw new Error(
+        `The horizontal value '${image.horizontal}' is not managed`
+      );
   }
 
   switch (image.vertical) {
-    case 'top':
+    case "top":
       y -= face.vert - image.marginVertical;
       break;
-    case 'middle':
+    case "middle":
       y -= height / 2;
       break;
-    case 'bottom':
+    case "bottom":
       y += face.vert - height - image.marginVertical;
       break;
     default:

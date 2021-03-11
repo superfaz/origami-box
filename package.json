@@ -36,10 +36,8 @@
     "web-vitals": "^1.1.0"
   },
   "devDependencies": {
-    "concurrently": "^6.0.0"
-  },
-  "resolutions": {
-    "react-side-effect": "^2.1.0"
+    "concurrently": "^6.0.0",
+    "prettier": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
