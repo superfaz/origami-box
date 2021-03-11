@@ -37,6 +37,8 @@
   },
   "devDependencies": {
     "concurrently": "^6.0.0",
+    "husky": "=4",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"
   },
   "scripts": {
@@ -68,5 +70,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
