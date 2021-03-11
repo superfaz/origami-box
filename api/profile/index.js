@@ -1,5 +1,22 @@
+const axios = require("axios").default;
 const { MongoClient } = require("mongodb");
 const { SystemError, UserError, errorMiddleware } = require("../shared/errors");
+
+function assertSystem(value, message) {
+  if (value === undefined || value === null) {
+    throw new SystemError(message);
+  }
+
+  return value;
+}
+
+function assertUser(value, message) {
+  if (value === undefined || value === null) {
+    throw new UserError(message);
+  }
+
+  return value;
+}
 
 async function profileFunction(context, req) {
   context.log.info("/api/profile call");
@@ -25,7 +42,7 @@ async function profileFunction(context, req) {
     "Missing 'userid' in the request headers"
   );
 
-  if (req.method !== "delete") {
+  if (req.method !== "DELETE") {
     throw new UserError("/api/profile supports only DELETE method");
   }
 
@@ -37,7 +54,7 @@ async function profileFunction(context, req) {
   });
 
   // Confirm that the response is valid
-  if (response.status !== 200 && response.data.data.app_id !== facebookAppId) {
+  if (response.status !== 200 || response.data.data.app_id !== facebookAppId) {
     throw new SystemError("Can't connect to facebook APIs");
   }
 
@@ -47,6 +64,7 @@ async function profileFunction(context, req) {
     response.data.data.app_id !== facebookAppId &&
     response.data.data.user_id !== userId
   ) {
+    context.log.info(response.data);
     throw new UserError("Invalid user");
   }
 

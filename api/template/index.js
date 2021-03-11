@@ -50,7 +50,7 @@ async function templateFunction(context, req) {
   });
 
   // Confirm that the response is valid
-  if (response.status !== 200 && response.data.data.app_id !== facebookAppId) {
+  if (response.status !== 200 || response.data.data.app_id !== facebookAppId) {
     throw new SystemError("Can't connect to facebook APIs");
   }
 

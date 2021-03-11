@@ -10,6 +10,7 @@ export function ProfilePage() {
   const dispatch = useDispatch();
   const profile = useSelector(getProfile);
   const localTemplates = useSelector(getTemplates);
+  const remoteTemplates = { length: 1 };
 
   function handleLocalClean() {
     dispatch(removeAll());
@@ -22,7 +23,7 @@ export function ProfilePage() {
     // clean-up remove templates
     fetch("/api/profile", {
       method: "DELETE",
-      headers: { accesstoken: profile.accesstoken, userId: profile.userId },
+      headers: { accesstoken: profile.accessToken, userId: profile.userId },
     }).then(() => {
       // logout
       dispatch(logout());
@@ -105,6 +106,17 @@ export function ProfilePage() {
               </div>
               <div className="text-muted small">
                 {t("profile.localStorageDescription")}
+              </div>
+            </div>
+            <div className="mb-3">
+              <div>{t("profile.remoteStorage")}</div>
+              <div className="form-control disabled">
+                {t("profile.remoteStorageMessage", {
+                  count: Object.keys(remoteTemplates).length,
+                })}
+              </div>
+              <div className="text-muted small">
+                {t("profile.remoteStorageDescription")}
               </div>
             </div>
           </fieldset>

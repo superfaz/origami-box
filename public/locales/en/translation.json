@@ -56,6 +56,9 @@
     "localStorage": "Local data",
     "localStorageMessage": "{{count}} templates",
     "localStorageDescription": "Those data are stored by your browser and cleaning-up your cache could delete those information. They can be removed by using the 'Delete' link in the 'My Templates' page",
+    "remoteStorage": "Remote data",
+    "remoteStorageMessage": "{{count}} templates",
+    "remoteStorageDescription": "Those data are stored on our remote datastore. They can be removed by using the 'Delete' link in the 'My Templates' page",
     "danger": {
       "title": "Danger zone",
       "content": "The following actions can be used to clean-up your profile or delete it. Those actions are irreversible.",
