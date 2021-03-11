@@ -75,7 +75,7 @@ async function profileFunction(context, req) {
   try {
     await client.connect();
 
-    const database = client.db("application");
+    const database = client.db("origami-box");
     const templates = database.collection("templates");
 
     const query = { userId: userId };

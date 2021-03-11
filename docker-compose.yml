@@ -11,7 +11,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: application
+      MONGO_INITDB_DATABASE: origami-box
 
   mongo-express:
     image: mongo-express
