@@ -1,25 +1,8 @@
-const axios = require("axios").default;
 const { MongoClient } = require("mongodb");
 const { SystemError, UserError, errorMiddleware } = require("../shared/errors");
 
-function assertSystem(value, message) {
-  if (value === undefined || value === null) {
-    throw new SystemError(message);
-  }
-
-  return value;
-}
-
-function assertUser(value, message) {
-  if (value === undefined || value === null) {
-    throw new UserError(message);
-  }
-
-  return value;
-}
-
-async function templateFunction(context, req) {
-  context.log.info("/api/template call");
+async function profileFunction(context, req) {
+  context.log.info("/api/profile call");
 
   const mongoUri = assertSystem(
     process.env.MONGO_CONNECTION_STRING,
@@ -41,6 +24,10 @@ async function templateFunction(context, req) {
     req.headers.userid,
     "Missing 'userid' in the request headers"
   );
+
+  if (req.method !== "delete") {
+    throw new UserError("/api/profile supports only DELETE method");
+  }
 
   const response = await axios.get("https://graph.facebook.com/debug_token", {
     params: {
@@ -74,10 +61,12 @@ async function templateFunction(context, req) {
     const templates = database.collection("templates");
 
     const query = { userId: userId };
-    const results = templates.find(query);
+    const results = await templates.deleteMany(query);
 
     context.res = {
-      body: await results.toArray(),
+      body: {
+        deletedTemplates: results.deletedCount,
+      },
     };
   } finally {
     await client.close();
@@ -85,6 +74,6 @@ async function templateFunction(context, req) {
 }
 
 module.exports = async function (context, req) {
-  await errorMiddleware(context, req, templateFunction);
+  await errorMiddleware(context, req, profileFunction);
   context.done();
 };
