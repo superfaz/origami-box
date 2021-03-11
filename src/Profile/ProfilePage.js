@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, getTemplates } from "../store";
@@ -10,7 +11,20 @@ export function ProfilePage() {
   const dispatch = useDispatch();
   const profile = useSelector(getProfile);
   const localTemplates = useSelector(getTemplates);
-  const remoteTemplates = { length: 1 };
+  const [remoteTemplates, setRemoteTemplates] = useState([]);
+
+  useEffect(() => {
+    fetch("api/template", {
+      headers: {
+        accesstoken: profile.accessToken,
+        userId: profile.userId,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setRemoteTemplates(data);
+      });
+  }, [profile.userId, profile.accessToken]);
 
   function handleLocalClean() {
     dispatch(removeAll());
@@ -23,7 +37,10 @@ export function ProfilePage() {
     // clean-up remove templates
     fetch("/api/profile", {
       method: "DELETE",
-      headers: { accesstoken: profile.accessToken, userId: profile.userId },
+      headers: {
+        accesstoken: profile.accessToken,
+        userId: profile.userId,
+      },
     }).then(() => {
       // logout
       dispatch(logout());
