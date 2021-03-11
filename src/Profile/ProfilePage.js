@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, getTemplates } from "../store";
+import { logout } from "../store/profile";
 import { removeAll } from "../store/templates";
 import "./ProfilePage.css";
 
@@ -14,7 +15,19 @@ export function ProfilePage() {
     dispatch(removeAll());
   }
 
-  function handleRemove() {}
+  function handleRemove() {
+    // clean-up local templates
+    dispatch(removeAll());
+
+    // clean-up remove templates
+    fetch("/api/profile", {
+      method: "DELETE",
+      headers: { accesstoken: profile.accesstoken, userId: profile.userId },
+    }).then(() => {
+      // logout
+      dispatch(logout());
+    });
+  }
 
   if (profile.status !== "initialized") {
     return null;
