@@ -14,12 +14,11 @@
     "title": "Bienvenue <1>",
     "description": "Ce site permet de créer des patrons d'origami pour la création de boites de stockage. Parfaite pour des jeux de plateau, mais pas seulement.",
     "start": "Créer un modèle",
-    "localSave": {
-      "title": "Précédentes créations",
-      "description": "Bon retour, voici vos précédentes créations. Celles-ci sont stockées par votre navigateur pour vous éviter de perdre votre travail."
+    "latestTemplates": {
+      "title": "Précédentes créations"
     },
     "template": {
-      "unsaved": "modèle local",
+      "unsaved": "local",
       "continue": "Continuer",
       "discard": "Supprimer"
     },

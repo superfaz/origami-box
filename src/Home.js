@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import objectMap from "./objectMap";
 import { getTemplates } from "./store";
 import { create } from "./store/templates";
 import { TemplateMiniature } from "./Template";
@@ -20,6 +19,21 @@ export default function Home() {
     dispatch(create(key));
     setRedirect("/edit/" + key);
   }
+
+  function toArray(obj) {
+    if (obj === undefined || obj === null) {
+      return [];
+    }
+
+    return Object.keys(obj).reduce((acc, current) => {
+      acc.push(obj[current]);
+      return acc;
+    }, []);
+  }
+
+  const latestTemplates = toArray(templates)
+    .sort((a, b) => b.savedate - a.savedate)
+    .filter((v, i) => i < 4);
 
   if (redirect !== null) {
     return <Redirect to={redirect} />;
@@ -51,13 +65,12 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {Object.keys(templates).length > 0 && (
+          {latestTemplates.length > 0 && (
             <>
-              <h2>{t("home.localSave.title")}</h2>
-              <p className="lead">{t("home.localSave.description")}</p>
-              {objectMap(templates, (template, key, index) => (
+              <h2>{t("home.latestTemplates.title")}</h2>
+              {latestTemplates.map((template, index) => (
                 <TemplateMiniature
-                  key={key}
+                  key={index}
                   template={template}
                   index={index}
                 />

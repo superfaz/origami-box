@@ -14,12 +14,11 @@
     "title": "Welcome <1>",
     "description": "This site provides origami templates to create paper boxes. Perfect for board games, but not only.",
     "start": "Get started",
-    "localSave": {
-      "title": "Previous work",
-      "description": "Welcome back, here are your previous creations - Those are stored by your browser so that you can continue your work."
+    "latestTemplates": {
+      "title": "Latest creations"
     },
     "template": {
-      "unsaved": "Local template",
+      "unsaved": "local",
       "continue": "Continue",
       "discard": "Discard"
     },

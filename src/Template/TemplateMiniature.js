@@ -60,10 +60,12 @@ export function TemplateMiniature({ template, index }) {
         </div>
         <div className="card-body">
           <h5 className="card-title">{template.title}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">
-            {t("home.template.unsaved")}
+          <h6 className="card-subtitle mb-2 text-muted d-flex">
+            <span className="badge bg-warning text-dark me-auto">
+              {t("home.template.unsaved")}
+            </span>
+            <span>{t("date", { date: template.savedate })}</span>
           </h6>
-          <p className="card-text"></p>
           <Link to={`/edit/${template.key}`} className="card-link">
             {t("home.template.continue")}
           </Link>
