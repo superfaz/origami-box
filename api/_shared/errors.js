@@ -28,8 +28,26 @@ async function errorMiddleware(context, req, next) {
   }
 }
 
+function assertSystem(value, message) {
+  if (value === undefined || value === null) {
+    throw new SystemError(message);
+  }
+
+  return value;
+}
+
+function assertUser(value, message) {
+  if (value === undefined || value === null) {
+    throw new UserError(message);
+  }
+
+  return value;
+}
+
 module.exports = {
   SystemError,
   UserError,
   errorMiddleware,
+  assertSystem,
+  assertUser,
 };

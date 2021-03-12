@@ -1,22 +1,12 @@
 const axios = require("axios").default;
 const { MongoClient } = require("mongodb");
-const { SystemError, UserError, errorMiddleware } = require("../shared/errors");
-
-function assertSystem(value, message) {
-  if (value === undefined || value === null) {
-    throw new SystemError(message);
-  }
-
-  return value;
-}
-
-function assertUser(value, message) {
-  if (value === undefined || value === null) {
-    throw new UserError(message);
-  }
-
-  return value;
-}
+const {
+  UserError,
+  errorMiddleware,
+  assertSystem,
+  assertUser,
+} = require("../_shared/errors");
+const { facebookApiCheckUserId } = require("../_shared/facebook");
 
 async function profileFunction(context, req) {
   context.log.info("/api/profile call");
@@ -24,14 +14,6 @@ async function profileFunction(context, req) {
   const mongoUri = assertSystem(
     process.env.MONGO_CONNECTION_STRING,
     "MONGO_CONNECTION_STRING not defined"
-  );
-  const facebookAppId = assertSystem(
-    process.env.FACEBOOK_APP_ID,
-    "FACEBOOK_APP_ID not defined"
-  );
-  const facebookAppSecret = assertSystem(
-    process.env.FACEBOOK_APP_SECRET,
-    "FACEBOOK_APP_SECRET not defined"
   );
   const accessToken = assertUser(
     req.headers.accesstoken,
@@ -46,27 +28,7 @@ async function profileFunction(context, req) {
     throw new UserError("/api/profile supports only DELETE method");
   }
 
-  const response = await axios.get("https://graph.facebook.com/debug_token", {
-    params: {
-      input_token: accessToken,
-      access_token: `${facebookAppId}|${facebookAppSecret}`,
-    },
-  });
-
-  // Confirm that the response is valid
-  if (response.status !== 200 || response.data.data.app_id !== facebookAppId) {
-    throw new SystemError("Can't connect to facebook APIs");
-  }
-
-  // Confirm that the user is valid
-  if (
-    response.data.data.is_valid !== true &&
-    response.data.data.app_id !== facebookAppId &&
-    response.data.data.user_id !== userId
-  ) {
-    context.log.info(response.data);
-    throw new UserError("Invalid user");
-  }
+  await facebookApiCheckUserId(accessToken, userId);
 
   const client = new MongoClient(mongoUri, {
     useUnifiedTopology: true,
