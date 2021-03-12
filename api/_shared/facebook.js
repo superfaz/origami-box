@@ -11,10 +11,6 @@ async function facebookApiCheckUserId(accessToken, userId) {
     "FACEBOOK_APP_SECRET not defined"
   );
 
-  if (process.env.NODE_ENV === "development") {
-    return;
-  }
-
   const response = await axios.get("https://graph.facebook.com/debug_token", {
     params: {
       input_token: accessToken,
@@ -30,10 +26,8 @@ async function facebookApiCheckUserId(accessToken, userId) {
   // Confirm that the user is valid
   if (
     response.data.data.is_valid !== true &&
-    response.data.data.app_id !== facebookAppId &&
     response.data.data.user_id !== userId
   ) {
-    context.log.info(response.data);
     throw new UserError("Invalid user");
   }
 }
