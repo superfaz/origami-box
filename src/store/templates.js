@@ -161,6 +161,7 @@ export default function templateReducer(state = initialState, action) {
         ...state,
         [templateKey]: {
           ...state[templateKey],
+          savedate: new Date().getTime(),
           [field]: value,
         },
       };
@@ -172,6 +173,7 @@ export default function templateReducer(state = initialState, action) {
         ...state,
         [templateKey]: {
           ...state[templateKey],
+          savedate: new Date().getTime(),
           data: {
             ...state[templateKey].data,
             [field]: value,
@@ -186,6 +188,7 @@ export default function templateReducer(state = initialState, action) {
         ...state,
         [templateKey]: {
           ...state[templateKey],
+          savedate: new Date().getTime(),
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -204,6 +207,7 @@ export default function templateReducer(state = initialState, action) {
         ...state,
         [templateKey]: {
           ...state[templateKey],
+          savedate: new Date().getTime(),
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -227,6 +231,7 @@ export default function templateReducer(state = initialState, action) {
         ...state,
         [templateKey]: {
           ...state[templateKey],
+          savedate: new Date().getTime(),
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -250,6 +255,7 @@ export default function templateReducer(state = initialState, action) {
         ...state,
         [templateKey]: {
           ...state[templateKey],
+          savedate: new Date().getTime(),
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -273,6 +279,7 @@ export default function templateReducer(state = initialState, action) {
         ...state,
         [templateKey]: {
           ...state[templateKey],
+          savedate: new Date().getTime(),
           data: {
             ...state[templateKey].data,
             [block]: {
