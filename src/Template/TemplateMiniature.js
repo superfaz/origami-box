@@ -69,7 +69,10 @@ export function TemplateMiniature({ template, index }) {
             {template.title || <em>{t("template.notitle")}</em>}
           </h5>
           <h6 className="card-subtitle mb-2 text-muted d-flex">
-            <span className="me-auto">
+            <span
+              className="me-auto"
+              title={t("datetime", { date: template.savedate })}
+            >
               {t("date", { date: template.savedate })}
             </span>
             {template.local && (

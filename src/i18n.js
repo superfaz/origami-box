@@ -10,8 +10,11 @@ import "dayjs/locale/en";
 dayjs.extend(localizedFormat);
 
 function i18nFormating(value, format, lng) {
-  if (value instanceof Date || format === "date") {
+  if (format === "date") {
     return dayjs(value).locale(lng).format("ll");
+  }
+  if (format === "datetime") {
+    return dayjs(value).locale(lng).format("llll");
   } else {
     return value;
   }

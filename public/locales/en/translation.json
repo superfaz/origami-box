@@ -3,6 +3,7 @@
     "title": "Select a color"
   },
   "date": "{{date, date}}",
+  "datetime": "{{date, datetime}}",
   "navbar": {
     "home": "Home",
     "templates": "My templates",
