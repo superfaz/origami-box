@@ -67,16 +67,17 @@
     },
     "localCleanModal": {
       "title": "Nettoyage des données locales",
-      "content": "Cette action supprimera les informations stockées sur ce navigateur et liées au service corniro.com. Ces données ne pas stockées sur notre datastore et seront perdues. Cette action ne peut être inversée.",
-      "cancel": "Annuler",
-      "confirm": "Confirmer"
+      "content": "Cette action supprimera les informations stockées sur ce navigateur et liées au service corniro.com. Ces données ne pas stockées sur notre datastore et seront perdues. Cette action ne peut être inversée."
     },
     "removeModal": {
       "title": "Détruire le profil",
-      "content": "Cette action vous permet de supprimer les modèles et l'ensemble de vos données associées au service corniro.com. Cette action ne peut être inversée.",
-      "cancel": "Annuler",
-      "confirm": "Confirmer"
+      "content": "Cette action vous permet de supprimer les modèles et l'ensemble de vos données associées au service corniro.com. Cette action ne peut être inversée."
     }
+  },
+  "modal": {
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer"
   },
   "template": {
     "title": "Titre du modèle",
