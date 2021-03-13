@@ -1,4 +1,5 @@
 const axios = require("axios").default;
+const { validate: uuidValidate } = require("uuid");
 const { MongoClient } = require("mongodb");
 const {
   errorMiddleware,
@@ -8,7 +9,7 @@ const {
 } = require("../_shared/errors");
 const { facebookApiCheckUserId } = require("../_shared/facebook");
 
-async function templateFunction(context, req) {
+async function templateFunction(context, req, key) {
   context.log.info("/api/template call");
 
   const mongoUri = assertSystem(
@@ -24,10 +25,11 @@ async function templateFunction(context, req) {
     "Missing 'userid' in the request headers"
   );
 
-  const key = context.bindingData.key;
-  //  if (key !== undefined && !ObjectID.isValid(key)) {
-  //    throw new UserError("The key parameter should be a number");
-  //  }
+  if (key !== undefined && !uuidValidate(key)) {
+    throw new UserError("The key parameter should be a uuid");
+  }
+
+  const limit = Number.parseInt(req.params.limit) || 0;
 
   await facebookApiCheckUserId(accessToken, userId);
 
@@ -43,7 +45,8 @@ async function templateFunction(context, req) {
 
     if (key === undefined) {
       const query = { userId: userId };
-      const results = templates.find(query);
+      const sort = { savedate: -1 };
+      const results = templates.find(query).sort(sort).limit(limit);
 
       context.res = {
         body: await results.toArray(),
