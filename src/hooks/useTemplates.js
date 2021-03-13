@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import createSet from "../createSet";
 import { getProfile, getTemplates } from "../store";
 
 function toArray(obj) {
@@ -50,7 +51,7 @@ export function useTemplates() {
     }
   }, [profile.userId, profile.accessToken]);
 
-  const templates = [].concat(localTemplates, remoteTemplates);
+  const templates = createSet((t) => t.key, localTemplates, remoteTemplates);
   console.log("templates", templates);
   return { templates, localTemplates, remoteTemplates, isLoading, isError };
 }
