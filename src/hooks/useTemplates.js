@@ -42,7 +42,6 @@ export function useTemplates() {
         })
         .then((data) => {
           setRemoteTemplates(data);
-          console.log("data", data);
           setLoading(false);
         })
         .catch((error) => {
@@ -52,6 +51,5 @@ export function useTemplates() {
   }, [profile.userId, profile.accessToken]);
 
   const templates = createSet((t) => t.key, localTemplates, remoteTemplates);
-  console.log("templates", templates);
   return { templates, localTemplates, remoteTemplates, isLoading, isError };
 }
