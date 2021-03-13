@@ -85,6 +85,7 @@
     "draft": "draft",
     "unsaved": "local",
     "continue": "Continue",
+    "save": "Save",
     "discard": "Discard",
     "remove": "Remove"
   },

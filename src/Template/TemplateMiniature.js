@@ -12,6 +12,8 @@ export function TemplateMiniature({ template, index }) {
     dispatch(localSave(template));
   }
 
+  function handleSave() {}
+
   function handleDiscard() {
     dispatch(discard(template.key));
   }
@@ -96,12 +98,26 @@ export function TemplateMiniature({ template, index }) {
             {t("template.continue")}
           </Link>
           {template.local && (
-            <button className="btn btn-link card-link" onClick={handleDiscard}>
+            <button
+              className="btn btn-link card-link ps-0 pe-0"
+              onClick={handleSave}
+            >
+              {t("template.save")}
+            </button>
+          )}
+          {template.local && (
+            <button
+              className="btn btn-link card-link ps-0 pe-0"
+              onClick={handleDiscard}
+            >
               {t("template.discard")}
             </button>
           )}
           {!template.local && (
-            <button className="btn btn-link card-link" onClick={handleRemove}>
+            <button
+              className="btn btn-link card-link ps-0 pe-0"
+              onClick={handleRemove}
+            >
               {t("template.remove")}
             </button>
           )}
