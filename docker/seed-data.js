@@ -19,6 +19,15 @@ db.templates.insertMany([
         texts: {},
         images: {},
       },
+      lid: {
+        key: "lid",
+        delta: 2,
+        height: "",
+        background: "#8ED1FC",
+        backgroundImage: null,
+        texts: {},
+        images: {},
+      },
     },
   },
 ]);
