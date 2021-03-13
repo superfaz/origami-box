@@ -83,7 +83,8 @@
     }
   },
   "template": {
-    "title": "Titre du modèle"
+    "title": "Titre du modèle",
+    "notitle": "sans titre"
   },
   "masu": {
     "title": "Masu",

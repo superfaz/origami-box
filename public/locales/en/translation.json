@@ -83,7 +83,8 @@
     }
   },
   "template": {
-    "title": "Template Title"
+    "title": "Template Title",
+    "notitle": "no title"
   },
   "masu": {
     "title": "Masu",

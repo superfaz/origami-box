@@ -29,11 +29,13 @@ export function TemplateMiniature({ template, index }) {
                   data-bs-target={`#carouselTemplate${index}`}
                   data-bs-slide-to="0"
                   className="active"
+                  title={t("masu.stepBDesign.lid.title")}
                 ></button>
                 <button
                   type="button"
                   data-bs-target={`#carouselTemplate${index}`}
                   data-bs-slide-to="1"
+                  title={t("masu.stepBDesign.base.title")}
                 ></button>
               </div>
               <div className="carousel-inner">
@@ -59,7 +61,9 @@ export function TemplateMiniature({ template, index }) {
           )}
         </div>
         <div className="card-body">
-          <h5 className="card-title">{template.title}</h5>
+          <h5 className="card-title">
+            {template.title || <em>{t("template.notitle")}</em>}
+          </h5>
           <h6 className="card-subtitle mb-2 text-muted d-flex">
             <span className="me-auto">
               {t("date", { date: template.savedate })}
