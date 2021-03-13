@@ -14,7 +14,7 @@ function toArray(obj) {
   }, []);
 }
 
-export function useTemplates() {
+export function useTemplates(limit = null) {
   console.log("useTemplates()");
   const profile = useSelector(getProfile);
   const localTemplates = toArray(useSelector(getTemplates));
@@ -27,7 +27,7 @@ export function useTemplates() {
     setLoading(true);
     if (profile.accessToken !== null && profile.userId !== null) {
       console.log("fetch /api/template");
-      fetch("/api/template", {
+      fetch("/api/template?limit=" + limit, {
         headers: {
           accesstoken: profile.accessToken,
           userId: profile.userId,
@@ -48,8 +48,11 @@ export function useTemplates() {
           setError(true);
         });
     }
-  }, [profile.userId, profile.accessToken]);
+  }, [profile.userId, profile.accessToken, limit]);
 
-  const templates = createSet((t) => t.key, localTemplates, remoteTemplates);
+  const templates = createSet((t) => t.key, localTemplates, remoteTemplates)
+    .sort((a, b) => b.savedate - a.savedate)
+    .filter((v, i) => i < (limit || Number.POSITIVE_INFINITY));
+
   return { templates, localTemplates, remoteTemplates, isLoading, isError };
 }
