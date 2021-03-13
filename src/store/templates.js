@@ -41,6 +41,13 @@ export function create(key) {
   };
 }
 
+export function localSave(template) {
+  return {
+    type: "LOCAL_SAVE",
+    payload: { template },
+  };
+}
+
 export function remove(key) {
   return {
     type: "REMOVE",
@@ -118,6 +125,20 @@ export default function templateReducer(state = initialState, action) {
           },
         },
       };
+    }
+
+    case "LOCAL_SAVE": {
+      const { template } = action.payload;
+      const key = template.key;
+      if (state[key] !== undefined) {
+        // Already available on local cache
+        return state;
+      } else {
+        return {
+          ...state,
+          [key]: template,
+        };
+      }
     }
 
     case "REMOVE": {

@@ -1,12 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { remove } from "../store/templates";
+import { localSave, remove } from "../store/templates";
 import { MasuTemplate } from "../Masu/MasuTemplateBack";
 
 export function TemplateMiniature({ template, index }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  function handleContinue() {
+    dispatch(localSave(template));
+  }
 
   function handleDiscard() {
     dispatch(remove(template.key));
@@ -74,7 +78,11 @@ export function TemplateMiniature({ template, index }) {
               </span>
             )}
           </h6>
-          <Link to={`/edit/${template.key}`} className="card-link">
+          <Link
+            to={`/edit/${template.key}`}
+            className="card-link"
+            onClick={handleContinue}
+          >
             {t("home.template.continue")}
           </Link>
           <button className="btn btn-link card-link" onClick={handleDiscard}>
