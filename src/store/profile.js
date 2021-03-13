@@ -1,4 +1,10 @@
-const initialState = { status: "unknown" };
+const initialState = {
+  status: "unknown",
+  accessToken: null,
+  userId: null,
+  name: null,
+  picture: null,
+};
 
 export function updateLoginStatus(response) {
   if (process.env.REACT_APP_FACEBOOK_DEBUG) {

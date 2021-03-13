@@ -1,4 +1,8 @@
 export function getTexts(block, addition = null) {
+  if (block === undefined || block === null) {
+    return [];
+  }
+
   let texts = {
     ...block.texts,
   };
