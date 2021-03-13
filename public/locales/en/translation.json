@@ -84,8 +84,9 @@
     "draft": "draft",
     "unsaved": "local",
     "continue": "Continue",
-    "discard": "Discard"
-},
+    "discard": "Discard",
+    "remove": "Remove"
+  },
   "masu": {
     "title": "Masu",
     "format": {

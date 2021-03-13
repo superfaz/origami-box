@@ -48,9 +48,9 @@ export function localSave(template) {
   };
 }
 
-export function remove(key) {
+export function discard(key) {
   return {
-    type: "REMOVE",
+    type: "DISCARD",
     payload: { key },
   };
 }
@@ -141,7 +141,7 @@ export default function templateReducer(state = initialState, action) {
       }
     }
 
-    case "REMOVE": {
+    case "DISCARD": {
       const { key } = action.payload;
       let result = {
         ...state,

@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { localSave, remove } from "../store/templates";
+import { localSave, discard } from "../store/templates";
 import { MasuTemplate } from "../Masu/MasuTemplateBack";
 
 export function TemplateMiniature({ template, index }) {
@@ -13,8 +13,10 @@ export function TemplateMiniature({ template, index }) {
   }
 
   function handleDiscard() {
-    dispatch(remove(template.key));
+    dispatch(discard(template.key));
   }
+
+  function handleRemove() {}
 
   return (
     <div className="col-xl-3 col-lg-4 col-sm-6 mb-3">
@@ -91,12 +93,16 @@ export function TemplateMiniature({ template, index }) {
           >
             {t("template.continue")}
           </Link>
-          <button
-            className="btn btn-link card-link ms-auto"
-            onClick={handleDiscard}
-          >
-            {t("template.discard")}
-          </button>
+          {template.local && (
+            <button className="btn btn-link card-link" onClick={handleDiscard}>
+              {t("template.discard")}
+            </button>
+          )}
+          {!template.local && (
+            <button className="btn btn-link card-link" onClick={handleRemove}>
+              {t("template.remove")}
+            </button>
+          )}
         </div>
       </div>
     </div>

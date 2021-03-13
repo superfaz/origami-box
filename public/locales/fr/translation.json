@@ -84,7 +84,8 @@
     "draft": "brouillon",
     "unsaved": "local",
     "continue": "Continuer",
-    "discard": "Supprimer"
+    "discard": "Annuler",
+    "remove": "Supprimer"
   },
   "masu": {
     "title": "Masu",
