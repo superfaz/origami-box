@@ -30,6 +30,7 @@
   },
   "templates": {
     "title": "My templates",
+    "create": "Create a new template",
     "columns": {
       "name": "Name",
       "type": "Type",

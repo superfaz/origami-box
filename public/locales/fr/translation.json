@@ -30,6 +30,7 @@
   },
   "templates": {
     "title": "Mes modèles",
+    "create": "Créer un nouveau modèke",
     "columns": {
       "name": "Nom",
       "type": "Type",

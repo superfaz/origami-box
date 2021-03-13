@@ -5,6 +5,7 @@ const initialState = {};
 const initialTemplate = {
   title: "",
   savedate: 0,
+  local: true,
   data: {},
 };
 
