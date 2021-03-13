@@ -2,7 +2,7 @@ db.templates.insertMany([
   {
     key: "ded46a3b-461b-4856-bb72-397a3425352b",
     userId: "1234567890",
-    name: "My first template",
+    title: "My first template",
     type: "masu",
     savedate: 1675210818000,
     data: {

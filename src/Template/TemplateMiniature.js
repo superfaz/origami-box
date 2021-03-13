@@ -16,7 +16,9 @@ export function TemplateMiniature({ template, index }) {
     dispatch(discard(template.key));
   }
 
-  function handleRemove() {}
+  function handleRemove() {
+    dispatch(discard(template.key));
+  }
 
   return (
     <div className="col-xl-3 col-lg-4 col-sm-6 mb-3">

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, getTemplates } from "../store";
+import { useTemplates } from "../hooks";
+import { getProfile } from "../store";
 import { logout } from "../store/profile";
 import { removeAll } from "../store/templates";
 import "./ProfilePage.css";
@@ -10,21 +10,7 @@ export function ProfilePage() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const profile = useSelector(getProfile);
-  const localTemplates = useSelector(getTemplates);
-  const [remoteTemplates, setRemoteTemplates] = useState([]);
-
-  useEffect(() => {
-    fetch("api/template", {
-      headers: {
-        accesstoken: profile.accessToken,
-        userId: profile.userId,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setRemoteTemplates(data);
-      });
-  }, [profile.userId, profile.accessToken]);
+  const { localTemplates, remoteTemplates } = useTemplates();
 
   function handleLocalClean() {
     dispatch(removeAll());
@@ -118,7 +104,7 @@ export function ProfilePage() {
               <div>{t("profile.localStorage")}</div>
               <div className="form-control disabled">
                 {t("profile.localStorageMessage", {
-                  count: Object.keys(localTemplates).length,
+                  count: localTemplates.length,
                 })}
               </div>
               <div className="text-muted small">
@@ -129,7 +115,7 @@ export function ProfilePage() {
               <div>{t("profile.remoteStorage")}</div>
               <div className="form-control disabled">
                 {t("profile.remoteStorageMessage", {
-                  count: Object.keys(remoteTemplates).length,
+                  count: remoteTemplates.length,
                 })}
               </div>
               <div className="text-muted small">
