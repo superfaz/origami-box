@@ -75,10 +75,13 @@ export function TemplateMiniature({ template, index }) {
             >
               {t("date", { date: template.savedate })}
             </span>
-            {template.local && (
+            {template.local && template._id === undefined && (
               <span className="badge bg-warning text-dark">
-                {t("home.template.unsaved")}
+                {t("template.unsaved")}
               </span>
+            )}
+            {template.local && template._id !== undefined && (
+              <span className="badge bg-info">{t("template.draft")}</span>
             )}
           </h6>
           <Link
@@ -86,10 +89,13 @@ export function TemplateMiniature({ template, index }) {
             className="card-link"
             onClick={handleContinue}
           >
-            {t("home.template.continue")}
+            {t("template.continue")}
           </Link>
-          <button className="btn btn-link card-link" onClick={handleDiscard}>
-            {t("home.template.discard")}
+          <button
+            className="btn btn-link card-link ms-auto"
+            onClick={handleDiscard}
+          >
+            {t("template.discard")}
           </button>
         </div>
       </div>

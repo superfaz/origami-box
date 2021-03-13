@@ -162,6 +162,7 @@ export default function templateReducer(state = initialState, action) {
         [templateKey]: {
           ...state[templateKey],
           savedate: new Date().getTime(),
+          local: true,
           [field]: value,
         },
       };
@@ -174,6 +175,7 @@ export default function templateReducer(state = initialState, action) {
         [templateKey]: {
           ...state[templateKey],
           savedate: new Date().getTime(),
+          local: true,
           data: {
             ...state[templateKey].data,
             [field]: value,
@@ -189,6 +191,7 @@ export default function templateReducer(state = initialState, action) {
         [templateKey]: {
           ...state[templateKey],
           savedate: new Date().getTime(),
+          local: true,
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -208,6 +211,7 @@ export default function templateReducer(state = initialState, action) {
         [templateKey]: {
           ...state[templateKey],
           savedate: new Date().getTime(),
+          local: true,
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -232,6 +236,7 @@ export default function templateReducer(state = initialState, action) {
         [templateKey]: {
           ...state[templateKey],
           savedate: new Date().getTime(),
+          local: true,
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -256,6 +261,7 @@ export default function templateReducer(state = initialState, action) {
         [templateKey]: {
           ...state[templateKey],
           savedate: new Date().getTime(),
+          local: true,
           data: {
             ...state[templateKey].data,
             [block]: {
@@ -280,6 +286,7 @@ export default function templateReducer(state = initialState, action) {
         [templateKey]: {
           ...state[templateKey],
           savedate: new Date().getTime(),
+          local: true,
           data: {
             ...state[templateKey].data,
             [block]: {

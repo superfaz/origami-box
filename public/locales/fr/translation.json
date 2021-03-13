@@ -18,11 +18,6 @@
     "latestTemplates": {
       "title": "Précédentes créations"
     },
-    "template": {
-      "unsaved": "local",
-      "continue": "Continuer",
-      "discard": "Supprimer"
-    },
     "beta": {
       "header": "Version Alpha",
       "title": "Ce site est tout neuf et encore en construction.",
@@ -85,7 +80,11 @@
   },
   "template": {
     "title": "Titre du modèle",
-    "notitle": "sans titre"
+    "notitle": "sans titre",
+    "draft": "brouillon",
+    "unsaved": "local",
+    "continue": "Continuer",
+    "discard": "Supprimer"
   },
   "masu": {
     "title": "Masu",
