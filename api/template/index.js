@@ -6,10 +6,11 @@ const {
   assertSystem,
   assertUser,
   UserError,
+  SystemError,
 } = require("../_shared/errors");
 const { facebookApiCheckUserId } = require("../_shared/facebook");
 
-async function templateFunction(context, req, key) {
+async function templateFunction(context, req) {
   context.log.info("/api/template call");
 
   const mongoUri = assertSystem(
@@ -25,11 +26,10 @@ async function templateFunction(context, req, key) {
     "Missing 'userid' in the request headers"
   );
 
+  const key = context.bindingData.key;
   if (key !== undefined && !uuidValidate(key)) {
     throw new UserError("The key parameter should be a uuid");
   }
-
-  const limit = Number.parseInt(req.params.limit) || 0;
 
   await facebookApiCheckUserId(accessToken, userId);
 
@@ -43,21 +43,50 @@ async function templateFunction(context, req, key) {
     const database = client.db("origami-box");
     const templates = database.collection("templates");
 
-    if (key === undefined) {
-      const query = { userId: userId };
-      const sort = { savedate: -1 };
-      const results = templates.find(query).sort(sort).limit(limit);
+    async function executeGet() {
+      const limit = Number.parseInt(req.params.limit) || 0;
 
-      context.res = {
-        body: await results.toArray(),
-      };
-    } else {
-      const query = { userId: userId, key: key };
-      const result = await templates.findOne(query);
+      if (key === undefined) {
+        // Retrieve all
+        const query = { userId: userId };
+        const sort = { savedate: -1 };
+        const results = templates.find(query).sort(sort).limit(limit);
 
-      context.res = {
-        body: result,
-      };
+        context.res = {
+          body: await results.toArray(),
+        };
+      } else {
+        // Retrieve one
+        const query = { userId: userId, key: key };
+        const result = await templates.findOne(query);
+
+        context.res = {
+          body: result,
+        };
+      }
+    }
+
+    async function executeDelete() {
+      if (key === undefined) {
+        throw new UserError("missing template key");
+      } else {
+        const result = await templates.deleteOne({ userId: userId, key: key });
+
+        context.res = {
+          body: { deleteCount: result.deletedCount },
+        };
+      }
+    }
+
+    switch (req.method) {
+      case "GET":
+        await executeGet();
+        break;
+      case "DELETE":
+        await executeDelete();
+        break;
+      default:
+        throw new SystemError(`method ${req.method} is not supported`);
     }
   } finally {
     await client.close();
