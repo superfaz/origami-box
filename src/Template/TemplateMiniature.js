@@ -1,10 +1,20 @@
 import { useTranslation } from "react-i18next";
+import Loader from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { localSave, discard } from "../store/templates";
 import { MasuTemplate } from "../Masu/MasuTemplateBack";
+import { localSave } from "../store/templates";
+import "./TemplateMiniature.css";
+import Modal from "../Generic/Modal";
+import { Trans } from "react-i18next";
 
-export function TemplateMiniature({ template, index }) {
+export function TemplateMiniature({
+  template,
+  index,
+  loading,
+  onSave,
+  onDiscard,
+}) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -12,20 +22,23 @@ export function TemplateMiniature({ template, index }) {
     dispatch(localSave(template));
   }
 
-  function handleSave() {}
-
-  function handleDiscard() {
-    dispatch(discard(template.key));
+  function handleSave() {
+    onSave(template.key, template);
   }
 
-  function handleRemove() {
-    dispatch(discard(template.key));
+  function handleDiscard() {
+    onDiscard(template.key, template);
   }
 
   return (
     <div className="col-xl-3 col-lg-4 col-sm-6 mb-3">
       <div className="card h-100">
-        <div className="card-img-top">
+        <div className="card-img-top" style={{ position: "relative" }}>
+          {loading && (
+            <div className="d-flex align-items-center justify-content-center mini-overlay">
+              <Loader type="Oval" color="#fff" />
+            </div>
+          )}
           {template.data.withLid && (
             <div
               id={`carouselTemplate${index}`}
@@ -105,24 +118,60 @@ export function TemplateMiniature({ template, index }) {
               {t("template.save")}
             </button>
           )}
-          {template.local && (
-            <button
-              className="btn btn-link card-link ps-0 pe-0"
-              onClick={handleDiscard}
-            >
-              {t("template.discard")}
-            </button>
-          )}
-          {!template.local && (
-            <button
-              className="btn btn-link card-link ps-0 pe-0"
-              onClick={handleRemove}
-            >
-              {t("template.remove")}
-            </button>
-          )}
+          <button
+            className="btn btn-link card-link ps-0 pe-0"
+            data-bs-toggle="modal"
+            data-bs-target={`#discardModal${index}`}
+          >
+            {template.local ? t("template.discard") : t("template.remove")}
+          </button>
         </div>
       </div>
+      {template.local && template._id === undefined && (
+        <Modal
+          id={`discardModal${index}`}
+          title={t("template.modal.unsavedTitle")}
+          onConfirm={handleDiscard}
+        >
+          <Trans i18nKey="template.modal.unsavedContent">
+            Are you sure that you want to discard the local template named{" "}
+            <strong>
+              {{ title: template.title || `'${t("template.notitle")}'` }}
+            </strong>
+            ?
+          </Trans>
+        </Modal>
+      )}
+      {template.local && template._id !== undefined && (
+        <Modal
+          id={`discardModal${index}`}
+          title={t("template.modal.draftTitle")}
+          onConfirm={handleDiscard}
+        >
+          <Trans i18nKey="template.modal.draftContent">
+            Are you sure that you want to discard the draft named{" "}
+            <strong>
+              {{ title: template.title || `'${t("template.notitle")}'` }}
+            </strong>
+            ?
+          </Trans>
+        </Modal>
+      )}
+      {!template.local && (
+        <Modal
+          id={`discardModal${index}`}
+          title={t("template.modal.remoteTitle")}
+          onConfirm={handleDiscard}
+        >
+          <Trans i18nKey="template.modal.remoteContent">
+            Are you sure that you want to remove the template named{" "}
+            <strong>
+              {{ title: template.title || `'${t("template.notitle")}'` }}
+            </strong>
+            ?
+          </Trans>
+        </Modal>
+      )}
     </div>
   );
 }

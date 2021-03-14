@@ -87,7 +87,15 @@
     "continue": "Continue",
     "save": "Save",
     "discard": "Discard",
-    "remove": "Remove"
+    "remove": "Remove",
+    "modal": {
+      "unsavedTitle": "Discard local template",
+      "unsavedContent": "Discard the local template <1>{{title}}</1>? This template will be lost.",
+      "draftTitle": "Discard local draft",
+      "draftContent": "Discard the local version of the template <1>{{title}}</1>? This template will be reset to its remote version.",
+      "remoteTitle": "Remove remote template",
+      "remoteContent": "Discard the template <1>{{title}}</1>? This template will be lost."
+    }
   },
   "masu": {
     "title": "Masu",

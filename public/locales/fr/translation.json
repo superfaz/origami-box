@@ -87,7 +87,15 @@
     "continue": "Continuer",
     "save": "Sauver",
     "discard": "Annuler",
-    "remove": "Supprimer"
+    "remove": "Supprimer",
+    "modal": {
+      "unsavedTitle": "Supprimer un modèle local",
+      "unsavedContent": "Supprimer le modèle <1>{{title}}</1> ? Ce template n'est stocké que dans la mémoire de ce navigateur est sera perdu.",
+      "draftTitle": "Annuler un brouillon local",
+      "draftContent": "Annuler le brouillon pour le modèle <1>{{title}}</1> ? Les modifications appliquées seront perdues et le modèle sera restauré à sa dernière sauvegarde sur le serveur.",
+      "remoteTitle": "Supprimer un modèle",
+      "remoteContent": "Supprimer le modèle <1>{{title}}</1> ? Ce modèle sera supprimé définitivement du serveur et sera perdu."
+    }
   },
   "masu": {
     "title": "Masu",
