@@ -69,11 +69,27 @@ async function templateFunction(context, req) {
     async function executeDelete() {
       if (key === undefined) {
         throw new UserError("missing template key");
+      }
+
+      const result = await templates.deleteOne({ userId: userId, key: key });
+
+      context.res = {
+        body: { deleteCount: result.deletedCount },
+      };
+    }
+
+    async function executePost() {
+      if (key !== undefined) {
+        throw new UserError(
+          "template key can't be defined for a POST (create), use PUT method instead."
+        );
       } else {
-        const result = await templates.deleteOne({ userId: userId, key: key });
+        const body = req.body;
+        // TODO: validate the body.
+        const result = await templates.insertOne({ body });
 
         context.res = {
-          body: { deleteCount: result.deletedCount },
+          body: { insertedId: result.insertedId },
         };
       }
     }
@@ -84,6 +100,9 @@ async function templateFunction(context, req) {
         break;
       case "DELETE":
         await executeDelete();
+        break;
+      case "POST":
+        await executePost();
         break;
       default:
         throw new SystemError(`method ${req.method} is not supported`);
