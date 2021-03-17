@@ -7,8 +7,11 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "ajv": "^7.2.1",
     "axios": "^0.21.1",
+    "color-string": "^1.5.5",
     "mongodb": "^3.6.4",
+    "parse-data-url": "^3.0.0",
     "uuid": "^8.3.2"
   }
 }
