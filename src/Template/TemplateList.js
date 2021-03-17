@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Loader from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 import { useConnectedApi, useTemplates } from "../hooks";
-import { discard } from "../store/templates";
+import { discard, updateTemplate } from "../store/templates";
 import { TemplateMiniature } from "./TemplateMiniature";
 
 export default function TemplateList({ limit, children }) {
@@ -13,7 +13,18 @@ export default function TemplateList({ limit, children }) {
   const { templates, isLoading, isError } = useTemplates(limit);
   const [loading, setLoading] = useState({});
 
-  function handleSave(templateKey, template) {}
+  function handleSave(templateKey, template) {
+    setLoading({ ...loading, [templateKey]: true });
+    api
+      .saveTemplate(template)
+      .then((result) => {
+        dispatch(updateTemplate(templateKey, "_id", result.insertedId));
+        dispatch(updateTemplate(templateKey, "local", false));
+      })
+      .finally(() => {
+        setLoading({ ...loading, [templateKey]: false });
+      });
+  }
 
   function handleDiscard(templateKey, template) {
     setLoading({ ...loading, [templateKey]: true });

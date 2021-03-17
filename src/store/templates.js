@@ -6,6 +6,7 @@ const initialTemplate = {
   title: "",
   savedate: 0,
   local: true,
+  type: "masu",
   data: {},
 };
 
