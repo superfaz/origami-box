@@ -77,13 +77,17 @@ export function useConnectedApi() {
       })
         .then((response) => {
           if (!response.ok) {
-            return { status: "error", error: "Can't update this template" };
+            response
+              .json()
+              .then((json) => console.log("Can't update this template", json));
+            throw new Error("Can't update this template");
           } else {
-            return { status: "ok" };
+            return response.json();
           }
         })
         .catch((error) => {
-          return { status: "error", error: "Can't update this template" };
+          console.log("Can't update this template", error);
+          throw new Error("Can't update this template");
         });
     }
   }

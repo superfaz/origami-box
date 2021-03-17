@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Loader from "react-loader-spinner";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { useConnectedApi, useTemplates } from "../hooks";
 import { discard, updateTemplate } from "../store/templates";
 import { TemplateMiniature } from "./TemplateMiniature";
@@ -20,6 +21,9 @@ export default function TemplateList({ limit, children }) {
       .then((result) => {
         dispatch(updateTemplate(templateKey, "_id", result.insertedId));
         dispatch(updateTemplate(templateKey, "local", false));
+      })
+      .catch((error) => {
+        toast.error(error.message);
       })
       .finally(() => {
         setLoading({ ...loading, [templateKey]: false });

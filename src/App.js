@@ -1,8 +1,8 @@
-import "./App.css";
 import { Suspense } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Masu from "./Masu";
 import Process from "./Process";
@@ -10,6 +10,9 @@ import Logo from "./Logo";
 import { FacebookProvider, ProfilePage } from "./Profile";
 import { TemplatePage } from "./Template";
 import Legal from "./Legal";
+
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 export default function App() {
   return (
@@ -40,6 +43,7 @@ export default function App() {
               <ProfilePage />
             </Route>
           </Switch>
+          <ToastContainer />
           <Footer />
         </BrowserRouter>
       </FacebookProvider>
