@@ -12,6 +12,7 @@
     "color-string": "^1.5.5",
     "mongodb": "^3.6.4",
     "parse-data-url": "^3.0.0",
+    "sharp": "^0.27.2",
     "uuid": "^8.3.2"
   }
 }
