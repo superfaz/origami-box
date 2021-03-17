@@ -8,7 +8,7 @@ const sharp = require("sharp");
 const acceptedFormat = {
   svg: "image/svg+xml",
   png: "image/png",
-  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
 };
 const acceptedMimeTypes = Object.keys(acceptedFormat).map(
   (k) => acceptedFormat[k]
@@ -61,7 +61,7 @@ async function validateImage(dataUrl) {
       ) {
         return {
           valid: false,
-          reason: "Invalid image format",
+          error: "Invalid image format",
         };
       }
 

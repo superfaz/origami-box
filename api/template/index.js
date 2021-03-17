@@ -6,13 +6,16 @@ const {
   assertSystem,
   assertUser,
   UserError,
-  SystemError,
 } = require("../_shared/errors");
 const { facebookApiCheckUserId } = require("../_shared/facebook");
+const validate = require("../_shared/validate");
 
 async function templateFunction(context, req) {
-  context.log.info("/api/template call");
+  context.log.info(
+    `/api/template [method:${req.method}] [key:${context.bindingData.key}]`
+  );
 
+  // Tests all global parameters
   const mongoUri = assertSystem(
     process.env.MONGO_CONNECTION_STRING,
     "MONGO_CONNECTION_STRING not defined"
@@ -43,34 +46,27 @@ async function templateFunction(context, req) {
     const database = client.db("origami-box");
     const templates = database.collection("templates");
 
-    async function executeGet() {
+    async function executeGetAll() {
       const limit = Number.parseInt(req.params.limit) || 0;
+      const query = { userId: userId };
+      const sort = { savedate: -1 };
+      const results = templates.find(query).sort(sort).limit(limit);
 
-      if (key === undefined) {
-        // Retrieve all
-        const query = { userId: userId };
-        const sort = { savedate: -1 };
-        const results = templates.find(query).sort(sort).limit(limit);
-
-        context.res = {
-          body: await results.toArray(),
-        };
-      } else {
-        // Retrieve one
-        const query = { userId: userId, key: key };
-        const result = await templates.findOne(query);
-
-        context.res = {
-          body: result,
-        };
-      }
+      context.res = {
+        body: await results.toArray(),
+      };
     }
 
-    async function executeDelete() {
-      if (key === undefined) {
-        throw new UserError("missing template key");
-      }
+    async function executeGetOne(key) {
+      const query = { userId: userId, key: key };
+      const result = await templates.findOne(query);
 
+      context.res = {
+        body: result,
+      };
+    }
+
+    async function executeDelete(key) {
       const result = await templates.deleteOne({ userId: userId, key: key });
 
       context.res = {
@@ -79,33 +75,49 @@ async function templateFunction(context, req) {
     }
 
     async function executePost() {
-      if (key !== undefined) {
-        throw new UserError(
-          "template key can't be defined for a POST (create), use PUT method instead."
-        );
-      } else {
-        const body = req.body;
-        // TODO: validate the body.
-        const result = await templates.insertOne({ body });
-
+      const template = req.body;
+      const validation = await validate(template);
+      if (!validation.valid) {
         context.res = {
-          body: { insertedId: result.insertedId },
+          status: 400,
+          body: { error: validation.reason },
         };
+
+        return;
       }
+
+      const result = await templates.insertOne(template);
+      context.res = {
+        body: { insertedId: result.insertedId },
+      };
     }
 
-    switch (req.method) {
-      case "GET":
-        await executeGet();
-        break;
-      case "DELETE":
-        await executeDelete();
-        break;
-      case "POST":
-        await executePost();
-        break;
-      default:
-        throw new SystemError(`method ${req.method} is not supported`);
+    if (key === undefined) {
+      switch (req.method) {
+        case "GET":
+          await executeGetAll();
+          break;
+        case "POST":
+          await executePost();
+          break;
+        default:
+          context.res = {
+            status: 404,
+          };
+      }
+    } else {
+      switch (req.method) {
+        case "GET":
+          await executeGetOne(key);
+          break;
+        case "DELETE":
+          await executeDelete(key);
+          break;
+        default:
+          context.res = {
+            status: 404,
+          };
+      }
     }
   } finally {
     await client.close();

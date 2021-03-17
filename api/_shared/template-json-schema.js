@@ -137,17 +137,18 @@ const masuSchema = {
   ],
 };
 
-const schema = {
+const templateSchema = {
   type: "object",
   additionalProperties: false,
   properties: {
     key: { type: "string", format: "uuidv4" },
+    userId: { type: "string" },
     title: { type: "string" },
     savedate: { type: "integer", format: "date" },
     type: { type: "string", enum: ["masu"] },
     data: masuSchema,
   },
-  required: ["key", "title", "savedate", "type", "data"],
+  required: ["key", "userId", "title", "savedate", "type", "data"],
 };
 
-module.exports = schema;
+module.exports = templateSchema;
