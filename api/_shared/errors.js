@@ -22,7 +22,7 @@ async function errorMiddleware(context, req, next) {
       context.log.error("Unplanned error", error);
       context.res = {
         status: 500,
-        body: { error: "System error in the API" },
+        body: { error: "System error in the API", detail: error },
       };
     }
   }
