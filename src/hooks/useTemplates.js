@@ -25,7 +25,9 @@ export function useTemplates(limit = null) {
   useEffect(() => {
     setError(false);
     setLoading(true);
-    if (profile.accessToken !== null && profile.userId !== null) {
+    if (profile.status === "not-connected") {
+      setLoading(false);
+    } else if (profile.status !== "unknown") {
       console.log("fetch /api/template");
       fetch("/api/template?limit=" + limit, {
         headers: {
@@ -48,7 +50,7 @@ export function useTemplates(limit = null) {
           setError(true);
         });
     }
-  }, [profile.userId, profile.accessToken, limit]);
+  }, [profile.status, profile.userId, profile.accessToken, limit]);
 
   const templates = createSet((t) => t.key, localTemplates, remoteTemplates)
     .sort((a, b) => b.savedate - a.savedate)

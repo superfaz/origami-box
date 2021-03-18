@@ -1,12 +1,13 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import Loader from "react-loader-spinner";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { MasuTemplate } from "../Masu/MasuTemplateBack";
 import { localSave } from "../store/templates";
-import "./TemplateMiniature.css";
 import Modal from "../Generic/Modal";
-import { Trans } from "react-i18next";
+import { getProfile } from "../store";
+import { isConnected } from "../Profile/selectors";
+import "./TemplateMiniature.css";
 
 export function TemplateMiniature({
   template,
@@ -17,6 +18,7 @@ export function TemplateMiniature({
 }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const profile = useSelector(getProfile);
 
   function handleContinue() {
     dispatch(localSave(template));
@@ -110,7 +112,7 @@ export function TemplateMiniature({
           >
             {t("template.continue")}
           </Link>
-          {template.local && (
+          {template.local && isConnected(profile) && (
             <button
               className="btn btn-link card-link ps-0 pe-0"
               onClick={handleSave}
