@@ -1,3 +1,5 @@
+db.templates.createIndex({ savedate: -1 }, { name: "savedate_asc" });
+
 db.templates.insertMany([
   {
     key: "ded46a3b-461b-4856-bb72-397a3425352b",
