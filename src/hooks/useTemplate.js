@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getTemplates } from "../store";
+import { getLocalTemplates } from "../store";
 
 export function useTemplate() {
   const { templateKey } = useParams();
-  const templates = useSelector(getTemplates);
+  const templates = useSelector(getLocalTemplates);
   if (templateKey === undefined || templateKey == null) {
     throw new Error(
       "'useTemplateData' should be used inside a route with the 'templateKey' parameter"

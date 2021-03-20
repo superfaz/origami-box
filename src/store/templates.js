@@ -1,9 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
+import { latestVersion } from "./templatesVersion";
 
 const initialState = {};
 
 const initialTemplate = {
   title: "",
+  version: latestVersion,
   savedate: 0,
   local: true,
   type: "masu",

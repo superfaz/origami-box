@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import createSet from "../createSet";
-import { getProfile, getTemplates } from "../store";
+import { getProfile, getLocalTemplates } from "../store";
+import { updateTemplateVersion } from "../store/templatesVersion";
 
 function toArray(obj) {
   if (obj === undefined || obj === null) {
@@ -17,7 +18,7 @@ function toArray(obj) {
 export function useTemplates(limit = null) {
   console.log("useTemplates()");
   const profile = useSelector(getProfile);
-  const localTemplates = toArray(useSelector(getTemplates));
+  const localTemplates = toArray(useSelector(getLocalTemplates));
   const [remoteTemplates, setRemoteTemplates] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
@@ -43,6 +44,10 @@ export function useTemplates(limit = null) {
           return response.json();
         })
         .then((data) => {
+          data.forEach((template) => {
+            updateTemplateVersion(template);
+          });
+
           setRemoteTemplates(data);
           setLoading(false);
         })
