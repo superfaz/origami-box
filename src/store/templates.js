@@ -26,7 +26,7 @@ const initialMasu = {
   },
   lid: {
     key: "lid",
-    delta: 2,
+    delta: 3,
     height: "",
     background: "#8ED1FC",
     backgroundImage: null,
