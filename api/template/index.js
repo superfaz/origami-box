@@ -1,6 +1,6 @@
 const axios = require("axios").default;
 const { validate: uuidValidate } = require("uuid");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectID } = require("mongodb");
 const {
   errorMiddleware,
   assertSystem,
@@ -78,18 +78,42 @@ async function templateFunction(context, req) {
       const template = req.body;
       const validation = await validate(template);
       if (!validation.valid) {
+        context.log.error(validation.reason, validation.error);
         context.res = {
           status: 400,
           body: { error: validation.reason },
         };
-
-        return;
+      } else {
+        const result = await templates.insertOne({
+          ...template,
+          userId: userId,
+        });
+        context.res = {
+          body: { insertedId: result.insertedId },
+        };
       }
+    }
 
-      const result = await templates.insertOne(template);
-      context.res = {
-        body: { insertedId: result.insertedId },
-      };
+    async function executePut(key) {
+      const template = req.body;
+      const validation = await validate(template);
+      if (!validation.valid) {
+        context.log.error(validation.reason, validation.error);
+        context.res = {
+          status: 400,
+          body: { error: validation.reason },
+        };
+      } else {
+        const query = { userId: userId, key: key };
+        await templates.replaceOne(query, {
+          ...template,
+          _id: ObjectID(template._id),
+          userId: userId,
+        });
+        context.res = {
+          body: { updated: true },
+        };
+      }
     }
 
     if (key === undefined) {
@@ -109,6 +133,9 @@ async function templateFunction(context, req) {
       switch (req.method) {
         case "GET":
           await executeGetOne(key);
+          break;
+        case "PUT":
+          await executePut(key);
           break;
         case "DELETE":
           await executeDelete(key);

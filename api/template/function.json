@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "route": "template/{key?}",
-      "methods": ["get", "delete", "post"]
+      "methods": ["get", "delete", "post", "put"]
     },
     {
       "type": "http",
