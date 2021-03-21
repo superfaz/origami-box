@@ -143,6 +143,7 @@ const templateSchema = {
   properties: {
     key: { type: "string", format: "uuidv4" },
     userId: { type: "string" },
+    version: { type: "integer" },
     title: { type: "string" },
     savedate: { type: "integer", format: "date" },
     type: { type: "string", enum: ["masu"] },
