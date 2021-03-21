@@ -8,7 +8,22 @@ const textSchema = {
   additionalProperties: false,
   properties: {
     key: { type: "string", format: "uuidv4" },
-    face: { type: "string", enum: ["top", "back", "front", "left", "right"] },
+    face: {
+      type: "string",
+      enum: [
+        "top",
+        "back",
+        "front",
+        "left",
+        "right",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+      ],
+    },
     horizontal: { type: "string", enum: ["left", "center", "right"] },
     vertical: { type: "string", enum: ["top", "middle", "bottom"] },
     marginHorizontal: { type: "number" },
@@ -141,6 +156,7 @@ const templateSchema = {
   type: "object",
   additionalProperties: false,
   properties: {
+    _id: { type: "string" },
     key: { type: "string", format: "uuidv4" },
     userId: { type: "string" },
     version: { type: "integer" },

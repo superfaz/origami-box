@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import createSet from "../createSet";
 import { getProfile, getLocalTemplates } from "../store";
-import { updateTemplateVersion } from "../store/templatesVersion";
+import { applyTemplateMigrations } from "../store/migrations";
 
 function toArray(obj) {
   if (obj === undefined || obj === null) {
@@ -45,7 +45,7 @@ export function useTemplates(limit = null) {
         })
         .then((data) => {
           data.forEach((template) => {
-            updateTemplateVersion(template);
+            applyTemplateMigrations(template);
           });
 
           setRemoteTemplates(data);

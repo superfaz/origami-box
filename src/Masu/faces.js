@@ -1,6 +1,15 @@
 export function createFaces(l_2, w_2, h_2) {
   const faces = {
-    front: {
+    0: {
+      x: 0,
+      y: 0,
+      width: 2 * w_2,
+      height: 2 * l_2,
+      rotate: 180,
+      hori: w_2,
+      vert: l_2,
+    },
+    1: {
       x: 0,
       y: l_2 + h_2,
       rotate: 180,
@@ -9,7 +18,7 @@ export function createFaces(l_2, w_2, h_2) {
       hori: w_2,
       vert: h_2,
     },
-    back: {
+    2: {
       x: 0,
       y: -l_2 - h_2,
       width: 2 * w_2,
@@ -18,7 +27,7 @@ export function createFaces(l_2, w_2, h_2) {
       hori: w_2,
       vert: h_2,
     },
-    left: {
+    3: {
       x: w_2 + h_2,
       y: 0,
       width: 2 * l_2,
@@ -27,7 +36,7 @@ export function createFaces(l_2, w_2, h_2) {
       hori: l_2,
       vert: h_2,
     },
-    right: {
+    4: {
       x: -w_2 - h_2,
       y: 0,
       width: 2 * l_2,
@@ -35,15 +44,6 @@ export function createFaces(l_2, w_2, h_2) {
       rotate: -90,
       hori: l_2,
       vert: h_2,
-    },
-    top: {
-      x: 0,
-      y: 0,
-      width: 2 * w_2,
-      height: 2 * l_2,
-      rotate: 180,
-      hori: w_2,
-      vert: l_2,
     },
   };
 

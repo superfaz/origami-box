@@ -105,11 +105,11 @@
       "letter": "lettre (US)"
     },
     "face": {
-      "top": "Dessus",
-      "front": "Avant",
-      "back": "Arrière",
-      "left": "Gauche",
-      "right": "Droite"
+      "0": "Dessus",
+      "1": "Avant",
+      "2": "Arrière",
+      "3": "Gauche",
+      "4": "Droite"
     },
     "horizontal": {
       "left": "Gauche",

@@ -3,7 +3,7 @@ import persistState from "redux-localstorage";
 import thunk from "redux-thunk";
 import profileReducer from "./profile";
 import templatesReducer from "./templates";
-import { updateTemplatesVersion } from "./templatesVersion";
+import { applyMigrations } from "./migrations";
 
 const reducers = combineReducers({
   profile: profileReducer,
@@ -21,7 +21,7 @@ export function getLocalTemplates(state) {
 const enhancers = compose(
   persistState(["templates"], {
     key: "templates",
-    deserialize: (data) => updateTemplatesVersion(JSON.parse(data)),
+    deserialize: (data) => applyMigrations(JSON.parse(data)),
   }),
   applyMiddleware(thunk)
 );

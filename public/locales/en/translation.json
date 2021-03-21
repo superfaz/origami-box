@@ -105,11 +105,11 @@
       "letter": "letter"
     },
     "face": {
-      "top": "Top",
-      "front": "Front",
-      "back": "Back",
-      "left": "Left",
-      "right": "Right"
+      "0": "Top",
+      "1": "Front",
+      "2": "Back",
+      "3": "Left",
+      "4": "Right"
     },
     "horizontal": {
       "left": "Left",

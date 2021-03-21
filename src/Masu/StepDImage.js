@@ -25,7 +25,7 @@ export default function StepDImage({ lid = false }) {
           content: null,
           originalWidth: null,
           originalHeight: null,
-          face: "top",
+          face: "0",
           size: "auto",
           width: "",
           height: "",
@@ -159,11 +159,11 @@ export default function StepDImage({ lid = false }) {
                 value={state.face}
                 onChange={handleInputChange}
               >
-                <option value="top">{t("masu.face.top")}</option>
-                <option value="front">{t("masu.face.front")}</option>
-                <option value="back">{t("masu.face.back")}</option>
-                <option value="left">{t("masu.face.left")}</option>
-                <option value="right">{t("masu.face.right")}</option>
+                <option value="0">{t("masu.face.0")}</option>
+                <option value="1">{t("masu.face.1")}</option>
+                <option value="2">{t("masu.face.2")}</option>
+                <option value="3">{t("masu.face.3")}</option>
+                <option value="4">{t("masu.face.4")}</option>
               </select>
             </div>
             <div className="mb-3">

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { latestVersion } from "./templatesVersion";
+import { latestVersion } from "./migrations";
 
 const initialState = {};
 
