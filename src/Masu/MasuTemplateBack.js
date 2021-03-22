@@ -204,7 +204,7 @@ export function MasuTemplate({
 
         {Object.keys(faces).map((key) => {
           const face = faces[key];
-          const rotate = lid && key !== "0" ? 180 - face.rotate : face.rotate;
+          const rotate = lid && key !== "0" ? 180 + face.rotate : face.rotate;
           return (
             <g key={key} clipPath={`url(#${key})`}>
               <g transform={`rotate(${rotate} ${face.x} ${face.y})`}>
