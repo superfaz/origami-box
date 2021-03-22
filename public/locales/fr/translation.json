@@ -107,8 +107,8 @@
     },
     "face": {
       "0": "Dessus",
-      "1": "Avant",
-      "2": "Arrière",
+      "1": "Arrière",
+      "2": "Avant",
       "3": "Gauche",
       "4": "Droite"
     },
