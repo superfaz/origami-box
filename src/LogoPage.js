@@ -1,4 +1,4 @@
-export default function Home() {
+export default function LogoPage() {
   return (
     <div className="container">
       <h1>Logo</h1>

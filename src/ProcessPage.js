@@ -1,6 +1,6 @@
 import JsonDisplay from "./Generic/JsonDisplay";
 
-export default function Process() {
+export default function ProcessPage() {
   return (
     <div className="container">
       <h1>Defined process variables</h1>

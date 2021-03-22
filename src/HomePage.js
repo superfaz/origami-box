@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { create } from "./store/templates";
 import TemplateList from "./Template/TemplateList";
 
-export default function Home() {
+export default function HomePage() {
   const { t } = useTranslation();
   const [redirect, setRedirect] = useState(null);
   const dispatch = useDispatch();

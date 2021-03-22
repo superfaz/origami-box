@@ -3,13 +3,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import Home from "./Home";
+import HomePage from "./HomePage";
 import Masu from "./Masu";
-import Process from "./Process";
-import Logo from "./Logo";
+import ProcessPage from "./ProcessPage";
+import LogoPage from "./LogoPage";
 import { FacebookProvider, ProfilePage } from "./Profile";
 import { TemplatePage } from "./Template";
-import Legal from "./Legal";
+import LegalPage from "./LegalPage";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -22,7 +22,7 @@ export default function App() {
           <NavBar />
           <Switch>
             <Route exact path="/">
-              <Home />
+              <HomePage />
             </Route>
             <Route path="/edit/:templateKey">
               <Masu />
@@ -31,13 +31,13 @@ export default function App() {
               <TemplatePage />
             </Route>
             <Route exact path="/logo">
-              <Logo />
+              <LogoPage />
             </Route>
             <Route exact path="/process">
-              <Process />
+              <ProcessPage />
             </Route>
             <Route exact path="/legal">
-              <Legal />
+              <LegalPage />
             </Route>
             <Route exact path="/profile">
               <ProfilePage />

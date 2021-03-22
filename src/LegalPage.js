@@ -1,7 +1,7 @@
 import { Trans } from "react-i18next";
 import { useTranslation } from "react-i18next";
 
-export default function PrivacyNotice() {
+export default function LegalPage() {
   const { t } = useTranslation();
 
   return (
