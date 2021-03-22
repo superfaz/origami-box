@@ -14,6 +14,7 @@
   "home": {
     "title": "Bienvenue <1>",
     "description": "Ce site permet de créer des patrons d'origami pour la création de boites de stockage. Parfaite pour des jeux de plateau, mais pas seulement.",
+    "description2": "Et si vous cherchez un peu d'inspiration, n'hésitez pas à passer sur le groupe Facebook des <1>ludistes origamistes</1>.",
     "start": "Créer un modèle",
     "latestTemplates": {
       "title": "Précédentes créations"

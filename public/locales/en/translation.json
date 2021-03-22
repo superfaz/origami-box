@@ -14,6 +14,7 @@
   "home": {
     "title": "Welcome <1>",
     "description": "This site provides origami templates to create paper boxes. Perfect for board games, but not only.",
+    "description2": "",
     "start": "Get started",
     "latestTemplates": {
       "title": "Latest creations"

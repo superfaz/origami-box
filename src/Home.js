@@ -31,6 +31,20 @@ export default function Home() {
         <div className="row">
           <div className="col-xl-8 col-lg-6 mb-3">
             <p className="lead mb-3">{t("home.description")}</p>
+            <p className="lead mb-3">
+              <Trans i18nKey="home.description2">
+                And if you need some inspiration to get started, please pass by
+                the
+                <a
+                  href="https://www.facebook.com/groups/406940570021633/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Les ludistes origamistes
+                </a>
+                group on Facebook.
+              </Trans>
+            </p>
             <p>
               <button onClick={handleCreate} className="btn btn-lg btn-primary">
                 {t("home.start")}
