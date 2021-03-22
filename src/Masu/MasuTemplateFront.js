@@ -31,7 +31,7 @@ styles.mark = {
 };
 
 export default function MasuTemplateFront({ lid = false, print = false }) {
-  const { data: masu } = useTemplate();
+  const { template, data: masu } = useTemplate();
   const m = useMasuMeasurement(masu, lid);
 
   if (m === null) {
@@ -50,6 +50,7 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
       pageWidth={m.pageWidth}
       pageHeight={m.pageHeight}
     >
+      {/* Header for print */}
       {print && (
         <g
           transform={`translate(${-m.pageWidth / 2 + 10} ${
@@ -66,6 +67,16 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
             }}
           >
             {lid ? "Lid" : masu.withLid ? "Base" : "Box"}
+            <tspan
+              dx="10"
+              dy="3"
+              style={{
+                fontSize: 7,
+                fill: "#333",
+              }}
+            >
+              {template.title}
+            </tspan>
           </text>
         </g>
       )}
