@@ -27,15 +27,17 @@ export default function JsonDisplay({ json, title = "json" }) {
   } else if (typeof json === "object") {
     // array
     if (Array.isArray(json)) {
-      <div className="json-node json-array">
-        <div className="json-name">{title}</div>
-        <div className="json-separator">:</div>
-        <div className="json-value">
-          {json.map((value, index) => (
-            <JsonDisplay key={index} json={value} title={`[${index}]`} />
-          ))}
+      return (
+        <div className="json-node json-array">
+          <div className="json-name">{title}</div>
+          <div className="json-separator">:</div>
+          <div className="json-value">
+            {json.map((value, index) => (
+              <JsonDisplay key={index} json={value} title={`[${index}]`} />
+            ))}
+          </div>
         </div>
-      </div>;
+      );
     } else {
       // object
       return (
