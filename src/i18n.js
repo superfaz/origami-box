@@ -35,7 +35,7 @@ i18n
     fallbackLng: "en",
     debug: false,
     supportedLngs: ["en", "fr"],
-    ns: ["translation", "legal"],
+    ns: ["translation", "masu", "baggi", "legal"],
     defaultNS: "translation",
 
     interpolation: {

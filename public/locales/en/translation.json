@@ -26,13 +26,7 @@
     }
   },
   "create": {
-    "title": "Create a new template",
-    "masu": {
-      "title": "Masu",
-      "subtitle": "The swiss knife of the boxes",
-      "description": "The masu template allows you to choose all dimensions of the box and it is generally suited for any box that don't have to be tall.",
-      "button": "Create a Masu template"
-    }
+    "title": "Create a new template"
   },
   "templates": {
     "title": "My templates",

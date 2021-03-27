@@ -24,18 +24,18 @@ export default function BaseCreateCard({
         <div className="col-4">{children}</div>
         <div className="col-8">
           <div className="card-body d-flex flex-column">
-            <h5 className="card-title">{t(`create.${templateType}.title`)}</h5>
+            <h5 className="card-title">{t(`${templateType}:create.title`)}</h5>
             <h6 className="card-subtitle mb-2 text-muted">
-              {t(`create.${templateType}.subtitle`)}
+              {t(`${templateType}:create.subtitle`)}
             </h6>
             <p className="card-text">
-              {t(`create.${templateType}.description`)}
+              {t(`${templateType}:create.description`)}
             </p>
             <button
               onClick={onCreate}
               className="btn btn-primary stretched-link mt-auto me-auto"
             >
-              {t(`create.${templateType}.button`)}
+              {t(`${templateType}:create.button`)}
             </button>
           </div>
         </div>
