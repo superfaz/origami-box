@@ -105,6 +105,7 @@ export default function CreatePage() {
                 <Canvas>
                   <ambientLight />
                   <pointLight position={[10, 10, 10]} />
+                  <pointLight position={[-10, 10, 10]} />
                   <MasuBox
                     position={[0, 0, -1]}
                     scale={[2, 2, 2]}
