@@ -31,7 +31,7 @@ export default function App() {
             <Route path="/templates">
               <TemplatePage />
             </Route>
-            <Route exact page="/create">
+            <Route exact path="/create">
               <CreatePage />
             </Route>
             <Route exact path="/logo">
