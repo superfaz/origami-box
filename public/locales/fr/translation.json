@@ -25,6 +25,15 @@
       "text": "En conséquence, il peut changer de façon importante d'un jour à l'autre. Je préfère prévenir...  :)"
     }
   },
+  "create": {
+    "title": "Créer un nouveau template",
+    "masu": {
+      "title": "Masu",
+      "subtitle": "Le couteau-suisse des boîtes",
+      "description": "Ce modèle de masu vous permet de choisir chacune des dimensions de la boîte et est généralement un bon choix pour une boîte qui n'a pas besoin d'être haute.",
+      "button": "Créer un modèle Masu"
+    }
+  },
   "templates": {
     "title": "Mes modèles",
     "create": "Créer un nouveau modèle",
