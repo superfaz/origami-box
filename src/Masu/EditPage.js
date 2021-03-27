@@ -6,7 +6,7 @@ import StepDImage from "./StepDImage";
 import StepYDebug from "./StepYDebug";
 import StepZGenerate from "./StepZGenerate";
 
-export default function Masu() {
+export default function MasuEditPage() {
   const { path } = useRouteMatch();
 
   return (
