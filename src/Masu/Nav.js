@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { isGeneralValid } from "./helper";
 import "./Nav.css";
 import { useTemplate } from "../hooks";
+import env from "../env";
 
 function BreadcrumbItem({ exact = false, path, title, withLink }) {
   const paths = Array.isArray(path) ? path : [path];
@@ -67,7 +68,7 @@ export default function Nav() {
           title={t("masu.stepZGenerate.title")}
           withLink={isGeneralValid(masu)}
         />
-        {process.env.NODE_ENV === "development" && (
+        {env.debug.template && (
           <BreadcrumbItem
             path={`${path}/debug`}
             title={t("masu.stepYDebug.title")}

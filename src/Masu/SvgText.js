@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { configurePositioning } from "./helper";
+import env from "../env";
 
 export default function SvgText({ text, m }) {
   const textRef = useRef(null);
@@ -45,7 +46,7 @@ export default function SvgText({ text, m }) {
 
   return (
     <g>
-      {box && process.env.REACT_APP_SVG_DEBUG && (
+      {box && env.debug.svg && (
         <rect
           x={box.x}
           y={box.y}

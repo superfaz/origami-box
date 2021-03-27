@@ -1,3 +1,5 @@
+import env from "../env";
+
 const initialState = {
   status: "unknown",
   accessToken: null,
@@ -7,7 +9,7 @@ const initialState = {
 };
 
 export function updateLoginStatus(response) {
-  if (process.env.REACT_APP_FACEBOOK_DEBUG) {
+  if (env.debug.facebook) {
     console.log("login response", response);
   }
 
@@ -27,7 +29,7 @@ export function updateLoginStatus(response) {
 
       // Retrieve the user name
       window.FB.api("/me", (response) => {
-        if (process.env.REACT_APP_FACEBOOK_DEBUG) {
+        if (env.debug.facebook) {
           console.log("/me", response);
         }
 
@@ -40,7 +42,7 @@ export function updateLoginStatus(response) {
         "GET",
         { redirect: false, height: 40 },
         (response) => {
-          if (process.env.REACT_APP_FACEBOOK_DEBUG) {
+          if (env.debug.facebook) {
             console.log("/me/picture", response);
           }
 
@@ -54,7 +56,7 @@ export function updateLoginStatus(response) {
 export function logout() {
   return (dispatch) => {
     window.FB.logout((response) => {
-      if (process.env.REACT_APP_FACEBOOK_DEBUG) {
+      if (env.debug.facebook) {
         console.log("logout", response);
       }
 

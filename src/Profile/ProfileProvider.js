@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { notConnected, updateLoginStatus } from "../store/profile";
+import env from "../env";
 
 export function FacebookProvider({ children }) {
   const dispatch = useDispatch();
-  const facebookAppId = process.env.REACT_APP_FACEBOOK_APPID;
+  const facebookAppId = env.facebookAppId;
 
   useEffect(() => {
     window.fbAsyncInit = function () {

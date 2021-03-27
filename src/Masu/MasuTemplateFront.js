@@ -3,6 +3,7 @@ import { SvgPaper } from "../Generic/Svg";
 import { useMasuMeasurement } from "./helper";
 import SvgCut from "./SvgCut";
 import { useTemplate } from "../hooks";
+import env from "../env";
 
 const styles = {};
 styles.line = {
@@ -81,7 +82,7 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
         </g>
       )}
 
-      {process.env.REACT_APP_SVG_DEBUG && (
+      {env.debug.svg && (
         <g transform={`translate(${-m.pageWidth / 2} ${-m.pageHeight / 2})`}>
           <line
             x1={0}
