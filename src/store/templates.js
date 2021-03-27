@@ -8,7 +8,6 @@ const initialTemplate = {
   version: latestVersion,
   savedate: 0,
   local: true,
-  type: "masu",
   data: {},
 };
 
@@ -37,10 +36,21 @@ const initialMasu = {
   },
 };
 
-export function create(key) {
+const initialBaggi = {};
+
+const initialData = {
+  masu: initialMasu,
+  baggi: initialBaggi,
+};
+
+export function create(key, templateType) {
+  if (templateType !== "masu" && templateType !== "baggi") {
+    throw new Error(`template type '${templateType}' is not supported`);
+  }
+
   return {
     type: "CREATE",
-    payload: { key },
+    payload: { key, templateType },
   };
 }
 
@@ -116,15 +126,16 @@ export function deleteImage(templateKey, block, key) {
 export default function templateReducer(state = initialState, action) {
   switch (action.type) {
     case "CREATE": {
-      const { key } = action.payload;
+      const { key, templateType } = action.payload;
       return {
         ...state,
         [key]: {
           key,
           ...initialTemplate,
+          type: templateType,
           savedate: new Date().getTime(),
           data: {
-            ...initialMasu,
+            ...initialData[templateType],
           },
         },
       };
