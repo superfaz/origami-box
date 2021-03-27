@@ -28,11 +28,13 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-three-fiber": "^5.3.19",
     "react-toastify": "^7.0.3",
     "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
     "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.3.0",
+    "three": "^0.126.1",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
   },

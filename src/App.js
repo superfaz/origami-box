@@ -9,6 +9,7 @@ import ProcessPage from "./ProcessPage";
 import LogoPage from "./LogoPage";
 import { FacebookProvider, ProfilePage } from "./Profile";
 import { TemplatePage } from "./Template";
+import CreatePage from "./CreatePage";
 import LegalPage from "./LegalPage";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -29,6 +30,9 @@ export default function App() {
             </Route>
             <Route path="/templates">
               <TemplatePage />
+            </Route>
+            <Route exact page="/create">
+              <CreatePage />
             </Route>
             <Route exact path="/logo">
               <LogoPage />
