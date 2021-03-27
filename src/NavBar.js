@@ -137,15 +137,14 @@ export default function NavBar() {
                 ))}
               </div>
             </li>
-            {profile.status === "not-connected" &&
-              process.env.REACT_APP_FACEBOOK !== "false" && (
-                <li className="nav-item d-lg-none">
-                  <Login className="nav-link btn">
-                    <i className="fas fa-sign-in-alt me-2"></i>
-                    {t("navbar.signin")}
-                  </Login>
-                </li>
-              )}
+            {profile.status === "not-connected" && (
+              <li className="nav-item d-lg-none">
+                <Login className="nav-link btn">
+                  <i className="fas fa-sign-in-alt me-2"></i>
+                  {t("navbar.signin")}
+                </Login>
+              </li>
+            )}
             {profile.status === "initialized" && (
               <li className="nav-item d-lg-none">
                 <NavLink className="nav-link" to="/profile" onClick={collapse}>
@@ -196,12 +195,11 @@ export default function NavBar() {
                   timeout={0}
                 />
               )}
-              {profile.status === "not-connected" &&
-                process.env.REACT_APP_FACEBOOK !== "false" && (
-                  <Login className="btn btn-outline-primary text-white">
-                    {t("navbar.signin")}
-                  </Login>
-                )}
+              {profile.status === "not-connected" && (
+                <Login className="btn btn-outline-primary text-white">
+                  {t("navbar.signin")}
+                </Login>
+              )}
               {profile.status === "initialized" && (
                 <Tippy
                   className="card"
