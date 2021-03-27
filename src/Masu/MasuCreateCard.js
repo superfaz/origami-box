@@ -1,8 +1,7 @@
-import classNames from "classnames";
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { Canvas, useFrame } from "react-three-fiber";
 import * as THREE from "three";
+import BaseCreateCard from "../BaseTemplate/BaseCreateCard";
 
 function BoxMaterial() {
   return <meshStandardMaterial color="#FCB900" side={THREE.DoubleSide} />;
@@ -83,38 +82,23 @@ export default function MasuCreateCard({
   onCreate = () => {},
   ...rest
 }) {
-  const { t } = useTranslation();
   return (
-    <div className={classNames("card", className)} {...rest}>
-      <div className="row g-0">
-        <div className="col-4">
-          <Canvas>
-            <ambientLight />
-            <pointLight position={[10, 10, 10]} />
-            <pointLight position={[-10, 10, 10]} />
-            <MasuBox
-              position={[0, 0, -1]}
-              scale={[2, 2, 2]}
-              rotation={[0.7, 0, 0]}
-            />
-          </Canvas>
-        </div>
-        <div className="col-8">
-          <div className="card-body">
-            <h5 className="card-title">{t("create.masu.title")}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
-              {t("create.masu.subtitle")}
-            </h6>
-            <p className="card-text">{t("create.masu.description")}</p>
-            <button
-              onClick={onCreate}
-              className="btn btn-primary stretched-link"
-            >
-              {t("create.masu.button")}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <BaseCreateCard
+      templateType="masu"
+      className={className}
+      onCreate={onCreate}
+      {...rest}
+    >
+      <Canvas>
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} />
+        <pointLight position={[-10, 10, 10]} />
+        <MasuBox
+          position={[0, 0, -1]}
+          scale={[2, 2, 2]}
+          rotation={[0.7, 0, 0]}
+        />
+      </Canvas>
+    </BaseCreateCard>
   );
 }

@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import BaggiCreateCard from "./Baggi/BaggiCreateCard";
+import env from "./env";
 import MasuCreateCard from "./Masu/MasuCreateCard";
 import { create } from "./store/templates";
 
@@ -11,9 +13,9 @@ export default function CreatePage() {
   const [redirect, setRedirect] = useState(null);
   const dispatch = useDispatch();
 
-  function handleCreate() {
+  function handleCreate(templateType) {
     const key = uuidv4();
-    dispatch(create(key));
+    dispatch(create(key, templateType));
     setRedirect("/edit/" + key);
   }
 
@@ -22,9 +24,16 @@ export default function CreatePage() {
   } else {
     return (
       <div className="container">
-        <h1>{t("create.title")}</h1>
+        <h1 className="mb-3">{t("create.title")}</h1>
         <div className="row">
-          <MasuCreateCard className="col-6" onCreate={handleCreate} />
+          <div className="col-6">
+            <MasuCreateCard onCreate={() => handleCreate("masu")} />
+          </div>
+          {env.features.includes("baggi") && (
+            <div className="col-6">
+              <BaggiCreateCard onCreate={() => handleCreate("baggi")} />
+            </div>
+          )}
         </div>
       </div>
     );
