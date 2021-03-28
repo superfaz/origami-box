@@ -93,7 +93,9 @@ export default function StepBlockImage({ lid = false }) {
       <LeftForm>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="content">{t("masu.stepDImage.content")}</label>
+            <label htmlFor="content" class="form-label">
+              {t("masu.stepDImage.content")}
+            </label>
             <input
               className="form-control"
               type="file"
@@ -105,7 +107,7 @@ export default function StepBlockImage({ lid = false }) {
             />
           </div>
           <div className="mb-3">
-            <label>{t("masu.stepDImage.size")}</label>
+            <label class="form-label">{t("masu.stepDImage.size")}</label>
             <div className="form-check form-switch">
               <input
                 className="form-check-input"
@@ -149,7 +151,9 @@ export default function StepBlockImage({ lid = false }) {
           <fieldset>
             <legend>{t("masu.stepDImage.positioning")}</legend>
             <div className="mb-3">
-              <label htmlFor="face">{t("masu.stepDImage.face")}</label>
+              <label htmlFor="face" class="form-label">
+                {t("masu.stepDImage.face")}
+              </label>
               <select
                 className="form-select"
                 name="face"
@@ -165,7 +169,7 @@ export default function StepBlockImage({ lid = false }) {
               </select>
             </div>
             <div className="mb-3">
-              <label htmlFor="horizontal">
+              <label htmlFor="horizontal" class="form-label">
                 {t("masu.stepDImage.horizontal")}
               </label>
               <div className="input-group">
@@ -196,7 +200,7 @@ export default function StepBlockImage({ lid = false }) {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="marginHorizontal">
+              <label htmlFor="marginHorizontal" class="form-label">
                 {t("masu.stepDImage.margins")}
               </label>
               <div className="input-group">

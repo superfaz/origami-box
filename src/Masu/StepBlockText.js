@@ -59,7 +59,9 @@ export default function StepBlockText({ lid = false }) {
         <form onSubmit={handleSubmit}>
           {!multiline && (
             <div className="mb-3">
-              <label htmlFor="content">{t("masu.stepCText.content")}</label>
+              <label htmlFor="content" class="form-label">
+                {t("masu.stepCText.content")}
+              </label>
               <input
                 type="text"
                 name="content"
@@ -72,7 +74,9 @@ export default function StepBlockText({ lid = false }) {
           )}
           {multiline && (
             <div className="mb-3">
-              <label htmlFor="content">{t("masu.stepCText.content")}</label>
+              <label htmlFor="content" class="form-label">
+                {t("masu.stepCText.content")}
+              </label>
               <textarea
                 name="content"
                 className="form-control"
@@ -99,7 +103,7 @@ export default function StepBlockText({ lid = false }) {
           </div>
           {multiline && (
             <div className="mb-3">
-              <label htmlFor="lineSpacing">
+              <label htmlFor="lineSpacing" class="form-label">
                 {t("masu.stepCText.lineSpacing")}
               </label>
               <input
@@ -117,7 +121,9 @@ export default function StepBlockText({ lid = false }) {
           <fieldset>
             <legend>{t("masu.stepCText.positioning")}</legend>
             <div className="mb-3">
-              <label htmlFor="face">{t("masu.stepCText.face")}</label>
+              <label htmlFor="face" class="form-label">
+                {t("masu.stepCText.face")}
+              </label>
               <select
                 className="form-select"
                 name="face"
@@ -133,7 +139,7 @@ export default function StepBlockText({ lid = false }) {
               </select>
             </div>
             <div className="mb-3">
-              <label htmlFor="horizontal">
+              <label htmlFor="horizontal" class="form-label">
                 {t("masu.stepCText.horizontal")}
               </label>
               <div className="input-group">
@@ -164,7 +170,7 @@ export default function StepBlockText({ lid = false }) {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="marginHorizontal">
+              <label htmlFor="marginHorizontal" class="form-label">
                 {t("masu.stepCText.margins")}
               </label>
               <div className="input-group">
@@ -193,10 +199,12 @@ export default function StepBlockText({ lid = false }) {
             <legend>{t("masu.stepCText.font")}</legend>
             <div className="mb-3">
               <div className="d-flex">
-                <label htmlFor="family">{t("masu.stepCText.family")}</label>
+                <label htmlFor="family" class="form-label">
+                  {t("masu.stepCText.family")}
+                </label>
                 <label
                   htmlFor="size"
-                  className="ms-auto"
+                  className="form-label ms-auto"
                   style={{ width: "6rem" }}
                 >
                   {t("masu.stepCText.size")}
