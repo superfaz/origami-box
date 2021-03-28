@@ -7,7 +7,7 @@ import { updateDetail, deleteText, deleteImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
 import { useTemplate } from "../hooks";
 
-export default function StepBDesign({ lid = false }) {
+export default function StepBlock({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { template, data: masu } = useTemplate();

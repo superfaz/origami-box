@@ -9,7 +9,7 @@ import { checkValidity } from "./helper";
 import { updateDetail, updateData, updateTemplate } from "../store/templates";
 import { useTemplate } from "../hooks";
 
-export default function StepAGeneral() {
+export default function StepPrepare() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [valid, setValid] = useState(false);

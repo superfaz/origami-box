@@ -1,11 +1,11 @@
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import Nav from "./Nav";
-import StepAGeneral from "./StepAGeneral";
-import StepBDesign from "./StepBDesign";
-import StepCText from "./StepCText";
-import StepDImage from "./StepDImage";
-import StepYDebug from "./StepYDebug";
-import StepZGenerate from "./StepZGenerate";
+import StepPrepare from "./StepPrepare";
+import StepBlock from "./StepBlock";
+import StepBlockText from "./StepBlockText";
+import StepBlockImage from "./StepBlockImage";
+import StepDebug from "./StepDebug";
+import StepGenerate from "./StepGenerate";
 
 export default function MasuEditPage() {
   const { path } = useRouteMatch();
@@ -15,31 +15,31 @@ export default function MasuEditPage() {
       <Nav />
       <Switch>
         <Route exact path={path}>
-          <StepAGeneral />
+          <StepPrepare />
         </Route>
         <Route exact path={`${path}/base`}>
-          <StepBDesign />
+          <StepBlock />
         </Route>
         <Route exact path={[`${path}/base/text`, `${path}/base/text/:key`]}>
-          <StepCText />
+          <StepBlockText />
         </Route>
         <Route exact path={[`${path}/base/image`, `${path}/base/image/:key`]}>
-          <StepDImage />
+          <StepBlockImage />
         </Route>
         <Route exact path={`${path}/lid`}>
-          <StepBDesign lid />
+          <StepBlock lid />
         </Route>
         <Route exact path={[`${path}/lid/text`, `${path}/lid/text/:key`]}>
-          <StepCText lid />
+          <StepBlockText lid />
         </Route>
         <Route exact path={[`${path}/lid/image`, `${path}/lid/image/:key`]}>
-          <StepDImage lid />
+          <StepBlockImage lid />
         </Route>
         <Route exact path={`${path}/debug`}>
-          <StepYDebug />
+          <StepDebug />
         </Route>
         <Route exact path={`${path}/generate`}>
-          <StepZGenerate />
+          <StepGenerate />
         </Route>
       </Switch>
     </div>

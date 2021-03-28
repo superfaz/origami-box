@@ -1,7 +1,7 @@
 import { useTemplate } from "../hooks";
 import JsonDisplay from "../Generic/JsonDisplay";
 
-export default function StepYDebug() {
+export default function StepDebug() {
   const { template } = useTemplate();
 
   return (

@@ -8,7 +8,7 @@ import MasuTemplateBack from "./MasuTemplateBack";
 import { checkValidity, loadImageAsync } from "./helper";
 import { useTemplate } from "../hooks";
 
-export default function StepDImage({ lid = false }) {
+export default function StepBlockImage({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { key } = useParams();

@@ -9,7 +9,7 @@ import MasuTemplateBack from "./MasuTemplateBack";
 import { checkValidity } from "./helper";
 import { useTemplate } from "../hooks";
 
-export default function StepCText({ lid = false }) {
+export default function StepBlockText({ lid = false }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { key } = useParams();

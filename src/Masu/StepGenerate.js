@@ -8,7 +8,7 @@ import MasuTemplateBack from "./MasuTemplateBack";
 import { checkValidity } from "./helper";
 import { useTemplate } from "../hooks";
 
-export default function StepZGenerate() {
+export default function StepGenerate() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { template, data: masu } = useTemplate();
