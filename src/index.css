@@ -29,3 +29,7 @@ code {
 .list-group-item {
   background-color: transparent;
 }
+
+.form-label {
+  margin-bottom: 0.25rem;
+}
