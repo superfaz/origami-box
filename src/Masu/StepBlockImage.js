@@ -93,7 +93,7 @@ export default function StepBlockImage({ lid = false }) {
       <LeftForm>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="content" class="form-label">
+            <label htmlFor="content" className="form-label">
               {t("masu.stepDImage.content")}
             </label>
             <input
@@ -107,7 +107,7 @@ export default function StepBlockImage({ lid = false }) {
             />
           </div>
           <div className="mb-3">
-            <label class="form-label">{t("masu.stepDImage.size")}</label>
+            <label className="form-label">{t("masu.stepDImage.size")}</label>
             <div className="form-check form-switch">
               <input
                 className="form-check-input"
@@ -151,7 +151,7 @@ export default function StepBlockImage({ lid = false }) {
           <fieldset>
             <legend>{t("masu.stepDImage.positioning")}</legend>
             <div className="mb-3">
-              <label htmlFor="face" class="form-label">
+              <label htmlFor="face" className="form-label">
                 {t("masu.stepDImage.face")}
               </label>
               <select
@@ -169,7 +169,7 @@ export default function StepBlockImage({ lid = false }) {
               </select>
             </div>
             <div className="mb-3">
-              <label htmlFor="horizontal" class="form-label">
+              <label htmlFor="horizontal" className="form-label">
                 {t("masu.stepDImage.horizontal")}
               </label>
               <div className="input-group">
@@ -200,7 +200,7 @@ export default function StepBlockImage({ lid = false }) {
               </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="marginHorizontal" class="form-label">
+              <label htmlFor="marginHorizontal" className="form-label">
                 {t("masu.stepDImage.margins")}
               </label>
               <div className="input-group">
