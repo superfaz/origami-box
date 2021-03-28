@@ -173,6 +173,7 @@ export default function StepDImage({ lid = false }) {
               <div className="input-group">
                 <select
                   className="form-select"
+                  style={{ width: "calc(100%/2)" }}
                   name="horizontal"
                   required
                   value={state.horizontal}
@@ -184,6 +185,7 @@ export default function StepDImage({ lid = false }) {
                 </select>
                 <select
                   className="form-select"
+                  style={{ width: "calc(100%/2)" }}
                   name="vertical"
                   required
                   value={state.vertical}
@@ -204,6 +206,7 @@ export default function StepDImage({ lid = false }) {
                   type="number"
                   name="marginHorizontal"
                   className="form-control"
+                  style={{ width: "calc(100%/2)" }}
                   required
                   step="0.01"
                   value={state.marginHorizontal}
@@ -213,6 +216,7 @@ export default function StepDImage({ lid = false }) {
                   type="number"
                   name="marginVertical"
                   className="form-control"
+                  style={{ width: "calc(100%/2)" }}
                   required
                   step="0.01"
                   value={state.marginVertical}

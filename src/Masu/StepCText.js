@@ -141,6 +141,7 @@ export default function StepCText({ lid = false }) {
               <div className="input-group">
                 <select
                   className="form-select"
+                  style={{ width: "calc(100%/2)" }}
                   name="horizontal"
                   required
                   value={state.horizontal}
@@ -152,6 +153,7 @@ export default function StepCText({ lid = false }) {
                 </select>
                 <select
                   className="form-select"
+                  style={{ width: "calc(100%/2)" }}
                   name="vertical"
                   required
                   value={state.vertical}
@@ -172,6 +174,7 @@ export default function StepCText({ lid = false }) {
                   type="number"
                   name="marginHorizontal"
                   className="form-control"
+                  style={{ width: "calc(100%/2)" }}
                   required
                   value={state.marginHorizontal}
                   onChange={handleInputChange}
@@ -180,6 +183,7 @@ export default function StepCText({ lid = false }) {
                   type="number"
                   name="marginVertical"
                   className="form-control"
+                  style={{ width: "calc(100%/2)" }}
                   required
                   value={state.marginVertical}
                   onChange={handleInputChange}
