@@ -5,7 +5,6 @@ import { Link, Redirect, useParams } from "react-router-dom";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { addOrUpdateImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
-import Nav from "./Nav";
 import { checkValidity, loadImageAsync } from "./helper";
 import { useTemplate } from "../hooks";
 
@@ -90,8 +89,7 @@ export default function StepDImage({ lid = false }) {
   }
 
   return (
-    <div className="row">
-      <Nav />
+    <>
       <LeftForm>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -242,6 +240,6 @@ export default function StepDImage({ lid = false }) {
       <RightPreview>
         <MasuTemplateBack lid={lid} image={state} />
       </RightPreview>
-    </div>
+    </>
   );
 }

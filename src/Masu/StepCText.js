@@ -6,7 +6,6 @@ import ColorPicker from "../Generic/ColorPicker";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { addOrUpdateText } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
-import Nav from "./Nav";
 import { checkValidity } from "./helper";
 import { useTemplate } from "../hooks";
 
@@ -55,8 +54,7 @@ export default function StepCText({ lid = false }) {
   }
 
   return (
-    <div className="row">
-      <Nav />
+    <>
       <LeftForm>
         <form onSubmit={handleSubmit}>
           {!multiline && (
@@ -253,6 +251,6 @@ export default function StepCText({ lid = false }) {
       <RightPreview>
         <MasuTemplateBack lid={lid} text={state} />
       </RightPreview>
-    </div>
+    </>
   );
 }

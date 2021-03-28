@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import classNames from "classnames/dedupe";
 import { LeftForm, RightPreview } from "../Generic/Grid";
-import Nav from "./Nav";
 import MasuTemplateFront from "./MasuTemplateFront";
 import { checkValidity } from "./helper";
 import { updateDetail, updateData, updateTemplate } from "../store/templates";
@@ -42,8 +41,7 @@ export default function StepAGeneral() {
   }
 
   return (
-    <div className="row">
-      <Nav />
+    <>
       <LeftForm>
         <form ref={form} noValidate>
           <div className="mb-3">
@@ -236,6 +234,6 @@ export default function StepAGeneral() {
         )}
         {!masu.withLid && <MasuTemplateFront />}
       </RightPreview>
-    </div>
+    </>
   );
 }

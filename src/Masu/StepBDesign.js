@@ -5,7 +5,6 @@ import ColorPicker from "../Generic/ColorPicker";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { updateDetail, deleteText, deleteImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
-import Nav from "./Nav";
 import { useTemplate } from "../hooks";
 
 export default function StepBDesign({ lid = false }) {
@@ -47,8 +46,7 @@ export default function StepBDesign({ lid = false }) {
   }
 
   return (
-    <div className="row">
-      <Nav />
+    <>
       <LeftForm>
         <div className="mb-3">
           <label htmlFor="backgroundColor" className="form-label">
@@ -189,6 +187,6 @@ export default function StepBDesign({ lid = false }) {
       <RightPreview>
         <MasuTemplateBack lid={lid} />
       </RightPreview>
-    </div>
+    </>
   );
 }

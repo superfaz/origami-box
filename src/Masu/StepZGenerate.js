@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { updateData } from "../store/templates";
 import { getFonts } from "./selectors";
-import Nav from "./Nav";
 import MasuTemplateFront from "./MasuTemplateFront";
 import MasuTemplateBack from "./MasuTemplateBack";
 import { checkValidity } from "./helper";
@@ -71,8 +70,7 @@ export default function StepZGenerate() {
   }
 
   return (
-    <div className="row">
-      <Nav />
+    <>
       <LeftForm>
         <form>
           <div className="mb-3">
@@ -121,6 +119,6 @@ export default function StepZGenerate() {
           )}
         </div>
       </RightPreview>
-    </div>
+    </>
   );
 }
