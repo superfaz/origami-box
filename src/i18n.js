@@ -19,12 +19,20 @@ function i18nFormating(value, format, lng) {
       if (value === null || value === undefined || isNaN(value)) {
         return "-";
       }
-      return Intl.NumberFormat(lng, { style: "decimal", maximumFractionDigits: 0 }).format(value);
+      return Intl.NumberFormat(lng, {
+        style: "decimal",
+        maximumFractionDigits: 0,
+      }).format(value);
     case "unit":
       if (value === null || value === undefined || isNaN(value)) {
         return "-";
       }
-      return Intl.NumberFormat(lng, { style: "unit", unit: "millimeter", useGrouping: false, maximumFractionDigits: 0 }).format(value);
+      return Intl.NumberFormat(lng, {
+        style: "unit",
+        unit: "millimeter",
+        useGrouping: false,
+        maximumFractionDigits: 0,
+      }).format(value);
     default:
       return value;
   }

@@ -16,7 +16,8 @@ export default function StepPrepare() {
   const form = useRef(null);
   const { template, data: masu } = useTemplate();
   const { url } = useRouteMatch();
-  const dimensionsBase = useMasuMeasurement(masu);
+  const dimensionsBase = useMasuMeasurement(masu, false);
+  const dimensionsLid = useMasuMeasurement(masu, true);
 
   useEffect(() => {
     setValid(form.current.checkValidity());
@@ -104,22 +105,49 @@ export default function StepPrepare() {
               />
             </div>
           </div>
-          <div className={classNames(
-            "mb-3 alert",
-            { "alert-info": dimensionsBase !== null && dimensionsBase.size <= 200 },
-            { "alert-warning": dimensionsBase !== null && dimensionsBase.size > 200 && dimensionsBase.size <= 210 },
-            { "alert-danger": dimensionsBase !== null && dimensionsBase.size > 210 },
-            { "alert-hidden": dimensionsBase === null })}>
-            <div>{t('masu.dimensions.size', { size: dimensionsBase?.size })}</div>
-            {dimensionsBase !== null && dimensionsBase.size <= 200 &&
-              <div>{t('masu.dimensions.info')}</div>
-            }
-            {dimensionsBase !== null && dimensionsBase.size > 200 && dimensionsBase.size <= 210 &&
-              <div>{t('masu.dimensions.warning')}</div>
-            }
-            {dimensionsBase !== null && dimensionsBase.size > 210 &&
-              <div><Trans i18nKey="masu.dimensions.danger">It will <strong>not</strong> fit in an A4 paper.</Trans></div>
-            }
+          <div
+            className={classNames(
+              "mb-3 alert",
+              {
+                "alert-info":
+                  dimensionsBase !== null && dimensionsBase.size <= 200,
+              },
+              {
+                "alert-warning":
+                  dimensionsBase !== null &&
+                  dimensionsBase.size > 200 &&
+                  dimensionsBase.size <= 210,
+              },
+              {
+                "alert-danger":
+                  dimensionsBase !== null && dimensionsBase.size > 210,
+              },
+              { "alert-hidden": dimensionsBase === null }
+            )}
+          >
+            <div>
+              {t(
+                masu.withLid
+                  ? "masu.dimensions.sizeBase"
+                  : "masu.dimensions.sizeBox",
+                { size: dimensionsBase?.size }
+              )}
+            </div>
+            {dimensionsBase !== null && dimensionsBase.size <= 200 && (
+              <div>{t("masu.dimensions.info")}</div>
+            )}
+            {dimensionsBase !== null &&
+              dimensionsBase.size > 200 &&
+              dimensionsBase.size <= 210 && (
+                <div>{t("masu.dimensions.warning")}</div>
+              )}
+            {dimensionsBase !== null && dimensionsBase.size > 210 && (
+              <div>
+                <Trans i18nKey="masu.dimensions.danger">
+                  It will <strong>not</strong> fit in an A4 paper.
+                </Trans>
+              </div>
+            )}
           </div>
           <div className="mb-3">
             <div className="form-check form-switch">
@@ -160,50 +188,91 @@ export default function StepPrepare() {
             </div>
           </div>
           {masu.withLid && (
-            <div className="mb-3">
-              <label htmlFor="delta" className="form-label">
-                {t("masu.stepAGeneral.delta")}
-              </label>
-              <input
-                className="form-control"
-                type="number"
-                name="delta"
-                id="delta"
-                required
-                min="0"
-                max="10"
-                step="0.01"
-                value={masu.lid.delta}
-                onChange={handleLidInputChange}
-              />
-              <div className="text-muted">
-                {t("masu.stepAGeneral.deltaExplanation")}
-              </div>
-            </div>
-          )}
-          {masu.withLid && (
-            <div className="mb-3">
-              <label htmlFor="lidHeight" className="form-label">
-                {t("masu.stepAGeneral.lidHeight")}
-              </label>
-              <input
-                className="form-control"
-                type="number"
-                name="height"
-                id="lidHeight"
-                min="0"
-                max={masu.height}
-                step="0.01"
-                placeholder={t("masu.stepAGeneral.lidHeightAuto")}
-                value={masu.lid.height}
-                onChange={handleLidInputChange}
-              />
-              {masu.lid.height === "" && (
+            <>
+              <div className="mb-3">
+                <label htmlFor="delta" className="form-label">
+                  {t("masu.stepAGeneral.delta")}
+                </label>
+                <input
+                  className="form-control"
+                  type="number"
+                  name="delta"
+                  id="delta"
+                  required
+                  min="0"
+                  max="10"
+                  step="0.01"
+                  value={masu.lid.delta}
+                  onChange={handleLidInputChange}
+                />
                 <div className="text-muted">
-                  {t("masu.stepAGeneral.lidHeightExplanation")}
+                  {t("masu.stepAGeneral.deltaExplanation")}
                 </div>
-              )}
-            </div>
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="lidHeight" className="form-label">
+                  {t("masu.stepAGeneral.lidHeight")}
+                </label>
+                <input
+                  className="form-control"
+                  type="number"
+                  name="height"
+                  id="lidHeight"
+                  min="0"
+                  max={masu.height}
+                  step="0.01"
+                  placeholder={t("masu.stepAGeneral.lidHeightAuto")}
+                  value={masu.lid.height}
+                  onChange={handleLidInputChange}
+                />
+                {masu.lid.height === "" && (
+                  <div className="text-muted">
+                    {t("masu.stepAGeneral.lidHeightExplanation")}
+                  </div>
+                )}
+              </div>
+
+              <div
+                className={classNames(
+                  "mb-3 alert",
+                  {
+                    "alert-info":
+                      dimensionsLid !== null && dimensionsLid.size <= 200,
+                  },
+                  {
+                    "alert-warning":
+                      dimensionsLid !== null &&
+                      dimensionsLid.size > 200 &&
+                      dimensionsLid.size <= 210,
+                  },
+                  {
+                    "alert-danger":
+                      dimensionsLid !== null && dimensionsLid.size > 210,
+                  },
+                  { "alert-hidden": dimensionsLid === null }
+                )}
+              >
+                <div>
+                  {t("masu.dimensions.sizeLid", { size: dimensionsLid?.size })}
+                </div>
+                {dimensionsLid !== null && dimensionsLid.size <= 200 && (
+                  <div>{t("masu.dimensions.info")}</div>
+                )}
+                {dimensionsLid !== null &&
+                  dimensionsLid.size > 200 &&
+                  dimensionsLid.size <= 210 && (
+                    <div>{t("masu.dimensions.warning")}</div>
+                  )}
+                {dimensionsLid !== null && dimensionsLid.size > 210 && (
+                  <div>
+                    <Trans i18nKey="masu.dimensions.danger">
+                      It will <strong>not</strong> fit in an A4 paper.
+                    </Trans>
+                  </div>
+                )}
+              </div>
+            </>
           )}
           <div className="mb-3 mt-5 d-flex">
             {masu.withDesign && !masu.withLid && (

@@ -43,6 +43,6 @@ code {
   margin: 0;
   padding: 0;
   max-height: 0;
-  opacity : 0;
+  opacity: 0;
   transition-duration: 0.25s;
 }

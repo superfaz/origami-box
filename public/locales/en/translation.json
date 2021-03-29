@@ -206,7 +206,9 @@
       "length": "Length",
       "width": "Width",
       "height": "Height",
-      "size": "The required paper square will be of {{size,number}}x{{size,unit}}.",
+      "sizeBox": "The required paper square will be of {{size,number}}x{{size,unit}}.",
+      "sizeBase": "The required paper square for the base will be of {{size,number}}x{{size,unit}}.",
+      "sizeLid": "The required paper square for the lid will be of {{size,number}}x{{size,unit}}.",
       "info": "It will fit in an A4 paper.",
       "warning": "It will fit in an A4 paper, but you could have margin issues.",
       "danger": "It will <1>not</1> fit in an A4 paper."
