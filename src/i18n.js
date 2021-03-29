@@ -10,13 +10,23 @@ import "dayjs/locale/en";
 dayjs.extend(localizedFormat);
 
 function i18nFormating(value, format, lng) {
-  if (format === "date") {
-    return dayjs(value).locale(lng).format("ll");
-  }
-  if (format === "datetime") {
-    return dayjs(value).locale(lng).format("llll");
-  } else {
-    return value;
+  switch (format) {
+    case "date":
+      return dayjs(value).locale(lng).format("ll");
+    case "datetime":
+      return dayjs(value).locale(lng).format("llll");
+    case "number":
+      if (value === null || value === undefined || isNaN(value)) {
+        return "-";
+      }
+      return Intl.NumberFormat(lng, { style: "decimal", maximumFractionDigits: 0 }).format(value);
+    case "unit":
+      if (value === null || value === undefined || isNaN(value)) {
+        return "-";
+      }
+      return Intl.NumberFormat(lng, { style: "unit", unit: "millimeter", useGrouping: false, maximumFractionDigits: 0 }).format(value);
+    default:
+      return value;
   }
 }
 

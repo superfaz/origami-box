@@ -1,13 +1,13 @@
+import classNames from "classnames/dedupe";
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
-import classNames from "classnames/dedupe";
 import { LeftForm, RightPreview } from "../Generic/Grid";
-import MasuTemplateFront from "./MasuTemplateFront";
-import { checkValidity } from "./helper";
-import { updateDetail, updateData, updateTemplate } from "../store/templates";
 import { useTemplate } from "../hooks";
+import { updateDetail, updateData, updateTemplate } from "../store/templates";
+import { checkValidity, useMasuMeasurement } from "./helper";
+import MasuTemplateFront from "./MasuTemplateFront";
 
 export default function StepPrepare() {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export default function StepPrepare() {
   const form = useRef(null);
   const { template, data: masu } = useTemplate();
   const { url } = useRouteMatch();
+  const dimensionsBase = useMasuMeasurement(masu);
 
   useEffect(() => {
     setValid(form.current.checkValidity());
@@ -102,6 +103,23 @@ export default function StepPrepare() {
                 onChange={handleInputChange}
               />
             </div>
+          </div>
+          <div className={classNames(
+            "mb-3 alert",
+            { "alert-info": dimensionsBase !== null && dimensionsBase.size <= 200 },
+            { "alert-warning": dimensionsBase !== null && dimensionsBase.size > 200 && dimensionsBase.size <= 210 },
+            { "alert-danger": dimensionsBase !== null && dimensionsBase.size > 210 },
+            { "alert-hidden": dimensionsBase === null })}>
+            <div>{t('masu.dimensions.size', { size: dimensionsBase?.size })}</div>
+            {dimensionsBase !== null && dimensionsBase.size <= 200 &&
+              <div>{t('masu.dimensions.info')}</div>
+            }
+            {dimensionsBase !== null && dimensionsBase.size > 200 && dimensionsBase.size <= 210 &&
+              <div>{t('masu.dimensions.warning')}</div>
+            }
+            {dimensionsBase !== null && dimensionsBase.size > 210 &&
+              <div><Trans i18nKey="masu.dimensions.danger">It will <strong>not</strong> fit in an A4 paper.</Trans></div>
+            }
           </div>
           <div className="mb-3">
             <div className="form-check form-switch">

@@ -33,3 +33,16 @@ code {
 .form-label {
   margin-bottom: 0.25rem;
 }
+
+.alert {
+  max-height: 500px;
+  transition: all 0.5s ease-out, padding 0.1s;
+}
+
+.alert-hidden {
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  opacity : 0;
+  transition-duration: 0.25s;
+}

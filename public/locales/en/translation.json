@@ -205,7 +205,11 @@
       "label": "What are the dimensions of the box (in millimeters)?",
       "length": "Length",
       "width": "Width",
-      "height": "Height"
+      "height": "Height",
+      "size": "The required paper square will be of {{size,number}}x{{size,unit}}.",
+      "info": "It will fit in an A4 paper.",
+      "warning": "It will fit in an A4 paper, but you could have margin issues.",
+      "danger": "It will <1>not</1> fit in an A4 paper."
     },
     "front": "Front",
     "back": "Back"

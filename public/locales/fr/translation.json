@@ -205,7 +205,11 @@
       "label": "Dimensions (mm)",
       "length": "Longueur",
       "width": "Largeur",
-      "height": "Hauteur"
+      "height": "Hauteur",
+      "size": "Le carré de papier requis sera de {{size,number}}x{{size,unit}}.",
+      "info": "Il tiendra sur une page A4.",
+      "warning": "Il tiendra sur une page A4, mais vous pourriez avoir des problèmes de marge.",
+      "danger": "Il ne tiendra <1>pas</1> sur une page A4."
     },
     "front": "Recto",
     "back": "Verso"
