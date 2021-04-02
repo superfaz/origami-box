@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { LeftForm, RightPreview } from "../Generic/Grid";
+import { checkValidity } from "../Generic/Validity";
+import { useTemplate } from "../hooks";
 import { updateData } from "../store/templates";
-import { getFonts } from "./selectors";
 import MasuTemplateFront from "./MasuTemplateFront";
 import MasuTemplateBack from "./MasuTemplateBack";
-import { checkValidity } from "./helper";
-import { useTemplate } from "../hooks";
+import { getFonts } from "./selectors";
 
 export default function StepGenerate() {
   const dispatch = useDispatch();

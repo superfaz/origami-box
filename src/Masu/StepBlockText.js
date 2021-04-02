@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import ColorPicker from "../Generic/ColorPicker";
 import { LeftForm, RightPreview } from "../Generic/Grid";
+import { checkValidity } from "../Generic/Validity";
+import { useTemplate } from "../hooks";
 import { addOrUpdateText } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
-import { checkValidity } from "./helper";
-import { useTemplate } from "../hooks";
 
 export default function StepBlockText({ lid = false }) {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export default function StepBlockText({ lid = false }) {
           family: "",
           size: 8,
           color: "black",
-        };
+      };
 
   const [redirect, setRedirect] = useState(false);
   const [multiline, setMultiline] = useState(false);

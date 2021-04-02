@@ -3,10 +3,11 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { LeftForm, RightPreview } from "../Generic/Grid";
+import { checkValidity } from "../Generic/Validity";
+import { useTemplate } from "../hooks";
 import { addOrUpdateImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
-import { checkValidity, loadImageAsync } from "./helper";
-import { useTemplate } from "../hooks";
+import { loadImageAsync } from "./helper";
 
 export default function StepBlockImage({ lid = false }) {
   const dispatch = useDispatch();

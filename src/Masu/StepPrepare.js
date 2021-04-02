@@ -4,9 +4,10 @@ import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import { LeftForm, RightPreview } from "../Generic/Grid";
+import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateDetail, updateData, updateTemplate } from "../store/templates";
-import { checkValidity, useMasuMeasurement } from "./helper";
+import { useMasuMeasurement } from "./helper";
 import MasuTemplateFront from "./MasuTemplateFront";
 
 export default function StepPrepare() {
