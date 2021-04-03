@@ -7,7 +7,12 @@ export function Dimensions({ children }) {
     <>
       <div>
         {children.map((c, i) => (
-          <label className="form-label" style={style} htmlFor={c.props.name}>
+          <label
+            key={i}
+            className="form-label"
+            style={style}
+            htmlFor={c.props.name}
+          >
             {c.props.label}
           </label>
         ))}
