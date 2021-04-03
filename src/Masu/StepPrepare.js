@@ -1,6 +1,6 @@
 import classNames from "classnames/dedupe";
 import { useEffect, useRef, useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Dimension, Dimensions } from "../Generic/Dimension";
