@@ -107,6 +107,13 @@
     "width": "Width",
     "height": "Height"
   },
+  "dimensionsInfo": {
+    "sizeUnique": "The required paper size will be of {{width,number}}x{{height,unit}}.",
+    "sizeBlock": "The required paper size for the {{blockName}} will be of {{width,number}}x{{height,unit}}.",
+    "info": "It will fit in an A4 paper.",
+    "warning": "It will fit in an A4 paper, but you could have margin issues.",
+    "danger": "It will <strong>not</strong> fit in an A4 paper."
+  },
   "masu": {
     "format": {
       "label": "Format",
@@ -206,14 +213,6 @@
       "title": "Prepare the Print",
       "linkTo": "Prepare the print",
       "print": "Print"
-    },
-    "dimensions": {
-      "sizeBox": "The required paper square will be of {{size,number}}x{{size,unit}}.",
-      "sizeBase": "The required paper square for the base will be of {{size,number}}x{{size,unit}}.",
-      "sizeLid": "The required paper square for the lid will be of {{size,number}}x{{size,unit}}.",
-      "info": "It will fit in an A4 paper.",
-      "warning": "It will fit in an A4 paper, but you could have margin issues.",
-      "danger": "It will <1>not</1> fit in an A4 paper."
     },
     "front": "Front",
     "back": "Back"

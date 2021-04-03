@@ -4,6 +4,7 @@ import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import { Dimension, Dimensions } from "../Generic/Dimension";
+import DimensionsInfo from "../Generic/DimensionsInfo";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
@@ -84,50 +85,16 @@ export default function StepPrepare() {
               />
             </Dimensions>
           </div>
-          <div
-            className={classNames(
-              "mb-3 alert",
-              {
-                "alert-info":
-                  dimensionsBase !== null && dimensionsBase.size <= 200,
-              },
-              {
-                "alert-warning":
-                  dimensionsBase !== null &&
-                  dimensionsBase.size > 200 &&
-                  dimensionsBase.size <= 210,
-              },
-              {
-                "alert-danger":
-                  dimensionsBase !== null && dimensionsBase.size > 210,
-              },
-              { "alert-hidden": dimensionsBase === null }
-            )}
-          >
-            <div>
-              {t(
-                masu.withLid
-                  ? "masu.dimensions.sizeBase"
-                  : "masu.dimensions.sizeBox",
-                { size: dimensionsBase?.size }
-              )}
-            </div>
-            {dimensionsBase !== null && dimensionsBase.size <= 200 && (
-              <div>{t("masu.dimensions.info")}</div>
-            )}
-            {dimensionsBase !== null &&
-              dimensionsBase.size > 200 &&
-              dimensionsBase.size <= 210 && (
-                <div>{t("masu.dimensions.warning")}</div>
-              )}
-            {dimensionsBase !== null && dimensionsBase.size > 210 && (
-              <div>
-                <Trans i18nKey="masu.dimensions.danger">
-                  It will <strong>not</strong> fit in an A4 paper.
-                </Trans>
-              </div>
-            )}
-          </div>
+          {!masu.withLid && (
+            <DimensionsInfo className="mb-3" dimensions={dimensionsBase} />
+          )}
+          {masu.withLid && (
+            <DimensionsInfo
+              className="mb-3"
+              blockName={t("masu:block.base")}
+              dimensions={dimensionsBase}
+            />
+          )}
           <div className="mb-3">
             <div className="form-check form-switch">
               <input
@@ -212,45 +179,11 @@ export default function StepPrepare() {
                 )}
               </div>
 
-              <div
-                className={classNames(
-                  "mb-3 alert",
-                  {
-                    "alert-info":
-                      dimensionsLid !== null && dimensionsLid.size <= 200,
-                  },
-                  {
-                    "alert-warning":
-                      dimensionsLid !== null &&
-                      dimensionsLid.size > 200 &&
-                      dimensionsLid.size <= 210,
-                  },
-                  {
-                    "alert-danger":
-                      dimensionsLid !== null && dimensionsLid.size > 210,
-                  },
-                  { "alert-hidden": dimensionsLid === null }
-                )}
-              >
-                <div>
-                  {t("masu.dimensions.sizeLid", { size: dimensionsLid?.size })}
-                </div>
-                {dimensionsLid !== null && dimensionsLid.size <= 200 && (
-                  <div>{t("masu.dimensions.info")}</div>
-                )}
-                {dimensionsLid !== null &&
-                  dimensionsLid.size > 200 &&
-                  dimensionsLid.size <= 210 && (
-                    <div>{t("masu.dimensions.warning")}</div>
-                  )}
-                {dimensionsLid !== null && dimensionsLid.size > 210 && (
-                  <div>
-                    <Trans i18nKey="masu.dimensions.danger">
-                      It will <strong>not</strong> fit in an A4 paper.
-                    </Trans>
-                  </div>
-                )}
-              </div>
+              <DimensionsInfo
+                className="mb-3"
+                blockName={t("masu:block.lid")}
+                dimensions={dimensionsLid}
+              />
             </>
           )}
           <div className="mb-3 mt-5 d-flex">

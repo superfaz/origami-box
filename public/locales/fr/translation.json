@@ -107,6 +107,13 @@
     "width": "Largeur",
     "height": "Hauteur"
   },
+  "dimensionsInfo": {
+    "sizeUnique": "Le carré de papier requis sera de {{width,number}}x{{height,unit}}.",
+    "sizeBlock": "Le carré de papier requis pour {{blockName}} sera de {{width,number}}x{{height,unit}}.",
+    "info": "Il tiendra sur une page A4.",
+    "warning": "Il tiendra sur une page A4, mais vous pourriez avoir des problèmes de marge.",
+    "danger": "Il ne tiendra <strong>pas</strong> sur une page A4."
+  },
   "masu": {
     "format": {
       "label": "Format",
@@ -206,14 +213,6 @@
       "title": "Préparer l'impression",
       "linkTo": "Préparer l'impression",
       "print": "Imprimer"
-    },
-    "dimensions": {
-      "sizeBox": "Le carré de papier requis sera de {{size,number}}x{{size,unit}}.",
-      "sizeBase": "Le carré de papier requis pour la base sera de {{size,number}}x{{size,unit}}.",
-      "sizeLid": "Le carré de papier requis pour le couvercle sera de {{size,number}}x{{size,unit}}.",
-      "info": "Il tiendra sur une page A4.",
-      "warning": "Il tiendra sur une page A4, mais vous pourriez avoir des problèmes de marge.",
-      "danger": "Il ne tiendra <1>pas</1> sur une page A4."
     },
     "front": "Recto",
     "back": "Verso"
