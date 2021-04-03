@@ -86,6 +86,7 @@
   "template": {
     "title": "Titre du modèle",
     "notitle": "sans titre",
+    "dimensions": "Dimensions (mm)",
     "draft": "brouillon",
     "unsaved": "local",
     "continue": "Continuer",
@@ -202,7 +203,6 @@
       "print": "Imprimer"
     },
     "dimensions": {
-      "label": "Dimensions (mm)",
       "length": "Longueur",
       "width": "Largeur",
       "height": "Hauteur",

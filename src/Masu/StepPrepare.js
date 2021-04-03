@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
+import { Dimension, Dimensions } from "../Generic/Dimension";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
@@ -61,50 +62,14 @@ export default function StepPrepare() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="length" className="form-label">
-              {t("masu.dimensions.label")}
-            </label>
-            <div className="input-group">
-              <input
-                name="length"
-                type="number"
-                className="form-control"
-                style={{ width: "calc(100%/3)" }}
-                required
-                min="1"
-                step="0.01"
-                placeholder={t("masu.dimensions.length")}
-                aria-label={t("masu.dimensions.length")}
-                value={masu.length}
-                onChange={handleInputChange}
-              />
-              <input
-                name="width"
-                type="number"
-                className="form-control"
-                style={{ width: "calc(100%/3)" }}
-                required
-                min="1"
-                step="0.01"
-                placeholder={t("masu.dimensions.width")}
-                aria-label={t("masu.dimensions.width")}
-                value={masu.width}
-                onChange={handleInputChange}
-              />
-              <input
-                name="height"
-                type="number"
-                className="form-control"
-                style={{ width: "calc(100%/3)" }}
-                required
-                min="1"
-                step="0.01"
-                placeholder={t("masu.dimensions.height")}
-                aria-label={t("masu.dimensions.height")}
-                value={masu.height}
-                onChange={handleInputChange}
-              />
-            </div>
+            <h5 className="mb-3">
+              {t("template.dimensions")}
+            </h5>
+            <Dimensions>
+              <Dimension name="length" value={masu.length} label={t("masu.dimensions.length")} onChange={handleInputChange} />
+              <Dimension name="width" value={masu.width} label={t("masu.dimensions.width")} onChange={handleInputChange} />
+              <Dimension name="height" value={masu.height} label={t("masu.dimensions.height")} onChange={handleInputChange} />
+            </Dimensions>
           </div>
           <div
             className={classNames(

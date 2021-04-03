@@ -1,4 +1,3 @@
-import classNames from "classnames/dedupe";
 import { createFaces } from "./faces";
 
 export function getRotationMatrix(angle) {
