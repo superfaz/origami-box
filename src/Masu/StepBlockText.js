@@ -32,7 +32,7 @@ export default function StepBlockText({ lid = false }) {
           family: "",
           size: 8,
           color: "black",
-      };
+        };
 
   const [redirect, setRedirect] = useState(false);
   const [multiline, setMultiline] = useState(false);

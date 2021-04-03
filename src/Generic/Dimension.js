@@ -7,17 +7,25 @@ export function Dimensions({ children }) {
     <>
       <div>
         {children.map((c, i) => (
-          <label className="form-label" style={style} htmlFor={c.props.name}>{c.props.label}</label>
+          <label className="form-label" style={style} htmlFor={c.props.name}>
+            {c.props.label}
+          </label>
         ))}
       </div>
       <div className="input-group">
         {children.map((c, i) => React.cloneElement(c, { key: i, style }))}
       </div>
     </>
-  )
+  );
 }
 
-export function Dimension({ name, value, label, onChange = () => { }, ...rest }) {
+export function Dimension({
+  name,
+  value,
+  label,
+  onChange = () => {},
+  ...rest
+}) {
   return (
     <input
       id={name}

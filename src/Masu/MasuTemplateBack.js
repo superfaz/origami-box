@@ -36,8 +36,9 @@ function SvgRoot({ withPaper, m, children }) {
   } else {
     return (
       <Svg
-        viewBox={`${-m.size_2 - 5} ${-m.size_2 - 5} ${m.size + 10} ${m.size + 10
-          }`}
+        viewBox={`${-m.size_2 - 5} ${-m.size_2 - 5} ${m.size + 10} ${
+          m.size + 10
+        }`}
       >
         {children}
       </Svg>
@@ -128,34 +129,39 @@ export function MasuTemplate({
         </clipPath>
         <clipPath id="front">
           <polygon
-            points={`-${m.w_2},${m.l_2} ${m.w_2},${m.l_2} ${m.w_2},${m.l_2 + m.h
-              } -${m.w_2},${m.l_2 + m.h}`}
+            points={`-${m.w_2},${m.l_2} ${m.w_2},${m.l_2} ${m.w_2},${
+              m.l_2 + m.h
+            } -${m.w_2},${m.l_2 + m.h}`}
           />
         </clipPath>
         <clipPath id="back">
           <polygon
-            points={`-${m.w_2},-${m.l_2} ${m.w_2},-${m.l_2} ${m.w_2},-${m.l_2 + m.h
-              } -${m.w_2},-${m.l_2 + m.h}`}
+            points={`-${m.w_2},-${m.l_2} ${m.w_2},-${m.l_2} ${m.w_2},-${
+              m.l_2 + m.h
+            } -${m.w_2},-${m.l_2 + m.h}`}
           />
         </clipPath>
         <clipPath id="left">
           <polygon
-            points={`${m.w_2},-${m.l_2} ${m.w_2},${m.l_2} ${m.w_2 + m.h},${m.l_2
-              } ${m.w_2 + m.h},-${m.l_2}`}
+            points={`${m.w_2},-${m.l_2} ${m.w_2},${m.l_2} ${m.w_2 + m.h},${
+              m.l_2
+            } ${m.w_2 + m.h},-${m.l_2}`}
           />
         </clipPath>
         <clipPath id="right">
           <polygon
-            points={`-${m.w_2},-${m.l_2} -${m.w_2},${m.l_2} -${m.w_2 + m.h},${m.l_2
-              } -${m.w_2 + m.h},-${m.l_2}`}
+            points={`-${m.w_2},-${m.l_2} -${m.w_2},${m.l_2} -${m.w_2 + m.h},${
+              m.l_2
+            } -${m.w_2 + m.h},-${m.l_2}`}
           />
         </clipPath>
       </defs>
 
       <g transform="rotate(135)">
         <polygon
-          points={`0,-${m.max_2 + 5} ${m.max_2 + 5},0 0,${m.max_2 + 5} -${m.max_2 + 5
-            },0`}
+          points={`0,-${m.max_2 + 5} ${m.max_2 + 5},0 0,${m.max_2 + 5} -${
+            m.max_2 + 5
+          },0`}
           style={{
             fill: block.background,
           }}
