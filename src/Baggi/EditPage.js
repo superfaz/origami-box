@@ -1,3 +1,16 @@
+import { Route, Switch, useRouteMatch } from "react-router";
+import StepPrepare from "./StepPrepare";
+
 export default function BaggiEditPage() {
-  return <div />;
+  const { path } = useRouteMatch();
+
+  return (
+    <div className="row">
+      <Switch>
+        <Route exact path={path}>
+          <StepPrepare />
+        </Route>
+      </Switch>
+    </div>
+  );
 }

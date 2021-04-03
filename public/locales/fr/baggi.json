@@ -5,5 +5,8 @@
     "subtitle": "<baggi>",
     "description": "<baggi>",
     "button": "Créer un modèle Baggi"
+  },
+  "dimensions": {
+    "width": "Largeur et Hauteur"
   }
 }
