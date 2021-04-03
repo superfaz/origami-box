@@ -1,39 +1,14 @@
 import QRCode from "qrcode.react";
-import { SvgPaper } from "../Generic/Svg";
+import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
 import { useMasuMeasurement } from "./helper";
-import SvgCut from "./SvgCut";
 import { useTemplate } from "../hooks";
 import env from "../env";
-
-const styles = {};
-styles.line = {
-  fill: "none",
-  strokeWidth: 0.2,
-};
-
-styles.cut = {
-  ...styles.line,
-  stroke: "black",
-};
-
-styles.valley = {
-  ...styles.cut,
-  strokeDasharray: [4, 2],
-};
-
-styles.mountain = {
-  ...styles.cut,
-  strokeDasharray: [2, 1, 0.4, 1],
-};
-
-styles.mark = {
-  ...styles.line,
-  stroke: "blue",
-};
+import SvgCut from "./SvgCut";
 
 export default function MasuTemplateFront({ lid = false, print = false }) {
   const { template, data: masu } = useTemplate();
   const m = useMasuMeasurement(masu, lid);
+  const styles = buildDefaultStyles();
 
   if (m === null) {
     return (

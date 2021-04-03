@@ -1,7 +1,6 @@
-import Color from "color";
 import { Helmet } from "react-helmet";
 import { useTemplate } from "../hooks";
-import { Svg, SvgPaper } from "../Generic/Svg";
+import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
 import { useMasuMeasurement } from "./helper";
 import { getFonts, getTexts, getImages } from "./selectors";
 import { createFaces } from "./faces";
@@ -9,18 +8,6 @@ import SvgCut from "./SvgCut";
 import SvgImage from "./SvgImage";
 import SvgText from "./SvgText";
 import { EmptyTemplate } from "../Template/Template";
-
-const referenceStyle = {
-  fill: "none",
-  strokeWidth: 0.2,
-  stroke: "gray",
-  strokeDasharray: [0.4, 0.8],
-};
-
-const noneStyle = {
-  fill: "none",
-  stroke: "none",
-};
 
 function SvgRoot({ withPaper, m, children }) {
   if (withPaper) {
@@ -84,20 +71,7 @@ export function MasuTemplate({
   const images = getImages(block, image);
   const texts = getTexts(block, text);
   const faces = createFaces(m.l_2, m.w_2, m.h_2);
-
-  const color = Color(block.background);
-  const style = {
-    ...referenceStyle,
-    stroke: color.isDark() ? "white" : "black",
-    display: print ? "none" : "inline",
-  };
-  const styles = {
-    line: style,
-    cut: style,
-    valley: style,
-    mountain: style,
-    mark: noneStyle,
-  };
+  const styles = buildReferenceStyles(block.background);
 
   const fonts = getFonts(masu)
     .map((f) => "family=" + f.replace(" ", "+"))
@@ -181,7 +155,7 @@ export function MasuTemplate({
           </g>
         )}
 
-        <SvgCut m={m} styles={styles} />
+        {!print && <SvgCut m={m} styles={styles} />}
 
         {Object.keys(faces).map((key) => {
           const face = faces[key];
