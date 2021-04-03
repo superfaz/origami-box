@@ -102,6 +102,11 @@
       "remoteContent": "Supprimer le modèle <1>{{title}}</1> ? Ce modèle sera supprimé définitivement du serveur et sera perdu."
     }
   },
+  "dimensions": {
+    "length": "Longueur",
+    "width": "Largeur",
+    "height": "Hauteur"
+  },
   "masu": {
     "format": {
       "label": "Format",
@@ -203,9 +208,6 @@
       "print": "Imprimer"
     },
     "dimensions": {
-      "length": "Longueur",
-      "width": "Largeur",
-      "height": "Hauteur",
       "sizeBox": "Le carré de papier requis sera de {{size,number}}x{{size,unit}}.",
       "sizeBase": "Le carré de papier requis pour la base sera de {{size,number}}x{{size,unit}}.",
       "sizeLid": "Le carré de papier requis pour le couvercle sera de {{size,number}}x{{size,unit}}.",

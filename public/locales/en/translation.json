@@ -102,6 +102,11 @@
       "remoteContent": "Discard the template <1>{{title}}</1>? This template will be lost."
     }
   },
+  "dimensions": {
+    "length": "Length",
+    "width": "Width",
+    "height": "Height"
+  },
   "masu": {
     "format": {
       "label": "Format",
@@ -203,9 +208,6 @@
       "print": "Print"
     },
     "dimensions": {
-      "length": "Length",
-      "width": "Width",
-      "height": "Height",
       "sizeBox": "The required paper square will be of {{size,number}}x{{size,unit}}.",
       "sizeBase": "The required paper square for the base will be of {{size,number}}x{{size,unit}}.",
       "sizeLid": "The required paper square for the lid will be of {{size,number}}x{{size,unit}}.",

@@ -66,9 +66,9 @@ export default function StepPrepare() {
               {t("template.dimensions")}
             </h5>
             <Dimensions>
-              <Dimension name="length" value={masu.length} label={t("masu.dimensions.length")} onChange={handleInputChange} />
-              <Dimension name="width" value={masu.width} label={t("masu.dimensions.width")} onChange={handleInputChange} />
-              <Dimension name="height" value={masu.height} label={t("masu.dimensions.height")} onChange={handleInputChange} />
+              <Dimension name="length" value={masu.length} label={t("dimensions.length")} onChange={handleInputChange} />
+              <Dimension name="width" value={masu.width} label={t("dimensions.width")} onChange={handleInputChange} />
+              <Dimension name="height" value={masu.height} label={t("dimensions.height")} onChange={handleInputChange} />
             </Dimensions>
           </div>
           <div
