@@ -2,12 +2,12 @@ import { useTranslation, Trans } from "react-i18next";
 import Loader from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { MasuTemplate } from "../Masu/MasuTemplateBack";
 import { localSave } from "../store/templates";
 import Modal from "../Generic/Modal";
 import { getProfile } from "../store";
 import { isConnected } from "../Profile/selectors";
 import "./TemplateMiniature.css";
+import Template from "./Template";
 
 export function TemplateMiniature({
   template,
@@ -65,24 +65,16 @@ export function TemplateMiniature({
               </div>
               <div className="carousel-inner">
                 <div className="carousel-item active">
-                  <MasuTemplate
-                    masu={template.data}
-                    lid={true}
-                    withPaper={false}
-                  />
+                  <Template template={template} lid={true} withPaper={false} />
                 </div>
                 <div className="carousel-item">
-                  <MasuTemplate
-                    masu={template.data}
-                    lid={false}
-                    withPaper={false}
-                  />
+                  <Template template={template} lid={false} withPaper={false} />
                 </div>
               </div>
             </div>
           )}
           {!template.data.withLid && (
-            <MasuTemplate masu={template.data} withPaper={false} />
+            <Template template={template} withPaper={false} />
           )}
         </div>
         <div className="card-body">

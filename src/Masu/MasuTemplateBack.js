@@ -8,6 +8,7 @@ import { createFaces } from "./faces";
 import SvgCut from "./SvgCut";
 import SvgImage from "./SvgImage";
 import SvgText from "./SvgText";
+import { EmptyTemplate } from "../Template/Template";
 
 const referenceStyle = {
   fill: "none",
@@ -35,9 +36,8 @@ function SvgRoot({ withPaper, m, children }) {
   } else {
     return (
       <Svg
-        viewBox={`${-m.size_2 - 5} ${-m.size_2 - 5} ${m.size + 10} ${
-          m.size + 10
-        }`}
+        viewBox={`${-m.size_2 - 5} ${-m.size_2 - 5} ${m.size + 10} ${m.size + 10
+          }`}
       >
         {children}
       </Svg>
@@ -76,27 +76,7 @@ export function MasuTemplate({
   const m = useMasuMeasurement(masu, lid);
 
   if (m === null) {
-    if (withPaper) {
-      return (
-        <SvgPaper
-          className="template"
-          pageWidth={210}
-          pageHeight={297}
-        ></SvgPaper>
-      );
-    } else {
-      return (
-        <Svg viewBox="0 0 100 100" width="100%" height="100%">
-          <rect
-            x={0}
-            y={0}
-            width={100}
-            height={100}
-            style={{ fill: "white" }}
-          />
-        </Svg>
-      );
-    }
+    return <EmptyTemplate withPaper={withPaper} />;
   }
 
   const block = lid ? masu.lid : masu.base;
@@ -148,39 +128,34 @@ export function MasuTemplate({
         </clipPath>
         <clipPath id="front">
           <polygon
-            points={`-${m.w_2},${m.l_2} ${m.w_2},${m.l_2} ${m.w_2},${
-              m.l_2 + m.h
-            } -${m.w_2},${m.l_2 + m.h}`}
+            points={`-${m.w_2},${m.l_2} ${m.w_2},${m.l_2} ${m.w_2},${m.l_2 + m.h
+              } -${m.w_2},${m.l_2 + m.h}`}
           />
         </clipPath>
         <clipPath id="back">
           <polygon
-            points={`-${m.w_2},-${m.l_2} ${m.w_2},-${m.l_2} ${m.w_2},-${
-              m.l_2 + m.h
-            } -${m.w_2},-${m.l_2 + m.h}`}
+            points={`-${m.w_2},-${m.l_2} ${m.w_2},-${m.l_2} ${m.w_2},-${m.l_2 + m.h
+              } -${m.w_2},-${m.l_2 + m.h}`}
           />
         </clipPath>
         <clipPath id="left">
           <polygon
-            points={`${m.w_2},-${m.l_2} ${m.w_2},${m.l_2} ${m.w_2 + m.h},${
-              m.l_2
-            } ${m.w_2 + m.h},-${m.l_2}`}
+            points={`${m.w_2},-${m.l_2} ${m.w_2},${m.l_2} ${m.w_2 + m.h},${m.l_2
+              } ${m.w_2 + m.h},-${m.l_2}`}
           />
         </clipPath>
         <clipPath id="right">
           <polygon
-            points={`-${m.w_2},-${m.l_2} -${m.w_2},${m.l_2} -${m.w_2 + m.h},${
-              m.l_2
-            } -${m.w_2 + m.h},-${m.l_2}`}
+            points={`-${m.w_2},-${m.l_2} -${m.w_2},${m.l_2} -${m.w_2 + m.h},${m.l_2
+              } -${m.w_2 + m.h},-${m.l_2}`}
           />
         </clipPath>
       </defs>
 
       <g transform="rotate(135)">
         <polygon
-          points={`0,-${m.max_2 + 5} ${m.max_2 + 5},0 0,${m.max_2 + 5} -${
-            m.max_2 + 5
-          },0`}
+          points={`0,-${m.max_2 + 5} ${m.max_2 + 5},0 0,${m.max_2 + 5} -${m.max_2 + 5
+            },0`}
           style={{
             fill: block.background,
           }}
