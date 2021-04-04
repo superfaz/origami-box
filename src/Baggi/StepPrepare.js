@@ -47,12 +47,20 @@ export default function StepPrepare() {
             />
           </div>
           <div>
-            <h5 className="mb-3">
-              {t("template.dimensions")}
-            </h5>
+            <h5 className="mb-3">{t("template.dimensions")}</h5>
             <Dimensions>
-              <Dimension name="width" value={baggi.width} label={t("baggi:dimensions.width")} onChange={handleInputChange} />
-              <Dimension name="length" value={baggi.length} label={t("dimensions.length")} onChange={handleInputChange} />
+              <Dimension
+                name="width"
+                value={baggi.width}
+                label={t("baggi:dimensions.width")}
+                onChange={handleInputChange}
+              />
+              <Dimension
+                name="length"
+                value={baggi.length}
+                label={t("dimensions.length")}
+                onChange={handleInputChange}
+              />
             </Dimensions>
           </div>
         </form>
