@@ -147,12 +147,40 @@ export default function BaggiTemplateFront() {
               y1={-m.w2 + mark}
               y2={m.w2 - mark}
             />
+            <path
+              style={styles.mark}
+              d={`M ${m.l_2 - m.w} ${-m.w}
+                  m ${mark} ${mark}
+                  l ${-mark} ${-mark}
+                  l ${mark} ${-mark}`}
+            />
+            <path
+              style={styles.mark}
+              d={`M ${m.l_2 - m.w} ${m.w}
+                  m ${mark} ${mark}
+                  l ${-mark} ${-mark}
+                  l ${mark} ${-mark}`}
+            />
             <line
               style={styles.mark}
               x1={-m.l_2 + m.w}
               x2={-m.l_2 + m.w}
               y1={-m.w2 + mark}
               y2={m.w2 - mark}
+            />
+            <path
+              style={styles.mark}
+              d={`M ${-m.l_2 + m.w} ${-m.w}
+                  m ${-mark} ${mark}
+                  l ${mark} ${-mark}
+                  l ${-mark} ${-mark}`}
+            />
+            <path
+              style={styles.mark}
+              d={`M ${-m.l_2 + m.w} ${m.w}
+                  m ${-mark} ${mark}
+                  l ${mark} ${-mark}
+                  l ${-mark} ${-mark}`}
             />
           </>
         )}
@@ -166,12 +194,26 @@ export default function BaggiTemplateFront() {
               y1={mark}
               y2={m.w2 - mark}
             />
+            <path
+              style={styles.mark}
+              d={`M ${m.l_2 - m.w} ${m.w}
+                  m ${mark} ${mark}
+                  l ${-mark} ${-mark}
+                  l ${mark} ${-mark}`}
+            />
             <line
               style={styles.mark}
               x1={-m.l_2 + m.w}
               x2={-m.l_2 + m.w}
               y1={mark}
               y2={m.w2 - mark}
+            />
+            <path
+              style={styles.mark}
+              d={`M ${-m.l_2 + m.w} ${m.w}
+                  m ${-mark} ${mark}
+                  l ${mark} ${-mark}
+                  l ${-mark} ${-mark}`}
             />
           </>
         )}
