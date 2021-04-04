@@ -1,12 +1,5 @@
 import { createFaces } from "./faces";
 
-export function getRotationMatrix(angle) {
-  const radian = (angle * Math.PI) / 180;
-  const cos = Math.cos(radian).toFixed(5);
-  const sin = Math.sin(radian).toFixed(5);
-  return `${cos} ${sin} ${-sin} ${cos} 0 0`;
-}
-
 function isPositive(value) {
   return value !== undefined && parseFloat(value) > 0;
 }
