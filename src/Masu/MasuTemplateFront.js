@@ -1,9 +1,10 @@
-import QRCode from "qrcode.react";
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
 import { useMasuMeasurement } from "./helper";
 import { useTemplate } from "../hooks";
 import env from "../env";
 import SvgCut from "./SvgCut";
+import SvgHeader from "../Generic/SvgHeader";
+import SvgFooter from "../Generic/SvgFooter";
 
 export default function MasuTemplateFront({ lid = false, print = false }) {
   const { template, data: masu } = useTemplate();
@@ -28,33 +29,11 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
     >
       {/* Header for print */}
       {print && (
-        <g
-          transform={`translate(${-m.pageWidth / 2 + 10} ${
-            -m.pageHeight / 2 + 10
-          })`}
-        >
-          <text
-            x="0"
-            y="0"
-            style={{
-              fontFamily: "Open Sans",
-              fontSize: 10,
-              dominantBaseline: "text-before-edge",
-            }}
-          >
-            {lid ? "Lid" : masu.withLid ? "Base" : "Box"}
-            <tspan
-              dx="10"
-              dy="3"
-              style={{
-                fontSize: 7,
-                fill: "#333",
-              }}
-            >
-              {template.title}
-            </tspan>
-          </text>
-        </g>
+        <SvgHeader
+          dimensions={m}
+          blockName={lid ? "Lid" : masu.withLid ? "Base" : "Box"}
+          title={template.title}
+        />
       )}
 
       {env.debug.svg && (
@@ -85,22 +64,7 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
       </g>
 
       {/* Footer for print */}
-      {print && (
-        <g
-          transform={`translate(${m.pageWidth / 2 - 30} ${
-            m.pageHeight / 2 - 30
-          })`}
-        >
-          <QRCode renderAs="svg" size={20} value="https://www.corniro.com" />
-          <text
-            x="-10"
-            y="20"
-            style={{ fontFamily: "Open Sans", fontSize: 5, textAnchor: "end" }}
-          >
-            designed with corniro.com
-          </text>
-        </g>
-      )}
+      {print && <SvgFooter dimensions={m} />}
     </SvgPaper>
   );
 }
