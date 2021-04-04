@@ -1,6 +1,26 @@
 import classNames from "classnames";
 import { Trans, useTranslation } from "react-i18next";
 
+const margin = 10;
+
+function defineLevel(dimensions) {
+  if (!dimensions) {
+    return "hidden";
+  } else if (
+    dimensions.width > dimensions.pageWidth ||
+    dimensions.height > dimensions.pageHeight
+  ) {
+    return "danger";
+  } else if (
+    dimensions.width > dimensions.pageWidth - margin ||
+    dimensions.height > dimensions.pageHeight - margin
+  ) {
+    return "warning";
+  } else {
+    return "info";
+  }
+}
+
 export default function DimensionsInfo({
   dimensions,
   blockName = null,
@@ -9,41 +29,37 @@ export default function DimensionsInfo({
 }) {
   const { t } = useTranslation();
 
-  const isInfo = dimensions !== null && dimensions.size <= 200;
-  const isWarning =
-    dimensions !== null && dimensions.size > 200 && dimensions.size <= 210;
-  const isDanger = dimensions !== null && dimensions.size > 210;
-  const isHidden = dimensions === null;
+  const level = defineLevel(dimensions);
 
   return (
     <div
       className={classNames(
         className,
         "alert",
-        { "alert-info": isInfo },
-        { "alert-warning": isWarning },
-        { "alert-danger": isDanger },
-        { "alert-hidden": isHidden }
+        { "alert-info": level === "info" },
+        { "alert-warning": level === "warning" },
+        { "alert-danger": level === "danger" },
+        { "alert-hidden": level === "hidden" }
       )}
     >
       <div>
         {!blockName &&
           t("dimensionsInfo.sizeUnique", {
             blockName,
-            width: dimensions?.size,
-            height: dimensions?.size,
+            width: dimensions?.width,
+            height: dimensions?.height,
           })}
         {blockName &&
           t("dimensionsInfo.sizeBlock", {
             blockName,
-            width: dimensions?.size,
-            height: dimensions?.size,
+            width: dimensions?.width,
+            height: dimensions?.height,
           })}
       </div>
 
-      {isInfo && <div>{t("dimensionsInfo.info")}</div>}
-      {isWarning && <div>{t("dimensionsInfo.warning")}</div>}
-      {isDanger && (
+      {level === "info" && <div>{t("dimensionsInfo.info")}</div>}
+      {level === "warning" && <div>{t("dimensionsInfo.warning")}</div>}
+      {level === "danger" && (
         <div>
           <Trans i18nKey="dimensionsInfo.danger" />
         </div>

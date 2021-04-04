@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Dimension, Dimensions } from "../Generic/Dimension";
+import DimensionsInfo from "../Generic/DimensionsInfo";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateData, updateTemplate } from "../store/templates";
 import BaggiTemplateFront from "./BaggiTemplateFront";
+import { useBaggiDimensions } from "./helper";
 
 export default function StepPrepare() {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ export default function StepPrepare() {
   const [, setValid] = useState(false);
   const form = useRef(null);
   const { template, data: baggi } = useTemplate();
+  const dimensions = useBaggiDimensions(baggi);
 
   useEffect(() => {
     setValid(form.current.checkValidity());
@@ -46,7 +49,7 @@ export default function StepPrepare() {
               onChange={handleTemplateInputChange}
             />
           </div>
-          <div>
+          <div className="mb-3">
             <h5 className="mb-3">{t("template.dimensions")}</h5>
             <Dimensions>
               <Dimension
@@ -63,6 +66,7 @@ export default function StepPrepare() {
               />
             </Dimensions>
           </div>
+          <DimensionsInfo className="mb-3" dimensions={dimensions} />
         </form>
       </LeftForm>
       <RightPreview>

@@ -38,6 +38,8 @@ export function useMasuMeasurement(masu, lid = false) {
   return {
     pageWidth,
     pageHeight,
+    width: size,
+    height: size,
     l,
     w,
     h,

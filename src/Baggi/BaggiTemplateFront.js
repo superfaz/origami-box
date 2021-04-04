@@ -1,25 +1,14 @@
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
 import { useTemplate } from "../hooks";
+import { useBaggiDimensions } from "./helper";
 
 export default function BaggiTemplateFront() {
   const { data: baggi } = useTemplate();
   const styles = buildDefaultStyles();
+  const m = useBaggiDimensions(baggi);
   const mark = 2.5;
 
-  const m = {
-    w: baggi.width,
-    l: baggi.length,
-    pageWidth: 210,
-    pageHeight: 297,
-  };
-
-  m.width = 2 * m.w + m.l;
-  m.height = 4 * m.w;
-  m.l_2 = m.l / 2;
-  m.w2 = m.w * 2;
-  m.w_2 = m.w / 2;
-
-  if (!m.w || !m.l) {
+  if (m === null) {
     return (
       <SvgPaper
         className="template"
