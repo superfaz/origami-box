@@ -7,12 +7,12 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "ajv": "^7.2.1",
+    "ajv": "^8.0.5",
     "axios": "^0.21.1",
     "color-string": "^1.5.5",
-    "mongodb": "^3.6.4",
+    "mongodb": "^3.6.5",
     "parse-data-url": "^3.0.0",
-    "sharp": "^0.27.2",
+    "sharp": "^0.28.0",
     "uuid": "^8.3.2"
   }
 }
