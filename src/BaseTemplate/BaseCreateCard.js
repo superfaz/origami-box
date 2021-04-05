@@ -21,8 +21,8 @@ export default function BaseCreateCard({
   return (
     <div className={classNames("card h-100", className)} {...rest}>
       <div className="row g-0">
-        <div className="col-4">{children}</div>
-        <div className="col-8">
+        <div className="col-md-4">{children}</div>
+        <div className="col-md-8">
           <div className="card-body d-flex flex-column">
             <h5 className="card-title">{t(`${templateType}:create.title`)}</h5>
             <h6 className="card-subtitle mb-2 text-muted">
