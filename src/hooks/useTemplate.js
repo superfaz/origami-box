@@ -7,7 +7,7 @@ export function useTemplate() {
   const templates = useSelector(getLocalTemplates);
   if (templateKey === undefined || templateKey == null) {
     throw new Error(
-      "'useTemplateData' should be used inside a route with the 'templateKey' parameter"
+      "'useTemplate' should be used inside a route with the 'templateKey' parameter"
     );
   }
 
