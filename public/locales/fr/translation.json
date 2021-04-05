@@ -187,7 +187,7 @@
       "margins": "Marges",
       "font": "Police",
       "family": "Nom de la police",
-      "familyExplanation": "Nom de la police 'google font' à utiliser",
+      "familyExplanation": "Nom de la police <1>'google font'</1> à utiliser",
       "size": "Taille",
       "submit": "Valider ce texte",
       "cancel": "Annuler"

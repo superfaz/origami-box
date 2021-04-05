@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import ColorPicker from "../Generic/ColorPicker";
 import { LeftForm, RightPreview } from "../Generic/Grid";
@@ -246,7 +246,17 @@ export default function StepBlockText({ lid = false }) {
                 />
               </div>
               <div className="text-muted">
-                {t("masu.stepCText.familyExplanation")}
+                <Trans i18nKey="masu.stepCText.familyExplanation">
+                  Name of the
+                  <a
+                    href="https://fonts.google.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    google font
+                  </a>
+                  to be used
+                </Trans>
               </div>
             </div>
           </fieldset>
