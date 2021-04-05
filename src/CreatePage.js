@@ -20,7 +20,7 @@ export default function CreatePage() {
   }
 
   if (redirect !== null) {
-    return <Redirect to={redirect} />;
+    return <Redirect push to={redirect} />;
   } else {
     return (
       <div className="container">

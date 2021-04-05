@@ -266,7 +266,7 @@ export default function StepBlockText({ lid = false }) {
             <button type="submit" className="btn btn-primary ms-auto">
               {t("masu.stepCText.submit")}
             </button>
-            {redirect && <Redirect to={`${baseUrl}/${lid ? "lid" : "base"}`} />}
+            {redirect && <Redirect push to={`${baseUrl}/${lid ? "lid" : "base"}`} />}
           </div>
         </form>
       </LeftForm>

@@ -238,7 +238,7 @@ export default function StepBlockImage({ lid = false }) {
             <button type="submit" className="btn btn-primary ms-auto">
               {t("masu.stepDImage.submit")}
             </button>
-            {redirect && <Redirect to={`${baseUrl}/${lid ? "lid" : "base"}`} />}
+            {redirect && <Redirect push to={`${baseUrl}/${lid ? "lid" : "base"}`} />}
           </div>
         </form>
       </LeftForm>
