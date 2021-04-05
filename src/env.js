@@ -6,6 +6,12 @@ const env = {
   facebookAppId: process.env.REACT_APP_FACEBOOK_APPID,
 
   /**
+   * The api key to be used to connect to the google font api.
+   * @member {string}
+   */
+  googleApiKey: process.env.REACT_APP_GOOGLE_APIKEY,
+
+  /**
    * The list of optional features to enable.
    * Used to avoid to impact production with on-going development.
    * @member {string[]}

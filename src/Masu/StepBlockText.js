@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import ColorPicker from "../Generic/ColorPicker";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
-import { useTemplate } from "../hooks";
+import { useTemplate, useGoogleFonts } from "../hooks";
 import { addOrUpdateText } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
 
@@ -37,6 +37,7 @@ export default function StepBlockText({ lid = false }) {
   const [redirect, setRedirect] = useState(false);
   const [multiline, setMultiline] = useState(false);
   const [state, setState] = useState(initialState);
+  const fonts = useGoogleFonts();
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
@@ -218,7 +219,14 @@ export default function StepBlockText({ lid = false }) {
                   value={state.family}
                   onChange={handleInputChange}
                   placeholder="Open Sans"
+                  list="fontslist"
                 />
+                <datalist id="fontslist">
+                  {fonts.map((font) => (
+                    <option value={font} />
+                  ))}
+                </datalist>
+
                 <ColorPicker
                   name="color"
                   style={{ maxWidth: "3rem" }}
