@@ -111,6 +111,26 @@
     "warning": "It will fit in an A4 paper, but you could have margin issues.",
     "danger": "It will <strong>not</strong> fit in an A4 paper."
   },
+  "stepGeneral": {
+    "title": "General options"
+  },
+  "stepDesign": {
+    "box": {
+      "title": "Box"
+    },
+    "base": {
+      "title": "Base"
+    },
+    "lid": {
+      "title": "Lid"
+    }
+  },
+  "stepDebug": {
+    "title": "Debug"
+  },
+  "stepGenerate": {
+    "title": "Prepare the Print"
+  },
   "masu": {
     "format": {
       "label": "Format",
@@ -135,7 +155,6 @@
       "bottom": "Bottom"
     },
     "stepAGeneral": {
-      "title": "General options",
       "reset": "Reset the template",
       "withDesign": "With a specific design",
       "withDesignOff": "Only the folding template will be prepared",
@@ -151,15 +170,12 @@
     },
     "stepBDesign": {
       "box": {
-        "title": "Box",
         "linkTo": "Design the box"
       },
       "base": {
-        "title": "Base",
         "linkTo": "Design the base"
       },
       "lid": {
-        "title": "Lid",
         "linkTo": "Design the lid"
       },
       "backgroundColor": "Apply a background color?",
@@ -203,11 +219,7 @@
       "submit": "Save this image",
       "cancel": "Go back"
     },
-    "stepYDebug": {
-      "title": "Debug"
-    },
     "stepZGenerate": {
-      "title": "Prepare the Print",
       "linkTo": "Prepare the print",
       "print": "Print"
     },

@@ -2,9 +2,8 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import env from "../env";
-import { useTemplate } from "../hooks";
-import { isGeneralValid } from "./helper";
-import "./Nav.css";
+import { useTemplate, useTemplateDefinition } from "../hooks";
+import "./EditNav.css";
 
 function BreadcrumbItem({ exact = false, path, title, withLink }) {
   const paths = Array.isArray(path) ? path : [path];
@@ -28,9 +27,12 @@ function BreadcrumbItem({ exact = false, path, title, withLink }) {
   );
 }
 
-export default function Nav() {
+export default function EditNav() {
   const { t } = useTranslation();
-  const { template, data: masu } = useTemplate();
+  const { template, data } = useTemplate();
+  const type = template.type;
+  const definition = useTemplateDefinition(type);
+
   const path = "/edit/" + template.key;
 
   return (
@@ -39,39 +41,26 @@ export default function Nav() {
         <BreadcrumbItem
           exact
           path={`${path}`}
-          title={t("masu.stepAGeneral.title")}
-          withLink={isGeneralValid(masu)}
+          title={t([`${type}:stepGeneral.title`, "stepGeneral.title"])}
+          withLink={definition.isGeneralValid(data)}
         />
-        {!masu.withLid && masu.withDesign && (
+        {definition.blocks(data).map((block) => (
           <BreadcrumbItem
-            path={`${path}/base`}
-            title={t("masu.stepBDesign.box.title")}
-            withLink={isGeneralValid(masu)}
+            key={block}
+            path={`${path}/${block}`}
+            title={t(`stepDesign.${block}.title`)}
+            withLink={definition.isGeneralValid(data)}
           />
-        )}
-        {masu.withLid && masu.withDesign && (
-          <BreadcrumbItem
-            path={`${path}/base`}
-            title={t("masu.stepBDesign.base.title")}
-            withLink={isGeneralValid(masu)}
-          />
-        )}
-        {masu.withLid && masu.withDesign && (
-          <BreadcrumbItem
-            path={`${path}/lid`}
-            title={t("masu.stepBDesign.lid.title")}
-            withLink={isGeneralValid(masu)}
-          />
-        )}
+        ))}
         <BreadcrumbItem
           path={`${path}/generate`}
-          title={t("masu.stepZGenerate.title")}
-          withLink={isGeneralValid(masu)}
+          title={t([`${type}:stepGenerate.title`, "stepGenerate.title"])}
+          withLink={definition.isGeneralValid(data)}
         />
         {env.debug.template && (
           <BreadcrumbItem
             path={`${path}/debug`}
-            title={t("masu.stepYDebug.title")}
+            title={t("stepDebug.title")}
             withLink={true}
           />
         )}

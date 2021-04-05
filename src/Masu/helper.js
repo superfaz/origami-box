@@ -1,18 +1,5 @@
 import { createFaces } from "./faces";
 
-function isPositive(value) {
-  return value !== undefined && parseFloat(value) > 0;
-}
-
-export function isGeneralValid(masu) {
-  return (
-    masu !== undefined &&
-    isPositive(masu.length) &&
-    isPositive(masu.width) &&
-    isPositive(masu.height)
-  );
-}
-
 export function useMasuMeasurement(masu, lid = false) {
   let pageWidth = 210;
   let pageHeight = 297;

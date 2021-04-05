@@ -1,5 +1,5 @@
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import Nav from "./Nav";
+import EditNav from "../Generic/EditNav";
 import StepPrepare from "./StepPrepare";
 import StepBlock from "./StepBlock";
 import StepBlockText from "./StepBlockText";
@@ -12,18 +12,34 @@ export default function MasuEditPage() {
 
   return (
     <div className="row">
-      <Nav />
+      <EditNav />
       <Switch>
         <Route exact path={path}>
           <StepPrepare />
         </Route>
-        <Route exact path={`${path}/base`}>
+        <Route exact path={[`${path}/box`, `${path}/base`]}>
           <StepBlock />
         </Route>
-        <Route exact path={[`${path}/base/text`, `${path}/base/text/:key`]}>
+        <Route
+          exact
+          path={[
+            `${path}/box/text`,
+            `${path}/box/text/:key`,
+            `${path}/base/text`,
+            `${path}/base/text/:key`,
+          ]}
+        >
           <StepBlockText />
         </Route>
-        <Route exact path={[`${path}/base/image`, `${path}/base/image/:key`]}>
+        <Route
+          exact
+          path={[
+            `${path}/box/image`,
+            `${path}/box/image/:key`,
+            `${path}/base/image`,
+            `${path}/base/image/:key`,
+          ]}
+        >
           <StepBlockImage />
         </Route>
         <Route exact path={`${path}/lid`}>

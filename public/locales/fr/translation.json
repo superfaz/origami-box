@@ -111,6 +111,26 @@
     "warning": "Il tiendra sur une page A4, mais vous pourriez avoir des problèmes de marge.",
     "danger": "Il ne tiendra <strong>pas</strong> sur une page A4."
   },
+  "stepGeneral": {
+    "title": "Options générales"
+  },
+  "stepDesign": {
+    "box": {
+      "title": "Boîte"
+    },
+    "base": {
+      "title": "Base"
+    },
+    "lid": {
+      "title": "Couvercle"
+    }
+  },
+  "stepDebug": {
+    "title": "Debug"
+  },
+  "stepGenerate": {
+    "title": "Préparer l'impression"
+  },
   "masu": {
     "format": {
       "label": "Format",
@@ -135,7 +155,6 @@
       "bottom": "Bas"
     },
     "stepAGeneral": {
-      "title": "Options générales",
       "reset": "Réinitialiser le modèle",
       "withDesign": "Définir un design spécifique",
       "withDesignOff": "Seul le patron de pliage sera préparé",
@@ -151,15 +170,12 @@
     },
     "stepBDesign": {
       "box": {
-        "title": "Boîte",
         "linkTo": "Définir le design de la boîte"
       },
       "base": {
-        "title": "Base",
         "linkTo": "Définir le design de la base"
       },
       "lid": {
-        "title": "Couvercle",
         "linkTo": "Définir le design du couvercle"
       },
       "backgroundColor": "Appliquer une couleur de fond?",
@@ -203,11 +219,7 @@
       "submit": "Valider cette image",
       "cancel": "Annuler"
     },
-    "stepYDebug": {
-      "title": "Debug"
-    },
     "stepZGenerate": {
-      "title": "Préparer l'impression",
       "linkTo": "Préparer l'impression",
       "print": "Imprimer"
     },
