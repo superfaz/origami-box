@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import ColorPicker from "../Generic/ColorPicker";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { updateDetail, deleteText, deleteImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
@@ -14,8 +13,15 @@ export default function StepBlock({ lid = false }) {
   const block = lid ? masu.lid : masu.base;
   const baseUrl = "/edit/" + template.key;
 
-  function handleBackgroundColorChange(color) {
-    dispatch(updateDetail(template.key, block.key, "background", color.hex));
+  function handleBackgroundColorChange(event) {
+    dispatch(
+      updateDetail(
+        template.key,
+        block.key,
+        event.target.name,
+        event.target.value
+      )
+    );
   }
 
   function handleBackgroundImageChange(event) {
@@ -52,11 +58,12 @@ export default function StepBlock({ lid = false }) {
           <label htmlFor="backgroundColor" className="form-label">
             {t("masu.stepBDesign.backgroundColor")}
           </label>
-          <ColorPicker
-            name="backgroundColor"
-            style={{ maxWidth: "3rem" }}
-            color={block.background}
-            onColorChange={handleBackgroundColorChange}
+          <input
+            className="form-control form-control-color"
+            type="color"
+            name="background"
+            value={block.background}
+            onChange={handleBackgroundColorChange}
           />
         </div>
         <div className="mb-3">
