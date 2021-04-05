@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import ColorPicker from "../Generic/ColorPicker";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate, useGoogleFonts } from "../hooks";
@@ -42,10 +41,6 @@ export default function StepBlockText({ lid = false }) {
   function handleInputChange(event) {
     const value = checkValidity(event.target);
     setState({ ...state, [event.target.name]: value });
-  }
-
-  function handleColorChange(color) {
-    setState({ ...state, color: color.hex });
   }
 
   function handleSubmit(event) {
@@ -227,11 +222,12 @@ export default function StepBlockText({ lid = false }) {
                   ))}
                 </datalist>
 
-                <ColorPicker
+                <input
+                  type="color"
                   name="color"
-                  style={{ maxWidth: "3rem" }}
+                  className="form-control form-control-color"
                   color={state.color}
-                  onColorChange={handleColorChange}
+                  onChange={handleInputChange}
                 />
                 <input
                   type="number"

@@ -1,7 +1,4 @@
 {
-  "colorpicker": {
-    "title": "Select a color"
-  },
   "date": "{{date, date}}",
   "datetime": "{{date, datetime}}",
   "navbar": {

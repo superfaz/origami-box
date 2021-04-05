@@ -46,3 +46,9 @@ code {
   opacity: 0;
   transition-duration: 0.25s;
 }
+
+.form-control-color.form-control.is-valid,
+.was-validated .form-control-color.form-control:valid {
+  padding-right: 0.375rem;
+  background-image: none;
+}
