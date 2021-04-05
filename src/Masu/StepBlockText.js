@@ -223,7 +223,7 @@ export default function StepBlockText({ lid = false }) {
                 />
                 <datalist id="fontslist">
                   {fonts.map((font) => (
-                    <option value={font} />
+                    <option key={font} value={font} />
                   ))}
                 </datalist>
 

@@ -166,12 +166,12 @@ export function MasuTemplate({
                 {images
                   .filter((image) => image.face === key)
                   .map((image) => (
-                    <SvgImage key={image.key} image={image} m={m} />
+                    <SvgImage key={key + "-" + image.key} image={image} m={m} />
                   ))}
                 {texts
                   .filter((text) => text.face === key)
                   .map((text) => (
-                    <SvgText key={text.key} text={text} m={m} />
+                    <SvgText key={key + "-" + text.key} text={text} m={m} />
                   ))}
               </g>
             </g>
