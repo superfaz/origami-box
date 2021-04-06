@@ -13,7 +13,9 @@ export const masuTemplateDefinition = {
   },
 
   blocks: function (masu) {
-    if (masu.withLid) {
+    if (!masu.withDesign) {
+      return [];
+    } else if (masu.withLid) {
       return ["base", "lid"];
     } else {
       return ["box"];
