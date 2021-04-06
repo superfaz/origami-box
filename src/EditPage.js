@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
+import BaggiEditPage from "./Baggi/EditPage";
+import EditNav from "./Generic/EditNav";
 import { useTemplate } from "./hooks";
 import MasuEditPage from "./Masu/EditPage";
-import BaggiEditPage from "./Baggi/EditPage";
 
 export default function EditPage() {
   const { t } = useTranslation();
@@ -10,8 +11,11 @@ export default function EditPage() {
   return (
     <div className="container">
       <h1>{t(template.type + ":title")}</h1>
-      {template.type === "masu" && <MasuEditPage />}
-      {template.type === "baggi" && <BaggiEditPage />}
+      <div className="row">
+        <EditNav />
+        {template.type === "masu" && <MasuEditPage />}
+        {template.type === "baggi" && <BaggiEditPage />}
+      </div>
     </div>
   );
 }

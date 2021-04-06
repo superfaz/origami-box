@@ -5,12 +5,10 @@ export default function BaggiEditPage() {
   const { path } = useRouteMatch();
 
   return (
-    <div className="row">
-      <Switch>
-        <Route exact path={path}>
-          <StepPrepare />
-        </Route>
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path={path}>
+        <StepPrepare />
+      </Route>
+    </Switch>
   );
 }
