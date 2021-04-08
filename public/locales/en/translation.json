@@ -8,6 +8,10 @@
     "signin": "Sign in",
     "profile": "View your profile"
   },
+  "error": {
+    "404": "This resource is not available",
+    "500": "That did end badly, isn't it?"
+  },
   "home": {
     "title": "Welcome <1>",
     "description": "This site provides origami templates to create paper boxes. Perfect for board games, but not only.",

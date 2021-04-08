@@ -8,6 +8,10 @@
     "signin": "Se connecter",
     "profile": "Voir votre profil"
   },
+  "error": {
+    "404": "Cette ressource n'est pas disponible",
+    "500": "Ouch! ça n'a pas fait que du bien, n'est-ce pas?"
+  },
   "home": {
     "title": "Bienvenue <1>",
     "description": "Ce site permet de créer des patrons d'origami pour la création de boites de stockage. Parfaite pour des jeux de plateau, mais pas seulement.",
