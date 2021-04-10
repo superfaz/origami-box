@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
+import Error404 from "../Error/Error404";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
