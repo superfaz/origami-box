@@ -9,6 +9,10 @@ export const baggiTemplateDefinition = {
     );
   },
 
+  facesCount: function () {
+    return 3;
+  },
+
   blocks: function (data) {
     return [];
   },

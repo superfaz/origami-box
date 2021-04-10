@@ -5,7 +5,7 @@ import { Link, Redirect, useParams } from "react-router-dom";
 import Error404 from "../Error/Error404";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
-import { useTemplate } from "../hooks";
+import { useTemplate, useTemplateDefinition } from "../hooks";
 import { addOrUpdateImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
 import { loadImageAsync } from "./helper";
@@ -15,6 +15,7 @@ export default function StepBlockImage() {
   const { t } = useTranslation();
   const { block, key } = useParams();
   const { template, data: masu } = useTemplate();
+  const definition = useTemplateDefinition();
   const baseUrl = "/edit/" + template.key;
 
   let initialState;
@@ -168,11 +169,11 @@ export default function StepBlockImage() {
                 value={state.face}
                 onChange={handleInputChange}
               >
-                <option value="0">{t("masu.face.0")}</option>
-                <option value="1">{t("masu.face.1")}</option>
-                <option value="2">{t("masu.face.2")}</option>
-                <option value="3">{t("masu.face.3")}</option>
-                <option value="4">{t("masu.face.4")}</option>
+                {[...Array(definition.facesCount()).keys()].map((i) => (
+                  <option key={i} value={i}>
+                    {t([`${template.type}:face.${i}`, `face.${i}`])}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="mb-3">
@@ -188,9 +189,9 @@ export default function StepBlockImage() {
                   value={state.horizontal}
                   onChange={handleInputChange}
                 >
-                  <option value="left">{t("masu.horizontal.left")}</option>
-                  <option value="center">{t("masu.horizontal.center")}</option>
-                  <option value="right">{t("masu.horizontal.right")}</option>
+                  <option value="left">{t("horizontal.left")}</option>
+                  <option value="center">{t("horizontal.center")}</option>
+                  <option value="right">{t("horizontal.right")}</option>
                 </select>
                 <select
                   className="form-select"
@@ -200,9 +201,9 @@ export default function StepBlockImage() {
                   value={state.vertical}
                   onChange={handleInputChange}
                 >
-                  <option value="top">{t("masu.vertical.top")}</option>
-                  <option value="middle">{t("masu.vertical.middle")}</option>
-                  <option value="bottom">{t("masu.vertical.bottom")}</option>
+                  <option value="top">{t("vertical.top")}</option>
+                  <option value="middle">{t("vertical.middle")}</option>
+                  <option value="bottom">{t("vertical.bottom")}</option>
                 </select>
               </div>
             </div>
@@ -235,18 +236,13 @@ export default function StepBlockImage() {
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link
-              className="btn btn-link"
-              to={`${baseUrl}/${block}`}
-            >
+            <Link className="btn btn-link" to={`${baseUrl}/${block}`}>
               {t("masu.stepDImage.cancel")}
             </Link>
             <button type="submit" className="btn btn-primary ms-auto">
               {t("masu.stepDImage.submit")}
             </button>
-            {redirect && (
-              <Redirect push to={`${baseUrl}/${block}`} />
-            )}
+            {redirect && <Redirect push to={`${baseUrl}/${block}`} />}
           </div>
         </form>
       </LeftForm>

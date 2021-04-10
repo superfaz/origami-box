@@ -151,28 +151,21 @@
   "stepGenerate": {
     "title": "Prepare the Print"
   },
+  "horizontal": {
+    "left": "Left",
+    "center": "Center",
+    "right": "Right"
+  },
+  "vertical": {
+    "top": "Top",
+    "middle": "Middle",
+    "bottom": "Bottom"
+  },
   "masu": {
     "format": {
       "label": "Format",
       "A4": "A4",
       "letter": "letter"
-    },
-    "face": {
-      "0": "Top",
-      "1": "Back",
-      "2": "Front",
-      "3": "Left",
-      "4": "Right"
-    },
-    "horizontal": {
-      "left": "Left",
-      "center": "Center",
-      "right": "Right"
-    },
-    "vertical": {
-      "top": "Top",
-      "middle": "Middle",
-      "bottom": "Bottom"
     },
     "stepAGeneral": {
       "reset": "Reset the template",

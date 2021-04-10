@@ -12,6 +12,10 @@ export const masuTemplateDefinition = {
     );
   },
 
+  facesCount: function () {
+    return 5;
+  },
+
   blocks: function (masu) {
     if (!masu.withDesign) {
       return [];

@@ -9,5 +9,12 @@
   "block": {
     "base": "la base",
     "lid": "le couvercle"
+  },
+  "face": {
+    "0": "Dessus",
+    "1": "Arrière",
+    "2": "Avant",
+    "3": "Gauche",
+    "4": "Droite"
   }
 }

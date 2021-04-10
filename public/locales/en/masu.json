@@ -9,5 +9,12 @@
   "block": {
     "base": "base",
     "lid": "lid"
+  },
+  "face": {
+    "0": "Top",
+    "1": "Back",
+    "2": "Front",
+    "3": "Left",
+    "4": "Right"
   }
 }

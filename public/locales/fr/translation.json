@@ -151,28 +151,21 @@
   "stepGenerate": {
     "title": "Préparer l'impression"
   },
+  "horizontal": {
+    "left": "Gauche",
+    "center": "Centre",
+    "right": "Droite"
+  },
+  "vertical": {
+    "top": "Haut",
+    "middle": "Milieu",
+    "bottom": "Bas"
+  },
   "masu": {
     "format": {
       "label": "Format",
       "A4": "A4",
       "letter": "lettre (US)"
-    },
-    "face": {
-      "0": "Dessus",
-      "1": "Arrière",
-      "2": "Avant",
-      "3": "Gauche",
-      "4": "Droite"
-    },
-    "horizontal": {
-      "left": "Gauche",
-      "center": "Centre",
-      "right": "Droite"
-    },
-    "vertical": {
-      "top": "Haut",
-      "middle": "Milieu",
-      "bottom": "Bas"
     },
     "stepAGeneral": {
       "reset": "Réinitialiser le modèle",
