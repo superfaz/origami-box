@@ -2,41 +2,47 @@ import { useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import Error404 from "../Error/Error404";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate, useGoogleFonts } from "../hooks";
 import { addOrUpdateText } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
 
-export default function StepBlockText({ lid = false }) {
+export default function StepBlockText() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { key } = useParams();
+  const { block, key } = useParams();
   const { template, data: masu } = useTemplate();
   const baseUrl = "/edit/" + template.key;
 
-  const initialState =
-    key !== undefined
-      ? lid
-        ? masu.lid.texts[key]
-        : masu.base.texts[key]
-      : {
-          content: "",
-          face: "0",
-          horizontal: "center",
-          vertical: "middle",
-          marginHorizontal: 2,
-          marginVertical: 2,
-          lineSpacing: 1.15,
-          family: "",
-          size: 8,
-          color: "black",
-        };
+  let initialState;
+  if (key !== undefined && block !== undefined && masu[block] !== undefined) {
+    initialState = masu[block][key];
+  }
+  if (!initialState) {
+    initialState = {
+      content: "",
+      face: "0",
+      horizontal: "center",
+      vertical: "middle",
+      marginHorizontal: 2,
+      marginVertical: 2,
+      lineSpacing: 1.15,
+      family: "",
+      size: 8,
+      color: "black",
+    };
+  }
 
   const [redirect, setRedirect] = useState(false);
   const [multiline, setMultiline] = useState(false);
   const [state, setState] = useState(initialState);
   const fonts = useGoogleFonts();
+
+  if (!["base", "lid"].includes(block)) {
+    throw new Error404();
+  }
 
   function handleInputChange(event) {
     const value = checkValidity(event.target);
@@ -45,7 +51,7 @@ export default function StepBlockText({ lid = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addOrUpdateText(template.key, lid ? "lid" : "base", state));
+    dispatch(addOrUpdateText(template.key, block, state));
     setRedirect(true);
   }
 
@@ -257,21 +263,18 @@ export default function StepBlockText({ lid = false }) {
             </div>
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
-            <Link
-              className="btn btn-link"
-              to={`${baseUrl}/${lid ? "lid" : "base"}`}
-            >
+            <Link className="btn btn-link" to={`${baseUrl}/${block}`}>
               {t("masu.stepCText.cancel")}
             </Link>
             <button type="submit" className="btn btn-primary ms-auto">
               {t("masu.stepCText.submit")}
             </button>
-            {redirect && <Redirect push to={`${baseUrl}/${lid ? "lid" : "base"}`} />}
+            {redirect && <Redirect push to={`${baseUrl}/${block}`} />}
           </div>
         </form>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateBack lid={lid} text={state} />
+        <MasuTemplateBack lid={block === "lid"} text={state} />
       </RightPreview>
     </>
   );

@@ -15,18 +15,10 @@ export default function MasuEditPage() {
       <Route exact path={path}>
         <StepPrepare />
       </Route>
-      <Route exact path={[`${path}/box`, `${path}/base`]}>
+      <Route exact path={[`${path}/base`]}>
         <StepBlock />
       </Route>
-      <Route
-        exact
-        path={[
-          `${path}/box/text`,
-          `${path}/box/text/:key`,
-          `${path}/base/text`,
-          `${path}/base/text/:key`,
-        ]}
-      >
+      <Route exact path={[`${path}/:block/text`, `${path}/:block/text/:key`]}>
         <StepBlockText />
       </Route>
       <Route
@@ -42,9 +34,6 @@ export default function MasuEditPage() {
       </Route>
       <Route exact path={`${path}/lid`}>
         <StepBlock lid />
-      </Route>
-      <Route exact path={[`${path}/lid/text`, `${path}/lid/text/:key`]}>
-        <StepBlockText lid />
       </Route>
       <Route exact path={[`${path}/lid/image`, `${path}/lid/image/:key`]}>
         <StepBlockImage lid />
