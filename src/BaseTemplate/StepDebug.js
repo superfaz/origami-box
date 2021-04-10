@@ -1,5 +1,5 @@
 import { useTemplate } from "../hooks";
-import JsonDisplay from "../Generic/JsonDisplay";
+import ReactJson from "react-json-view";
 
 export default function StepDebug() {
   const { template } = useTemplate();
@@ -7,7 +7,7 @@ export default function StepDebug() {
   return (
     <>
       <div className="col-12">
-        <JsonDisplay title="template" json={template} />
+        <ReactJson name="template" src={template} />
       </div>
     </>
   );

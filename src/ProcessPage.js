@@ -1,4 +1,4 @@
-import JsonDisplay from "./Generic/JsonDisplay";
+import ReactJson from "react-json-view";
 import env from "./env";
 
 export default function ProcessPage() {
@@ -7,10 +7,10 @@ export default function ProcessPage() {
       <h1>Defined process variables</h1>
       <div className="row">
         <div className="col-md-6">
-          <JsonDisplay json={process.env} title="process.env" />
+          <ReactJson src={process.env} name="process.env" />
         </div>
         <div className="col-md-6">
-          <JsonDisplay json={env} title="env.js" />
+          <ReactJson src={env} name="env.js" />
         </div>
       </div>
     </div>
