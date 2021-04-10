@@ -1,10 +1,10 @@
 import { Switch, Route, useRouteMatch } from "react-router-dom";
+import StepDebug from "../BaseTemplate/StepDebug";
 import Error404 from "../Error/Error404";
 import StepPrepare from "./StepPrepare";
 import StepBlock from "./StepBlock";
 import StepBlockText from "./StepBlockText";
 import StepBlockImage from "./StepBlockImage";
-import StepDebug from "./StepDebug";
 import StepGenerate from "./StepGenerate";
 
 export default function MasuEditPage() {
