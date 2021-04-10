@@ -9,31 +9,32 @@ import { addOrUpdateImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
 import { loadImageAsync } from "./helper";
 
-export default function StepBlockImage({ lid = false }) {
+export default function StepBlockImage() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { key } = useParams();
+  const { block, key } = useParams();
   const { template, data: masu } = useTemplate();
   const baseUrl = "/edit/" + template.key;
 
-  const initialState =
-    key !== undefined
-      ? lid
-        ? masu.lid.images[key]
-        : masu.base.images[key]
-      : {
-          content: null,
-          originalWidth: null,
-          originalHeight: null,
-          face: "0",
-          size: "auto",
-          width: "",
-          height: "",
-          horizontal: "center",
-          vertical: "middle",
-          marginHorizontal: 0,
-          marginVertical: 0,
-        };
+  let initialState;
+  if (key !== undefined && block !== undefined && masu[block] !== undefined) {
+    initialState = masu[block].images[key];
+  }
+  if (!initialState) {
+    initialState = {
+      content: null,
+      originalWidth: null,
+      originalHeight: null,
+      face: "0",
+      size: "auto",
+      width: "",
+      height: "",
+      horizontal: "center",
+      vertical: "middle",
+      marginHorizontal: 0,
+      marginVertical: 0,
+    };
+  }
 
   const [redirect, setRedirect] = useState(false);
   const [state, setState] = useState(initialState);
@@ -85,7 +86,7 @@ export default function StepBlockImage({ lid = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addOrUpdateImage(template.key, lid ? "lid" : "base", state));
+    dispatch(addOrUpdateImage(template.key, block, state));
     setRedirect(true);
   }
 
@@ -231,19 +232,21 @@ export default function StepBlockImage({ lid = false }) {
           <div className="mb-3 mt-5 d-flex">
             <Link
               className="btn btn-link"
-              to={`${baseUrl}/${lid ? "lid" : "base"}`}
+              to={`${baseUrl}/${block}`}
             >
               {t("masu.stepDImage.cancel")}
             </Link>
             <button type="submit" className="btn btn-primary ms-auto">
               {t("masu.stepDImage.submit")}
             </button>
-            {redirect && <Redirect push to={`${baseUrl}/${lid ? "lid" : "base"}`} />}
+            {redirect && (
+              <Redirect push to={`${baseUrl}/${block}`} />
+            )}
           </div>
         </form>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateBack lid={lid} image={state} />
+        <MasuTemplateBack lid={block === "lid"} image={state} />
       </RightPreview>
     </>
   );
