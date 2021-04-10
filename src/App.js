@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import Error404Page from "./Error/Error404Page";
 import ErrorBoundary from "./Error/ErrorBoundary";
 import ErrorTestPage from "./Error/ErrorTestPage";
 import CreatePage from "./CreatePage";
@@ -51,6 +52,9 @@ export default function App() {
               </Route>
               <Route exact path="/process">
                 <ProcessPage />
+              </Route>
+              <Route>
+                <Error404Page />
               </Route>
             </Switch>
           </ErrorBoundary>

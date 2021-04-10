@@ -1,4 +1,5 @@
 import { Switch, Route, useRouteMatch } from "react-router-dom";
+import Error404 from "../Error/Error404";
 import StepPrepare from "./StepPrepare";
 import StepBlock from "./StepBlock";
 import StepBlockText from "./StepBlockText";
@@ -54,6 +55,11 @@ export default function MasuEditPage() {
       <Route exact path={`${path}/generate`}>
         <StepGenerate />
       </Route>
+      <Route
+        render={() => {
+          throw new Error404();
+        }}
+      />
     </Switch>
   );
 }
