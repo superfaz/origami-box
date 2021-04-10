@@ -45,11 +45,10 @@ export default function BaseStepBlockText({ state, onStateChange, children }) {
   const { block } = useParams();
   const { template } = useTemplate();
   const definition = useTemplateDefinition(template.type);
-  const baseUrl = "/edit/" + template.key;
-
   const [redirect, setRedirect] = useState(false);
   const [multiline, setMultiline] = useState(false);
   const fonts = useGoogleFonts();
+  const baseUrl = "/edit/" + template.key;
 
   if (!["base", "lid"].includes(block)) {
     throw new Error404();
