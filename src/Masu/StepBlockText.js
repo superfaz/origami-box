@@ -18,7 +18,7 @@ export default function StepBlockText() {
 
   let initialState;
   if (key !== undefined && block !== undefined && masu[block] !== undefined) {
-    initialState = masu[block][key];
+    initialState = masu[block].texts[key];
   }
   if (!initialState) {
     initialState = {
