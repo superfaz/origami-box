@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
-import BaseStepBlockText, { useStepBlockTextState } from "../BaseTemplate/BaseStepBlockText";
+import BaseStepBlockText, {
+  useStepBlockTextState,
+} from "../BaseTemplate/BaseStepBlockText";
 import MasuTemplateBack from "./MasuTemplateBack";
 
 export default function StepBlockText() {
