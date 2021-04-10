@@ -122,7 +122,7 @@ export default function StepBlock({ lid = false }) {
               className="btn btn-outline-primary"
               to={`${baseUrl}/${block.key}/text`}
             >
-              {t("masu.stepCText.linkTo")}
+              {t("stepText.linkTo")}
             </Link>
           </div>
         </div>

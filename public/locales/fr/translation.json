@@ -129,6 +129,22 @@
       "title": "Couvercle"
     }
   },
+  "stepText": {
+    "linkTo": "Ajouter un texte",
+    "content": "Contenu",
+    "lineSpacing": "Interligne",
+    "multiline": "Avec plusieurs lignes?",
+    "positioning": "Position",
+    "face": "Face",
+    "horizontal": "Alignement",
+    "margins": "Marges",
+    "font": "Police",
+    "family": "Nom de la police",
+    "familyExplanation": "Nom de la police <1>'google font'</1> à utiliser",
+    "size": "Taille",
+    "submit": "Valider ce texte",
+    "cancel": "Annuler"
+  },
   "stepDebug": {
     "title": "Debug"
   },
@@ -192,22 +208,6 @@
       "imageContent": "Image(s)",
       "imageEdit": "Editer cette image",
       "imageDelete": "Supprimer cette image"
-    },
-    "stepCText": {
-      "linkTo": "Ajouter un texte",
-      "content": "Contenu",
-      "lineSpacing": "Interligne",
-      "multiline": "Avec plusieurs lignes?",
-      "positioning": "Position",
-      "face": "Face",
-      "horizontal": "Alignement",
-      "margins": "Marges",
-      "font": "Police",
-      "family": "Nom de la police",
-      "familyExplanation": "Nom de la police <1>'google font'</1> à utiliser",
-      "size": "Taille",
-      "submit": "Valider ce texte",
-      "cancel": "Annuler"
     },
     "stepDImage": {
       "linkTo": "Ajouter une image",

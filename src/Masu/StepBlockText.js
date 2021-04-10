@@ -13,12 +13,12 @@ export default function StepBlockText() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { block, key } = useParams();
-  const { template, data: masu } = useTemplate();
+  const { template, data } = useTemplate();
   const baseUrl = "/edit/" + template.key;
 
   let initialState;
-  if (key !== undefined && block !== undefined && masu[block] !== undefined) {
-    initialState = masu[block].texts[key];
+  if (key !== undefined && block !== undefined && data[block] !== undefined) {
+    initialState = data[block].texts[key];
   }
   if (!initialState) {
     initialState = {
@@ -62,7 +62,7 @@ export default function StepBlockText() {
           {!multiline && (
             <div className="mb-3">
               <label htmlFor="content" className="form-label">
-                {t("masu.stepCText.content")}
+                {t("stepText.content")}
               </label>
               <input
                 type="text"
@@ -77,7 +77,7 @@ export default function StepBlockText() {
           {multiline && (
             <div className="mb-3">
               <label htmlFor="content" className="form-label">
-                {t("masu.stepCText.content")}
+                {t("stepText.content")}
               </label>
               <textarea
                 name="content"
@@ -99,14 +99,14 @@ export default function StepBlockText() {
                 onChange={(e) => setMultiline(e.target.checked)}
               />
               <label className="form-check-label" htmlFor="withDesign">
-                {t("masu.stepCText.multiline")}
+                {t("stepText.multiline")}
               </label>
             </div>
           </div>
           {multiline && (
             <div className="mb-3">
               <label htmlFor="lineSpacing" className="form-label">
-                {t("masu.stepCText.lineSpacing")}
+                {t("stepText.lineSpacing")}
               </label>
               <input
                 type="number"
@@ -121,10 +121,10 @@ export default function StepBlockText() {
             </div>
           )}
           <fieldset>
-            <legend>{t("masu.stepCText.positioning")}</legend>
+            <legend>{t("stepText.positioning")}</legend>
             <div className="mb-3">
               <label htmlFor="face" className="form-label">
-                {t("masu.stepCText.face")}
+                {t("stepText.face")}
               </label>
               <select
                 className="form-select"
@@ -142,7 +142,7 @@ export default function StepBlockText() {
             </div>
             <div className="mb-3">
               <label htmlFor="horizontal" className="form-label">
-                {t("masu.stepCText.horizontal")}
+                {t("stepText.horizontal")}
               </label>
               <div className="input-group">
                 <select
@@ -173,7 +173,7 @@ export default function StepBlockText() {
             </div>
             <div className="mb-3">
               <label htmlFor="marginHorizontal" className="form-label">
-                {t("masu.stepCText.margins")}
+                {t("stepText.margins")}
               </label>
               <div className="input-group">
                 <input
@@ -198,18 +198,18 @@ export default function StepBlockText() {
             </div>
           </fieldset>
           <fieldset>
-            <legend>{t("masu.stepCText.font")}</legend>
+            <legend>{t("stepText.font")}</legend>
             <div className="mb-3">
               <div className="d-flex">
                 <label htmlFor="family" className="form-label">
-                  {t("masu.stepCText.family")}
+                  {t("stepText.family")}
                 </label>
                 <label
                   htmlFor="size"
                   className="form-label ms-auto"
                   style={{ width: "6rem" }}
                 >
-                  {t("masu.stepCText.size")}
+                  {t("stepText.size")}
                 </label>
               </div>
               <div className="input-group">
@@ -248,7 +248,7 @@ export default function StepBlockText() {
                 />
               </div>
               <div className="text-muted">
-                <Trans i18nKey="masu.stepCText.familyExplanation">
+                <Trans i18nKey="stepText.familyExplanation">
                   Name of the
                   <a
                     href="https://fonts.google.com"
@@ -264,10 +264,10 @@ export default function StepBlockText() {
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
             <Link className="btn btn-link" to={`${baseUrl}/${block}`}>
-              {t("masu.stepCText.cancel")}
+              {t("stepText.cancel")}
             </Link>
             <button type="submit" className="btn btn-primary ms-auto">
-              {t("masu.stepCText.submit")}
+              {t("stepText.submit")}
             </button>
             {redirect && <Redirect push to={`${baseUrl}/${block}`} />}
           </div>
