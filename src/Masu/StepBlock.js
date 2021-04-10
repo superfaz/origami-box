@@ -96,7 +96,7 @@ export default function StepBlock({ lid = false }) {
                       return <div key={index}>{line}</div>;
                     })}
                   </td>
-                  <td>{t(`masu.face.${block.texts[key].face}`)}</td>
+                  <td>{t(`masu:face.${block.texts[key].face}`)}</td>
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
@@ -145,7 +145,7 @@ export default function StepBlock({ lid = false }) {
                       style={{ height: "2rem" }}
                     />
                   </td>
-                  <td>{t(`masu.face.${block.images[key].face}`)}</td>
+                  <td>{t(`masu:face.${block.images[key].face}`)}</td>
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
