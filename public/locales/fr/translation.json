@@ -145,6 +145,20 @@
     "submit": "Valider ce texte",
     "cancel": "Annuler"
   },
+  "stepImage": {
+    "linkTo": "Ajouter une image",
+    "content": "Fichier",
+    "size": "Taille",
+    "sizeAuto": "Automatique",
+    "width": "Largeur",
+    "height": "Hauteur",
+    "positioning": "Position",
+    "face": "Face",
+    "horizontal": "Alignement",
+    "margins": "Marges",
+    "submit": "Valider cette image",
+    "cancel": "Annuler"
+  },
   "stepDebug": {
     "title": "Debug"
   },
@@ -201,20 +215,6 @@
       "imageContent": "Image(s)",
       "imageEdit": "Editer cette image",
       "imageDelete": "Supprimer cette image"
-    },
-    "stepDImage": {
-      "linkTo": "Ajouter une image",
-      "content": "Fichier",
-      "size": "Taille",
-      "sizeAuto": "Automatique",
-      "width": "Largeur",
-      "height": "Hauteur",
-      "positioning": "Position",
-      "face": "Face",
-      "horizontal": "Alignement",
-      "margins": "Marges",
-      "submit": "Valider cette image",
-      "cancel": "Annuler"
     },
     "stepZGenerate": {
       "linkTo": "Préparer l'impression",

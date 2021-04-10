@@ -14,13 +14,13 @@ export default function StepBlockImage() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { block, key } = useParams();
-  const { template, data: masu } = useTemplate();
-  const definition = useTemplateDefinition();
+  const { template, data } = useTemplate();
+  const definition = useTemplateDefinition(template.type);
   const baseUrl = "/edit/" + template.key;
 
   let initialState;
-  if (key !== undefined && block !== undefined && masu[block] !== undefined) {
-    initialState = masu[block].images[key];
+  if (key !== undefined && block !== undefined && data[block] !== undefined) {
+    initialState = data[block].images[key];
   }
   if (!initialState) {
     initialState = {
@@ -102,7 +102,7 @@ export default function StepBlockImage() {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="content" className="form-label">
-              {t("masu.stepDImage.content")}
+              {t("stepImage.content")}
             </label>
             <input
               className="form-control"
@@ -115,7 +115,7 @@ export default function StepBlockImage() {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">{t("masu.stepDImage.size")}</label>
+            <label className="form-label">{t("stepImage.size")}</label>
             <div className="form-check form-switch">
               <input
                 className="form-check-input"
@@ -126,7 +126,7 @@ export default function StepBlockImage() {
                 onChange={handleSizeChange}
               />
               <label className="form-check-label" htmlFor="size">
-                {t("masu.stepDImage.sizeAuto")}
+                {t("stepImage.sizeAuto")}
               </label>
             </div>
             <div className="input-group">
@@ -134,7 +134,7 @@ export default function StepBlockImage() {
                 type="number"
                 className="form-control"
                 name="width"
-                placeholder={t("masu.stepDImage.width")}
+                placeholder={t("stepImage.width")}
                 disabled={state.size === "auto"}
                 required={state.size === "manual"}
                 min="0"
@@ -146,7 +146,7 @@ export default function StepBlockImage() {
                 type="number"
                 className="form-control"
                 name="height"
-                placeholder={t("masu.stepDImage.height")}
+                placeholder={t("stepImage.height")}
                 disabled={state.size === "auto"}
                 required={state.size === "manual"}
                 min="0"
@@ -157,10 +157,10 @@ export default function StepBlockImage() {
             </div>
           </div>
           <fieldset>
-            <legend>{t("masu.stepDImage.positioning")}</legend>
+            <legend>{t("stepImage.positioning")}</legend>
             <div className="mb-3">
               <label htmlFor="face" className="form-label">
-                {t("masu.stepDImage.face")}
+                {t("stepImage.face")}
               </label>
               <select
                 className="form-select"
@@ -178,7 +178,7 @@ export default function StepBlockImage() {
             </div>
             <div className="mb-3">
               <label htmlFor="horizontal" className="form-label">
-                {t("masu.stepDImage.horizontal")}
+                {t("stepImage.horizontal")}
               </label>
               <div className="input-group">
                 <select
@@ -209,7 +209,7 @@ export default function StepBlockImage() {
             </div>
             <div className="mb-3">
               <label htmlFor="marginHorizontal" className="form-label">
-                {t("masu.stepDImage.margins")}
+                {t("stepImage.margins")}
               </label>
               <div className="input-group">
                 <input
@@ -237,10 +237,10 @@ export default function StepBlockImage() {
           </fieldset>
           <div className="mb-3 mt-5 d-flex">
             <Link className="btn btn-link" to={`${baseUrl}/${block}`}>
-              {t("masu.stepDImage.cancel")}
+              {t("stepImage.cancel")}
             </Link>
             <button type="submit" className="btn btn-primary ms-auto">
-              {t("masu.stepDImage.submit")}
+              {t("stepImage.submit")}
             </button>
             {redirect && <Redirect push to={`${baseUrl}/${block}`} />}
           </div>

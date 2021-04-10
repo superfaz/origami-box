@@ -145,6 +145,20 @@
     "submit": "Save this text",
     "cancel": "Go back"
   },
+  "stepImage": {
+    "linkTo": "Add an image",
+    "content": "File",
+    "size": "Size",
+    "sizeAuto": "Automatic",
+    "width": "Width",
+    "height": "Height",
+    "positioning": "Positioning",
+    "face": "Face",
+    "horizontal": "Alignment",
+    "margins": "Margins",
+    "submit": "Save this image",
+    "cancel": "Go back"
+  },
   "stepDebug": {
     "title": "Debug"
   },
@@ -201,20 +215,6 @@
       "imageContent": "Image(s)",
       "imageEdit": "Edit this image",
       "imageDelete": "Delete this image"
-    },
-    "stepDImage": {
-      "linkTo": "Add an image",
-      "content": "File",
-      "size": "Size",
-      "sizeAuto": "Automatic",
-      "width": "Width",
-      "height": "Height",
-      "positioning": "Positioning",
-      "face": "Face",
-      "horizontal": "Alignment",
-      "margins": "Margins",
-      "submit": "Save this image",
-      "cancel": "Go back"
     },
     "stepZGenerate": {
       "linkTo": "Prepare the print",

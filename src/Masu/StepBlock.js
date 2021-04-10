@@ -171,7 +171,7 @@ export default function StepBlock({ lid = false }) {
               className="btn btn-outline-primary"
               to={`${baseUrl}/${block.key}/image`}
             >
-              {t("masu.stepDImage.linkTo")}
+              {t("stepImage.linkTo")}
             </Link>
           </div>
         </div>
