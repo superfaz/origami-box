@@ -39,6 +39,10 @@ export default function StepBlockImage() {
   const [redirect, setRedirect] = useState(false);
   const [state, setState] = useState(initialState);
 
+  if (!["base", "lid"].includes(block)) {
+    throw new Error404();
+  }
+
   function handleInputChange(event) {
     const value = checkValidity(event.target);
     setState({ ...state, [event.target.name]: value });
