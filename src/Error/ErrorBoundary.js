@@ -1,12 +1,13 @@
 import React from "react";
+import { withRouter } from "react-router";
 import Error404 from "./Error404";
 import Error404Page from "./Error404Page";
 import Error500Page from "./Error500Page";
 
-export default class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: null, errorInfo: null };
+    this.state = null;
   }
 
   componentDidCatch(error, errorInfo) {
@@ -14,11 +15,17 @@ export default class ErrorBoundary extends React.Component {
     this.setState({
       error: error,
       errorInfo: errorInfo,
+      location: this.props.location.pathname,
     });
   }
 
   render() {
-    if (this.state.error) {
+    let inError =
+      this.state !== null &&
+      this.props.location.pathname === this.state.location;
+
+    if (inError) {
+      // Display the error page
       if (this.state.error instanceof Error404) {
         return <Error404Page />;
       } else {
@@ -29,7 +36,15 @@ export default class ErrorBoundary extends React.Component {
           />
         );
       }
+    } else {
+      // Display the children
+      if (this.state) {
+        this.setState(null);
+      }
+
+      return this.props.children;
     }
-    return this.props.children;
   }
 }
+
+export default withRouter(ErrorBoundary);
