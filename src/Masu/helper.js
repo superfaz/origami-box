@@ -103,12 +103,3 @@ export function configurePositioning(text, l_2, w_2, h_2) {
 
   return { configuration, style };
 }
-
-export function loadImageAsync(url) {
-  return new Promise((resolve, reject) => {
-    let img = new window.Image();
-    img.onload = () => resolve(img);
-    img.onerror = reject;
-    img.src = url;
-  });
-}
