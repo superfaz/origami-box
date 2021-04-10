@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getLocalTemplates } from "../store";
+import Error404 from "../Error/Error404";
 
 export function useTemplate() {
   const { templateKey } = useParams();
@@ -16,7 +17,7 @@ export function useTemplate() {
   }
 
   if (templates[templateKey] === undefined || templates[templateKey] === null) {
-    throw new Error("Can't retrieve a not existing template");
+    throw new Error404("Can't retrieve a not existing template");
   }
 
   return {
