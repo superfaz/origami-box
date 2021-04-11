@@ -15,7 +15,13 @@ export default function MasuEditPage() {
       <Route exact path={path}>
         <StepPrepare />
       </Route>
-      <Route exact path={[`${path}/base`]}>
+      <Route exact path={`${path}/generate`}>
+        <StepGenerate />
+      </Route>
+      <Route exact path={`${path}/debug`}>
+        <StepDebug />
+      </Route>
+      <Route exact path={[`${path}/:block`]}>
         <StepBlock />
       </Route>
       <Route exact path={[`${path}/:block/text`, `${path}/:block/text/:key`]}>
@@ -23,15 +29,6 @@ export default function MasuEditPage() {
       </Route>
       <Route exact path={[`${path}/:block/image`, `${path}/:block/image/:key`]}>
         <StepBlockImage />
-      </Route>
-      <Route exact path={`${path}/lid`}>
-        <StepBlock lid />
-      </Route>
-      <Route exact path={`${path}/generate`}>
-        <StepGenerate />
-      </Route>
-      <Route exact path={`${path}/debug`}>
-        <StepDebug />
       </Route>
       <Route
         render={() => {

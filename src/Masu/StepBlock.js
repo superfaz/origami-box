@@ -1,27 +1,23 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { useTemplate } from "../hooks";
 import objectMap from "../objectMap";
 import { updateDetail, deleteText, deleteImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
 
-export default function StepBlock({ lid = false }) {
+export default function StepBlock() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { template, data: masu } = useTemplate();
-  const block = lid ? masu.lid : masu.base;
-  const baseUrl = "/edit/" + template.key;
+  const { templateKey, block } = useParams();
+  const { data: masu } = useTemplate();
+  const blockData = masu[block];
+  const baseUrl = "/edit/" + templateKey;
 
   function handleBackgroundColorChange(event) {
     dispatch(
-      updateDetail(
-        template.key,
-        block.key,
-        event.target.name,
-        event.target.value
-      )
+      updateDetail(templateKey, block, event.target.name, event.target.value)
     );
   }
 
@@ -30,26 +26,21 @@ export default function StepBlock({ lid = false }) {
       const reader = new FileReader();
       reader.onloadend = () => {
         dispatch(
-          updateDetail(
-            template.key,
-            block.key,
-            "backgroundImage",
-            reader.result
-          )
+          updateDetail(templateKey, block, "backgroundImage", reader.result)
         );
       };
       reader.readAsDataURL(event.target.files[0]);
     } else {
-      dispatch(updateDetail(template.key, block.key, "backgroundImage", null));
+      dispatch(updateDetail(templateKey, block, "backgroundImage", null));
     }
   }
 
   function handleTextDelete(key) {
-    dispatch(deleteText(template.key, block.key, key));
+    dispatch(deleteText(templateKey, block, key));
   }
 
   function handleImageDelete(key) {
-    dispatch(deleteImage(template.key, block.key, key));
+    dispatch(deleteImage(templateKey, block, key));
   }
 
   return (
@@ -63,7 +54,7 @@ export default function StepBlock({ lid = false }) {
             className="form-control form-control-color"
             type="color"
             name="background"
-            value={block.background}
+            value={blockData.background}
             onChange={handleBackgroundColorChange}
           />
         </div>
@@ -90,7 +81,7 @@ export default function StepBlock({ lid = false }) {
               </tr>
             </thead>
             <tbody>
-              {objectMap(block.texts, (text, key) => (
+              {objectMap(blockData.texts, (text, key) => (
                 <tr key={key} className="align-middle">
                   <td>
                     {text.content.split("\n").map((line, index) => (
@@ -102,7 +93,7 @@ export default function StepBlock({ lid = false }) {
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
                       title={t("masu.stepBDesign.textEdit")}
-                      to={`${baseUrl}/${block.key}/text/${key}`}
+                      to={`${baseUrl}/${block}/text/${key}`}
                     >
                       <i className="fas fa-pen" style={{ width: "14px" }}></i>
                     </Link>
@@ -121,7 +112,7 @@ export default function StepBlock({ lid = false }) {
           <div className="d-flex">
             <Link
               className="btn btn-outline-primary"
-              to={`${baseUrl}/${block.key}/text`}
+              to={`${baseUrl}/${block}/text`}
             >
               {t("stepText.linkTo")}
             </Link>
@@ -137,7 +128,7 @@ export default function StepBlock({ lid = false }) {
               </tr>
             </thead>
             <tbody>
-              {objectMap(block.images, (image, key) => (
+              {objectMap(blockData.images, (image, key) => (
                 <tr key={key} className="align-middle">
                   <td>
                     <img
@@ -151,7 +142,7 @@ export default function StepBlock({ lid = false }) {
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
                       title={t("masu.stepBDesign.imageEdit")}
-                      to={`${baseUrl}/${block.key}/image/${key}`}
+                      to={`${baseUrl}/${block}/image/${key}`}
                     >
                       <i className="fas fa-pen" style={{ width: "14px" }}></i>
                     </Link>
@@ -170,19 +161,19 @@ export default function StepBlock({ lid = false }) {
           <div className="d-flex">
             <Link
               className="btn btn-outline-primary"
-              to={`${baseUrl}/${block.key}/image`}
+              to={`${baseUrl}/${block}/image`}
             >
               {t("stepImage.linkTo")}
             </Link>
           </div>
         </div>
         <div className="mb-3 mt-5 d-flex">
-          {!lid && masu.withLid && (
+          {block === "base" && masu.withLid && (
             <Link className="btn btn-primary ms-auto" to={`${baseUrl}/lid`}>
               {t("masu.stepBDesign.lid.linkTo")}
             </Link>
           )}
-          {(lid || !masu.withLid) && (
+          {(block === "lid" || !masu.withLid) && (
             <Link
               className="btn btn-primary ms-auto"
               to={`${baseUrl}/generate`}
@@ -193,7 +184,7 @@ export default function StepBlock({ lid = false }) {
         </div>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateBack lid={lid} />
+        <MasuTemplateBack lid={block === "lid"} />
       </RightPreview>
     </>
   );
