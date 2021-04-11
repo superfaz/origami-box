@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet";
-import { useTemplate } from "../hooks";
+import { getFonts, getTexts, getImages } from "../Generic/selectors";
 import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
-import { useMasuMeasurement } from "./helper";
-import { getFonts, getTexts, getImages } from "./selectors";
+import { useTemplate } from "../hooks";
 import { createFaces } from "./faces";
+import { useMasuMeasurement } from "./helper";
 import SvgCut from "./SvgCut";
 import SvgImage from "./SvgImage";
 import SvgText from "./SvgText";

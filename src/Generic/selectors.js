@@ -26,12 +26,12 @@ export function getImages(block, addition = null) {
   return Object.keys(images).map((k) => images[k]);
 }
 
-export function getFonts(masu) {
-  if (masu === undefined) {
+export function getFonts(templateData) {
+  if (templateData === undefined) {
     return [];
   } else {
-    let fonts = getTexts(masu.base)
-      .concat(getTexts(masu.lid))
+    let fonts = getTexts(templateData.base)
+      .concat(getTexts(templateData.lid))
       .map((t) => t.family)
       .concat(["Open Sans"])
       .map((t) => (t === "" ? "Open Sans" : t))
