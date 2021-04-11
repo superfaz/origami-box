@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getLocalTemplates } from "../store";
 import Error404 from "../Error/Error404";
+import { useTemplateDefinition } from "./useTemplateDefinition";
 
 export function useTemplate() {
-  const { templateKey } = useParams();
+  const { templateKey, block } = useParams();
   const templates = useSelector(getLocalTemplates);
   if (templateKey === undefined || templateKey == null) {
     throw new Error(
@@ -20,8 +21,22 @@ export function useTemplate() {
     throw new Error404("Can't retrieve a not existing template");
   }
 
+  const template = templates[templateKey];
+  const data = template.data;
+  const definition = useTemplateDefinition(template.type);
+
+  if (!block) {
+    return { template, data };
+  }
+
+  const blocks = definition.blocks(data);
+  if (!blocks.includes(block)) {
+    throw new Error404(`Can't update unmanaged block ${block}`);
+  }
+
   return {
     template: templates[templateKey],
     data: templates[templateKey].data,
+    blockData: templates[templateKey].data[block] || {},
   };
 }

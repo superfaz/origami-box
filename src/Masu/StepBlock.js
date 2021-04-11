@@ -11,8 +11,7 @@ export default function StepBlock() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { templateKey, block } = useParams();
-  const { data: masu } = useTemplate();
-  const blockData = masu[block];
+  const { data: masu, blockData } = useTemplate();
   const baseUrl = "/edit/" + templateKey;
 
   function handleBackgroundColorChange(event) {
