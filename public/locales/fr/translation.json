@@ -123,14 +123,25 @@
   },
   "stepDesign": {
     "box": {
-      "title": "Boîte"
+      "title": "Boîte",
+      "linkTo": "Définir le design de la boîte"
     },
     "base": {
-      "title": "Base"
+      "title": "Base",
+      "linkTo": "Définir le design de la base"
     },
     "lid": {
-      "title": "Couvercle"
-    }
+      "title": "Couvercle",
+      "linkTo": "Définir le design du couvercle"
+    },
+    "textFace": "Face",
+    "textContent": "Texte(s)",
+    "textEdit": "Editer ce texte",
+    "textDelete": "Supprimer ce texte",
+    "imageFace": "Face",
+    "imageContent": "Image(s)",
+    "imageEdit": "Editer cette image",
+    "imageDelete": "Supprimer cette image"
   },
   "stepText": {
     "linkTo": "Ajouter un texte",
@@ -195,27 +206,6 @@
       "lidHeight": "Hauteur du couvercle",
       "lidHeightAuto": "Automatique",
       "lidHeightExplanation": "La hauteur du couvercle sera calculée de telle façon que les patrons de la base et du couvercle auront les mêmes dimensions"
-    },
-    "stepBDesign": {
-      "box": {
-        "linkTo": "Définir le design de la boîte"
-      },
-      "base": {
-        "linkTo": "Définir le design de la base"
-      },
-      "lid": {
-        "linkTo": "Définir le design du couvercle"
-      },
-      "backgroundColor": "Appliquer une couleur de fond ?",
-      "backgroundImage": "Appliquer une image de fond ?",
-      "textFace": "Face",
-      "textContent": "Texte(s)",
-      "textEdit": "Editer ce texte",
-      "textDelete": "Supprimer ce texte",
-      "imageFace": "Face",
-      "imageContent": "Image(s)",
-      "imageEdit": "Editer cette image",
-      "imageDelete": "Supprimer cette image"
     },
     "front": "Recto",
     "back": "Verso"

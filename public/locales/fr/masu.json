@@ -16,5 +16,9 @@
     "2": "Avant",
     "3": "Gauche",
     "4": "Droite"
+  },
+  "stepDesign": {
+    "backgroundColor": "Appliquer une couleur de fond ?",
+    "backgroundImage": "Appliquer une image de fond ?"
   }
 }

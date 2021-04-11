@@ -123,14 +123,25 @@
   },
   "stepDesign": {
     "box": {
-      "title": "Box"
+      "title": "Box",
+      "linkTo": "Design the box"
     },
     "base": {
-      "title": "Base"
+      "title": "Base",
+      "linkTo": "Design the base"
     },
     "lid": {
-      "title": "Lid"
-    }
+      "title": "Lid",
+      "linkTo": "Design the lid"
+    },
+    "textFace": "Face",
+    "textContent": "Text(s)",
+    "textEdit": "Edit this text",
+    "textDelete": "Delete this text",
+    "imageFace": "Face",
+    "imageContent": "Image(s)",
+    "imageEdit": "Edit this image",
+    "imageDelete": "Delete this image"
   },
   "stepText": {
     "linkTo": "Add a text",
@@ -195,27 +206,6 @@
       "lidHeight": "Lid height",
       "lidHeightAuto": "Automatic",
       "lidHeightExplanation": "The height of the lid will be calculated to ensure that the patron of both the base and the lid have the same size"
-    },
-    "stepBDesign": {
-      "box": {
-        "linkTo": "Design the box"
-      },
-      "base": {
-        "linkTo": "Design the base"
-      },
-      "lid": {
-        "linkTo": "Design the lid"
-      },
-      "backgroundColor": "Apply a background color?",
-      "backgroundImage": "Define a background image?",
-      "textFace": "Face",
-      "textContent": "Text(s)",
-      "textEdit": "Edit this text",
-      "textDelete": "Delete this text",
-      "imageFace": "Face",
-      "imageContent": "Image(s)",
-      "imageEdit": "Edit this image",
-      "imageDelete": "Delete this image"
     },
     "front": "Front",
     "back": "Back"

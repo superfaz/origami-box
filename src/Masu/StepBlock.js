@@ -48,7 +48,7 @@ export default function StepBlock() {
       <LeftForm>
         <div className="mb-3">
           <label htmlFor="backgroundColor" className="form-label">
-            {t("masu.stepBDesign.backgroundColor")}
+            {t("masu:stepDesign.backgroundColor")}
           </label>
           <input
             className="form-control form-control-color"
@@ -60,7 +60,7 @@ export default function StepBlock() {
         </div>
         <div className="mb-3">
           <label htmlFor="backgroundImage" className="form-label">
-            {t("masu.stepBDesign.backgroundImage")}
+            {t("masu:stepDesign.backgroundImage")}
           </label>
           <input
             className="form-control"
@@ -75,8 +75,8 @@ export default function StepBlock() {
           <table className="table">
             <thead>
               <tr>
-                <th>{t("masu.stepBDesign.textContent")}</th>
-                <th>{t("masu.stepBDesign.textFace")}</th>
+                <th>{t("stepDesign.textContent")}</th>
+                <th>{t("stepDesign.textFace")}</th>
                 <th></th>
               </tr>
             </thead>
@@ -92,14 +92,14 @@ export default function StepBlock() {
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
-                      title={t("masu.stepBDesign.textEdit")}
+                      title={t("stepDesign.textEdit")}
                       to={`${baseUrl}/${block}/text/${key}`}
                     >
                       <i className="fas fa-pen" style={{ width: "14px" }}></i>
                     </Link>
                     <button
                       className="btn btn-outline-danger ms-1 btn-sm"
-                      title={t("masu.stepBDesign.textDelete")}
+                      title={t("stepDesign.textDelete")}
                       onClick={() => handleTextDelete(key)}
                     >
                       <i className="fas fa-times" style={{ width: "14px" }}></i>
@@ -122,8 +122,8 @@ export default function StepBlock() {
           <table className="table">
             <thead>
               <tr>
-                <th>{t("masu.stepBDesign.imageContent")}</th>
-                <th>{t("masu.stepBDesign.imageFace")}</th>
+                <th>{t("stepDesign.imageContent")}</th>
+                <th>{t("stepDesign.imageFace")}</th>
                 <th></th>
               </tr>
             </thead>
@@ -141,14 +141,14 @@ export default function StepBlock() {
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
-                      title={t("masu.stepBDesign.imageEdit")}
+                      title={t("stepDesign.imageEdit")}
                       to={`${baseUrl}/${block}/image/${key}`}
                     >
                       <i className="fas fa-pen" style={{ width: "14px" }}></i>
                     </Link>
                     <button
                       className="btn btn-outline-danger ms-1 btn-sm"
-                      title={t("masu.stepBDesign.imageDelete")}
+                      title={t("stepDesign.imageDelete")}
                       onClick={() => handleImageDelete(key)}
                     >
                       <i className="fas fa-times" style={{ width: "14px" }}></i>
@@ -170,7 +170,7 @@ export default function StepBlock() {
         <div className="mb-3 mt-5 d-flex">
           {block === "base" && masu.withLid && (
             <Link className="btn btn-primary ms-auto" to={`${baseUrl}/lid`}>
-              {t("masu.stepBDesign.lid.linkTo")}
+              {t("stepDesign.lid.linkTo")}
             </Link>
           )}
           {(block === "lid" || !masu.withLid) && (

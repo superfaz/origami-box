@@ -194,7 +194,7 @@ export default function StepPrepare() {
                 })}
                 to={`${url}/base`}
               >
-                {t("masu.stepBDesign.box.linkTo")}
+                {t("stepDesign.box.linkTo")}
               </Link>
             )}
             {masu.withDesign && masu.withLid && (
@@ -204,7 +204,7 @@ export default function StepPrepare() {
                 })}
                 to={`${url}/base`}
               >
-                {t("masu.stepBDesign.base.linkTo")}
+                {t("stepDesign.base.linkTo")}
               </Link>
             )}
             {!masu.withDesign && (

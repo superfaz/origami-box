@@ -16,5 +16,9 @@
     "2": "Front",
     "3": "Left",
     "4": "Right"
+  },
+  "stepDesign": {
+    "backgroundColor": "Apply a background color?",
+    "backgroundImage": "Define a background image?"
   }
 }

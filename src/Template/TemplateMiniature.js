@@ -54,13 +54,13 @@ export function TemplateMiniature({
                   data-bs-target={`#carouselTemplate${index}`}
                   data-bs-slide-to="0"
                   className="active"
-                  title={t("masu.stepBDesign.lid.title")}
+                  title={t("stepDesign.lid.title")}
                 ></button>
                 <button
                   type="button"
                   data-bs-target={`#carouselTemplate${index}`}
                   data-bs-slide-to="1"
-                  title={t("masu.stepBDesign.base.title")}
+                  title={t("stepDesign.base.title")}
                 ></button>
               </div>
               <div className="carousel-inner">
