@@ -21,7 +21,7 @@ export default function MasuEditPage() {
       <Route exact path={`${path}/debug`}>
         <StepDebug />
       </Route>
-      <Route exact path={[`${path}/:block`]}>
+      <Route exact path={`${path}/:block`}>
         <StepBlock />
       </Route>
       <Route exact path={[`${path}/:block/text`, `${path}/:block/text/:key`]}>
