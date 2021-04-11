@@ -186,7 +186,7 @@ export default function StepBlock({ lid = false }) {
               className="btn btn-primary ms-auto"
               to={`${baseUrl}/generate`}
             >
-              {t("masu.stepZGenerate.linkTo")}
+              {t("stepGenerate.linkTo")}
             </Link>
           )}
         </div>

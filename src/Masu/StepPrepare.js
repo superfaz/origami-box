@@ -214,7 +214,7 @@ export default function StepPrepare() {
                 })}
                 to={`${url}/generate`}
               >
-                {t("masu.stepZGenerate.linkTo")}
+                {t("stepGenerate.linkTo")}
               </Link>
             )}
           </div>

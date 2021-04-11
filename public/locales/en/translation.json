@@ -163,7 +163,10 @@
     "title": "Debug"
   },
   "stepGenerate": {
-    "title": "Prepare the Print"
+    "title": "Prepare the Print",
+    "linkTo": "Prepare the print",
+    "format": "Format",
+    "print": "Print"
   },
   "horizontal": {
     "left": "Left",
@@ -175,12 +178,11 @@
     "middle": "Middle",
     "bottom": "Bottom"
   },
+  "format": {
+    "A4": "A4",
+    "letter": "letter"
+  },
   "masu": {
-    "format": {
-      "label": "Format",
-      "A4": "A4",
-      "letter": "letter"
-    },
     "stepAGeneral": {
       "reset": "Reset the template",
       "withDesign": "With a specific design",
@@ -215,10 +217,6 @@
       "imageContent": "Image(s)",
       "imageEdit": "Edit this image",
       "imageDelete": "Delete this image"
-    },
-    "stepZGenerate": {
-      "linkTo": "Prepare the print",
-      "print": "Print"
     },
     "front": "Front",
     "back": "Back"

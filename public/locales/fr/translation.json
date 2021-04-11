@@ -163,7 +163,10 @@
     "title": "Debug"
   },
   "stepGenerate": {
-    "title": "Préparer l'impression"
+    "title": "Préparer l'impression",
+    "linkTo": "Préparer l'impression",
+    "format": "Format",
+    "print": "Imprimer"
   },
   "horizontal": {
     "left": "Gauche",
@@ -175,12 +178,11 @@
     "middle": "Milieu",
     "bottom": "Bas"
   },
+  "format": {
+    "A4": "A4",
+    "letter": "lettre (US)"
+  },
   "masu": {
-    "format": {
-      "label": "Format",
-      "A4": "A4",
-      "letter": "lettre (US)"
-    },
     "stepAGeneral": {
       "reset": "Réinitialiser le modèle",
       "withDesign": "Définir un design spécifique",
@@ -215,10 +217,6 @@
       "imageContent": "Image(s)",
       "imageEdit": "Editer cette image",
       "imageDelete": "Supprimer cette image"
-    },
-    "stepZGenerate": {
-      "linkTo": "Préparer l'impression",
-      "print": "Imprimer"
     },
     "front": "Recto",
     "back": "Verso"

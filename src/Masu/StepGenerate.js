@@ -75,7 +75,7 @@ export default function StepGenerate() {
         <form>
           <div className="mb-3">
             <label htmlFor="pageFormat" className="form-label">
-              {t("masu.format.label")}
+              {t("stepGenerate.format")}
             </label>
             <select
               name="pageFormat"
@@ -83,7 +83,7 @@ export default function StepGenerate() {
               value={masu.pageFormat}
               onChange={handleInputChange}
             >
-              <option value="A4">{t("masu.format.A4")}</option>
+              <option value="A4">{t("format.A4")}</option>
             </select>
           </div>
           <div className="mb-3 mt-5 d-flex">
@@ -92,7 +92,7 @@ export default function StepGenerate() {
               className="btn btn-primary ms-auto"
               onClick={print}
             >
-              {t("masu.stepZGenerate.print")}
+              {t("stepGenerate.print")}
             </button>
           </div>
         </form>
