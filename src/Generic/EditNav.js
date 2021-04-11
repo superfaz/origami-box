@@ -33,7 +33,30 @@ export default function EditNav() {
   const type = template.type;
   const definition = useTemplateDefinition(type);
 
+  const blocks = definition.blocks(data);
   const path = "/edit/" + template.key;
+
+  function RenderBlocks() {
+    if (blocks.length === 1 && blocks[0] === "base") {
+      return (
+        <BreadcrumbItem
+          key="base"
+          path={`${path}/base`}
+          title={t(`stepDesign.box.title`)}
+          withLink={definition.isGeneralValid(data)}
+        />
+      );
+    } else {
+      return blocks.map((block) => (
+        <BreadcrumbItem
+          key={block}
+          path={`${path}/${block}`}
+          title={t(`stepDesign.${block}.title`)}
+          withLink={definition.isGeneralValid(data)}
+        />
+      ));
+    }
+  }
 
   return (
     <nav className="nav-steps" aria-label="breadcrumb">
@@ -44,14 +67,7 @@ export default function EditNav() {
           title={t([`${type}:stepGeneral.title`, "stepGeneral.title"])}
           withLink={definition.isGeneralValid(data)}
         />
-        {definition.blocks(data).map((block) => (
-          <BreadcrumbItem
-            key={block}
-            path={`${path}/${block}`}
-            title={t(`stepDesign.${block}.title`)}
-            withLink={definition.isGeneralValid(data)}
-          />
-        ))}
+        <RenderBlocks />
         <BreadcrumbItem
           path={`${path}/generate`}
           title={t([`${type}:stepGenerate.title`, "stepGenerate.title"])}
