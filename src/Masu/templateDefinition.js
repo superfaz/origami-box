@@ -22,7 +22,7 @@ export const masuTemplateDefinition = {
     } else if (masu.withLid) {
       return ["base", "lid"];
     } else {
-      return ["box"];
+      return ["base"];
     }
   },
 };

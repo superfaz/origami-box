@@ -17,7 +17,7 @@ export const baggiTemplateDefinition = {
     if (!data.withDesign) {
       return [];
     } else {
-      return ["box"];
+      return ["base"];
     }
   },
 };
