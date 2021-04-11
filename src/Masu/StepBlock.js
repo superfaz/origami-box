@@ -2,9 +2,10 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { LeftForm, RightPreview } from "../Generic/Grid";
+import { useTemplate } from "../hooks";
+import objectMap from "../objectMap";
 import { updateDetail, deleteText, deleteImage } from "../store/templates";
 import MasuTemplateBack from "./MasuTemplateBack";
-import { useTemplate } from "../hooks";
 
 export default function StepBlock({ lid = false }) {
   const dispatch = useDispatch();
@@ -89,14 +90,14 @@ export default function StepBlock({ lid = false }) {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(block.texts).map((key) => (
+              {objectMap(block.texts, (text, key) => (
                 <tr key={key} className="align-middle">
                   <td>
-                    {block.texts[key].content.split("\n").map((line, index) => {
-                      return <div key={index}>{line}</div>;
-                    })}
+                    {text.content.split("\n").map((line, index) => (
+                      <div key={index}>{line}</div>
+                    ))}
                   </td>
-                  <td>{t(`masu:face.${block.texts[key].face}`)}</td>
+                  <td>{t(`masu:face.${text.face}`)}</td>
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
@@ -136,16 +137,16 @@ export default function StepBlock({ lid = false }) {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(block.images).map((key) => (
+              {objectMap(block.images, (image, key) => (
                 <tr key={key} className="align-middle">
                   <td>
                     <img
                       alt=""
-                      src={block.images[key].content}
+                      src={image.content}
                       style={{ height: "2rem" }}
                     />
                   </td>
-                  <td>{t(`masu:face.${block.images[key].face}`)}</td>
+                  <td>{t(`masu:face.${image.face}`)}</td>
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
