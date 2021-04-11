@@ -6,9 +6,9 @@ import SvgCut from "./SvgCut";
 export default function BaggiTemplateFront() {
   const { data: baggi } = useTemplate();
   const styles = buildDefaultStyles();
-  const m = useBaggiDimensions(baggi);
+  const d = useBaggiDimensions(baggi);
 
-  if (m === null) {
+  if (d === null) {
     return (
       <SvgPaper
         className="template"
@@ -21,10 +21,10 @@ export default function BaggiTemplateFront() {
   return (
     <SvgPaper
       className="template"
-      pageWidth={m.pageWidth}
-      pageHeight={m.pageHeight}
+      pageWidth={d.pageWidth}
+      pageHeight={d.pageHeight}
     >
-      <SvgCut m={m} styles={styles} />
+      <SvgCut d={d} styles={styles} />
     </SvgPaper>
   );
 }

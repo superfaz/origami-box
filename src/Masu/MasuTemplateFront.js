@@ -1,5 +1,5 @@
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
-import { useMasuMeasurement } from "./helper";
+import { useMasuDimensions } from "./helper";
 import { useTemplate } from "../hooks";
 import env from "../env";
 import SvgCut from "./SvgCut";
@@ -8,10 +8,10 @@ import SvgFooter from "../Generic/SvgFooter";
 
 export default function MasuTemplateFront({ lid = false, print = false }) {
   const { template, data: masu } = useTemplate();
-  const m = useMasuMeasurement(masu, lid);
+  const d = useMasuDimensions(masu, lid);
   const styles = buildDefaultStyles();
 
-  if (m === null) {
+  if (d === null) {
     return (
       <SvgPaper
         className="template"
@@ -24,24 +24,24 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
   return (
     <SvgPaper
       className="template"
-      pageWidth={m.pageWidth}
-      pageHeight={m.pageHeight}
+      pageWidth={d.pageWidth}
+      pageHeight={d.pageHeight}
     >
       {/* Header for print */}
       {print && (
         <SvgHeader
-          dimensions={m}
+          dimensions={d}
           blockName={lid ? "Lid" : masu.withLid ? "Base" : "Box"}
           title={template.title}
         />
       )}
 
       {env.debug.svg && (
-        <g transform={`translate(${-m.pageWidth / 2} ${-m.pageHeight / 2})`}>
+        <g transform={`translate(${-d.pageWidth / 2} ${-d.pageHeight / 2})`}>
           <line
             x1={0}
             y1={5}
-            x2={m.pageWidth}
+            x2={d.pageWidth}
             y2={5}
             style={{ stroke: "gray", strokeWidth: 0.2 }}
           />
@@ -49,7 +49,7 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
             x1={5}
             y1={0}
             x2={5}
-            y2={m.pageHeight}
+            y2={d.pageHeight}
             style={{ stroke: "gray", strokeWidth: 0.2 }}
           />
           <circle cx={0} cy={5} r={1} style={{ fill: "red" }} />
@@ -60,11 +60,11 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
       )}
 
       <g transform="rotate(45)">
-        <SvgCut m={m} styles={styles} />
+        <SvgCut d={d} styles={styles} />
       </g>
 
       {/* Footer for print */}
-      {print && <SvgFooter dimensions={m} />}
+      {print && <SvgFooter dimensions={d} />}
     </SvgPaper>
   );
 }

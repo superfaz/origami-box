@@ -1,6 +1,6 @@
 import { createFaces } from "./faces";
 
-export function useMasuMeasurement(masu, lid = false) {
+export function useMasuDimensions(masu, lid = false) {
   let pageWidth = 210;
   let pageHeight = 297;
 

@@ -9,7 +9,7 @@ import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateDetail, updateData, updateTemplate } from "../store/templates";
-import { useMasuMeasurement } from "./helper";
+import { useMasuDimensions } from "./helper";
 import MasuTemplateFront from "./MasuTemplateFront";
 
 export default function StepPrepare() {
@@ -19,8 +19,8 @@ export default function StepPrepare() {
   const form = useRef(null);
   const { template, data: masu } = useTemplate();
   const { url } = useRouteMatch();
-  const dimensionsBase = useMasuMeasurement(masu, false);
-  const dimensionsLid = useMasuMeasurement(masu, true);
+  const dimensionsBase = useMasuDimensions(masu, false);
+  const dimensionsLid = useMasuDimensions(masu, true);
 
   useEffect(() => {
     setValid(form.current.checkValidity());
