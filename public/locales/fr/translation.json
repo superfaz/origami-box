@@ -207,8 +207,8 @@
       "lid": {
         "linkTo": "Définir le design du couvercle"
       },
-      "backgroundColor": "Appliquer une couleur de fond?",
-      "backgroundImage": "Appliquer une texture?",
+      "backgroundColor": "Appliquer une couleur de fond ?",
+      "backgroundImage": "Appliquer une image de fond ?",
       "textFace": "Face",
       "textContent": "Texte(s)",
       "textEdit": "Editer ce texte",

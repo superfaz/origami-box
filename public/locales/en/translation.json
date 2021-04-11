@@ -208,7 +208,7 @@
         "linkTo": "Design the lid"
       },
       "backgroundColor": "Apply a background color?",
-      "backgroundImage": "Define a texture?",
+      "backgroundImage": "Define a background image?",
       "textFace": "Face",
       "textContent": "Text(s)",
       "textEdit": "Edit this text",
