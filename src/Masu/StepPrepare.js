@@ -106,12 +106,12 @@ export default function StepPrepare() {
                 onChange={handleCheckedChange}
               />
               <label className="form-check-label" htmlFor="withDesign">
-                {t("masu.stepAGeneral.withDesign")}
+                {t("stepGeneral.withDesign")}
               </label>
             </div>
             <div className="text-muted">
               {t(
-                `masu.stepAGeneral.withDesign${masu.withDesign ? "On" : "Off"}`
+                `stepGeneral.withDesign${masu.withDesign ? "On" : "Off"}`
               )}
             </div>
           </div>

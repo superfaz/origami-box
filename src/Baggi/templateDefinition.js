@@ -14,6 +14,10 @@ export const baggiTemplateDefinition = {
   },
 
   blocks: function (data) {
-    return [];
+    if (!data.withDesign) {
+      return [];
+    } else {
+      return ["box"];
+    }
   },
 };

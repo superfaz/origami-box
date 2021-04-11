@@ -32,6 +32,10 @@ export default function StepPrepare() {
     dispatch(updateData(template.key, event.target.name, value));
   }
 
+  function handleCheckedChange(event) {
+    dispatch(updateData(template.key, event.target.name, event.target.checked));
+  }
+
   return (
     <>
       <LeftForm>
@@ -67,6 +71,26 @@ export default function StepPrepare() {
             </Dimensions>
           </div>
           <DimensionsInfo className="mb-3" dimensions={dimensions} />
+          <div className="mb-3">
+            <div className="form-check form-switch">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="withDesign"
+                name="withDesign"
+                checked={baggi.withDesign}
+                onChange={handleCheckedChange}
+              />
+              <label className="form-check-label" htmlFor="withDesign">
+                {t("stepGeneral.withDesign")}
+              </label>
+            </div>
+            <div className="text-muted">
+              {t(
+                `stepGeneral.withDesign${baggi.withDesign ? "On" : "Off"}`
+              )}
+            </div>
+          </div>
         </form>
       </LeftForm>
       <RightPreview>

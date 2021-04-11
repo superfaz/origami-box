@@ -116,7 +116,10 @@
     "danger": "Il ne tiendra <strong>pas</strong> sur une page A4."
   },
   "stepGeneral": {
-    "title": "Options générales"
+    "title": "Options générales",
+    "withDesign": "Définir un design spécifique",
+    "withDesignOff": "Seul le patron de pliage sera préparé",
+    "withDesignOn": "Vous pourrez définir le design de la boîte en ajoutant textes et images"
   },
   "stepDesign": {
     "box": {
@@ -184,10 +187,6 @@
   },
   "masu": {
     "stepAGeneral": {
-      "reset": "Réinitialiser le modèle",
-      "withDesign": "Définir un design spécifique",
-      "withDesignOff": "Seul le patron de pliage sera préparé",
-      "withDesignOn": "Vous pourrez définir le design de la boîte en ajoutant textes et images",
       "withLid": "Avec un couvercle",
       "withLidOff": "",
       "withLidOn": "Un second patron de pliage sera préparé pour le couvercle de la boîte",

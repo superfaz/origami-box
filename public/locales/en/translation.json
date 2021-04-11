@@ -116,7 +116,10 @@
     "danger": "It will <strong>not</strong> fit in an A4 paper."
   },
   "stepGeneral": {
-    "title": "General options"
+    "title": "General options",
+    "withDesign": "With a specific design",
+    "withDesignOff": "Only the folding template will be prepared",
+    "withDesignOn": "You will be able to use images and texts to design the box"
   },
   "stepDesign": {
     "box": {
@@ -184,10 +187,6 @@
   },
   "masu": {
     "stepAGeneral": {
-      "reset": "Reset the template",
-      "withDesign": "With a specific design",
-      "withDesignOff": "Only the folding template will be prepared",
-      "withDesignOn": "You will be able to use images and texts to design the box",
       "withLid": "With a lid",
       "withLidOff": "",
       "withLidOn": "A second template will be prepared for the lid of the box",
