@@ -27,11 +27,11 @@ export default function MasuEditPage() {
       <Route exact path={`${path}/lid`}>
         <StepBlock lid />
       </Route>
-      <Route exact path={`${path}/debug`}>
-        <StepDebug />
-      </Route>
       <Route exact path={`${path}/generate`}>
         <StepGenerate />
+      </Route>
+      <Route exact path={`${path}/debug`}>
+        <StepDebug />
       </Route>
       <Route
         render={() => {
