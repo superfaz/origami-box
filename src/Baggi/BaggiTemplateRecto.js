@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import env from "../env";
 import { getFonts, getImages, getTexts } from "../Generic/selectors";
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
-import {SvgDebugAxis} from "../Generic/SvgDebug";
+import { SvgDebugAxis } from "../Generic/SvgDebug";
 import { useTemplate } from "../hooks";
 import { useBaggiDimensions } from "./helper";
 import SvgCut from "./SvgCut";

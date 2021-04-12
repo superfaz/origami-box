@@ -1,6 +1,6 @@
 import env from "../env";
 import { buildReferenceStyles, SvgPaper } from "../Generic/Svg";
-import {SvgDebugAxis} from "../Generic/SvgDebug";
+import { SvgDebugAxis } from "../Generic/SvgDebug";
 import { useTemplate } from "../hooks";
 import { useBaggiDimensions } from "./helper";
 import SvgCut from "./SvgCut";

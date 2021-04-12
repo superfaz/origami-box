@@ -1,6 +1,6 @@
 import env from "../env";
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
-import {SvgDebugAxis} from "../Generic/SvgDebug";
+import { SvgDebugAxis } from "../Generic/SvgDebug";
 import SvgFooter from "../Generic/SvgFooter";
 import SvgHeader from "../Generic/SvgHeader";
 import { useTemplate } from "../hooks";

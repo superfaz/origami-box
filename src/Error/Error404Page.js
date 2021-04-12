@@ -5,7 +5,7 @@ export default function Error404Page() {
   return (
     <div className="container">
       <p className="display-1">404</p>
-      <p className="lead">{t('error.404')}</p>
+      <p className="lead">{t("error.404")}</p>
     </div>
   );
 }

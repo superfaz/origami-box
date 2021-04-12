@@ -86,9 +86,7 @@ export default function StepPrepare() {
               </label>
             </div>
             <div className="text-muted">
-              {t(
-                `stepGeneral.withDesign${baggi.withDesign ? "On" : "Off"}`
-              )}
+              {t(`stepGeneral.withDesign${baggi.withDesign ? "On" : "Off"}`)}
             </div>
           </div>
         </form>
