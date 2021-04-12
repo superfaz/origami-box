@@ -8,5 +8,11 @@
   },
   "dimensions": {
     "width": "Width and Height"
+  },
+  "stepDesign": {
+    "recto": "Recto",
+    "verso": "Verso",
+    "backgroundImage": "Background image",
+    "backgroundColor": "Color"
   }
 }

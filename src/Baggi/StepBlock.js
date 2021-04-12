@@ -45,31 +45,72 @@ export default function StepBlock() {
   return (
     <>
       <LeftForm>
-        <div className="mb-3">
-          <label htmlFor="rectoColor" className="form-label">
-            {t("baggi:stepDesign.rectoColor")}
-          </label>
-          <input
-            className="form-control form-control-color"
-            type="color"
-            name="rectoColor"
-            value={blockData.rectoColor}
-            onChange={handleColorChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="rectoImage" className="form-label">
-            {t("baggi:stepDesign.rectoImage")}
-          </label>
-          <input
-            className="form-control"
-            type="file"
-            name="rectoImage"
-            id="rectoImage"
-            accept="image/png, image/jpeg, image/svg+xml"
-            onChange={handleImageChange}
-          />
-        </div>
+        <fieldset className="mb-3">
+          <legend>{t("baggi:stepDesign.recto")}</legend>
+          <div className="d-flex">
+            <label htmlFor="rectoImage" className="form-label">
+              {t("baggi:stepDesign.backgroundImage")}
+            </label>
+            <label
+              htmlFor="rectoColor"
+              className="form-label ms-auto"
+              style={{ minWidth: "3rem" }}
+            >
+              {t("baggi:stepDesign.backgroundColor")}
+            </label>
+          </div>
+          <div className="d-flex">
+            <input
+              className="form-control me-2"
+              type="file"
+              name="rectoImage"
+              id="rectoImage"
+              accept="image/png, image/jpeg, image/svg+xml"
+              onChange={handleImageChange}
+            />
+            <input
+              className="form-control form-control-color"
+              type="color"
+              name="rectoColor"
+              value={blockData.rectoColor || "#ffffff"}
+              onChange={handleColorChange}
+            />
+          </div>
+        </fieldset>
+
+        <fieldset className="mb-3">
+          <legend>{t("baggi:stepDesign.verso")}</legend>
+          <div className="d-flex">
+            <label htmlFor="versoImage" className="form-label">
+              {t("baggi:stepDesign.backgroundImage")}
+            </label>
+            <label
+              htmlFor="versoColor"
+              className="form-label ms-auto"
+              style={{ minWidth: "3rem" }}
+            >
+              {t("baggi:stepDesign.backgroundColor")}
+            </label>
+          </div>
+          <div className="d-flex">
+            <input
+              className="form-control me-2"
+              type="file"
+              name="versoImage"
+              id="versoImage"
+              accept="image/png, image/jpeg, image/svg+xml"
+              onChange={handleImageChange}
+            />
+            <input
+              className="form-control form-control-color"
+              type="color"
+              name="versoColor"
+              value={blockData.versoColor || "#ffffff"}
+              onChange={handleColorChange}
+            />
+          </div>
+        </fieldset>
+
         <div className="mb-3">
           <table className="table">
             <thead>
