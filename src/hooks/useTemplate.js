@@ -26,7 +26,7 @@ export function useTemplate() {
   const definition = useTemplateDefinition(template.type);
 
   if (!block) {
-    return { template, data };
+    return { template, data, blockData: data.base };
   }
 
   const blocks = definition.blocks(data);
@@ -34,9 +34,5 @@ export function useTemplate() {
     throw new Error404(`Can't update unmanaged block ${block}`);
   }
 
-  return {
-    template: templates[templateKey],
-    data: templates[templateKey].data,
-    blockData: templates[templateKey].data[block] || {},
-  };
+  return { template, data, blockData: data[block] };
 }

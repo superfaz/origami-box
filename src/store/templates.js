@@ -36,7 +36,12 @@ const initialMasu = {
   },
 };
 
-const initialBaggi = {};
+const initialBaggi = {
+  base: {
+    rectoColor: "#ffffff",
+    versoColor: "#ffffff",
+  },
+};
 
 const initialData = {
   masu: initialMasu,
