@@ -9,6 +9,11 @@
   "dimensions": {
     "width": "Width and Height"
   },
+  "face": {
+    "0": "Top",
+    "1": "Back",
+    "2": "Front"
+  },
   "stepDesign": {
     "recto": "Recto",
     "verso": "Verso",

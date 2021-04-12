@@ -9,6 +9,11 @@
   "dimensions": {
     "width": "Largeur et Hauteur"
   },
+  "face": {
+    "0": "Dessus",
+    "1": "Arrière",
+    "2": "Avant"
+  },
   "stepDesign": {
     "recto": "Recto",
     "verso": "Verso",
