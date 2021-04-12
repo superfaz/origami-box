@@ -103,33 +103,17 @@ export function MasuTemplate({
             points={`0,-${d.max_2} ${d.max_2},0 0,${d.max_2} -${d.max_2},0`}
           />
         </clipPath>
-        <clipPath id="front">
-          <polygon
-            points={`-${d.w_2},${d.l_2} ${d.w_2},${d.l_2} ${d.w_2},${
-              d.l_2 + d.h
-            } -${d.w_2},${d.l_2 + d.h}`}
-          />
+        <clipPath id="face1">
+          <rect x={-d.w_2} y={d.l_2} width={d.w} height={d.h} />
         </clipPath>
-        <clipPath id="back">
-          <polygon
-            points={`-${d.w_2},-${d.l_2} ${d.w_2},-${d.l_2} ${d.w_2},-${
-              d.l_2 + d.h
-            } -${d.w_2},-${d.l_2 + d.h}`}
-          />
+        <clipPath id="face2">
+          <rect x={-d.w_2} y={-d.l_2 - d.h} width={d.w} height={d.h} />
         </clipPath>
-        <clipPath id="left">
-          <polygon
-            points={`${d.w_2},-${d.l_2} ${d.w_2},${d.l_2} ${d.w_2 + d.h},${
-              d.l_2
-            } ${d.w_2 + d.h},-${d.l_2}`}
-          />
+        <clipPath id="face3">
+          <rect x={d.w_2} y={-d.l_2} width={d.h} height={d.l} />
         </clipPath>
-        <clipPath id="right">
-          <polygon
-            points={`-${d.w_2},-${d.l_2} -${d.w_2},${d.l_2} -${d.w_2 + d.h},${
-              d.l_2
-            } -${d.w_2 + d.h},-${d.l_2}`}
-          />
+        <clipPath id="face4">
+          <rect x={-d.w_2 - d.h} y={-d.l_2} width={d.h} height={d.l} />
         </clipPath>
       </defs>
 
@@ -164,7 +148,7 @@ export function MasuTemplate({
           const face = faces[key];
           const rotate = lid && key !== "0" ? 180 + face.rotate : face.rotate;
           return (
-            <g key={key} clipPath={`url(#${key})`}>
+            <g key={key} clipPath={`url(#face${key})`}>
               <g transform={`rotate(${rotate} ${face.x} ${face.y})`}>
                 {images
                   .filter((image) => image.face === key)
