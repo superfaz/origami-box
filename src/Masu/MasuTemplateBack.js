@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import env from "../env";
 import { getFonts, getTexts, getImages } from "../Generic/selectors";
 import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
-import SvgAxis from "../Generic/SvgAxis";
+import {SvgDebugAxis} from "../Generic/SvgDebug";
 import { useTemplate, useTemplateDefinition } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
 import objectMap from "../objectMap";
@@ -146,7 +146,7 @@ export function MasuTemplate({
           </g>
         )}
 
-        {env.debug.svg && <SvgAxis />}
+        {env.debug.svg && <SvgDebugAxis />}
         {!print && <SvgCut d={d} styles={styles} />}
 
         {objectMap(faces, (face, key) => {

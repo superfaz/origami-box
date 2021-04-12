@@ -1,7 +1,7 @@
 const xStyle = { stroke: "black", strokeWidth: 0.4 };
 const yStyle = { stroke: "red", strokeWidth: 0.4 };
 
-export default function SvgAxis() {
+export function SvgDebugAxis() {
   return (
     <g>
       <line x1={0} y1={0} x2={20} y2={0} style={xStyle} />

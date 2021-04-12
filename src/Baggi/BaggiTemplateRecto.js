@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import env from "../env";
 import { getFonts, getImages, getTexts } from "../Generic/selectors";
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
-import SvgAxis from "../Generic/SvgAxis";
+import {SvgDebugAxis} from "../Generic/SvgDebug";
 import { useTemplate } from "../hooks";
 import { useBaggiDimensions } from "./helper";
 import SvgCut from "./SvgCut";
@@ -81,7 +81,7 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
           ))}
       </g> */}
 
-      {env.debug.svg && <SvgAxis />}
+      {env.debug.svg && <SvgDebugAxis />}
       <SvgCut d={d} styles={styles} />
     </SvgPaper>
   );
