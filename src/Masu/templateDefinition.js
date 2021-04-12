@@ -29,6 +29,7 @@ export const masuTemplateDefinition = {
   faces: function (d) {
     return {
       0: {
+        side: "verso",
         x: 0,
         y: 0,
         width: d.w,
@@ -38,6 +39,7 @@ export const masuTemplateDefinition = {
         vert: d.l_2,
       },
       1: {
+        side: "verso",
         x: 0,
         y: d.l_2 + d.h_2,
         width: d.w,
@@ -47,6 +49,7 @@ export const masuTemplateDefinition = {
         vert: d.h_2,
       },
       2: {
+        side: "verso",
         x: 0,
         y: -d.l_2 - d.h_2,
         width: d.w,
@@ -56,6 +59,7 @@ export const masuTemplateDefinition = {
         vert: d.h_2,
       },
       3: {
+        side: "verso",
         x: d.w_2 + d.h_2,
         y: 0,
         width: d.h,
@@ -65,6 +69,7 @@ export const masuTemplateDefinition = {
         vert: d.h_2,
       },
       4: {
+        side: "verso",
         x: -d.w_2 - d.h_2,
         y: 0,
         width: d.h,

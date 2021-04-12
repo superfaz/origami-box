@@ -146,7 +146,7 @@ export function MasuTemplate({
           </g>
         )}
 
-        {env.debug.svg && <SvgDebugFaces faces={faces} />}
+        {env.debug.svg && <SvgDebugFaces side="verso" faces={faces} />}
         {env.debug.svg && <SvgDebugAxis />}
 
         {!print && <SvgCut d={d} styles={styles} />}

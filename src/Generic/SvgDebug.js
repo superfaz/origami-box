@@ -29,17 +29,23 @@ const colors = [
   "#caf0f8",
 ];
 
-export function SvgDebugFaces({ faces }) {
-  return objectMap(faces, (face, key) => (
-    <rect
-      key={key}
-      x={face.x - face.width / 2}
-      y={face.y - face.height / 2}
-      width={face.width}
-      height={face.height}
-      style={{
-        fill: colors[key],
-      }}
-    />
-  ));
+export function SvgDebugFaces({ side, faces }) {
+  return objectMap(faces, (face, key) => {
+    if (face.side !== side) {
+      return null;
+    } else {
+      return (
+        <rect
+          key={key}
+          x={face.x - face.width / 2}
+          y={face.y - face.height / 2}
+          width={face.width}
+          height={face.height}
+          style={{
+            fill: colors[key],
+          }}
+        />
+      );
+    }
+  });
 }
