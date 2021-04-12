@@ -3,13 +3,7 @@ import { MasuTemplate } from "../Masu/MasuTemplateBack";
 
 export function EmptyTemplate({ withPaper = true }) {
   if (withPaper) {
-    return (
-      <SvgPaper
-        className="template"
-        pageWidth={210}
-        pageHeight={297}
-      ></SvgPaper>
-    );
+    return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
   } else {
     return (
       <Svg viewBox="0 0 100 100" width="100%" height="100%">
