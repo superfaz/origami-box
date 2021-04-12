@@ -1,9 +1,11 @@
+import env from "../env";
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
-import { useMasuDimensions } from "./helper";
-import { useTemplate } from "../hooks";
-import SvgCut from "./SvgCut";
-import SvgHeader from "../Generic/SvgHeader";
+import SvgAxis from "../Generic/SvgAxis";
 import SvgFooter from "../Generic/SvgFooter";
+import SvgHeader from "../Generic/SvgHeader";
+import { useTemplate } from "../hooks";
+import { useMasuDimensions } from "./helper";
+import SvgCut from "./SvgCut";
 
 export default function MasuTemplateFront({ lid = false, print = false }) {
   const { template, data: masu } = useTemplate();
@@ -30,6 +32,7 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
       )}
 
       <g transform="rotate(45)">
+        {env.debug.svg && <SvgAxis />}
         <SvgCut d={d} styles={styles} />
       </g>
 

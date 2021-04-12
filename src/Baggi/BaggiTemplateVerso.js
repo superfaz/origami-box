@@ -1,4 +1,6 @@
+import env from "../env";
 import { buildReferenceStyles, SvgPaper } from "../Generic/Svg";
+import SvgAxis from "../Generic/SvgAxis";
 import { useTemplate } from "../hooks";
 import { useBaggiDimensions } from "./helper";
 import SvgCut from "./SvgCut";
@@ -39,6 +41,7 @@ export default function BaggiTemplateVerso({ text, image }) {
         />
       )}
 
+      {env.debug.svg && <SvgAxis />}
       <SvgCut d={d} styles={styles} />
     </SvgPaper>
   );

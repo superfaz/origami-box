@@ -1,13 +1,15 @@
 import { Helmet } from "react-helmet";
+import env from "../env";
 import { getFonts, getTexts, getImages } from "../Generic/selectors";
 import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
+import SvgAxis from "../Generic/SvgAxis";
 import { useTemplate } from "../hooks";
+import { EmptyTemplate } from "../Template/Template";
 import { createFaces } from "./faces";
 import { useMasuDimensions } from "./helper";
 import SvgCut from "./SvgCut";
 import SvgImage from "./SvgImage";
 import SvgText from "./SvgText";
-import { EmptyTemplate } from "../Template/Template";
 
 function SvgRoot({ withPaper, d, children }) {
   if (withPaper) {
@@ -155,6 +157,7 @@ export function MasuTemplate({
           </g>
         )}
 
+        {env.debug.svg && <SvgAxis />}
         {!print && <SvgCut d={d} styles={styles} />}
 
         {Object.keys(faces).map((key) => {
