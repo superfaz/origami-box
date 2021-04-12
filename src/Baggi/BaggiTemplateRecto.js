@@ -1,14 +1,15 @@
 import { Helmet } from "react-helmet";
 import env from "../env";
-import { getFonts, getImages, getTexts } from "../Generic/selectors";
+import { getFonts } from "../Generic/selectors";
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
-import { SvgDebugAxis } from "../Generic/SvgDebug";
-import { useTemplate } from "../hooks";
+import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
+import { useTemplate, useTemplateDefinition } from "../hooks";
 import { useBaggiDimensions } from "./helper";
 import SvgCut from "./SvgCut";
 
 export default function BaggiTemplateRecto({ text = null, image = null }) {
   const { data: baggi, blockData } = useTemplate();
+  const definition = useTemplateDefinition("baggi");
   const styles = buildDefaultStyles(blockData.rectoColor);
   const d = useBaggiDimensions(baggi);
 
@@ -16,9 +17,7 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
     return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
   }
 
-  const images = getImages(blockData, image);
-  const texts = getTexts(blockData, text);
-
+  const faces = definition.faces(d);
   const fonts = getFonts(baggi)
     .map((f) => "family=" + f.replace(" ", "+"))
     .join("&");
@@ -81,6 +80,7 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
           ))}
       </g> */}
 
+      {env.debug.svg && <SvgDebugFaces side="recto" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
       <SvgCut d={d} styles={styles} />
     </SvgPaper>

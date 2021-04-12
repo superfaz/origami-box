@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import BaseStepBlockImage, {
   useStepBlockImageState,
 } from "../BaseTemplate/BaseStepBlockImage";
@@ -6,7 +5,6 @@ import BaggiTemplateRecto from "./BaggiTemplateRecto";
 import BaggiTemplateVerso from "./BaggiTemplateVerso";
 
 export default function StepBlockImage() {
-  const { block } = useParams();
   const [state, setState] = useStepBlockImageState();
 
   return (

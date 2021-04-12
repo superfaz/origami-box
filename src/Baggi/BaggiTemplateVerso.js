@@ -1,18 +1,21 @@
 import env from "../env";
 import { buildReferenceStyles, SvgPaper } from "../Generic/Svg";
-import { SvgDebugAxis } from "../Generic/SvgDebug";
-import { useTemplate } from "../hooks";
+import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
+import { useTemplate, useTemplateDefinition } from "../hooks";
 import { useBaggiDimensions } from "./helper";
 import SvgCut from "./SvgCut";
 
 export default function BaggiTemplateVerso({ text, image }) {
   const { data: baggi, blockData } = useTemplate();
+  const definition = useTemplateDefinition("baggi");
   const styles = buildReferenceStyles(blockData.versoColor);
   const d = useBaggiDimensions(baggi);
 
   if (d === null) {
     return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
   }
+
+  const faces = definition.faces(d);
 
   return (
     <SvgPaper
@@ -41,6 +44,7 @@ export default function BaggiTemplateVerso({ text, image }) {
         />
       )}
 
+      {env.debug.svg && <SvgDebugFaces side="verso" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
       <SvgCut d={d} styles={styles} />
     </SvgPaper>

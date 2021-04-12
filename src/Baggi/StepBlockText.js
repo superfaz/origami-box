@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import BaseStepBlockText, {
   useStepBlockTextState,
 } from "../BaseTemplate/BaseStepBlockText";
@@ -6,7 +5,6 @@ import BaggiTemplateRecto from "./BaggiTemplateRecto";
 import BaggiTemplateVerso from "./BaggiTemplateVerso";
 
 export default function StepBlockText() {
-  const { block } = useParams();
   const [state, setState] = useStepBlockTextState();
 
   return (

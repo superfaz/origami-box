@@ -20,4 +20,39 @@ export const baggiTemplateDefinition = {
       return ["base"];
     }
   },
+
+  faces: function (d) {
+    return {
+      0: {
+        side: "recto",
+        x: 0,
+        y: -d.w_2,
+        width: d.l,
+        height: d.w,
+        rotate: 180,
+        hori: d.l_2,
+        vert: d.w_2,
+      },
+      1: {
+        side: "recto",
+        x: 0,
+        y: -3.0 * d.w_2,
+        width: d.l,
+        height: d.w,
+        rotate: 180,
+        hori: d.l_2,
+        vert: d.w_2,
+      },
+      2: {
+        side: "verso",
+        x: 0,
+        y: 3.0 * d.w_2,
+        width: d.l,
+        height: d.w,
+        rotate: 180,
+        hori: d.l_2,
+        vert: d.w_2,
+      },
+    };
+  },
 };
