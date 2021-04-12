@@ -6,6 +6,7 @@ import { useTemplate } from "../hooks";
 import objectMap from "../objectMap";
 import { updateDetail, deleteText, deleteImage } from "../store/templates";
 import BaggiTemplateRecto from "./BaggiTemplateRecto";
+import BaggiTemplateVerso from "./BaggiTemplateVerso";
 
 export default function StepBlock() {
   const dispatch = useDispatch();
@@ -214,7 +215,14 @@ export default function StepBlock() {
         </div>
       </LeftForm>
       <RightPreview>
-        <BaggiTemplateRecto />
+        <div className="row">
+          <div className="col-12 col-lg-6 mb-3">
+            <BaggiTemplateRecto />
+          </div>
+          <div className="col-12 col-lg-6 mb-3">
+            <BaggiTemplateVerso />
+          </div>
+        </div>
       </RightPreview>
     </>
   );
