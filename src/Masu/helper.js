@@ -52,7 +52,7 @@ export function configurePositioning(face, text) {
   }
 
   let style = {};
-  let configuration = face;
+  let configuration = { ...face };
 
   switch (text.horizontal) {
     case "left":

@@ -58,8 +58,8 @@ export const masuTemplateDefinition = {
       3: {
         x: d.w_2 + d.h_2,
         y: 0,
-        width: d.l,
-        height: d.h,
+        width: d.h,
+        height: d.l,
         rotate: 90,
         hori: d.l_2,
         vert: d.h_2,
@@ -67,8 +67,8 @@ export const masuTemplateDefinition = {
       4: {
         x: -d.w_2 - d.h_2,
         y: 0,
-        width: d.l,
-        height: d.h,
+        width: d.h,
+        height: d.l,
         rotate: -90,
         hori: d.l_2,
         vert: d.h_2,

@@ -11,10 +11,10 @@ export default function SvgImage({ face, image }) {
 
   if (image.size === "auto") {
     if (face.width >= face.height) {
-      height = face.height - 2 * image.marginVertical;
+      height = 2 * (face.vert - image.marginVertical);
       width = (image.originalWidth * height) / image.originalHeight;
     } else {
-      width = face.width - 2 * image.marginHorizontal;
+      width = 2 * (face.hori - image.marginHorizontal);
       height = (image.originalHeight * width) / image.originalWidth;
     }
   }

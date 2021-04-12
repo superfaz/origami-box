@@ -105,6 +105,9 @@ export function MasuTemplate({
             points={`0,-${d.max_2} ${d.max_2},0 0,${d.max_2} -${d.max_2},0`}
           />
         </clipPath>
+        <clipPath id="face0">
+          <rect x={-d.w_2} y={-d.l_2} width={d.w} height={d.l} />
+        </clipPath>
         <clipPath id="face1">
           <rect x={-d.w_2} y={d.l_2} width={d.w} height={d.h} />
         </clipPath>
