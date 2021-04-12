@@ -12,9 +12,9 @@ export function createFaces(l_2, w_2, h_2) {
     1: {
       x: 0,
       y: l_2 + h_2,
-      rotate: 180,
       width: 2 * w_2,
       height: 2 * h_2,
+      rotate: 180,
       hori: w_2,
       vert: h_2,
     },
