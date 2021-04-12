@@ -34,6 +34,17 @@ export default function BaggiTemplateVerso() {
         }}
       />
 
+      {Boolean(blockData.versoImage) && (
+        <image
+          href={blockData.versoImage}
+          x={-d.width / 2}
+          y={-d.height / 2}
+          width={d.width}
+          height={d.height}
+          preserveAspectRatio="xMidYMid slice"
+        />
+      )}
+
       <SvgCut d={d} styles={styles} />
     </SvgPaper>
   );

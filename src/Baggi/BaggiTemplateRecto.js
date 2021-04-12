@@ -34,6 +34,17 @@ export default function BaggiTemplateRecto() {
         }}
       />
 
+      {Boolean(blockData.rectoImage) && (
+        <image
+          href={blockData.rectoImage}
+          x={-d.width / 2}
+          y={-d.height / 2}
+          width={d.width}
+          height={d.height}
+          preserveAspectRatio="xMidYMid slice"
+        />
+      )}
+
       <SvgCut d={d} styles={styles} />
     </SvgPaper>
   );
