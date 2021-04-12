@@ -5,7 +5,7 @@ import { LeftForm, RightPreview } from "../Generic/Grid";
 import { useTemplate } from "../hooks";
 import objectMap from "../objectMap";
 import { updateDetail, deleteText, deleteImage } from "../store/templates";
-import BaggiTemplateFront from "./BaggiTemplateFront";
+import BaggiTemplateRecto from "./BaggiTemplateRecto";
 
 export default function StepBlock() {
   const dispatch = useDispatch();
@@ -214,7 +214,7 @@ export default function StepBlock() {
         </div>
       </LeftForm>
       <RightPreview>
-        <BaggiTemplateFront />
+        <BaggiTemplateRecto />
       </RightPreview>
     </>
   );

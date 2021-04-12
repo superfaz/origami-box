@@ -1,12 +1,12 @@
 import BaseStepGenerate from "../BaseTemplate/BaseStepGenerate";
-import BaggiTemplateFront from "./BaggiTemplateFront";
+import BaggiTemplateRecto from "./BaggiTemplateRecto";
 
 export default function StepGenerate() {
   return (
     <BaseStepGenerate>
       <div className="row">
         <div className="col-12 col-lg-6 mb-3">
-          <BaggiTemplateFront print="true" />
+          <BaggiTemplateRecto print="true" />
         </div>
       </div>
     </BaseStepGenerate>

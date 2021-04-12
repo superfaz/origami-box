@@ -3,7 +3,7 @@ import { useTemplate } from "../hooks";
 import { useBaggiDimensions } from "./helper";
 import SvgCut from "./SvgCut";
 
-export default function BaggiTemplateFront() {
+export default function BaggiTemplateRecto() {
   const { data: baggi, blockData } = useTemplate();
   const styles = buildDefaultStyles(blockData.rectoColor);
   const d = useBaggiDimensions(baggi);

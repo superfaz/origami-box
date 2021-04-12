@@ -7,7 +7,7 @@ import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateData, updateTemplate } from "../store/templates";
-import BaggiTemplateFront from "./BaggiTemplateFront";
+import BaggiTemplateRecto from "./BaggiTemplateRecto";
 import { useBaggiDimensions } from "./helper";
 
 export default function StepPrepare() {
@@ -94,7 +94,7 @@ export default function StepPrepare() {
         </form>
       </LeftForm>
       <RightPreview>
-        <BaggiTemplateFront />
+        <BaggiTemplateRecto />
       </RightPreview>
     </>
   );
