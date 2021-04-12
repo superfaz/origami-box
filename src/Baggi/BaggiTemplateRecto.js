@@ -9,13 +9,7 @@ export default function BaggiTemplateRecto() {
   const d = useBaggiDimensions(baggi);
 
   if (d === null) {
-    return (
-      <SvgPaper
-        className="template"
-        pageWidth={210}
-        pageHeight={297}
-      ></SvgPaper>
-    );
+    return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
   }
 
   return (

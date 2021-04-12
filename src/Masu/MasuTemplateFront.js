@@ -12,13 +12,7 @@ export default function MasuTemplateFront({ lid = false, print = false }) {
   const styles = buildDefaultStyles();
 
   if (d === null) {
-    return (
-      <SvgPaper
-        className="template"
-        pageWidth={210}
-        pageHeight={297}
-      ></SvgPaper>
-    );
+    return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
   }
 
   return (
