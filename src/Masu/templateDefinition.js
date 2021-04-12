@@ -25,4 +25,54 @@ export const masuTemplateDefinition = {
       return ["base"];
     }
   },
+
+  faces: function (d) {
+    return {
+      0: {
+        x: 0,
+        y: 0,
+        width: d.w,
+        height: d.l,
+        rotate: 180,
+        hori: d.w_2,
+        vert: d.l_2,
+      },
+      1: {
+        x: 0,
+        y: d.l_2 + d.h_2,
+        width: d.w,
+        height: d.h,
+        rotate: 180,
+        hori: d.w_2,
+        vert: d.h_2,
+      },
+      2: {
+        x: 0,
+        y: -d.l_2 - d.h_2,
+        width: d.w,
+        height: d.h,
+        rotate: 0,
+        hori: d.w_2,
+        vert: d.h_2,
+      },
+      3: {
+        x: d.w_2 + d.h_2,
+        y: 0,
+        width: d.l,
+        height: d.h,
+        rotate: 90,
+        hori: d.l_2,
+        vert: d.h_2,
+      },
+      4: {
+        x: -d.w_2 - d.h_2,
+        y: 0,
+        width: d.l,
+        height: d.h,
+        rotate: -90,
+        hori: d.l_2,
+        vert: d.h_2,
+      },
+    };
+  },
 };

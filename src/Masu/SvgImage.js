@@ -1,12 +1,9 @@
-import { configureFace } from "./helper";
-
-export default function SvgImage({ image, d }) {
+export default function SvgImage({ face, image }) {
   if (image.content === null) {
     // Image file not provided
     return null;
   }
 
-  const face = configureFace(image, d.l_2, d.w_2, d.h_2);
   let width = image.size === "auto" ? null : parseFloat(image.width);
   let height = image.size === "auto" ? null : parseFloat(image.height);
   let x = face.x;

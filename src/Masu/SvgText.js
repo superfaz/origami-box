@@ -2,16 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { configurePositioning } from "./helper";
 import env from "../env";
 
-export default function SvgText({ text, d }) {
+export default function SvgText({ face, text }) {
   const textRef = useRef(null);
   const [box, setBox] = useState(null);
 
-  let { configuration, style } = configurePositioning(
-    text,
-    d.l_2,
-    d.w_2,
-    d.h_2
-  );
+  let { configuration, style } = configurePositioning(face, text);
   style.fontSize = text.size;
   style.fill = text.color;
 

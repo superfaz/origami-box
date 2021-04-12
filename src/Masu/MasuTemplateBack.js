@@ -3,9 +3,9 @@ import env from "../env";
 import { getFonts, getTexts, getImages } from "../Generic/selectors";
 import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
 import SvgAxis from "../Generic/SvgAxis";
-import { useTemplate } from "../hooks";
+import { useTemplate, useTemplateDefinition } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
-import { createFaces } from "./faces";
+import objectMap from "../objectMap";
 import { useMasuDimensions } from "./helper";
 import SvgCut from "./SvgCut";
 import SvgImage from "./SvgImage";
@@ -64,6 +64,7 @@ export function MasuTemplate({
   withPaper = true,
 }) {
   const d = useMasuDimensions(masu, lid);
+  const definition = useTemplateDefinition("masu");
 
   if (d === null) {
     return <EmptyTemplate withPaper={withPaper} />;
@@ -72,7 +73,7 @@ export function MasuTemplate({
   const block = lid ? masu.lid : masu.base;
   const images = getImages(block, image);
   const texts = getTexts(block, text);
-  const faces = createFaces(d.l_2, d.w_2, d.h_2);
+  const faces = definition.faces(d);
   const styles = buildReferenceStyles(block.background);
 
   const fonts = getFonts(masu)
@@ -97,6 +98,7 @@ export function MasuTemplate({
           />
         )}
       </Helmet>
+
       <defs>
         <clipPath id="max">
           <polygon
@@ -144,8 +146,7 @@ export function MasuTemplate({
         {env.debug.svg && <SvgAxis />}
         {!print && <SvgCut d={d} styles={styles} />}
 
-        {Object.keys(faces).map((key) => {
-          const face = faces[key];
+        {objectMap(faces, (face, key) => {
           const rotate = lid && key !== "0" ? 180 + face.rotate : face.rotate;
           return (
             <g key={key} clipPath={`url(#face${key})`}>
@@ -153,12 +154,20 @@ export function MasuTemplate({
                 {images
                   .filter((image) => image.face === key)
                   .map((image) => (
-                    <SvgImage key={key + "-" + image.key} image={image} d={d} />
+                    <SvgImage
+                      key={key + "-" + image.key}
+                      face={face}
+                      image={image}
+                    />
                   ))}
                 {texts
                   .filter((text) => text.face === key)
                   .map((text) => (
-                    <SvgText key={key + "-" + text.key} text={text} d={d} />
+                    <SvgText
+                      key={key + "-" + text.key}
+                      face={face}
+                      text={text}
+                    />
                   ))}
               </g>
             </g>

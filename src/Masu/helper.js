@@ -1,5 +1,3 @@
-import { createFaces } from "./faces";
-
 export function useMasuDimensions(masu, lid = false) {
   let pageWidth = 210;
   let pageHeight = 297;
@@ -41,18 +39,7 @@ export function useMasuDimensions(masu, lid = false) {
   };
 }
 
-export function configureFace(element, l_2, w_2, h_2) {
-  const faces = createFaces(l_2, w_2, h_2);
-  const face = faces[element.face];
-  if (face === undefined) {
-    console.log(`face '${element.face}' not supported`);
-    return null;
-  }
-
-  return face;
-}
-
-export function configurePositioning(text, l_2, w_2, h_2) {
+export function configurePositioning(face, text) {
   const margins = {
     hori: parseFloat(text.marginHorizontal),
     vert: parseFloat(text.marginVertical),
@@ -65,7 +52,7 @@ export function configurePositioning(text, l_2, w_2, h_2) {
   }
 
   let style = {};
-  let configuration = configureFace(text, l_2, w_2, h_2);
+  let configuration = face;
 
   switch (text.horizontal) {
     case "left":
