@@ -3,7 +3,7 @@ import env from "../env";
 import { getFonts, getTexts, getImages } from "../Generic/selectors";
 import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
-import { useTemplate, useTemplateDefinition } from "../hooks";
+import { useTemplate, useTemplateDefinition, useIds } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
 import objectMap from "../objectMap";
 import { useMasuDimensions } from "./helper";
@@ -65,6 +65,7 @@ export function MasuTemplate({
 }) {
   const d = useMasuDimensions(masu, lid);
   const definition = useTemplateDefinition("masu");
+  const ids = useIds();
 
   if (d === null) {
     return <EmptyTemplate withPaper={withPaper} />;
@@ -79,6 +80,7 @@ export function MasuTemplate({
   const fonts = getFonts(masu)
     .map((f) => "family=" + f.replace(" ", "+"))
     .join("&");
+
   return (
     <SvgRoot d={d} withPaper={withPaper}>
       <Helmet>
@@ -100,24 +102,24 @@ export function MasuTemplate({
       </Helmet>
 
       <defs>
-        <clipPath id="max">
+        <clipPath id={ids.unique("max")}>
           <polygon
             points={`0,-${d.max_2} ${d.max_2},0 0,${d.max_2} -${d.max_2},0`}
           />
         </clipPath>
-        <clipPath id="face0">
+        <clipPath id={ids.unique("face-0")}>
           <rect x={-d.w_2} y={-d.l_2} width={d.w} height={d.l} />
         </clipPath>
-        <clipPath id="face1">
+        <clipPath id={ids.unique("face-1")}>
           <rect x={-d.w_2} y={d.l_2} width={d.w} height={d.h} />
         </clipPath>
-        <clipPath id="face2">
+        <clipPath id={ids.unique("face-2")}>
           <rect x={-d.w_2} y={-d.l_2 - d.h} width={d.w} height={d.h} />
         </clipPath>
-        <clipPath id="face3">
+        <clipPath id={ids.unique("face-3")}>
           <rect x={d.w_2} y={-d.l_2} width={d.h} height={d.l} />
         </clipPath>
-        <clipPath id="face4">
+        <clipPath id={ids.unique("face-4")}>
           <rect x={-d.w_2 - d.h} y={-d.l_2} width={d.h} height={d.l} />
         </clipPath>
       </defs>
@@ -141,7 +143,7 @@ export function MasuTemplate({
               width={d.max}
               height={d.max}
               preserveAspectRatio="xMidYMid slice"
-              clipPath="url(#max)"
+              clipPath={"url(#" + ids.unique("max") + ")"}
             />
           </g>
         )}
@@ -154,7 +156,7 @@ export function MasuTemplate({
         {objectMap(faces, (face, key) => {
           const rotate = lid && key !== "0" ? 180 + face.rotate : face.rotate;
           return (
-            <g key={key} clipPath={`url(#face${key})`}>
+            <g key={key} clipPath={"url(#" + ids.unique(`face-${key}`) + ")"}>
               <g transform={`rotate(${rotate} ${face.x} ${face.y})`}>
                 {images
                   .filter((image) => image.face === key)
