@@ -101,30 +101,30 @@ export function MasuTemplate({
         )}
       </Helmet>
 
-      <defs>
-        <clipPath id={ids.unique("max")}>
-          <polygon
-            points={`0,-${d.max_2} ${d.max_2},0 0,${d.max_2} -${d.max_2},0`}
-          />
-        </clipPath>
-        <clipPath id={ids.unique("face-0")}>
-          <rect x={-d.w_2} y={-d.l_2} width={d.w} height={d.l} />
-        </clipPath>
-        <clipPath id={ids.unique("face-1")}>
-          <rect x={-d.w_2} y={d.l_2} width={d.w} height={d.h} />
-        </clipPath>
-        <clipPath id={ids.unique("face-2")}>
-          <rect x={-d.w_2} y={-d.l_2 - d.h} width={d.w} height={d.h} />
-        </clipPath>
-        <clipPath id={ids.unique("face-3")}>
-          <rect x={d.w_2} y={-d.l_2} width={d.h} height={d.l} />
-        </clipPath>
-        <clipPath id={ids.unique("face-4")}>
-          <rect x={-d.w_2 - d.h} y={-d.l_2} width={d.h} height={d.l} />
-        </clipPath>
-      </defs>
-
       <g transform="rotate(135)">
+        <defs>
+          <clipPath id={ids.unique("max")}>
+            <polygon
+              points={`0,-${d.max_2} ${d.max_2},0 0,${d.max_2} -${d.max_2},0`}
+            />
+          </clipPath>
+          <clipPath id={ids.unique("face-0")}>
+            <rect x={-d.w_2} y={-d.l_2} width={d.w} height={d.l} />
+          </clipPath>
+          <clipPath id={ids.unique("face-1")}>
+            <rect x={-d.w_2} y={d.l_2} width={d.w} height={d.h} />
+          </clipPath>
+          <clipPath id={ids.unique("face-2")}>
+            <rect x={-d.w_2} y={-d.l_2 - d.h} width={d.w} height={d.h} />
+          </clipPath>
+          <clipPath id={ids.unique("face-3")}>
+            <rect x={d.w_2} y={-d.l_2} width={d.h} height={d.l} />
+          </clipPath>
+          <clipPath id={ids.unique("face-4")}>
+            <rect x={-d.w_2 - d.h} y={-d.l_2} width={d.h} height={d.l} />
+          </clipPath>
+        </defs>
+
         <polygon
           points={`0,-${d.max_2 + 5} ${d.max_2 + 5},0 0,${d.max_2 + 5} -${
             d.max_2 + 5
