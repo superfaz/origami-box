@@ -10,6 +10,7 @@ import { useMasuDimensions } from "./helper";
 import SvgCut from "./SvgCut";
 import SvgImage from "../Generic/SvgImage";
 import SvgText from "./SvgText";
+import SvgClipPaths from "../Generic/SvgClipPaths";
 
 function SvgRoot({ withPaper, d, children }) {
   if (withPaper) {
@@ -108,21 +109,7 @@ export function MasuTemplate({
               points={`0,-${d.max_2} ${d.max_2},0 0,${d.max_2} -${d.max_2},0`}
             />
           </clipPath>
-          <clipPath id={ids.unique("face-0")}>
-            <rect x={-d.w_2} y={-d.l_2} width={d.w} height={d.l} />
-          </clipPath>
-          <clipPath id={ids.unique("face-1")}>
-            <rect x={-d.w_2} y={d.l_2} width={d.w} height={d.h} />
-          </clipPath>
-          <clipPath id={ids.unique("face-2")}>
-            <rect x={-d.w_2} y={-d.l_2 - d.h} width={d.w} height={d.h} />
-          </clipPath>
-          <clipPath id={ids.unique("face-3")}>
-            <rect x={d.w_2} y={-d.l_2} width={d.h} height={d.l} />
-          </clipPath>
-          <clipPath id={ids.unique("face-4")}>
-            <rect x={-d.w_2 - d.h} y={-d.l_2} width={d.h} height={d.l} />
-          </clipPath>
+          <SvgClipPaths ids={ids} faces={faces} side="verso" />
         </defs>
 
         <polygon
