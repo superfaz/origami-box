@@ -1,6 +1,57 @@
 import { useEffect, useRef, useState } from "react";
-import { configurePositioning } from "./helper";
 import env from "../env";
+
+export function configurePositioning(face, text) {
+  const margins = {
+    hori: parseFloat(text.marginHorizontal),
+    vert: parseFloat(text.marginVertical),
+  };
+  if (isNaN(margins.hori)) {
+    margins.hori = 0;
+  }
+  if (isNaN(margins.vert)) {
+    margins.vert = 0;
+  }
+
+  let style = {};
+  let configuration = { ...face };
+
+  switch (text.horizontal) {
+    case "left":
+      style.textAnchor = "start";
+      configuration.x -= configuration.hori - margins.hori;
+      break;
+    case "center":
+      style.textAnchor = "middle";
+      break;
+    case "right":
+      style.textAnchor = "end";
+      configuration.x += configuration.hori - margins.hori;
+      break;
+    default:
+      throw new Error(
+        `The horizontal value '${text.horizontal}' is not managed`
+      );
+  }
+
+  switch (text.vertical) {
+    case "top":
+      style.dominantBaseline = "text-before-edge";
+      configuration.y -= configuration.vert - margins.vert;
+      break;
+    case "middle":
+      style.dominantBaseline = "central";
+      break;
+    case "bottom":
+      style.dominantBaseline = "text-after-edge";
+      configuration.y += configuration.vert - margins.vert;
+      break;
+    default:
+      throw new Error(`The vertical value '${text.vertical}' is not managed`);
+  }
+
+  return { configuration, style };
+}
 
 export default function SvgText({ face, text }) {
   const textRef = useRef(null);
