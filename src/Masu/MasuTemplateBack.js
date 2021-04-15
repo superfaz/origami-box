@@ -8,7 +8,7 @@ import { EmptyTemplate } from "../Template/Template";
 import objectMap from "../objectMap";
 import { useMasuDimensions } from "./helper";
 import SvgCut from "./SvgCut";
-import SvgImage from "./SvgImage";
+import SvgImage from "../Generic/SvgImage";
 import SvgText from "./SvgText";
 
 function SvgRoot({ withPaper, d, children }) {
