@@ -2,15 +2,15 @@ import { Helmet } from "react-helmet";
 import env from "../env";
 import { getFonts, getTexts, getImages } from "../Generic/selectors";
 import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
+import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
+import SvgFacesContent from "../Generic/SvgFacesContent";
+import SvgText from "../Generic/SvgText";
 import { useTemplate, useTemplateDefinition, useIds } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
 import objectMap from "../objectMap";
 import { useMasuDimensions } from "./helper";
 import SvgCut from "./SvgCut";
-import SvgText from "./SvgText";
-import SvgClipPaths from "../Generic/SvgClipPaths";
-import SvgFacesContent from "../Generic/SvgFacesContent";
 
 function SvgRoot({ withPaper, d, children }) {
   if (withPaper) {
@@ -140,7 +140,13 @@ export function MasuTemplate({
 
         {!print && <SvgCut d={d} styles={styles} />}
 
-        <SvgFacesContent ids={ids} faces={faces} side="verso" images={images} inverted={lid} />
+        <SvgFacesContent
+          ids={ids}
+          faces={faces}
+          side="verso"
+          images={images}
+          inverted={lid}
+        />
 
         {objectMap(faces, (face, key) => {
           const rotate = lid && key !== "0" ? 180 + face.rotate : face.rotate;
