@@ -51,18 +51,6 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
         )}
       </Helmet>
 
-      <defs>
-        <clipPath id={ids.unique("max")}>
-          <rect
-            x={-d.width / 2}
-            y={-d.height / 2}
-            width={d.width}
-            height={d.height}
-          />
-        </clipPath>
-        <SvgClipPaths ids={ids} faces={faces} side="recto" />
-      </defs>
-
       <rect
         x={-d.width / 2 - 5}
         y={-d.height / 2 - 5}
@@ -84,6 +72,19 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
           clipPath={"url(#" + ids.unique("max") + ")"}
         />
       )}
+
+      <defs>
+        <clipPath id={ids.unique("max")}>
+          <rect
+            x={-d.width / 2}
+            y={-d.height / 2}
+            width={d.width}
+            height={d.height}
+          />
+        </clipPath>
+      </defs>
+
+      <SvgClipPaths ids={ids} faces={faces} side="recto" />
 
       <SvgFacesContent
         ids={ids}

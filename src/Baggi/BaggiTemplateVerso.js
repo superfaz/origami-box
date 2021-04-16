@@ -1,6 +1,7 @@
 import env from "../env";
 import { getImages, getTexts } from "../Generic/selectors";
 import { buildReferenceStyles, SvgPaper } from "../Generic/Svg";
+import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
 import { useIds, useTemplate, useTemplateDefinition } from "../hooks";
@@ -48,6 +49,19 @@ export default function BaggiTemplateVerso({ text = null, image = null }) {
           preserveAspectRatio="xMidYMid slice"
         />
       )}
+
+      <defs>
+        <clipPath id={ids.unique("max")}>
+          <rect
+            x={-d.width / 2}
+            y={-d.height / 2}
+            width={d.width}
+            height={d.height}
+          />
+        </clipPath>
+      </defs>
+
+      <SvgClipPaths ids={ids} faces={faces} side="verso" />
 
       <SvgFacesContent
         ids={ids}

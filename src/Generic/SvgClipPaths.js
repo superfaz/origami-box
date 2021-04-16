@@ -2,7 +2,7 @@ import objectMap from "../objectMap";
 
 export default function SvgClipPaths({ ids, faces, side }) {
   return (
-    <>
+    <defs>
       {objectMap(faces, (face, key) => {
         if (face.side !== side) {
           return null;
@@ -16,6 +16,6 @@ export default function SvgClipPaths({ ids, faces, side }) {
           );
         }
       })}
-    </>
+    </defs>
   );
 }

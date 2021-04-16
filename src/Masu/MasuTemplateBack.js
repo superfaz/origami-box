@@ -107,8 +107,9 @@ export function MasuTemplate({
               points={`0,-${d.max_2} ${d.max_2},0 0,${d.max_2} -${d.max_2},0`}
             />
           </clipPath>
-          <SvgClipPaths ids={ids} faces={faces} side="verso" />
         </defs>
+
+        <SvgClipPaths ids={ids} faces={faces} side="verso" />
 
         <polygon
           points={`0,-${d.max_2 + 5} ${d.max_2 + 5},0 0,${d.max_2 + 5} -${
