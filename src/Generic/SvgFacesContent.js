@@ -1,12 +1,14 @@
 import objectMap from "../objectMap";
 import SvgImage from "./SvgImage";
+import SvgText from "./SvgText";
 
 export default function SvgFacesContent({
   ids,
   faces,
   side,
-  images,
   inverted = false,
+  images = [],
+  texts = [],
 }) {
   return objectMap(faces, (face, key) => {
     const rotate = inverted && key !== "0" ? 180 + face.rotate : face.rotate;
@@ -24,6 +26,11 @@ export default function SvgFacesContent({
                   face={face}
                   image={image}
                 />
+              ))}
+            {texts
+              .filter((text) => text.face === key)
+              .map((text) => (
+                <SvgText key={key + "-" + text.key} face={face} text={text} />
               ))}
           </g>
         </g>

@@ -5,10 +5,8 @@ import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
-import SvgText from "../Generic/SvgText";
 import { useTemplate, useTemplateDefinition, useIds } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
-import objectMap from "../objectMap";
 import { useMasuDimensions } from "./helper";
 import SvgCut from "./SvgCut";
 
@@ -144,28 +142,10 @@ export function MasuTemplate({
           ids={ids}
           faces={faces}
           side="verso"
-          images={images}
           inverted={lid}
+          images={images}
+          texts={texts}
         />
-
-        {objectMap(faces, (face, key) => {
-          const rotate = lid && key !== "0" ? 180 + face.rotate : face.rotate;
-          return (
-            <g key={key} clipPath={"url(#" + ids.unique(`face-${key}`) + ")"}>
-              <g transform={`rotate(${rotate} ${face.x} ${face.y})`}>
-                {texts
-                  .filter((text) => text.face === key)
-                  .map((text) => (
-                    <SvgText
-                      key={key + "-" + text.key}
-                      face={face}
-                      text={text}
-                    />
-                  ))}
-              </g>
-            </g>
-          );
-        })}
       </g>
     </SvgRoot>
   );

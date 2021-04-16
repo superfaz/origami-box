@@ -1,5 +1,5 @@
 import env from "../env";
-import { getImages } from "../Generic/selectors";
+import { getImages, getTexts } from "../Generic/selectors";
 import { buildReferenceStyles, SvgPaper } from "../Generic/Svg";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
@@ -19,6 +19,7 @@ export default function BaggiTemplateVerso({ text = null, image = null }) {
   }
 
   const images = getImages(blockData, image);
+  const texts = getTexts(blockData, text);
   const faces = definition.faces(d);
 
   return (
@@ -48,7 +49,13 @@ export default function BaggiTemplateVerso({ text = null, image = null }) {
         />
       )}
 
-      <SvgFacesContent ids={ids} faces={faces} side="verso" images={images} />
+      <SvgFacesContent
+        ids={ids}
+        faces={faces}
+        side="verso"
+        images={images}
+        texts={texts}
+      />
 
       {env.debug.svg && <SvgDebugFaces side="verso" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}

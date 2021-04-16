@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import env from "../env";
-import { getFonts, getImages } from "../Generic/selectors";
+import { getFonts, getImages, getTexts } from "../Generic/selectors";
 import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
@@ -21,6 +21,7 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
   }
 
   const images = getImages(blockData, image);
+  const texts = getTexts(blockData, text);
   const faces = definition.faces(d);
   const fonts = getFonts(baggi)
     .map((f) => "family=" + f.replace(" ", "+"))
@@ -84,7 +85,13 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
         />
       )}
 
-      <SvgFacesContent ids={ids} faces={faces} side="recto" images={images} />
+      <SvgFacesContent
+        ids={ids}
+        faces={faces}
+        side="recto"
+        images={images}
+        texts={texts}
+      />
 
       {env.debug.svg && <SvgDebugFaces side="recto" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
