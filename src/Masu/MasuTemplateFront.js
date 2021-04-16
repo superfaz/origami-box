@@ -4,7 +4,7 @@ import { SvgDebugAxis } from "../Generic/SvgDebug";
 import SvgFooter from "../Generic/SvgFooter";
 import SvgHeader from "../Generic/SvgHeader";
 import { useTemplate } from "../hooks";
-import { useMasuDimensions } from "./helper";
+import { useMasuDimensions } from "./useMasuDimensions";
 import SvgCut from "./SvgCut";
 
 export default function MasuTemplateFront({ lid = false, print = false }) {

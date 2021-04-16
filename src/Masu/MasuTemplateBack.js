@@ -7,7 +7,7 @@ import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
 import { useTemplate, useTemplateDefinition, useIds } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
-import { useMasuDimensions } from "./helper";
+import { useMasuDimensions } from "./useMasuDimensions";
 import SvgCut from "./SvgCut";
 
 function SvgRoot({ withPaper, d, children }) {

@@ -9,7 +9,7 @@ import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateDetail, updateData, updateTemplate } from "../store/templates";
-import { useMasuDimensions } from "./helper";
+import { useMasuDimensions } from "./useMasuDimensions";
 import MasuTemplateFront from "./MasuTemplateFront";
 
 export default function StepPrepare() {
