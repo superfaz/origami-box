@@ -4,7 +4,7 @@ import { buildReferenceStyles, SvgPaper } from "../Generic/Svg";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
 import { useIds, useTemplate, useTemplateDefinition } from "../hooks";
-import { useBaggiDimensions } from "./helper";
+import { useBaggiDimensions } from "./useBaggiDimensions";
 import SvgCut from "./SvgCut";
 
 export default function BaggiTemplateVerso({ text = null, image = null }) {

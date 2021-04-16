@@ -8,7 +8,7 @@ import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateData, updateTemplate } from "../store/templates";
 import BaggiTemplateRecto from "./BaggiTemplateRecto";
-import { useBaggiDimensions } from "./helper";
+import { useBaggiDimensions } from "./useBaggiDimensions";
 
 export default function StepPrepare() {
   const dispatch = useDispatch();
