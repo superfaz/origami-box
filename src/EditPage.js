@@ -13,15 +13,15 @@ export default function EditPage() {
       {template.title && (
         <h1>
           {template.title}
-          <small class="ms-2 badge bg-secondary fs-6">
+          <small className="ms-2 badge bg-secondary fs-6">
             {t(template.type + ":title")}
           </small>
         </h1>
       )}
       {!template.title && <h1>{t(template.type + ":title")}</h1>}
+      <EditNav />
 
       <div className="row">
-        <EditNav />
         {template.type === "masu" && <MasuEditPage />}
         {template.type === "baggi" && <BaggiEditPage />}
       </div>
