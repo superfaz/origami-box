@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getProfile } from "../store";
+import { applyTemplateMigrations } from "../store/migrations";
 
 export function useConnectedApi() {
   const profile = useSelector(getProfile);
@@ -14,6 +15,31 @@ export function useConnectedApi() {
       });
     }
   }, [profile.userId, profile.accessToken]);
+
+  async function getTemplatesAsync(limit = null) {
+    if (headers === null) {
+      throw new Error("Not initialized");
+    }
+
+    const params = new URLSearchParams();
+    if (limit !== null) {
+      params.set("limit", limit);
+    }
+
+    const uri = "/api/template".concat("?", params.toString());
+    console.log(`fetch ${uri}`);
+    const response = await fetch(uri, { method: "GET", headers });
+    if (!response.ok) {
+      throw new Error("Can't retrieve the templates");
+    }
+
+    const data = await response.json();
+    data.forEach((template) => {
+      applyTemplateMigrations(template);
+    });
+
+    return data;
+  }
 
   function removeTemplate(templateKey) {
     if (headers === null) {
@@ -43,7 +69,7 @@ export function useConnectedApi() {
 
     const preparedTemplate = {
       ...template,
-      userId: profile.userId,
+      userId: headers.userid,
     };
     delete preparedTemplate.local;
 
@@ -93,7 +119,8 @@ export function useConnectedApi() {
   }
 
   return {
-    removeTemplate,
-    saveTemplate,
+    getTemplatesAsync: useCallback(getTemplatesAsync, [headers]),
+    removeTemplate: useCallback(removeTemplate, [headers]),
+    saveTemplate: useCallback(saveTemplate, [headers]),
   };
 }

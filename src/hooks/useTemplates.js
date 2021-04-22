@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import createSet from "../createSet";
 import { getProfile, getLocalTemplates } from "../store";
-import { applyTemplateMigrations } from "../store/migrations";
+import { useConnectedApi } from "./useConnectedApi";
 
 function toArray(obj) {
   if (obj === undefined || obj === null) {
@@ -22,6 +22,7 @@ export function useTemplates(limit = null) {
   const [remoteTemplates, setRemoteTemplates] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
+  const { getTemplatesAsync } = useConnectedApi();
 
   useEffect(() => {
     setError(false);
@@ -29,33 +30,20 @@ export function useTemplates(limit = null) {
     if (profile.status === "not-connected") {
       setLoading(false);
     } else if (profile.status !== "unknown") {
-      console.log("fetch /api/template");
-      fetch("/api/template?limit=" + limit, {
-        headers: {
-          accesstoken: profile.accessToken,
-          userId: profile.userId,
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
+      try {
+        getTemplatesAsync(limit)
+          .then((templates) => {
+            setRemoteTemplates(templates);
+            setLoading(false);
+          })
+          .catch((error) => {
             setError(true);
-            return [];
-          }
-          return response.json();
-        })
-        .then((data) => {
-          data.forEach((template) => {
-            applyTemplateMigrations(template);
           });
-
-          setRemoteTemplates(data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setError(true);
-        });
+      } catch (error) {
+        setError(true);
+      }
     }
-  }, [profile.status, profile.userId, profile.accessToken, limit]);
+  }, [profile.status, getTemplatesAsync, limit]);
 
   const templates = createSet((t) => t.key, localTemplates, remoteTemplates)
     .sort((a, b) => b.savedate - a.savedate)
