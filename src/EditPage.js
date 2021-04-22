@@ -9,22 +9,28 @@ export default function EditPage() {
   const { template } = useTemplate();
 
   return (
-    <div className="container">
-      {template.title && (
-        <h1>
-          {template.title}
-          <small className="ms-2 badge bg-secondary fs-6">
-            {t(template.type + ":title")}
-          </small>
-        </h1>
-      )}
-      {!template.title && <h1>{t(template.type + ":title")}</h1>}
-      <EditNav />
-
-      <div className="row">
-        {template.type === "masu" && <MasuEditPage />}
-        {template.type === "baggi" && <BaggiEditPage />}
+    <>
+      <div className="sticky-top position-md-static edit-nav pt-2 pb-1 mb-3">
+        <div className="container">
+          {template.title && (
+            <h1>
+              {template.title}
+              <small className="ms-2 badge bg-secondary fs-6">
+                {t(template.type + ":title")}
+              </small>
+            </h1>
+          )}
+          {!template.title && <h1>{t(template.type + ":title")}</h1>}
+          <EditNav />
+        </div>
       </div>
-    </div>
+
+      <div className="container">
+        <div className="row">
+          {template.type === "masu" && <MasuEditPage />}
+          {template.type === "baggi" && <BaggiEditPage />}
+        </div>
+      </div>
+    </>
   );
 }

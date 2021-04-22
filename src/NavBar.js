@@ -82,7 +82,7 @@ export default function NavBar() {
   );
 
   return (
-    <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark text-light">
+    <nav className="navbar navbar-expand-lg sticky-md-top navbar-dark bg-dark text-light">
       <div className="container">
         <button
           className="navbar-toggler"

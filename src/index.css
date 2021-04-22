@@ -34,6 +34,12 @@ code {
   margin-bottom: 0.25rem;
 }
 
+@media (min-width: 768px) {
+  .position-md-static {
+    position: static;
+  }
+}
+
 .alert {
   max-height: 500px;
   transition: all 0.5s ease-out, padding 0.1s;
