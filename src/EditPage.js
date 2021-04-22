@@ -10,7 +10,7 @@ export default function EditPage() {
 
   return (
     <>
-      <div className="sticky-top position-md-static edit-nav pt-2 pb-1 mb-3">
+      <div className="sticky-top position-md-static edit-nav pt-3 pb-1 mb-3">
         <div className="container">
           {template.title && (
             <h1>
