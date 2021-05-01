@@ -65,7 +65,7 @@ export default function EditNav() {
           exact
           path={`${path}`}
           title={t([`${type}:stepGeneral.title`, "stepGeneral.title"])}
-          withLink={definition.isGeneralValid(data)}
+          withLink={true}
         />
         <RenderBlocks />
         <BreadcrumbItem
