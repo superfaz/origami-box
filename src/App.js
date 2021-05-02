@@ -17,12 +17,14 @@ import { TemplatePage } from "./Template";
 
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import ScrollToTop from "./Generic/ScrollToTop";
 
 export default function App() {
   return (
     <Suspense fallback="Loading...">
       <FacebookProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <NavBar />
           <ErrorBoundary>
             <Switch>

@@ -57,7 +57,6 @@ export default function StepPrepare() {
               name="title"
               type="text"
               className="form-control"
-              autoFocus
               value={template.title}
               onChange={handleTemplateInputChange}
             />
