@@ -13,14 +13,14 @@ export function EmptyTemplate({ withPaper = true }) {
   }
 }
 
-export default function Template({ template, lid = false, withPaper = true }) {
+export default function Template({ template, lid = false }) {
   const type = template?.type;
   switch (type) {
     case "masu":
       return (
-        <MasuTemplate masu={template.data} lid={lid} withPaper={withPaper} />
+        <MasuTemplate masu={template.data} lid={lid} withPaper={false} />
       );
     default:
-      return <EmptyTemplate withPaper={withPaper} />;
+      return <EmptyTemplate withPaper={false} />;
   }
 }

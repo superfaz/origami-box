@@ -2,12 +2,12 @@ import { useTranslation, Trans } from "react-i18next";
 import Loader from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { localSave } from "../store/templates";
 import Modal from "../Generic/Modal";
-import { getProfile } from "../store";
 import { isConnected } from "../Profile/selectors";
-import "./TemplateMiniature.css";
+import { localSave } from "../store/templates";
+import { getProfile } from "../store";
 import Template from "./Template";
+import "./TemplateMiniature.css";
 
 export function TemplateMiniature({
   template,
@@ -65,16 +65,16 @@ export function TemplateMiniature({
               </div>
               <div className="carousel-inner">
                 <div className="carousel-item active">
-                  <Template template={template} lid={true} withPaper={false} />
+                  <Template template={template} lid={true} />
                 </div>
                 <div className="carousel-item">
-                  <Template template={template} lid={false} withPaper={false} />
+                  <Template template={template} lid={false} />
                 </div>
               </div>
             </div>
           )}
           {!template.data.withLid && (
-            <Template template={template} withPaper={false} />
+            <Template template={template} />
           )}
         </div>
         <div className="card-body">
