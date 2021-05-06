@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import BaseStepBlockImage, {
   useStepBlockImageState,
 } from "../BaseTemplate/BaseStepBlockImage";
-import MasuTemplateBack from "./MasuTemplateBack";
+import MasuTemplateVerso from "./MasuTemplateVerso";
 
 export default function StepBlockImage() {
   const { block } = useParams();
@@ -10,7 +10,7 @@ export default function StepBlockImage() {
 
   return (
     <BaseStepBlockImage state={state} onStateChange={setState}>
-      <MasuTemplateBack lid={block === "lid"} image={state} />
+      <MasuTemplateVerso lid={block === "lid"} image={state} />
     </BaseStepBlockImage>
   );
 }

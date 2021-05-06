@@ -1,6 +1,6 @@
 import BaggiTemplate from "../Baggi/BaggiTemplate";
 import { Svg, SvgPaper } from "../Generic/Svg";
-import { MasuTemplate } from "../Masu/MasuTemplateBack";
+import { MasuTemplate } from "../Masu/MasuTemplateVerso";
 
 export function EmptyTemplate({ withPaper = true }) {
   if (withPaper) {

@@ -5,7 +5,7 @@ import { LeftForm, RightPreview } from "../Generic/Grid";
 import { useTemplate } from "../hooks";
 import objectMap from "../objectMap";
 import { updateDetail, deleteText, deleteImage } from "../store/templates";
-import MasuTemplateBack from "./MasuTemplateBack";
+import MasuTemplateVerso from "./MasuTemplateVerso";
 
 export default function StepBlock() {
   const dispatch = useDispatch();
@@ -183,7 +183,7 @@ export default function StepBlock() {
         </div>
       </LeftForm>
       <RightPreview>
-        <MasuTemplateBack lid={block === "lid"} />
+        <MasuTemplateVerso lid={block === "lid"} />
       </RightPreview>
     </>
   );

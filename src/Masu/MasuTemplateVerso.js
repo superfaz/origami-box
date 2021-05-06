@@ -10,7 +10,7 @@ import { EmptyTemplate } from "../Template/Template";
 import { useMasuDimensions } from "./useMasuDimensions";
 import SvgCut from "./SvgCut";
 
-export default function MasuTemplateBack({
+export default function MasuTemplateVerso({
   lid = false,
   print = false,
   text = null,

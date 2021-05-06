@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import BaseStepBlockText, {
   useStepBlockTextState,
 } from "../BaseTemplate/BaseStepBlockText";
-import MasuTemplateBack from "./MasuTemplateBack";
+import MasuTemplateVerso from "./MasuTemplateVerso";
 
 export default function StepBlockText() {
   const { block } = useParams();
@@ -10,7 +10,7 @@ export default function StepBlockText() {
 
   return (
     <BaseStepBlockText state={state} onStateChange={setState}>
-      <MasuTemplateBack lid={block === "lid"} text={state} />
+      <MasuTemplateVerso lid={block === "lid"} text={state} />
     </BaseStepBlockText>
   );
 }

@@ -1,7 +1,7 @@
 import BaseStepGenerate from "../BaseTemplate/BaseStepGenerate";
 import { useTemplate } from "../hooks";
 import MasuTemplateRecto from "./MasuTemplateRecto";
-import MasuTemplateBack from "./MasuTemplateBack";
+import MasuTemplateVerso from "./MasuTemplateVerso";
 
 export default function StepGenerate() {
   const { data: masu } = useTemplate();
@@ -14,7 +14,7 @@ export default function StepGenerate() {
         </div>
         {masu.withDesign && (
           <div className="col-12 col-lg-6 mb-3">
-            <MasuTemplateBack print="true" />
+            <MasuTemplateVerso print="true" />
           </div>
         )}
         {masu.withLid && (
@@ -24,7 +24,7 @@ export default function StepGenerate() {
         )}
         {masu.withLid && masu.withDesign && (
           <div className="col-12 col-lg-6 mb-3">
-            <MasuTemplateBack lid print="true" />
+            <MasuTemplateVerso lid print="true" />
           </div>
         )}
       </div>
