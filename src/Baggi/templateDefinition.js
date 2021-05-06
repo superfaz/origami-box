@@ -59,7 +59,7 @@ export const baggiTemplateDefinition = {
   simpleFaces: function (d) {
     return {
       0: {
-        side: "simple",
+        side: "recto",
         x: 0,
         y: 0,
         width: d.l,
@@ -69,7 +69,7 @@ export const baggiTemplateDefinition = {
         vert: d.w_2,
       },
       1: {
-        side: "simple",
+        side: "verso",
         x: 0,
         y: d.w,
         width: d.l,
@@ -79,7 +79,7 @@ export const baggiTemplateDefinition = {
         vert: d.w_2,
       },
       2: {
-        side: "simple",
+        side: "recto",
         x: 0,
         y: -d.w,
         width: d.l,

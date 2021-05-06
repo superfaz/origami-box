@@ -4,6 +4,7 @@ import { buildReferenceStyles, SvgRoot } from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import SvgFacesContent from "../Generic/SvgFacesContent";
 import { useIds, useTemplateDefinition } from "../hooks";
+import objectMap from "../objectMap";
 import { EmptyTemplate } from "../Template/Template";
 import { getSimpleDimensions } from "./dimensions";
 import SvgSimpleCut from "./SvgSimpleCut";
@@ -18,7 +19,7 @@ export default function BaggiTemplate({
   const definition = useTemplateDefinition("baggi");
   const ids = useIds();
 
-  const styles = buildReferenceStyles(blockData.versoColor);
+  const styles = buildReferenceStyles("#ffffff");
   const d = getSimpleDimensions(baggi);
   if (d === null) {
     return <EmptyTemplate withPaper={withPaper} />;
@@ -51,12 +52,36 @@ export default function BaggiTemplate({
         )}
       </Helmet>
 
-      <SvgClipPaths ids={ids} faces={faces} side="simple" />
+      {objectMap(faces, (face, key) => (
+        <g key={key} clipPath={"url(#" + ids.unique(`face-${key}`) + ")"}>
+          <rect
+            x={face.x - face.width / 2}
+            y={face.y - face.height / 2}
+            width={face.width}
+            height={face.height}
+            fill={
+              face.side === "recto"
+                ? blockData.rectoColor
+                : blockData.versoColor
+            }
+          />
+        </g>
+      ))}
+
+      <SvgClipPaths ids={ids} faces={faces} side="recto" />
+      <SvgClipPaths ids={ids} faces={faces} side="verso" />
 
       <SvgFacesContent
         ids={ids}
         faces={faces}
-        side="simple"
+        side="recto"
+        images={images}
+        texts={texts}
+      />
+      <SvgFacesContent
+        ids={ids}
+        faces={faces}
+        side="verso"
         images={images}
         texts={texts}
       />
