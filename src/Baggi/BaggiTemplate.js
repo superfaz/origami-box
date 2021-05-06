@@ -1,11 +1,12 @@
 import { Helmet } from "react-helmet";
 import { getFonts, getImages, getTexts } from "../Generic/selectors";
-import { SvgRoot } from "../Generic/Svg";
+import { buildReferenceStyles, SvgRoot } from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import SvgFacesContent from "../Generic/SvgFacesContent";
 import { useIds, useTemplateDefinition } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
 import { getSimpleDimensions } from "./dimensions";
+import SvgSimpleCut from "./SvgSimpleCut";
 
 export default function BaggiTemplate({
   baggi,
@@ -17,6 +18,7 @@ export default function BaggiTemplate({
   const definition = useTemplateDefinition("baggi");
   const ids = useIds();
 
+  const styles = buildReferenceStyles(blockData.versoColor);
   const d = getSimpleDimensions(baggi);
   if (d === null) {
     return <EmptyTemplate withPaper={withPaper} />;
@@ -58,6 +60,8 @@ export default function BaggiTemplate({
         images={images}
         texts={texts}
       />
+
+      <SvgSimpleCut d={d} styles={styles} />
     </SvgRoot>
   );
 }
