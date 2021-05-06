@@ -6,16 +6,16 @@ import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
 import { useIds, useTemplate, useTemplateDefinition } from "../hooks";
-import { useBaggiDimensions } from "./useBaggiDimensions";
+import { getPageDimensions } from "./dimensions";
 import SvgCut from "./SvgCut";
 
 export default function BaggiTemplateRecto({ text = null, image = null }) {
   const { data: baggi, blockData } = useTemplate();
   const definition = useTemplateDefinition("baggi");
-  const styles = buildDefaultStyles(blockData.rectoColor);
-  const d = useBaggiDimensions(baggi);
   const ids = useIds();
 
+  const styles = buildDefaultStyles(blockData.rectoColor);
+  const d = getPageDimensions(baggi);
   if (d === null) {
     return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
   }

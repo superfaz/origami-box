@@ -8,7 +8,7 @@ import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateData, updateTemplate } from "../store/templates";
 import BaggiTemplate from "./BaggiTemplate";
-import { useBaggiDimensions } from "./useBaggiDimensions";
+import { getPageDimensions } from "./dimensions";
 
 export default function StepPrepare() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function StepPrepare() {
   const [, setValid] = useState(false);
   const form = useRef(null);
   const { template, data: baggi } = useTemplate();
-  const dimensions = useBaggiDimensions(baggi);
+  const dimensions = getPageDimensions(baggi);
 
   useEffect(() => {
     setValid(form.current.checkValidity());

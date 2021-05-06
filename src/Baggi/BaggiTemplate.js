@@ -5,7 +5,7 @@ import SvgClipPaths from "../Generic/SvgClipPaths";
 import SvgFacesContent from "../Generic/SvgFacesContent";
 import { useIds, useTemplateDefinition } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
-import { useBaggiDimensions } from "./useBaggiDimensions";
+import { getSimpleDimensions } from "./dimensions";
 
 export default function BaggiTemplate({
   baggi,
@@ -15,9 +15,9 @@ export default function BaggiTemplate({
 }) {
   const blockData = baggi.base;
   const definition = useTemplateDefinition("baggi");
-  const d = useBaggiDimensions(baggi);
   const ids = useIds();
 
+  const d = getSimpleDimensions(baggi);
   if (d === null) {
     return <EmptyTemplate withPaper={withPaper} />;
   }

@@ -61,7 +61,7 @@ export const baggiTemplateDefinition = {
       0: {
         side: "simple",
         x: 0,
-        y: -d.w_2,
+        y: 0,
         width: d.l,
         height: d.w,
         rotate: 0,
@@ -71,7 +71,7 @@ export const baggiTemplateDefinition = {
       1: {
         side: "simple",
         x: 0,
-        y: d.w_2,
+        y: d.w,
         width: d.l,
         height: d.w,
         rotate: 180,
@@ -81,7 +81,7 @@ export const baggiTemplateDefinition = {
       2: {
         side: "simple",
         x: 0,
-        y: -3.0 * d.w_2,
+        y: -d.w,
         width: d.l,
         height: d.w,
         rotate: 0,
