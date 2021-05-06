@@ -73,9 +73,7 @@ export function TemplateMiniature({
               </div>
             </div>
           )}
-          {!template.data.withLid && (
-            <Template template={template} />
-          )}
+          {!template.data.withLid && <Template template={template} />}
         </div>
         <div className="card-body">
           <h5 className="card-title">
