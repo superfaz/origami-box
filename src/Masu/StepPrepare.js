@@ -10,7 +10,7 @@ import { checkValidity } from "../Generic/Validity";
 import { useTemplate } from "../hooks";
 import { updateDetail, updateData, updateTemplate } from "../store/templates";
 import { useMasuDimensions } from "./useMasuDimensions";
-import MasuTemplateFront from "./MasuTemplateFront";
+import MasuTemplateRecto from "./MasuTemplateRecto";
 
 export default function StepPrepare() {
   const dispatch = useDispatch();
@@ -221,14 +221,14 @@ export default function StepPrepare() {
         {masu.withLid && (
           <div className="row">
             <div className="col-12 col-lg-6 mb-3">
-              <MasuTemplateFront />
+              <MasuTemplateRecto />
             </div>
             <div className="col-12 col-lg-6 mb-3">
-              <MasuTemplateFront lid />
+              <MasuTemplateRecto lid />
             </div>
           </div>
         )}
-        {!masu.withLid && <MasuTemplateFront />}
+        {!masu.withLid && <MasuTemplateRecto />}
       </RightPreview>
     </>
   );

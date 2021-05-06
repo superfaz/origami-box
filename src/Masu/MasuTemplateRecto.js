@@ -7,7 +7,7 @@ import { useTemplate } from "../hooks";
 import { useMasuDimensions } from "./useMasuDimensions";
 import SvgCut from "./SvgCut";
 
-export default function MasuTemplateFront({ lid = false, print = false }) {
+export default function MasuTemplateRecto({ lid = false, print = false }) {
   const { template, data: masu } = useTemplate();
   const d = useMasuDimensions(masu, lid);
   const styles = buildDefaultStyles();

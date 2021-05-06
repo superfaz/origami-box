@@ -1,6 +1,6 @@
 import BaseStepGenerate from "../BaseTemplate/BaseStepGenerate";
 import { useTemplate } from "../hooks";
-import MasuTemplateFront from "./MasuTemplateFront";
+import MasuTemplateRecto from "./MasuTemplateRecto";
 import MasuTemplateBack from "./MasuTemplateBack";
 
 export default function StepGenerate() {
@@ -10,7 +10,7 @@ export default function StepGenerate() {
     <BaseStepGenerate>
       <div className="row">
         <div className="col-12 col-lg-6 mb-3">
-          <MasuTemplateFront print="true" />
+          <MasuTemplateRecto print="true" />
         </div>
         {masu.withDesign && (
           <div className="col-12 col-lg-6 mb-3">
@@ -19,7 +19,7 @@ export default function StepGenerate() {
         )}
         {masu.withLid && (
           <div className="col-12 col-lg-6 mb-3">
-            <MasuTemplateFront lid print="true" />
+            <MasuTemplateRecto lid print="true" />
           </div>
         )}
         {masu.withLid && masu.withDesign && (
