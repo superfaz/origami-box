@@ -55,4 +55,39 @@ export const baggiTemplateDefinition = {
       },
     };
   },
+
+  simpleFaces: function (d) {
+    return {
+      0: {
+        side: "simple",
+        x: 0,
+        y: -d.w_2,
+        width: d.l,
+        height: d.w,
+        rotate: 0,
+        hori: d.l_2,
+        vert: d.w_2,
+      },
+      1: {
+        side: "simple",
+        x: 0,
+        y: d.w_2,
+        width: d.l,
+        height: d.w,
+        rotate: 180,
+        hori: d.l_2,
+        vert: d.w_2,
+      },
+      2: {
+        side: "simple",
+        x: 0,
+        y: -3.0 * d.w_2,
+        width: d.l,
+        height: d.w,
+        rotate: 0,
+        hori: d.l_2,
+        vert: d.w_2,
+      },
+    };
+  },
 };

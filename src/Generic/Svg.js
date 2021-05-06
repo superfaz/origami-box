@@ -17,6 +17,24 @@ export function SvgPaper({ pageWidth, pageHeight, ...rest }) {
   );
 }
 
+export function SvgRoot({ withPaper, d, children }) {
+  if (withPaper) {
+    return (
+      <SvgPaper
+        className="template"
+        pageWidth={d.pageWidth}
+        pageHeight={d.pageHeight}
+      >
+        {children}
+      </SvgPaper>
+    );
+  } else {
+    const max = Math.max(d.width, d.height) + 10;
+    const max_2 = max / 2.0;
+    return <Svg viewBox={`${-max_2} ${-max_2} ${max} ${max}`}>{children}</Svg>;
+  }
+}
+
 const defaultLine = {
   fill: "none",
   strokeWidth: 0.2,

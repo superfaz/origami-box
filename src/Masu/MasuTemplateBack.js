@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import env from "../env";
 import { getFonts, getTexts, getImages } from "../Generic/selectors";
-import { buildReferenceStyles, Svg, SvgPaper } from "../Generic/Svg";
+import { buildReferenceStyles, SvgRoot } from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
@@ -9,30 +9,6 @@ import { useTemplate, useTemplateDefinition, useIds } from "../hooks";
 import { EmptyTemplate } from "../Template/Template";
 import { useMasuDimensions } from "./useMasuDimensions";
 import SvgCut from "./SvgCut";
-
-function SvgRoot({ withPaper, d, children }) {
-  if (withPaper) {
-    return (
-      <SvgPaper
-        className="template"
-        pageWidth={d.pageWidth}
-        pageHeight={d.pageHeight}
-      >
-        {children}
-      </SvgPaper>
-    );
-  } else {
-    return (
-      <Svg
-        viewBox={`${-d.size_2 - 5} ${-d.size_2 - 5} ${d.size + 10} ${
-          d.size + 10
-        }`}
-      >
-        {children}
-      </Svg>
-    );
-  }
-}
 
 export default function MasuTemplateBack({
   lid = false,

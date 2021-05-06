@@ -1,3 +1,4 @@
+import BaggiTemplate from "../Baggi/BaggiTemplate";
 import { Svg, SvgPaper } from "../Generic/Svg";
 import { MasuTemplate } from "../Masu/MasuTemplateBack";
 
@@ -17,9 +18,9 @@ export default function Template({ template, lid = false }) {
   const type = template?.type;
   switch (type) {
     case "masu":
-      return (
-        <MasuTemplate masu={template.data} lid={lid} withPaper={false} />
-      );
+      return <MasuTemplate masu={template.data} lid={lid} withPaper={false} />;
+    case "baggi":
+      return <BaggiTemplate baggi={template.data} withPaper={false} />;
     default:
       return <EmptyTemplate withPaper={false} />;
   }
