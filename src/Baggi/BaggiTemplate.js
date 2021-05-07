@@ -97,6 +97,55 @@ export default function BaggiTemplate({
         </g>
       ))}
 
+      <defs>
+        <clipPath id={ids.unique("left-0")}>
+          <polygon
+            points={[
+              [-d.l_2 - d.w_2, 0],
+              [-d.l_2, -d.w_2],
+              [-d.l_2, d.w_2],
+            ].join(" ")}
+          />
+        </clipPath>
+        <clipPath id={ids.unique("left-1")}>
+          <polygon
+            points={[
+              [-d.l_2, d.w_2],
+              [-d.l_2 - d.w, d.w_2],
+              [-d.l_2 - d.w, -d.w_2],
+            ].join(" ")}
+          />
+        </clipPath>
+        <clipPath id={ids.unique("left-2")}>
+          <polygon
+            points={[
+              [-d.l_2 - d.w, -d.w_2],
+              [-d.l_2, -d.w_2],
+              [-d.l_2 - d.w_2, 0],
+            ].join(" ")}
+          />
+        </clipPath>
+      </defs>
+
+      {Boolean(blockData.rectoImage) && (
+        <g clipPath={"url(#" + ids.unique("left-0") + ")"}>
+          <use href="#rectoImage" />
+        </g>
+      )}
+      {Boolean(blockData.rectoImage) && (
+        <g clipPath={"url(#" + ids.unique("left-2") + ")"}>
+          <use
+            href="#rectoImage"
+            transform={`rotate(-90 ${-d.l_2} ${-d.w_2})`}
+          />
+        </g>
+      )}
+      {Boolean(blockData.versoImage) && (
+        <g clipPath={"url(#" + ids.unique("left-1") + ")"}>
+          <use href="#versoImage" transform={`rotate(90 ${-d.l_2} ${d.w_2})`} />
+        </g>
+      )}
+
       <SvgFacesContent
         ids={ids}
         faces={faces}
