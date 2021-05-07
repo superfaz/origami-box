@@ -2,8 +2,8 @@
   "title": "Baggi",
   "create": {
     "title": "Baggi",
-    "subtitle": "<baggi>",
-    "description": "<baggi>",
+    "subtitle": "Une boîte simple et robuste",
+    "description": "Une boîte Baggi aura deux de ses dimensions égales. Ce modèle est généralement un bon choix pour des boîtes hautes ou pour service de conteneur de cartes.",
     "button": "Créer un modèle Baggi"
   },
   "dimensions": {

@@ -2,8 +2,8 @@
   "title": "Baggi",
   "create": {
     "title": "Baggi",
-    "subtitle": "<baggi>",
-    "description": "<baggi>",
+    "subtitle": "A simple yet robust box",
+    "description": "The Baggi box will have two equal dimensions and it is generally suited for tall boxes or stack of cards.",
     "button": "Create a Baggi template"
   },
   "dimensions": {
