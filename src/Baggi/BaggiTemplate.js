@@ -57,7 +57,7 @@ export default function BaggiTemplate({
 
       <defs>
         <rect
-          id="rectoColor"
+          id={ids.unique("rectoColor")}
           x={-d.width / 2}
           y={-d.height / 2}
           width={d.width}
@@ -65,7 +65,7 @@ export default function BaggiTemplate({
           fill={blockData.rectoColor}
         />
         <rect
-          id="versoColor"
+          id={ids.unique("versoColor")}
           x={-d.width / 2}
           y={-d.height / 2}
           width={d.width}
@@ -74,7 +74,7 @@ export default function BaggiTemplate({
         />
         {Boolean(blockData.rectoImage) && (
           <image
-            id="rectoImage"
+            id={ids.unique("rectoImage")}
             href={blockData.rectoImage}
             x={-d.width / 2}
             y={-d.height / 2}
@@ -85,7 +85,7 @@ export default function BaggiTemplate({
         )}
         {Boolean(blockData.versoImage) && (
           <image
-            id="versoImage"
+            id={ids.unique("versoImage")}
             href={blockData.versoImage}
             x={-d.width / 2}
             y={-d.height / 2 - d.w}
@@ -109,13 +109,13 @@ export default function BaggiTemplate({
                 : blockData.versoColor
             }
           />
-          <use href={`#${face.side}Image`} />
+          <use href={ids.unique(`#${face.side}Image`)} />
         </g>
       ))}
 
       <defs>
         <polygon
-          id="side-0"
+          id={ids.unique("side-0")}
           points={[
             [-d.w_2, 0],
             [0, -d.w_2],
@@ -123,7 +123,7 @@ export default function BaggiTemplate({
           ].join(" ")}
         />
         <polygon
-          id="side-1"
+          id={ids.unique("side-1")}
           points={[
             [0, d.w_2],
             [-d.w, d.w_2],
@@ -131,7 +131,7 @@ export default function BaggiTemplate({
           ].join(" ")}
         />
         <polygon
-          id="side-2"
+          id={ids.unique("side-2")}
           points={[
             [-d.w, -d.w_2],
             [0, -d.w_2],
@@ -139,59 +139,86 @@ export default function BaggiTemplate({
           ].join(" ")}
         />
         <clipPath id={ids.unique("left-0")}>
-          <use href="#side-0" transform={`translate(${-d.l_2} 0)`} />
+          <use
+            href={ids.unique("#side-0")}
+            transform={`translate(${-d.l_2} 0)`}
+          />
         </clipPath>
         <clipPath id={ids.unique("left-1")}>
-          <use href="#side-1" transform={`translate(${-d.l_2} 0)`} />
+          <use
+            href={ids.unique("#side-1")}
+            transform={`translate(${-d.l_2} 0)`}
+          />
         </clipPath>
         <clipPath id={ids.unique("left-2")}>
-          <use href="#side-2" transform={`translate(${-d.l_2} 0)`} />
+          <use
+            href={ids.unique("#side-2")}
+            transform={`translate(${-d.l_2} 0)`}
+          />
         </clipPath>
         <clipPath id={ids.unique("right-0")}>
-          <use href="#side-0" transform={`translate(${d.l_2} 0) scale(-1 1)`} />
+          <use
+            href={ids.unique("#side-0")}
+            transform={`translate(${d.l_2} 0) scale(-1 1)`}
+          />
         </clipPath>
         <clipPath id={ids.unique("right-1")}>
-          <use href="#side-1" transform={`translate(${d.l_2} 0) scale(-1 1)`} />
+          <use
+            href={ids.unique("#side-1")}
+            transform={`translate(${d.l_2} 0) scale(-1 1)`}
+          />
         </clipPath>
         <clipPath id={ids.unique("right-2")}>
-          <use href="#side-2" transform={`translate(${d.l_2} 0) scale(-1 1)`} />
+          <use
+            href={ids.unique("#side-2")}
+            transform={`translate(${d.l_2} 0) scale(-1 1)`}
+          />
         </clipPath>
       </defs>
 
       <g clipPath={"url(#" + ids.unique("left-0") + ")"}>
-        <use href="#rectoColor" />
-        {blockData.rectoImage && <use href="#rectoImage" />}
+        <use href={ids.unique("#rectoColor")} />
+        {blockData.rectoImage && <use href={ids.unique("#rectoImage")} />}
       </g>
       <g clipPath={"url(#" + ids.unique("right-0") + ")"}>
-        <use href="#rectoColor" />
-        {blockData.rectoImage && <use href="#rectoImage" />}
+        <use href={ids.unique("#rectoColor")} />
+        {blockData.rectoImage && <use href={ids.unique("#rectoImage")} />}
       </g>
       <g clipPath={"url(#" + ids.unique("left-2") + ")"}>
-        <use href="#rectoColor" />
+        <use href={ids.unique("#rectoColor")} />
         {blockData.rectoImage && (
           <use
-            href="#rectoImage"
+            href={ids.unique("#rectoImage")}
             transform={`rotate(-90 ${-d.l_2} ${-d.w_2})`}
           />
         )}
       </g>
 
       <g clipPath={"url(#" + ids.unique("right-2") + ")"}>
-        <use href="#rectoColor" />
+        <use href={ids.unique("#rectoColor")} />
         {blockData.rectoImage && (
-          <use href="#rectoImage" transform={`rotate(90 ${d.l_2} ${-d.w_2})`} />
+          <use
+            href={ids.unique("#rectoImage")}
+            transform={`rotate(90 ${d.l_2} ${-d.w_2})`}
+          />
         )}
       </g>
       <g clipPath={"url(#" + ids.unique("left-1") + ")"}>
-        <use href="#versoColor" />
+        <use href={ids.unique("#versoColor")} />
         {blockData.rectoImage && (
-          <use href="#versoImage" transform={`rotate(90 ${-d.l_2} ${d.w_2})`} />
+          <use
+            href={ids.unique("#versoImage")}
+            transform={`rotate(90 ${-d.l_2} ${d.w_2})`}
+          />
         )}
       </g>
       <g clipPath={"url(#" + ids.unique("right-1") + ")"}>
-        <use href="#versoColor" />
+        <use href={ids.unique("#versoColor")} />
         {blockData.rectoImage && (
-          <use href="#versoImage" transform={`rotate(-90 ${d.l_2} ${d.w_2})`} />
+          <use
+            href={ids.unique("#versoImage")}
+            transform={`rotate(-90 ${d.l_2} ${d.w_2})`}
+          />
         )}
       </g>
 
@@ -211,6 +238,34 @@ export default function BaggiTemplate({
       />
 
       <SvgSimpleCut d={d} styles={styles} />
+      <line
+        x1={-d.l_2}
+        y1={d.w_2}
+        x2={-d.l_2 - d.w}
+        y2={-d.w_2}
+        style={styles.valley}
+      />
+      <line
+        x1={-d.l_2}
+        y1={-d.w_2}
+        x2={-d.l_2 - d.w_2}
+        y2={0}
+        style={styles.valley}
+      />
+      <line
+        x1={d.l_2}
+        y1={d.w_2}
+        x2={d.l_2 + d.w}
+        y2={-d.w_2}
+        style={styles.valley}
+      />
+      <line
+        x1={d.l_2}
+        y1={-d.w_2}
+        x2={d.l_2 + d.w_2}
+        y2={0}
+        style={styles.valley}
+      />
     </SvgRoot>
   );
 }
