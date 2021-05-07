@@ -52,6 +52,34 @@ export default function BaggiTemplate({
         )}
       </Helmet>
 
+      <SvgClipPaths ids={ids} faces={faces} side="recto" />
+      <SvgClipPaths ids={ids} faces={faces} side="verso" />
+
+      <defs>
+        {Boolean(blockData.rectoImage) && (
+          <image
+            id="rectoImage"
+            href={blockData.rectoImage}
+            x={-d.width / 2}
+            y={-d.height / 2}
+            width={d.width}
+            height={4.0 * d.w}
+            preserveAspectRatio="xMidYMid slice"
+          />
+        )}
+        {Boolean(blockData.versoImage) && (
+          <image
+            id="versoImage"
+            href={blockData.versoImage}
+            x={-d.width / 2}
+            y={-d.height / 2 - d.w}
+            width={d.width}
+            height={4.0 * d.w}
+            preserveAspectRatio="xMidYMid slice"
+          />
+        )}
+      </defs>
+
       {objectMap(faces, (face, key) => (
         <g key={key} clipPath={"url(#" + ids.unique(`face-${key}`) + ")"}>
           <rect
@@ -65,11 +93,9 @@ export default function BaggiTemplate({
                 : blockData.versoColor
             }
           />
+          <use href={`#${face.side}Image`} />
         </g>
       ))}
-
-      <SvgClipPaths ids={ids} faces={faces} side="recto" />
-      <SvgClipPaths ids={ids} faces={faces} side="verso" />
 
       <SvgFacesContent
         ids={ids}
