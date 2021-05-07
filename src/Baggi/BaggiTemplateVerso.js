@@ -8,7 +8,11 @@ import { useIds, useTemplate, useTemplateDefinition } from "../hooks";
 import { getPageDimensions } from "./dimensions";
 import SvgCut from "./SvgCut";
 
-export default function BaggiTemplateVerso({ text = null, image = null }) {
+export default function BaggiTemplateVerso({
+  text = null,
+  image = null,
+  print = false,
+}) {
   const { data: baggi, blockData } = useTemplate();
   const definition = useTemplateDefinition("baggi");
   const ids = useIds();
@@ -73,7 +77,8 @@ export default function BaggiTemplateVerso({ text = null, image = null }) {
 
       {env.debug.svg && <SvgDebugFaces side="verso" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
-      <SvgCut d={d} styles={styles} />
+
+      {!print && <SvgCut d={d} styles={styles} />}
     </SvgPaper>
   );
 }

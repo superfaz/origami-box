@@ -5,12 +5,18 @@ import { buildDefaultStyles, SvgPaper } from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
+import SvgFooter from "../Generic/SvgFooter";
+import SvgHeader from "../Generic/SvgHeader";
 import { useIds, useTemplate, useTemplateDefinition } from "../hooks";
 import { getPageDimensions } from "./dimensions";
 import SvgCut from "./SvgCut";
 
-export default function BaggiTemplateRecto({ text = null, image = null }) {
-  const { data: baggi, blockData } = useTemplate();
+export default function BaggiTemplateRecto({
+  text = null,
+  image = null,
+  print = false,
+}) {
+  const { template, data: baggi, blockData } = useTemplate();
   const definition = useTemplateDefinition("baggi");
   const ids = useIds();
 
@@ -50,6 +56,11 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
           />
         )}
       </Helmet>
+
+      {/* Header for print */}
+      {print && (
+        <SvgHeader dimensions={d} blockName="Box" title={template.title} />
+      )}
 
       <rect
         x={-d.width / 2 - 5}
@@ -97,6 +108,9 @@ export default function BaggiTemplateRecto({ text = null, image = null }) {
       {env.debug.svg && <SvgDebugFaces side="recto" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
       <SvgCut d={d} styles={styles} />
+
+      {/* Footer for print */}
+      {print && <SvgFooter dimensions={d} />}
     </SvgPaper>
   );
 }
