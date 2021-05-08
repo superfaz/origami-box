@@ -1,6 +1,8 @@
+import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { Link, useRouteMatch } from "react-router-dom";
 import { Dimension, Dimensions } from "../Generic/Dimension";
 import DimensionsInfo from "../Generic/DimensionsInfo";
 import { LeftForm, RightPreview } from "../Generic/Grid";
@@ -13,9 +15,10 @@ import { getPageDimensions } from "./dimensions";
 export default function StepPrepare() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [, setValid] = useState(false);
+  const [valid, setValid] = useState(false);
   const form = useRef(null);
   const { template, data: baggi } = useTemplate();
+  const { url } = useRouteMatch();
   const dimensions = getPageDimensions(baggi);
 
   useEffect(() => {
@@ -88,6 +91,28 @@ export default function StepPrepare() {
             <div className="text-muted">
               {t(`stepGeneral.withDesign${baggi.withDesign ? "On" : "Off"}`)}
             </div>
+          </div>
+          <div className="mb-3 mt-5 d-flex">
+            {baggi.withDesign && (
+              <Link
+                className={classNames("btn btn-primary ms-auto", {
+                  disabled: !valid,
+                })}
+                to={`${url}/base`}
+              >
+                {t("stepDesign.box.linkTo")}
+              </Link>
+            )}
+            {!baggi.withDesign && (
+              <Link
+                className={classNames("btn btn-primary ms-auto", {
+                  disabled: !valid,
+                })}
+                to={`${url}/generate`}
+              >
+                {t("stepGenerate.linkTo")}
+              </Link>
+            )}
           </div>
         </form>
       </LeftForm>
