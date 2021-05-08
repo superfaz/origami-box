@@ -107,7 +107,30 @@ const imageSchema = {
   ],
 };
 
-const baseSchema = {
+const baggiBaseSchema = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    key: { type: "string", enum: ["base"] },
+    rectoColor: { type: "string", format: "color" },
+    versoColor: { type: "string", format: "color" },
+    rectoImage: { type: ["null", "string"], format: "data-url" },
+    versoImage: { type: ["null", "string"], format: "data-url" },
+    texts: {
+      type: "object",
+      additionalProperties: false,
+      patternProperties: { [uuidv4Regex]: textSchema },
+    },
+    images: {
+      type: "object",
+      additionalProperties: false,
+      patternProperties: { [uuidv4Regex]: imageSchema },
+    },
+  },
+  required: ["key", "rectoColor", "versoColor"],
+};
+
+const masuBaseSchema = {
   type: "object",
   additionalProperties: false,
   properties: {
@@ -128,10 +151,10 @@ const baseSchema = {
   required: ["key", "background", "backgroundImage", "texts", "images"],
 };
 
-const lidSchema = {
-  ...baseSchema,
+const masuLidSchema = {
+  ...masuBaseSchema,
   properties: {
-    ...baseSchema.properties,
+    ...masuBaseSchema.properties,
     key: { type: "string", enum: ["lid"] },
     delta: { type: "number", minimum: 0 },
     height: {
@@ -141,6 +164,19 @@ const lidSchema = {
       ],
     },
   },
+};
+
+const baggiSchema = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    pageFormat: { type: "string", enum: ["A4"] },
+    length: { type: "number", minimum: 0 },
+    width: { type: "number", minimum: 0 },
+    withDesign: { type: "boolean" },
+    base: baggiBaseSchema,
+  },
+  required: ["pageFormat", "length", "width", "withDesign", "base"],
 };
 
 const masuSchema = {
@@ -153,8 +189,8 @@ const masuSchema = {
     height: { type: "number", minimum: 0 },
     withDesign: { type: "boolean" },
     withLid: { type: "boolean" },
-    base: baseSchema,
-    lid: lidSchema,
+    base: masuBaseSchema,
+    lid: masuLidSchema,
   },
   required: [
     "pageFormat",
@@ -177,9 +213,17 @@ const templateSchema = {
     version: { type: "integer" },
     title: { type: "string" },
     savedate: { type: "integer", format: "date" },
-    type: { type: "string", enum: ["masu"] },
-    data: masuSchema,
+    type: { type: "string", enum: ["masu", "baggi"] },
+    data: { type: "object" },
   },
+  anyOf: [
+    {
+      properties: { type: { const: "masu" }, data: masuSchema },
+    },
+    {
+      properties: { type: { const: "baggi" }, data: baggiSchema },
+    },
+  ],
   required: ["key", "userId", "title", "savedate", "type", "data"],
 };
 

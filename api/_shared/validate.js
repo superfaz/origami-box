@@ -36,7 +36,7 @@ ajv
   });
 
 function getImages(block) {
-  if (block === undefined || block === null) {
+  if (!block || !block.images) {
     return [];
   }
 

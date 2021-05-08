@@ -37,7 +37,12 @@ const initialMasu = {
 };
 
 const initialBaggi = {
+  pageFormat: "A4",
+  length: "",
+  width: "",
+  withDesign: true,
   base: {
+    key: "base",
     rectoColor: "#ffffff",
     versoColor: "#ffffff",
   },
