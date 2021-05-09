@@ -86,14 +86,21 @@ export function buildReferenceStyles(backgroundColor = "white") {
   };
 }
 
-export function buildTransparentStyles() {
+export function buildTransparentStyles(backgroundColor = "white") {
+  const color = Color(backgroundColor);
+
+  const cut = {
+    ...defaultLine,
+    stroke: color.isDark() ? "white" : "black",
+  };
+
   const noneStyle = {
     fill: "none",
     stroke: "none",
   };
 
   return {
-    cut: noneStyle,
+    cut: cut,
     valley: noneStyle,
     mountain: noneStyle,
     mark: { ...defaultLine, stroke: "blue" },
