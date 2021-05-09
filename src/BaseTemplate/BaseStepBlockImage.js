@@ -183,7 +183,12 @@ export default function BaseStepBlockImage({ state, onStateChange, children }) {
               >
                 {[...Array(definition.facesCount()).keys()].map((i) => (
                   <option key={i} value={i}>
-                    {t([`${template.type}:face.${i}`, `face.${i}`])}
+                    {t([
+                      `${template.type}:face.${block}.${i}`,
+                      `${template.type}:face.${i}`,
+                      `face.${block}.${i}`,
+                      `face.${i}`,
+                    ])}
                   </option>
                 ))}
               </select>

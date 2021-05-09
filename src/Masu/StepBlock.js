@@ -87,7 +87,14 @@ export default function StepBlock() {
                       <div key={index}>{line}</div>
                     ))}
                   </td>
-                  <td>{t(`masu:face.${text.face}`)}</td>
+                  <td>
+                    {t([
+                      `masu:face.${block}.${text.face}`,
+                      `masu:face.${text.face}`,
+                      `face.${block}.${text.face}`,
+                      `face.${text.face}`,
+                    ])}
+                  </td>
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
@@ -136,7 +143,14 @@ export default function StepBlock() {
                       style={{ height: "2rem" }}
                     />
                   </td>
-                  <td>{t(`masu:face.${image.face}`)}</td>
+                  <td>
+                    {t([
+                      `masu:face.${block}.${image.face}`,
+                      `masu:face.${image.face}`,
+                      `face.${block}.${image.face}`,
+                      `face.${image.face}`,
+                    ])}
+                  </td>
                   <td className="text-end">
                     <Link
                       className="btn btn-outline-primary ms-1 btn-sm"
