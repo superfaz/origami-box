@@ -1,7 +1,11 @@
 import { Helmet } from "react-helmet";
 import env from "../env";
 import { getFonts, getImages, getTexts } from "../Generic/selectors";
-import { buildDefaultStyles, buildTransparentStyles, SvgPaper } from "../Generic/Svg";
+import {
+  buildDefaultStyles,
+  buildTransparentStyles,
+  SvgPaper,
+} from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
@@ -21,7 +25,7 @@ export default function BaggiTemplateRecto({
   const ids = useIds();
 
   const styles = print
-    ? buildTransparentStyles()
+    ? buildTransparentStyles(blockData.versoColor)
     : buildDefaultStyles(blockData.versoColor);
   const d = getPageDimensions(baggi);
   if (d === null) {
@@ -61,7 +65,10 @@ export default function BaggiTemplateRecto({
 
       {/* Header for print */}
       {print && (
-        <SvgHeader dimensions={d} blockName="Box" title={template.title} />
+        <>
+          <SvgHeader dimensions={d} blockName="Box" title={template.title} />
+          <SvgFooter dimensions={d} />
+        </>
       )}
 
       <rect
@@ -110,9 +117,6 @@ export default function BaggiTemplateRecto({
       {env.debug.svg && <SvgDebugFaces side="recto" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
       <SvgCut d={d} styles={styles} />
-
-      {/* Footer for print */}
-      {print && <SvgFooter dimensions={d} />}
     </SvgPaper>
   );
 }
