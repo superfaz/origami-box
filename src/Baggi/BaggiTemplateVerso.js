@@ -1,6 +1,10 @@
 import env from "../env";
 import { getImages, getTexts } from "../Generic/selectors";
-import { buildReferenceStyles, SvgPaper } from "../Generic/Svg";
+import {
+  buildReferenceStyles,
+  buildTransparentStyles,
+  SvgPaper,
+} from "../Generic/Svg";
 import SvgClipPaths from "../Generic/SvgClipPaths";
 import { SvgDebugAxis, SvgDebugFaces } from "../Generic/SvgDebug";
 import SvgFacesContent from "../Generic/SvgFacesContent";
@@ -17,7 +21,9 @@ export default function BaggiTemplateVerso({
   const definition = useTemplateDefinition("baggi");
   const ids = useIds();
 
-  const styles = buildReferenceStyles(blockData.versoColor);
+  const styles = print
+    ? buildTransparentStyles()
+    : buildReferenceStyles(blockData.versoColor);
   const d = getPageDimensions(baggi);
   if (d === null) {
     return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
