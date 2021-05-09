@@ -109,8 +109,8 @@
     "height": "Hauteur"
   },
   "dimensionsInfo": {
-    "sizeUnique": "Le carré de papier requis sera de {{width,number}}x{{height,unit}}.",
-    "sizeBlock": "Le carré de papier requis pour {{blockName}} sera de {{width,number}}x{{height,unit}}.",
+    "sizeUnique": "Le rectangle de papier requis sera de {{width,number}}x{{height,unit}}.",
+    "sizeBlock": "Le rectangle de papier requis pour {{blockName}} sera de {{width,number}}x{{height,unit}}.",
     "info": "Il tiendra sur une page A4.",
     "warning": "Il tiendra sur une page A4, mais vous pourriez avoir des problèmes de marge.",
     "danger": "Il ne tiendra <strong>pas</strong> sur une page A4."
