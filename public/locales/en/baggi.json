@@ -10,9 +10,9 @@
     "width": "Width and Height"
   },
   "face": {
-    "0": "Top",
-    "1": "Back",
-    "2": "Front"
+    "0": "Center",
+    "1": "Bottom",
+    "2": "Top"
   },
   "stepDesign": {
     "recto": "Recto",
