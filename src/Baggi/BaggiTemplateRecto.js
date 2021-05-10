@@ -25,8 +25,8 @@ export default function BaggiTemplateRecto({
   const ids = useIds();
 
   const styles = print
-    ? buildTransparentStyles(blockData.versoColor)
-    : buildDefaultStyles(blockData.versoColor);
+    ? buildTransparentStyles(blockData.rectoColor)
+    : buildDefaultStyles(blockData.rectoColor);
   const d = getPageDimensions(baggi);
   if (d === null) {
     return <SvgPaper className="template" pageWidth={210} pageHeight={297} />;
