@@ -3,6 +3,7 @@ import { Link, Redirect, useParams } from "react-router-dom";
 import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import Error404 from "../Error/Error404";
+import env from "../env";
 import { LeftForm, RightPreview } from "../Generic/Grid";
 import { checkValidity } from "../Generic/Validity";
 import { useTemplate, useGoogleFonts, useTemplateDefinition } from "../hooks";
@@ -52,6 +53,10 @@ export default function BaseStepBlockText({ state, onStateChange, children }) {
 
   if (!["base", "lid"].includes(block)) {
     throw new Error404();
+  }
+
+  function handleRotationChange(rotation) {
+    onStateChange({ ...state, rotation: rotation });
   }
 
   function handleInputChange(event) {
@@ -211,6 +216,53 @@ export default function BaseStepBlockText({ state, onStateChange, children }) {
                 />
               </div>
             </div>
+            {env.features.includes("text-rotation") && (
+              <div className="mb-3">
+                <label htmlFor="rotation" className="form-label">
+                  {t("stepText.rotation")}
+                </label>
+                <div className="input-group">
+                  <input
+                    type="number"
+                    name="rotation"
+                    className="form-control"
+                    placeholder="0"
+                    inputMode="number"
+                    unit="°"
+                    value={state.rotation}
+                    onChange={handleInputChange}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => handleRotationChange(0)}
+                  >
+                    abc
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => handleRotationChange(90)}
+                  >
+                    <div style={{ transform: "rotate(90deg)" }}>abc</div>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => handleRotationChange(180)}
+                  >
+                    <div style={{ transform: "rotate(180deg)" }}>abc</div>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => handleRotationChange(-90)}
+                  >
+                    <div style={{ transform: "rotate(-90deg)" }}>abc</div>
+                  </button>
+                </div>
+              </div>
+            )}
           </fieldset>
           <fieldset>
             <legend>{t("stepText.font")}</legend>
