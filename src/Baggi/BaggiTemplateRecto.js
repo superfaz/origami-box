@@ -104,6 +104,8 @@ export default function BaggiTemplateRecto({
         </clipPath>
       </defs>
 
+      {env.debug.svg && <SvgDebugFaces side="recto" faces={faces} />}
+
       <SvgClipPaths ids={ids} faces={faces} side="recto" />
 
       <SvgFacesContent
@@ -114,7 +116,6 @@ export default function BaggiTemplateRecto({
         texts={texts}
       />
 
-      {env.debug.svg && <SvgDebugFaces side="recto" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
       <SvgCut d={d} styles={styles} />
     </SvgPaper>

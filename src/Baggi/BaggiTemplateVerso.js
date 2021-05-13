@@ -65,6 +65,8 @@ export default function BaggiTemplateVerso({
         </clipPath>
       </defs>
 
+      {env.debug.svg && <SvgDebugFaces side="verso" faces={faces} />}
+
       <SvgClipPaths ids={ids} faces={faces} side="verso" />
 
       <SvgFacesContent
@@ -75,7 +77,6 @@ export default function BaggiTemplateVerso({
         texts={texts}
       />
 
-      {env.debug.svg && <SvgDebugFaces side="verso" faces={faces} />}
       {env.debug.svg && <SvgDebugAxis />}
 
       {!print && <SvgCut d={d} styles={styles} />}
