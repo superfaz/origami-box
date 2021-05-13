@@ -28,16 +28,16 @@ export function configurePositioning(face, text) {
     case "left":
       style.textAnchor = "start";
       configuration.x -= configuration.hori - margins.hori;
-      configuration.dx = configuration.x + configuration.width / 2;
+      configuration.cx = configuration.x + configuration.width / 2;
       break;
     case "center":
       style.textAnchor = "middle";
-      configuration.dx = configuration.x;
+      configuration.cx = configuration.x;
       break;
     case "right":
       style.textAnchor = "end";
       configuration.x += configuration.hori - margins.hori;
-      configuration.dx = configuration.x - configuration.width / 2;
+      configuration.cx = configuration.x - configuration.width / 2;
       break;
     default:
       throw new Error(
@@ -49,16 +49,16 @@ export function configurePositioning(face, text) {
     case "top":
       style.dominantBaseline = "text-before-edge";
       configuration.y -= configuration.vert - margins.vert;
-      configuration.dy = configuration.y + configuration.height / 2;
+      configuration.cy = configuration.y + configuration.height / 2;
       break;
     case "middle":
       style.dominantBaseline = "central";
-      configuration.dy = configuration.y;
+      configuration.cy = configuration.y;
       break;
     case "bottom":
       style.dominantBaseline = "text-after-edge";
       configuration.y += configuration.vert - margins.vert;
-      configuration.dy = configuration.y - configuration.height / 2;
+      configuration.cy = configuration.y - configuration.height / 2;
       break;
     default:
       throw new Error(`The vertical value '${text.vertical}' is not managed`);
@@ -97,8 +97,8 @@ export default function SvgText({ face, text }) {
     <g>
       {env.debug.svg && (
         <rect
-          x={configuration.dx - configuration.width / 2}
-          y={configuration.dy - configuration.height / 2}
+          x={configuration.cx - configuration.width / 2}
+          y={configuration.cy - configuration.height / 2}
           width={configuration.width}
           height={configuration.height}
           style={{ strokeWidth: 0.2 }}
