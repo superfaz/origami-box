@@ -227,21 +227,19 @@ export default function BaseStepBlockText({ state, onStateChange, children }) {
                     name="rotation"
                     className="form-control"
                     placeholder="0"
-                    inputMode="number"
-                    unit="°"
                     value={state.rotation}
                     onChange={handleInputChange}
                   />
                   <button
                     type="button"
-                    className="btn btn-outline-secondary"
+                    className="btn btn-secondary"
                     onClick={() => handleRotationChange(0)}
                   >
                     abc
                   </button>
                   <button
                     type="button"
-                    className="btn btn-outline-secondary"
+                    className="btn btn-secondary"
                     onClick={() => handleRotationChange(90)}
                   >
                     <div style={{ transform: "rotate(90deg)" }}>abc</div>
