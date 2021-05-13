@@ -94,7 +94,11 @@ export default function SvgText({ face, text }) {
   }
 
   return (
-    <g>
+    <g
+      transform={`rotate(${text.rotation || 0} ${configuration.cx},${
+        configuration.cy
+      })`}
+    >
       {env.debug.svg && (
         <rect
           x={configuration.cx - configuration.width / 2}
@@ -106,7 +110,7 @@ export default function SvgText({ face, text }) {
           fill="yellow"
         />
       )}
-      <text style={style} x={configuration.x} y={configuration.y}>
+      <text style={style}>
         {lines.map((line, index) => {
           return (
             <tspan
