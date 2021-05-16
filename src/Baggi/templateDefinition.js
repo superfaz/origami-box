@@ -39,7 +39,7 @@ export const baggiTemplateDefinition = {
         y: 3.0 * d.w_2,
         width: d.l,
         height: d.w,
-        rotate: 180,
+        rotate: 0,
         hori: d.l_2,
         vert: d.w_2,
       },
