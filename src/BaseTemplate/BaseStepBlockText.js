@@ -297,7 +297,7 @@ export default function BaseStepBlockText({ state, onStateChange, children }) {
                   type="color"
                   name="color"
                   className="form-control form-control-color"
-                  color={state.color}
+                  value={state.color}
                   onChange={handleInputChange}
                 />
                 <input
