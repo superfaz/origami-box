@@ -152,6 +152,7 @@
     "face": "Face",
     "horizontal": "Alignment",
     "margins": "Margins",
+    "rotation": "Rotation",
     "font": "Font",
     "family": "Font Family",
     "familyExplanation": "Name of the <1>google font</1> to be used",

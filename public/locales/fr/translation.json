@@ -152,6 +152,7 @@
     "face": "Face",
     "horizontal": "Alignement",
     "margins": "Marges",
+    "rotation": "Rotation",
     "font": "Police",
     "family": "Nom de la police",
     "familyExplanation": "Nom de la police <1>'google font'</1> à utiliser",
