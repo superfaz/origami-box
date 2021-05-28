@@ -36,7 +36,7 @@ export function configurePositioning(face, text) {
   let style = {};
   let configuration = { ...face };
 
-  context.font = `${text.size}mm ${text.family}`;
+  context.font = `${text.size}mm ${text.family || 'Open Sans'}`;
   const measure = context.measureText(text.content);
   configuration.width =
     Math.max(
