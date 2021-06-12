@@ -50,7 +50,7 @@
     "prelocal:db": "docker-compose down && docker-compose build",
     "local:db": "docker-compose up",
     "postlocal:db": "docker-compose down",
-    "local:api": "cd api && func start",
+    "local:api": "cd api && func start --javascript",
     "local": "concurrently \"yarn local:db\" \"yarn local:api\""
   },
   "eslintConfig": {

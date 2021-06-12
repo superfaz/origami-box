@@ -3,6 +3,8 @@
   "Values": {
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "MONGO_CONNECTION_STRING": "mongodb://root:example@localhost:27017"
+    "MONGO_CONNECTION_STRING": "mongodb://root:example@localhost:27017",
+    "FACEBOOK_APP_ID": "",
+    "FACEBOOK_APP_SECRET": ""
   }
 }
