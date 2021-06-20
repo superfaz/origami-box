@@ -31,7 +31,7 @@ export function useStepBlockTextState() {
       marginHorizontal: 2,
       marginVertical: 2,
       lineSpacing: 1.15,
-      rotation: "",
+      rotation: 0,
       family: "",
       size: 8,
       color: "#000000",

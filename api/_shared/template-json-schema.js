@@ -30,6 +30,7 @@ const textSchema = {
     marginVertical: { type: "number" },
     content: { type: "string" },
     lineSpacing: { type: "number" },
+    rotation: { type: "number" },
     family: { type: ["string", "null"] },
     size: { type: "number", minimum: 0 },
     color: { type: "string", format: "color" },
