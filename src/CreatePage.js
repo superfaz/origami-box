@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import BaggiCreateCard from "./Baggi/BaggiCreateCard";
-import env from "./env";
 import MasuCreateCard from "./Masu/MasuCreateCard";
 import { create } from "./store/templates";
 
