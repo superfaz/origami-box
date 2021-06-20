@@ -29,11 +29,9 @@ export default function CreatePage() {
           <div className="col-md-6 mb-3">
             <MasuCreateCard onCreate={() => handleCreate("masu")} />
           </div>
-          {env.features.includes("baggi") && (
-            <div className="col-md-6 mb-3">
-              <BaggiCreateCard onCreate={() => handleCreate("baggi")} />
-            </div>
-          )}
+          <div className="col-md-6 mb-3">
+            <BaggiCreateCard onCreate={() => handleCreate("baggi")} />
+          </div>
         </div>
       </div>
     );
