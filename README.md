@@ -11,7 +11,7 @@ This project is built with Javascript using **React**, leveraging **Azure Functi
 | tool                                                                          | website                                                              |
 | ----------------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | [`node 14`](https://nodejs.org/)                                              | Core engine for the project. Azure functions require the LTS version |
-| [`.NET 5`](https://dotnet.microsoft.com/download)                           | Used to run the apis via azure functions                             |
+| [`.NET 5`](https://dotnet.microsoft.com/download)                             | Used to run the apis via azure functions                             |
 | [`yarn`](https://yarnpkg.com/)                                                | Used for front-end dependencies and scripts                          |
 | [`docker` / `docker-compose`](https://www.docker.com/)                        | Used for the additional module (mongodb and azure functions)         |
 | [`azure functions`](https://www.npmjs.com/package/azure-functions-core-tools) | Used for the api                                                     |
